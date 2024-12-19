@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@fontsource/poppins";
+
+@font-face{
+    font-family: 'Poppins';
+    src: url('assets/fonts/Poppins-Regular.ttf') format('truetype');
+    
+}
+
+/* 1. Remove default margin and padding */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Set the font to a consistent baseline */
+body {
+    font-family: 'Poppins'!important;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* 3. Remove list styles (for ul, ol) */
+ul,
+ol {
+    list-style: none;
+}
+
+/* 4. Remove link decoration */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 5. Set a consistent image behavior */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 6. Ensure all form elements have consistent styling */
+input,
+select,
+textarea,
+button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+}
+
+/* 7. Make sure buttons don't have outline when focused */
+button:focus {
+    outline: none;
+}
+
+
