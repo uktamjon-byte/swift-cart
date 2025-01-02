@@ -1,0 +1,122 @@
+
+@import '../../../assets/sass/variables.scss';
+@import '../../../assets/sass/scroll-bar.scss';
+$base-padding:70px 170px 10px 170px;
+
+.auth-wrapper{
+    .auth-left{
+        width: 40%;
+        background-image: url('../../../assets/imagis/login-page-bg.png');
+        background-repeat: no-repeat;
+        background-position: center; 
+        background-size: cover; 
+    }
+
+    .home-link{
+        top: 20px;
+        left: 20px;
+        transition: $transition-200;
+        background-color: $color-light;
+        z-index: 1000;
+        &:hover{
+           background-color: $color-dark-2 !important;
+        }
+    }
+
+    .auth-right{
+        width: 60%;
+        @include scrollStyle(true);
+        .bg-login{
+            background-image: url('../../../assets/imagis/top-mask.png');
+            background-repeat: no-repeat;
+            background-position: top center; 
+            background-size: 100%;      
+        }
+        .auth-container{
+            padding: 0 150px;
+        }
+
+        .auth-content{
+       // padding: 0 170px;
+           h1{
+            color: $color-dark;
+           }
+        }
+    }
+}
+
+@media screen and (max-width: 1022px) {
+    .auth-container{
+        padding: 0 90px !important;
+    }
+}
+
+@media screen and (max-width:790px){
+    .auth-container{
+        padding: 0 50px !important;
+    }
+}
+
+@media screen and (max-width:692px){
+    .auth-left{
+        display: none;
+    }
+
+    .auth-right{
+        width: 100% !important;
+        .home-link{
+            position: absolute !important;
+        }
+        .auth-container{
+            justify-content: flex-start !important;
+            margin-top: 15px;
+            padding: 0 25px;
+        }
+
+        .auth-content{
+            .auth-welcome{
+                display: none;
+            }
+        }
+        .bg-login{
+            top: 367px;
+        }
+
+
+        .bg-header-contaner{
+            display: block !important;
+            bottom: 0;
+            width: 100%;
+            z-index: 100 !important;
+            p{
+               color: $color-light;
+               padding: 0 0 7px 7px;
+            }
+            h1{
+                color: $color-light;
+                padding: 0 0 7px 7px;
+            }
+            &::after{
+                content: "";
+                display: block;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                height: 300px;
+                background: linear-gradient(0deg, $color-primary-alpha-90 24.11%, rgba(0, 104, 224, 0) 56.9%);
+                z-index: -1 !important;
+            }
+        }
+
+        .bg-sm-login{
+            display: block !important;
+            background-image: url('../../../assets/imagis/login-page-mobile-bg.jpeg');
+            background-repeat: no-repeat;
+            background-position: center; 
+            background-size: cover;   
+            width: auto;
+            min-height: 200px;
+        }
+    }
+
+}

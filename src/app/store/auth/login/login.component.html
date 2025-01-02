@@ -1,0 +1,99 @@
+<div class="login-page">
+
+    <h1 class="fw-bold fs-4 text-dark mb-2 mt-3">Login</h1>
+    <p>Enter your details below to sign in into your account</p>
+    <div class="container">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="inp-field mb-4 position-relative">
+                <label for="email" class="fs-6">Email</label>
+                <input 
+                type="email" 
+                id='email' 
+                class="login-input form-control" 
+                placeholder="Enter your email"
+                formControlName="email"
+                [ngClass]="{'has-error':loginForm.get('email').touched && loginForm.get('email').invalid}"
+                />
+                <span class="inp-icon"><i class="fa-regular fa-envelope"></i></span>
+                <p class="error-message" *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid">
+                    <span class="error-message" *ngIf="loginForm.get('email').errors['required']">Input field cannot be empty</span>
+                    <span class="error-message" *ngIf="loginForm.get('email').errors['email']">Enter your name valid email address</span>
+                </p>  
+            </div>
+           
+            <div class="inp-field mb-4  position-relative">
+                <label for="password" class="fs-6">Password</label>
+                <input 
+                [type]="passwordType" 
+                id="password" 
+                class="login-input form-control" 
+                placeholder="Enter your password"
+                formControlName="password"
+                [ngClass]="{'has-error':loginForm.get('password').touched && loginForm.get('password').invalid}"
+                />
+                <span class="inp-icon"><i class="fa-regular fa-user"></i></span>
+                    <span class="eye-icon position-absolute" 
+                       (click)="passwordType = passwordType === 'password' ? 'text' : 'password'"><i [class]=" passwordType==='password'? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                    </span>
+                    <p class="error-message" *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid">
+                        <span 
+                        class="error-message" 
+                        *ngIf="loginForm.get('password').errors['required']">Enter your password</span>
+                      <span *ngIf="loginForm.get('password')['errors']['minlength'] && 
+                      loginForm.get('password')['errors']['minlength']['requiredLength']">Password has to contain
+                            {{ loginForm.get('password')['errors']['minlength']['requiredLength'] }}
+                      symbols.It has {{ loginForm.get('password')['errors']['minlength']['actualLength'] }}</span>
+                      
+                    </p>
+            </div>
+            <div class="mb-4 login-checkbox align-items-center">
+                <div class="d-inline">
+                    <input type="checkbox" class="form-check-input me-2"> 
+                    <span>Remember me</span>
+                </div>
+                
+                <a class="float-end" [routerLink]="['/auth/reset']">Forgot password?</a>
+    
+            </div>
+            <div class="button-wrapper position-relative">
+                <button class="btn btn-primary w-100 " [disabled]="loginForm.invalid">Sign In</button>
+                <div class="back-drop w-100 h-100 position-absolute" *ngIf="showBackDrop">
+                    <mat-spinner [diameter]="20"></mat-spinner>   
+                </div>
+            </div>
+           
+
+    
+        </form>
+       
+        <p class="d-block text-center mt-3">Or</p>
+
+        <div class="sign-in-btn mt-3 d-flex flex-row justify-content-around align-items-center">
+         
+            <a class="google-link me-2" href="#">
+                <img src="../../../../assets/imagis/google.png">
+               <span> Sign in with Google</span>
+            
+            </a>
+
+            <a class="facebook-link" href="#">
+                <img src="../../../../assets/imagis/facebook.png">
+                <span> Sign in with Facebook</span>
+              
+            </a>
+
+          
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center mt-5">
+            <p class="mb-0">Do you have an account?</p>
+            <a class="ms-2" [routerLink]="['/auth/registration']"> Sign up</a>
+            
+        </div>
+        
+        
+    </div>
+    
+
+</div>
+

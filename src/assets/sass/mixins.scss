@@ -1,0 +1,50 @@
+@mixin input(){
+    height: 40px;
+    font-size: 17px;
+    padding: 0 33px;
+    
+    &:focus{
+      box-shadow: none !important;
+      outline: 1px solid #007bff;
+    }
+    &:focus ~ .inp-icon i{
+      color: #25292c;
+    }
+  }
+  
+  @mixin iconStyles($size:41px){
+    position: absolute;
+    top: $size;
+    left: 7px;
+    width: 0;
+    font-size: 20px;
+    color: #6c757d !important;
+  }
+
+  @mixin reponsiveInput(){
+    height: 30px;
+    font-size: 13px;
+    & ~ .inp-icon {
+      font-size: 15px;
+      top: 29px;
+    }
+
+    & ~ .eye-icon {
+        font-size: 15px;
+        top: 29px;
+    }
+
+    & ~ label{
+        font-size: smaller !important;
+    }
+  }
+
+  @mixin backDropBtnStyles(){
+    z-index: 1000;
+    top:0%;
+    border-radius:5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d5d1d1cf;
+  }

@@ -1,0 +1,47 @@
+@import '../../../../assets/sass/variables.scss';
+@import '../../../../assets/sass/scroll-bar.scss';
+@import '../../../../assets/sass/mixins.scss';
+
+.regis-page{
+        @include scrollStyle(true);
+
+        .back-drop {
+            @include backDropBtnStyles();
+        }
+
+}
+.reg-input{
+    @include input();
+    
+}
+
+.inp-field {
+    .inp-icon{
+        @include iconStyles(28px);
+    }
+    .error-message{
+        color: $error-text-message;
+    }
+}
+
+.eye-icon{
+    top: 30px;
+    right: 7px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #6c757d
+}
+
+@media screen and (max-width:692px){
+    .reg-input{
+       @include reponsiveInput();
+    }
+
+    .sign-in-link{
+          flex-direction: column;
+          align-items: center;
+          p{
+            margin-bottom: 3px;
+          }
+    }
+}

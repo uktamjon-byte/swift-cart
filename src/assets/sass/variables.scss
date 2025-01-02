@@ -1,3 +1,32 @@
-//base-colors
+//base-classes
 
-$base-color: #0068e1;
+    $base-font-size: 15px;
+    $font-light: 300;
+    $font-normal: 400;
+    $font-medium: 500;
+    $font-semibold: 600;
+    $font-bold: 700;
+    $font-extrabold: 800;
+    $color-secondary: #00bc65;
+    $color-dark: #0e1e3e;
+    $color-dark-2: #626f84;
+    $color-dark-3: #a0aec0;
+    $color-light: #ffffff;
+    $color-border: #e1e2e4;
+    $color-red: #ff5748;
+    $default-border-radius: 8px;
+    $transition-200: .2s ease-in-out;
+    $color-primary-alpha-90: rgba(0, 104, 225, 0.9);
+    $input-error-style: solid 1px $color-red;
+    $error-text-message:$color-red;
+
+$zindex-dropdown:                   1000;
+$zindex-sticky:                     1020;
+$zindex-fixed:                      1030;
+$zindex-offcanvas-backdrop:         1040;
+$zindex-offcanvas:                  1045;
+$zindex-modal-backdrop:             1050;
+$zindex-modal:                      1055;
+$zindex-popover:                    1070;
+$zindex-tooltip:                    1080;
+$zindex-toast:                      1090;
