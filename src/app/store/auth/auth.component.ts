@@ -1,4 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import * as bootstrap from 'bootstrap';
 
 @Component({
@@ -8,7 +9,12 @@ import * as bootstrap from 'bootstrap';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(private ngZone:NgZone) { }
+  //isVisibile:boolean = false;
+
+  constructor(private ngZone:NgZone, private translateService:TranslateService) {
+    this.translateService.setDefaultLang('eng');
+    this.translateService.use(localStorage.getItem('lang') || 'eng')
+   }
 
   ngOnInit(){
     this.ngZone.runOutsideAngular(() => {
@@ -17,15 +23,6 @@ export class AuthComponent implements OnInit {
         new bootstrap.Tooltip(tooltipTriggerEl, {
           placement: 'top'
         });
-      });
-    });
-  }
-
-  ngAfterViewInit() {
-    this.ngZone.runOutsideAngular(() => {
-      const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
-      dropdownElementList.forEach(dropdownToggleEl => {
-        new bootstrap.Dropdown(dropdownToggleEl);
       });
     });
   }

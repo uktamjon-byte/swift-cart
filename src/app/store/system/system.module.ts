@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     SystemRoutingModule
   ],
-  providers: []
+  providers: [
+  ]
 })
 export class SystemModule { }

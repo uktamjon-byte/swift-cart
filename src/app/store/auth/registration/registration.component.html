@@ -1,160 +1,147 @@
 <div class="regis-page">
-    <h1 class="fw-bold fs-4 text-dark mb-2">Registration</h1>
-    <p>Enter your details below to sign in into your account</p>
+    <h1 class="fw-bold fs-4 text-dark mb-2" translate>registration</h1>
+    <p translate>accountDetail</p>
     <div class="container">
         <div class="wrapper">
             <form [formGroup]="regisForm" (ngSubmit)="onSubmit()">
                 <div class="name-field inp-field mb-4 position-relative">
-                    <label for="name" class="fs-6">First Name</label>
+                    <label for="name" class="fs-6" translate>firstNameLabel</label>
                     <input 
-                    type="text" 
-                    id='name' 
-                    class="reg-input form-control" 
-                    placeholder="Enter your first name"
-                    formControlName="name"
-                    [ngClass]="{'has-error':regisForm.get('name').touched && regisForm.get('name').invalid}"
+                        type="text" 
+                        id="name" 
+                        class="reg-input form-control" 
+                        [placeholder]="'firstNamePlaceholder' | translate"
+                        formControlName="name"
+                        [ngClass]="{'has-error': regisForm.get('name')?.touched && regisForm.get('name')?.invalid}"
                     /> 
                     <span class="inp-icon"><i class="fa-regular fa-user"></i></span>
-                    <p class="error-message" *ngIf="regisForm.get('name').touched && regisForm.get('name').invalid">
-                        <span class="error-message" *ngIf="regisForm.get('name').errors['required']">Your first name cannot be empty</span>
+                    <p class="error-message" *ngIf="regisForm.get('name')?.touched && regisForm?.get('name')?.invalid">
+                        <span *ngIf="regisForm.get('name')?.errors?.['required']" translate>emptyInputError</span>
                     </p>    
                 </div>
         
                 <div class="last-field inp-field mb-4 position-relative">
-                    <label for="last" class="fs-6">Last Name</label>
+                    <label for="last" class="fs-6" translate>lastNameLabel</label>
                     <input 
-                    type="text" 
-                    id='last' 
-                    class="reg-input form-control" 
-                    placeholder="Enter your last name"
-                    formControlName="lastname"
-                    [ngClass]="{'has-error':regisForm.get('lastname').touched && regisForm.get('lastname').invalid}"
+                        type="text" 
+                        id="last" 
+                        class="reg-input form-control" 
+                        [placeholder]="'lastNamePlaceholder' | translate"
+                        formControlName="lastname"
+                        [ngClass]="{'has-error': regisForm.get('lastname')?.touched && regisForm.get('lastname')?.invalid}"
                     />    
                     <span class="inp-icon"><i class="fa-regular fa-user"></i></span>
-                    <p class="error-message" *ngIf="regisForm.get('lastname').touched && regisForm.get('lastname').invalid">
-                        <span class="error-message" *ngIf="regisForm.get('lastname').errors['required']">Your last name cannot be empty</span>
+                    <p class="error-message" *ngIf="regisForm.get('lastname')?.touched && regisForm?.get('lastname')?.invalid">
+                        <span *ngIf="regisForm.get('lastname')?.errors?.['required']" translate>emptyInputError</span>
                     </p>  
                 </div>
         
                 <div class="email-field inp-field mb-4 position-relative">
-                    <label for="email" class="fs-6">Email</label>
+                    <label for="email" class="fs-6" translate>email</label>
                     <input 
-                    type="email" 
-                    id='email' 
-                    class="reg-input form-control" 
-                    placeholder="Enter your email"
-                    formControlName="email"
-                    [ngClass]="{'has-error':regisForm.get('email').touched && regisForm.get('email').invalid}"
+                        type="email" 
+                        id="email" 
+                        class="reg-input form-control" 
+                        [placeholder]="'emailPlaceholder' | translate"
+                        formControlName="email"
+                        [ngClass]="{'has-error': regisForm.get('email')?.touched && regisForm.get('email')?.invalid}"
                     />  
                     <span class="inp-icon"><i class="fa-regular fa-envelope"></i></span>
-                    <p class="error-message" *ngIf="regisForm.get('email').touched && regisForm.get('email').invalid">
-                        <span class="error-message" *ngIf="regisForm.get('email').errors['required']">Your email address cannot be empty</span>
-                        <span class="error-message" *ngIf="regisForm.get('email').errors['email']">Please, enter your valid email address</span>
+                    <p class="error-message" *ngIf="regisForm.get('email')?.touched && regisForm.get('email')?.invalid">
+                        <span *ngIf="regisForm.get('email')?.errors?.['required']" translate>emptyInputError</span>
+                        <span *ngIf="regisForm.get('email')?.errors?.['email']" translate>validEmailError</span>
                     </p>      
                 </div>
         
                 <div class="phone-field inp-field mb-4 position-relative">
-                    <label for="number" class="fs-6">Phone</label>
+                    <label for="number" class="fs-6" translate>phone</label>
                     <input 
-                    type="tel"  
-                    id='number' 
-                    class="reg-input form-control" 
-                    placeholder="Enter your phone number"
-                    formControlName="phonenumber"
-                    [ngClass]="{'has-error':regisForm.get('phonenumber').touched && regisForm.get('phonenumber').invalid}"
+                        type="tel"  
+                        id="number" 
+                        class="reg-input form-control" 
+                        [placeholder]="'phoneNumberPlaceholder' | translate"
+                        formControlName="phonenumber"
+                        [ngClass]="{'has-error': regisForm.get('phonenumber')?.touched && regisForm.get('phonenumber')?.invalid}"
                     />   
                     <span class="inp-icon"><i class="fa-solid fa-phone"></i> </span>
-                    <p class="error-message" *ngIf="regisForm.get('phonenumber').touched && regisForm.get('phonenumber').invalid">
-                        <span class="error-message" *ngIf="regisForm.get('phonenumber').errors['required']">Your phone number cannot be empty</span>
-                        <span class="error-message" *ngIf="regisForm.get('phonenumber')?.errors?.['pattern']">Enter a valid phone number.</span>
+                    <p class="error-message" *ngIf="regisForm.get('phonenumber')?.touched && regisForm?.get('phonenumber')?.invalid">
+                        <span *ngIf="regisForm.get('phonenumber')?.errors?.['required']" translate>emptyInputError</span>
+                        <span *ngIf="regisForm.get('phonenumber')?.errors?.['pattern']" translate>validPhoneNumberError</span>
                     </p>  
                 </div>
         
                 <div class="password-field inp-field mb-4 position-relative">
-                    <label for="password" class="fs-6">Password</label>
+                    <label for="password" class="fs-6" translate>password</label>
                     <input 
-                    [type]="passwordType" 
-                    id='password' 
-                    class="reg-input form-control" 
-                    placeholder="Enter your password"
-                    formControlName="password"
-                    [ngClass]="{'has-error':regisForm.get('password').touched && regisForm.get('password').invalid}"
+                        [type]="passwordType" 
+                        id="password" 
+                        class="reg-input form-control" 
+                        [placeholder]="'passwordPlaceholder' | translate"
+                        formControlName="password"
+                        [ngClass]="{'has-error': regisForm.get('password')?.touched && regisForm.get('password')?.invalid}"
                     />
-                    <span class="inp-icon"><i class="fa-solid fa-lock"></i> </span> 
-                    <span class=" eye-icon position-absolute top-1" 
-                      (click)="passwordType = passwordType === 'password' ? 'text' : 'password'"><i [class]=" passwordType==='password'? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                    <span class="inp-icon"><i class="fa-solid fa-lock"></i></span> 
+                    <span class="eye-icon position-absolute top-1" 
+                        (click)="passwordType = passwordType === 'password' ? 'text' : 'password'">
+                        <i [class]=" passwordType === 'password' ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
                     </span> 
 
-                    <p class="error-message" *ngIf="regisForm.get('password').touched && regisForm.get('password').invalid">
-                        <span 
-                        class="error-message" 
-                        *ngIf="regisForm.get('password').errors['required']">Enter your password</span>
-                      <span *ngIf="regisForm.get('password')['errors']['minlength'] && 
-                      regisForm.get('password')['errors']['minlength']['requiredLength']">Password has to contain
-                            {{ regisForm.get('password')['errors']['minlength']['requiredLength'] }}
-                      symbols.Now it has {{ regisForm.get('password')['errors']['minlength']['actualLength'] }}</span>
-                      
+                    <p class="error-message" *ngIf="regisForm.get('password')?.touched && regisForm.get('password')?.invalid">
+                        <span *ngIf="regisForm.get('password')?.errors?.['required']" translate>emptyInputError</span>
+                        <span *ngIf="regisForm.get('password')?.errors?.['minlength']" translate>
+                            {{'passwordContain ' | translate}}{{ regisForm.get('password')?.errors?.['minlength']?.['requiredLength'] }} {{ 'characters' | translate }}
+                            {{ 'has' | translate }} {{ regisForm.get('password')?.errors?.['minlength']?.['actualLength'] }}
+                        </span>
                     </p>
                 </div>
+
                 <div class="com-password-field inp-field mb-4 position-relative">
-                    <label for="password" class="fs-6">Comfirm Password</label>
+                    <label for="password" class="fs-6" translate>confirmPasswordLabel</label>
                     <input 
-                    [type]="comfirmPasswordType" 
-                    id="password" 
-                    class="reg-input form-control" 
-                    placeholder="Comfirm your password"
-                    formControlName="comfirmpassword"
-                    [ngClass]="{'has-error':regisForm.get('comfirmpassword').touched && regisForm.get('comfirmpassword').invalid}"
+                        [type]="comfirmPasswordType" 
+                        id="password" 
+                        class="reg-input form-control" 
+                        [placeholder]="'comfirmPasswordPlaceholder' | translate"
+                        formControlName="comfirmpassword"
+                        [ngClass]="{'has-error': regisForm.get('comfirmpassword')?.touched && regisForm.get('comfirmpassword')?.invalid}"
                     />
                     <span class="inp-icon"><i class="fa-solid fa-lock"></i></span>
-                    <span class=" eye-icon position-absolute top-1" 
-                       (click)="comfirmPasswordType = comfirmPasswordType === 'password' ? 'text' : 'password'"><i [class]=" comfirmPasswordType==='password'? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                    <span class="eye-icon position-absolute top-1" 
+                        (click)="comfirmPasswordType = comfirmPasswordType === 'password' ? 'text' : 'password'">
+                        <i [class]=" comfirmPasswordType === 'password' ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
                     </span>
 
-                    <p class="error-message" *ngIf="regisForm.get('comfirmpassword').touched && regisForm.get('comfirmpassword').invalid">
-                        <span 
-                        class="error-message" 
-                        *ngIf="regisForm.get('comfirmpassword').errors['required']">Comfirm your password</span>
-                      <span *ngIf="regisForm.get('comfirmpassword')['errors']['minlength'] && 
-                      regisForm.get('comfirmpassword')['errors']['minlength']['requiredLength']">Password has to contain
-                            {{ regisForm.get('comfirmpassword')['errors']['minlength']['requiredLength'] }}
-                      symbols.Now it has {{ regisForm.get('comfirmpassword')['errors']['minlength']['actualLength'] }}</span>
-                      
+                    <p class="error-message" *ngIf="regisForm.get('comfirmpassword')?.touched && regisForm?.get('comfirmpassword')?.invalid">
+                        <span *ngIf="regisForm.get('comfirmpassword')?.errors?.['required']" translate>emptyInputError</span>
+                        <span *ngIf="regisForm.get('comfirmpassword')?.errors?.['minlength']" translate>
+                            {{'passwordContain ' | translate}} {{ regisForm.get('comfirmpassword')?.errors?.['minlength']?.['requiredLength'] }} {{ 'characters.' | translate }} 
+                            {{ 'has' | translate }} {{ regisForm.get('comfirmpassword')?.errors?.['minlength']?.['actualLength'] }}
+                        </span>
                     </p>
                 </div>
+
                 <div class="mb-4 login-checkbox align-item-center">
                     <div>     
-                        <input type="checkbox" 
-                        class=" form-check-input me-2"
-                        >
-                        <span>I agree to the </span>                   
-                        <a href="#">Privacy Policy</a>
+                        <input type="checkbox" class="form-check-input me-2">
+                        <span translate>agree </span>                   
+                        <a href="#" translate>privacyPolicy</a>
                     </div>                        
                 </div> 
+
                 <div class="button-wrapperb position-relative">
-                    <button class="btn btn-primary w-100" [disabled]="regisForm.invalid">Create Account</button>
+                    <button class="btn btn-primary w-100" [disabled]="regisForm.invalid" translate>createAccount</button>
                     <div class="back-drop w-100 h-100 position-absolute" *ngIf="showBackDrop">
                         <mat-spinner [diameter]="20"></mat-spinner>   
                     </div>
                 </div>
-                
             </form>
-           
-    
-            <p class="d-block text-center mt-3">Or</p>
-    
+            
+            <p class="d-block text-center mt-3" translate>or</p>
+
             <div class="sign-in-link d-flex justify-content-center align-item-center mb-3">
-                <p>Already have an account?</p>
-                <a class="ms-2" [routerLink]="['/auth/login']"> Sign In</a>
-                
+                <p translate>haveAccount</p>
+                <a class="ms-2" [routerLink]="['/auth/login']" translate>signIn</a>
             </div>
         </div>
-       
-        
-        
     </div>
-    
-
 </div>
-
-

@@ -34,6 +34,13 @@ $base-padding:70px 170px 10px 170px;
         }
         .auth-container{
             padding: 0 150px;
+            .drop-down{
+                z-index: 2000;
+                &:focus{
+                    outline: none;
+                }
+                
+            }
         }
 
         .auth-content{

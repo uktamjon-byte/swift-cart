@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Regis } from '../models/auth.model';
+import { IRegis} from '../interfaces/auth.interface';
 import { RegisService } from '../services/regis.service';
 import { NotifyServiceMessage } from 'src/app/shared/enums/notify.service';
 import { catchError, EMPTY, finalize, Subscriber, Subscription } from 'rxjs';
@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   passwordType:string = 'password';
   comfirmPasswordType:string = 'password';
-  regisForm:FormGroup | any;
+  regisForm!:FormGroup;
   showBackDrop:boolean = false;
   sub1:Subscription | any;
 
@@ -36,7 +36,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       }
 
       onSubmit(){
-        const regisValue:Regis = this.regisForm.value;
+        const regisValue:IRegis = this.regisForm.value;
         this.showBackDrop = true;
         console.log('dsds', regisValue)
         
@@ -52,7 +52,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
                 finalize(()=>{
                   this.showBackDrop = false;
                 })
-              ).subscribe((data:Regis)=>{
+              ).subscribe((data:IRegis)=>{
                 if(data){
                    this.notifyMessage.opeSnackBar('You have been registered successfully', NotifyMessageType.notify)
                 }else{
@@ -62,10 +62,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
       }
 
-      ngOnDestroy(){
-        if(this.sub1){
-         this.sub1.unsubscribe();
-        }
-       }
+      ngOnDestroy() {
+        this.regisService.destroy$.next(); // Emit a value to complete all Observables
+        this.regisService.destroy$.complete(); // Cleanup the destroy$ Subject
+      }
 
 }

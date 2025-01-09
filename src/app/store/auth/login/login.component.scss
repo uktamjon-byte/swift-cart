@@ -1,6 +1,6 @@
 @import '../../../../assets/sass/variables.scss';
 @import '../../../../assets/sass/mixins.scss';
-
+  
 .login-page{
     .button-wrapper{ 
         .back-drop{
@@ -33,7 +33,7 @@
 
 
 .sign-in-btn{
-    a{
+    button, .google-button {
        padding: 5px 10px;
        border-radius: $default-border-radius;
        background-color: rgb(243, 244, 244);
@@ -48,10 +48,10 @@
        width: auto;
        white-space: nowrap;          /* Prevent text wrapping */
        overflow: hidden;
-
-       img{
-        padding-right: 4px;
-        width: 22px;
+       cursor: pointer;
+       img, asl-google-signin-button{
+        padding-right: 4px !important;
+        width: 22px !important;
        }
 
        &:hover{

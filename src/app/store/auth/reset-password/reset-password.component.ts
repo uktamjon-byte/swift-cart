@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Reset } from '../models/auth.model';
+import { IReset } from '../interfaces/auth.interface';
 import { catchError, EMPTY, finalize, Subscription } from 'rxjs';
 import { NotifyServiceMessage } from 'src/app/shared/enums/notify.service';
 import { ResetService } from '../services/reset.service';
@@ -20,7 +20,7 @@ export class ResetPasswordComponent implements OnInit {
 
 
   passwordType:string = 'password';
-  resetForm:FormGroup | any;
+  resetForm!:FormGroup;
   showBackDrop:boolean = false;
   sub1:Subscription | any;
 
@@ -32,7 +32,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit(){
-     const resetValue:Reset = this.resetForm.value;
+     const resetValue:IReset = this.resetForm.value;
      this.showBackDrop = true;
      console.log('back')
        this.sub1 = this.resetService.getUser(resetValue)
@@ -47,7 +47,7 @@ export class ResetPasswordComponent implements OnInit {
          finalize(()=>{
            this.showBackDrop = false;
          })
-       ).subscribe((data:Reset)=>{
+       ).subscribe((data:IReset)=>{
          if(data.email === resetValue.email){
           // destructuring form data
           //update password
@@ -66,9 +66,8 @@ export class ResetPasswordComponent implements OnInit {
        })
    }
  
-   ngOnDestroy(){
-     if(this.sub1){
-      this.sub1.unsubscribe();
-     }
-    }
+   ngOnDestroy() {
+    this.resetService.destroy$.next(); // Emit a value to complete all Observables
+    this.resetService.destroy$.complete(); // Cleanup the destroy$ Subject
+  }
 }

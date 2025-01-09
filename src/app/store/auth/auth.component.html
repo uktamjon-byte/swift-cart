@@ -5,8 +5,7 @@
     <a 
         href="#" 
         class="home-link p-2 rounded-pill position-absolute" 
-        data-bs-toggle="tooltip"
-        data-bs-placement="left" 
+        data-bs-toggle="tooltip" 
         data-bs-title="Back to Home"><i class="fa-solid fa-arrow-left text-dark"></i>
     </a>
    
@@ -15,37 +14,29 @@
             <div class="bg-login h-100 w-100 position-absolute"></div>
             <div class="bg-sm-login h-50 w-100 position-relative d-none"></div>
             <div class="bg-header-contaner position-relative d-none">
-                <h1>Welcome</h1>
-                <p>Enter your detailed information to get access</p>
+                <h1 translate>welcome</h1>
+                <p translate>getAccess</p>
             </div>
                 <div class="auth-container min-vh-100 d-flex justify-content-center align-items-center flex-column">
                     <div class="auth-title-container d-flex justify-content-between flex-row mb-2 mt-3 align-items-center w-100">
 
                         <div class="header-title fs-3 bg-secondary text-light pe-1 rounded-1"><i class="fa-solid fa-s bg-primary p-2 rounded-start-1"></i><span class="ps-1">SwiftCart</span></div>
                         
-                        <div class="dropdown">
+                        <!-- <div class="dropdown">
                             <a class="dropdown-toggle text-dark" id="dropDownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-globe"></i> ENG</a>
                             <ul class="dropdown-menu bg-secondary" aria-labelledby="dropDownMenuLink">
                                 <li><a class="dropdown-item" href="#">RUS</a></li>
                                 <li><a class="dropdown-item" href="#">ENG</a></li>
                             </ul>
+                        </div> -->
+                        <div class="drop-down">
+                           <app-lang-dropdown></app-lang-dropdown>
                         </div>
-
-                        <!-- <button mat-button [matMenuTriggerFor]="menu">
-                            <mat-icon>language</mat-icon> ENG
-                          </button>
-                          <mat-menu #menu="matMenu">
-                            <button mat-menu-item>RUS</button>
-                            <button mat-menu-item>ENG</button>
-                          </mat-menu> -->
-                          
-
-                          
                         
                         
                     </div>
                     <div class="auth-content position-relative w-100">
-                        <h1 class="auth-welcome fw-bold fs-2 text-dark">Welcome</h1>
+                        <h1 class="auth-welcome fw-bold fs-2 text-dark" translate>welcome</h1>
                         <router-outlet></router-outlet>
                     </div>
                 </div>
