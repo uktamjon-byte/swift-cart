@@ -1,0 +1,5 @@
+.costom-select:focus{
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a custom focus style */
+        border: 1px solid rgba(0, 123, 255, 0.8); /* Optional: Enhance the border */
+}

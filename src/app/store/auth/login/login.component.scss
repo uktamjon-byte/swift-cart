@@ -1,0 +1,88 @@
+@import '../../../../assets/sass/variables.scss';
+@import '../../../../assets/sass/mixins.scss';
+  
+.login-page{
+    .button-wrapper{ 
+        .back-drop{
+            @include backDropBtnStyles();
+        }
+    }
+    
+}
+
+.login-input{
+    @include input();
+}
+
+.inp-field{
+    .inp-icon{
+        @include iconStyles(30px);
+    }   
+        .eye-icon{
+            top: 30px;
+            right: 7px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #6c757d
+        }
+       
+        .error-message{
+            color: $error-text-message;
+        }
+}
+
+
+.sign-in-btn{
+    button, .google-button {
+       padding: 5px 10px;
+       border-radius: $default-border-radius;
+       background-color: rgb(243, 244, 244);
+       color: $color-dark;
+       text-decoration: none;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       transition: all 0.3s ease-in-out;
+       border: 1px solid #e2e8f0;
+       text-overflow: ellipsis; 
+       width: auto;
+       white-space: nowrap;          /* Prevent text wrapping */
+       overflow: hidden;
+       cursor: pointer;
+       img, asl-google-signin-button{
+        padding-right: 4px !important;
+        width: 22px !important;
+       }
+
+       &:hover{
+        background-color: $color-dark;
+        transform: scale(1.1);
+        color: #fff;
+    }
+    }
+    
+}
+
+@media screen and (max-width: 1216px) {
+    .sign-in-btn{
+        flex-direction: column !important;    
+        .google-link{
+            margin-bottom: 10px;
+        }
+    }
+}
+
+
+@media screen and (max-width:692px){
+    
+     .login-input{
+        @include reponsiveInput();
+     }
+
+    .sign-in-btn{
+        flex-direction: row !important;    
+        .google-link{
+            margin-bottom: 0;
+        }
+    }
+}

@@ -1,11 +1,64 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ang-swift-cart-primary: mat.define-palette(mat.$indigo-palette);
+ $ang-swift-cart-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$ang-swift-cart-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$ang-swift-cart-theme: mat.define-light-theme((
+  color: (
+    primary: $ang-swift-cart-primary,
+    accent: $ang-swift-cart-accent,
+    warn: $ang-swift-cart-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($ang-swift-cart-theme);
+
 /* You can add global styles to this file, and also import other style files */
 @import "@fontsource/poppins";
+@import "assets/sass/variables.scss";
 
 @font-face{
     font-family: 'Poppins';
     src: url('assets/fonts/Poppins-Regular.ttf') format('truetype');
     
 }
+
+@font-face{
+    font-family: 'Poppins-Light';
+    src: url('assets/fonts/Poppins-Light.ttf') format('truetype');
+    
+}
+
+@font-face{
+    font-family: 'Poppins-Bold';
+    src: url('assets/fonts/Poppins-Bold.ttf') format('truetype');
+    
+}
+
+$font-base-light:'Poppins-Light';
+$font-base-bold:'Poppins-Bold';
+$font-base-regular:'Poppins';
+
 
 /* 1. Remove default margin and padding */
 *,
@@ -17,11 +70,17 @@
 }
 
 /* 2. Set the font to a consistent baseline */
-body {
-    font-family: 'Poppins'!important;
-    line-height: 1.5;
-    color: #333;
-}
+
+body, .mat-body, .mat-body-1, .mat-typography .mat-body, .mat-typography .mat-body-1 {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    color: #333 !important;
+    .dropdown-menu {
+        z-index: 2000 !important; /* Ensure it appears above Angular CDK overlays */
+      }
+  }
+  
 
 /* 3. Remove list styles (for ul, ol) */
 ul,
@@ -31,7 +90,7 @@ ol {
 
 /* 4. Remove link decoration */
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 
@@ -42,6 +101,15 @@ img {
     display: block;
 }
 
+.eng {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Russian language */
+  .ru {
+    font-family: 'Poppins', sans-serif !important;
+  }
+
 /* 6. Ensure all form elements have consistent styling */
 input,
 select,
@@ -51,6 +119,10 @@ button {
     color: inherit;
     background: none;
     border: none;
+    outline: none !important;
+    &.has-error{
+         border:$input-error-style !important;
+    }
 }
 
 /* 7. Make sure buttons don't have outline when focused */
@@ -58,4 +130,11 @@ button:focus {
     outline: none;
 }
 
+p{
+    color: $color-dark-2;
+}
 
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
