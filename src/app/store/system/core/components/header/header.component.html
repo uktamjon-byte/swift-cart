@@ -1,0 +1,101 @@
+<header>
+    <div class="wrapper w-100 d-flex justify-content-center">
+        <div class="store-title d-flex justify-content-between flex-row align-items-center main-container">
+            <div class="title"><h6>Welcome to SwiftCart store</h6></div>
+            <div class="store-links d-flex flex-row align-items-center">
+                <div class="contact-link"><a href="" class="me-3"><i class="fa-regular fa-envelope me-2"></i>Contact</a></div>
+                <app-lang-dropdown class="dropdown"></app-lang-dropdown>
+                <div class="login-link"><a class="ms-3" [routerLink]="['/auth/login']"><i class="fa-solid fa-right-to-bracket me-2"></i>Login / Register</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-container d-flex justify-content-center w-100 flex-column pb-2" id="search-nav" >
+        <div class="w-100 d-flex justify-content-center" appSticky>
+            <div class="search-area justify-content-between flex-row d-flex align-items-center main-container">
+                <div class="store-logo d-flex flex-row align-items-center">
+                    <span (click)="showSidebar()" class="d-none"><i class="fa-solid fa-bars"></i></span>
+                    <img src="../../../../assets/imagis/sidebar-logo-ltr.svg" class="d-block">
+                </div>
+        
+                     <app-search-input></app-search-input>
+                     <div class="responsive-search-lang d-none">
+                        <span class="me-3 fs-4 cursor-pointer" (click)="activateResInput()"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <span class="fs-4 cursor-pointer"(click)="activateBottomTab()"><i class="fa-solid fa-globe"></i></span>
+                     </div>
+        
+                <div class="compare-icons d-flex flex-row align-items-center justify-content-between">
+                    <div class="links ms-2"><i class="fa-solid fa-code-compare"></i><span class="badge">0</span></div>
+                    <div class="links"><i class="fa-regular fa-heart"></i><span class="badge">0</span></div>
+                    <div class="links"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></div>
+                </div>
+        
+            </div>
+        </div>
+
+        <div class=" top-nav-categories w-100 d-flex justify-content-center">
+            <nav class="top-nav mt-3 d-flex flex-row justify-content-start main-container align-items-center">
+                    <div class="category-btn"><button class=" btn btn-primary">ALL CATEGORIES<i class="fa-solid fa-list ms-2"></i></button></div>
+                    <a href="#" class="mx-3">Shop</a>
+                    <a href="#">Blog</a>
+            </nav>
+        </div>
+       
+
+    </div>
+
+   
+
+    <div>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+        ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+            ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                    ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                        ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                            ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                                ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                                    ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+    </div>
+
+    <div>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+        ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+            ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                    ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                        ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                            ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                                ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit perspiciatis quaerat harum obcaecati voluptatibus, 
+                                    ipsum mollitia at facilis eaque voluptatem? Tempora quae earum, illo aut aliquid culpa repellat natus itaque?</p>
+    </div>
+    
+</header>

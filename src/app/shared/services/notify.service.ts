@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { NotifyMessageType } from "./notify.enum";
+import { NotifyMessageType } from "../enums/notify.enum";
 
 @Injectable()
 export class NotifyServiceMessage{
     constructor(private snackBar:MatSnackBar){}
 
     opeSnackBar( 
-        message: string,
+        message: string, 
         type: NotifyMessageType = NotifyMessageType.notify,
         duration: number = 5000,
         action: string = ''

@@ -1,0 +1,45 @@
+@import '../../../../../../assets/sass/variables.scss';
+
+@media screen and (max-width:992px){
+    .bottom-nav{
+        display: block !important;
+        border-top: 1px solid $color-dark-4;
+        position: fixed;
+        bottom: 0;   
+        width: 100%;
+        background-color: #fff;
+        margin-top: 50px;
+        z-index: 10;
+        .bottom-nav-wrapper{
+            margin: 0 auto;
+            .nav-items{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                i{
+                    font-size: 22px;
+                }
+                .cart-link{
+                    position: relative;
+                     .badge{
+                        position: absolute;
+                        right: -10px;
+                        font-size: 9px;
+                        border-radius: 85%;
+                        background-color: $color-red;
+                        top: -5px;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+@media screen and (max-width:479px){
+   .bottom-nav-wrapper{
+    width: 90% !important;
+   }
+}

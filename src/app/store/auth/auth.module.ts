@@ -8,7 +8,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { CommonModule } from '@angular/common';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NotifyServiceMessage } from 'src/app/shared/enums/notify.service';
+import { NotifyServiceMessage } from 'src/app/shared/services/notify.service';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
@@ -20,7 +20,7 @@ import { LoginService } from './services/login.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RegisService } from './services/regis.service';
 import { ResetService } from './services/reset.service';
-import { LangDropdownComponent } from '../shared/lang-dropdown/lang-dropdown.component';
+import { LangDropdownComponent } from '../../shared/components/lang-dropdown/lang-dropdown.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {
@@ -29,6 +29,7 @@ import {
    SocialAuthServiceConfig, 
    SocialLoginModule 
 } from '@abacritt/angularx-social-login';
+import { SharedModule } from '../../shared/components/shared-module';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -41,14 +42,14 @@ export function HttpLoaderFactory(http: HttpClient) {
       AuthComponent,
       LoginComponent,
       RegistrationComponent,
-      ResetPasswordComponent,
-      LangDropdownComponent
+      ResetPasswordComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
     MatMenuModule,
+    SharedModule,
     MatIconModule,
     MatProgressBarModule,
     HttpClientModule,

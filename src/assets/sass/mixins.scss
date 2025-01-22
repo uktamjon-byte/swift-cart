@@ -48,3 +48,9 @@
     justify-content: center;
     background-color: #d5d1d1cf;
   }
+
+  @mixin storeContainer(){
+    width: 94%;
+    display: flex;
+    align-items: center;
+  }

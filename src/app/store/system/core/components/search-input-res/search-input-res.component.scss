@@ -1,0 +1,26 @@
+// .responsive-inp-backdrop{
+//     padding: 15px 15px;
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba(0, 0, 0, 0.5); // Semi-transparent backdrop
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     z-index: 1050; // Ensu
+
+   
+// }
+@media screen and (max-width:992px){
+    app-search-input{
+        display: block !important;
+        width: 100%;
+        position: fixed;
+        top: 5px;
+        left: 0px;
+        z-index: 1050;
+        padding: 0 10px;
+    }
+}

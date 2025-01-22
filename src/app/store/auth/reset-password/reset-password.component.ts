@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IReset } from '../interfaces/auth.interface';
 import { catchError, EMPTY, finalize, Subscription } from 'rxjs';
-import { NotifyServiceMessage } from 'src/app/shared/enums/notify.service';
-import { ResetService } from '../services/reset.service';
 import { NotifyMessageType } from 'src/app/shared/enums/notify.enum';
+import { NotifyServiceMessage } from 'src/app/shared/services/notify.service';
+import { IReset } from '../interfaces/auth.interface';
+import { ResetService } from '../services/reset.service';
 
 @Component({
   selector: 'app-reset-password',

@@ -1,1 +1,16 @@
-<canvas id="chart"></canvas>
+<div class="main-wrapper position-relative">
+  <app-res-category-sidebar></app-res-category-sidebar>
+    <app-search-input-res *ngIf="isResInputActive"></app-search-input-res>
+      <app-header></app-header>
+      <app-res-switchlang-canvas></app-res-switchlang-canvas>
+      <div class="input-backdrop position-absolute h-100 d-none"
+      [ngClass]="{
+        'activeBackdrop': inpActiveBacdrop === true,
+        'inactiveBackdrop': inpActiveBacdrop === false
+      }">
+      </div>
+      <app-footer></app-footer>
+      <span class=" position-fixed d-none" (click)="scrollToTop()" appScrollTop><i class="fa-solid fa-arrow-up fs-5"></i></span>
+    <app-bottom-navigation></app-bottom-navigation>
+</div>
+

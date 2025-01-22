@@ -1,13 +1,13 @@
-import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NotifyMessageType } from 'src/app/shared/enums/notify.enum';
-import { NotifyServiceMessage } from 'src/app/shared/enums/notify.service';
-import { LoginService } from '../services/login.service';
-import { ILogin } from '../interfaces/auth.interface';
-import { catchError, EMPTY, finalize, Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
-import { Constants } from  '../../../shared/utils/contants';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { catchError, EMPTY, finalize, Subscription } from 'rxjs';
+import { NotifyMessageType } from 'src/app/shared/enums/notify.enum';
+
+import { ILogin } from '../interfaces/auth.interface';
+import { LoginService } from '../services/login.service';
+import { NotifyServiceMessage } from 'src/app/shared/services/notify.service';
 declare let google:any;
 
 @Component({
