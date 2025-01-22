@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IRegis} from '../interfaces/auth.interface';
 import { RegisService } from '../services/regis.service';
-import { NotifyServiceMessage } from 'src/app/shared/enums/notify.service';
+import { NotifyServiceMessage } from 'src/app/shared/services/notify.service';
+
 import { catchError, EMPTY, finalize, Subscriber, Subscription } from 'rxjs';
 import { NotifyMessageType } from 'src/app/shared/enums/notify.enum';
 

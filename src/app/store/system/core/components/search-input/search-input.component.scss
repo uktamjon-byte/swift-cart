@@ -1,0 +1,34 @@
+
+@import '../../../../../../assets/sass/variables.scss';
+
+.input-categories{
+    position: relative;
+    border: 1px solid $border-color;
+    border-radius: $default-border-radius;
+    width: 560px;
+    height: 50px;
+    background-color: $color-dark-4;
+    z-index: 100 !important;
+    .search-product{
+        border: none; 
+        width: 100%;
+        padding: 0 15px;
+      }
+
+      .costom-select{
+        width: 141px;
+      }
+}
+
+@media screen and (max-width:992px) {
+    .input-categories{
+        width: 100%;
+        .return-arrow{
+            display: block !important;
+        }
+        .category-list{
+            display: none !important;
+        }
+    }
+   
+}
