@@ -1,0 +1,120 @@
+@import '../../../../../../../assets/sass/variables.scss';
+
+.blog-detail{
+    .blog-img{
+       img{
+        object-fit: cover;
+        max-width: 100%;
+        border-radius: $radius-default;
+       }
+    }
+
+    .blog-info{
+        small{
+            color: $color-gray-dark-5;
+        }
+        i{
+            color: $color-primary;
+        }
+       
+    }
+
+    .blog-content{
+        h5{
+            max-width: 100%;
+            text-wrap: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
+    .social-share{
+        h5{
+            width: 160px;
+            max-width: 160px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-right: 60px;
+        }
+        ul{
+            display: flex;
+            align-items: center;
+            li{
+                margin-right: 7px;
+                a{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 35px;
+                    width: 35px;
+                    cursor: pointer;
+                    background: $color-white-lite;
+                    border-radius: $radius-default;
+                    transition: $transition-200;
+                    margin-right: 12px;
+                    i{
+                        font-size: 17px;
+                        color: $color-gray;
+                    }
+                    &:hover{
+                        background-color: $color-primary;
+                    }
+                }
+            }
+        }
+        
+    }
+
+    .blog-tags{
+        h5{
+            width: 120px;
+            max-width: 120px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-right: 60px;
+        }
+        ul{
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            max-width: 100%;
+            list-style: none;
+            li{
+                margin: 2px 3px;
+                cursor: pointer;
+                a{
+                    font-size: 12px;
+                    line-height: 30px;
+                    display: flex;
+                    align-items: center;
+                    color: $color-gray;
+                    width: max-content;
+                    text-overflow: ellipsis;
+                    border: 1px solid $color-gray-lite;
+                    border-radius: $radius-default;
+                    padding: 0px 10px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    transition: $transition-200;
+                    
+                }
+                &:hover{
+                    i{
+                        color: $color-primary;
+                    }
+                   span{
+                      color: $color-primary;
+                   }
+                    a{
+                        border: 1px solid $color-primary;
+                    }
+                   
+                }
+            }
+        }
+    }
+
+    
+}

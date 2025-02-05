@@ -1,0 +1,14 @@
+<div class="recent-post" >
+    <h4 class="recent-post-title mb-4 pb-3">Recent Post</h4>
+    <div class="recent-post-list">
+        <div  class="post-item d-flex mb-4" *ngFor="let post of blogPosts">
+            <div class="post-img">
+                <img src="../../../../../../../assets/imagis/post-image.jpg">
+            </div>
+           <div class="post-info">
+             <h6><a [routerLink]="[post.id]"> {{post.postTitle}}</a> </h6>
+             <span><i class="fa-regular fa-calendar me-2"></i> {{post.date | date}}</span>
+           </div>
+        </div>
+    </div>
+</div>

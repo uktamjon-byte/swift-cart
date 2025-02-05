@@ -54,3 +54,18 @@
     display: flex;
     align-items: center;
   }
+
+  @mixin blogPostTitleStyle(){
+        border-bottom:  1px solid $border-color-lite;
+        position: relative;
+        width: 100%;
+        margin-top: 14px;
+        &::after{
+            content: '';
+            position: absolute;
+            width: 50px;
+            bottom: -1px;
+            left: 0px;
+            border-bottom:2px solid $color-primary;
+        }
+  }

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
-import { SystemService } from './services/system.service';
+import { SystemService } from './core/services/system.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({

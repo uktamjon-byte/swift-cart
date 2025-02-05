@@ -1,0 +1,20 @@
+<div class="w-100 d-flex justify-content-center mt-3">
+    <div class="main-container">
+      <div class="row g-0">
+        <!-- Main Content -->
+        <div class="col-lg-9 col-md-8 col-sm-12 order-2 order-sm-2 order-md-0 mb-3">
+            <router-outlet></router-outlet>            
+        </div>
+  
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-md-4 col-sm-12 left-sidebar mt-2 order-1 order-sm-1 order-md-1">
+          <app-search-post></app-search-post>
+          <app-post-categories></app-post-categories>
+          <app-recent-posts></app-recent-posts>      
+        </div>
+      </div>
+      <app-pagination *ngIf="showPagination"></app-pagination>
+    </div>
+  </div>
+  
+

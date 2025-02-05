@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as bootstrap from 'bootstrap';
 import { Subject, takeUntil } from 'rxjs';
-import { SystemService } from 'src/app/store/system/services/system.service';
-import { navMenuType } from '../../../types/system.enum';
+import { SystemService } from 'src/app/store/system/core/services/system.service';
+import { navMenuType } from '../../types/system.enum';
 @Component({
   selector: 'app-res-category-sidebar',
   templateUrl: './res-category-sidebar.component.html',

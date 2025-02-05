@@ -1,0 +1,35 @@
+@import '../../../../../../../assets/sass/variables.scss';
+@import '../../../../../../../assets/sass/mixins.scss';
+
+.blog-categories{
+    width: 100%;
+    .blog-title{
+        @include blogPostTitleStyle();
+    }
+
+    .category-list{
+        padding: 0 !important;
+        .post-item{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            a{
+                padding: 4px 0;
+                color: $color-dark-2;
+                &:hover{
+                    color: $color-primary-hover;
+                }
+            }
+            span{
+                width: 20px;
+                height: 20px;
+                border-radius: 50px;
+                background-color: $color-primary;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $color-white;
+            }
+        }
+    }
+}

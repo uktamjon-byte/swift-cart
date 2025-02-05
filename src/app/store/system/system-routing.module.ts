@@ -4,7 +4,14 @@ import { SystemComponent } from './system.component';
 
 
 const routes: Routes = [
- {path:'', component: SystemComponent}
+ {path:'', component: SystemComponent, children: [
+  {
+    path: 'blog',
+    loadChildren: () =>
+      import('../system/modules/blog/blog.module').then((m) => m.BlogModule),
+  }
+ ]
+}
 ];
 
 @NgModule({

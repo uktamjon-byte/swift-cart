@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { SystemService } from 'src/app/store/system/services/system.service';
+import { SystemService } from 'src/app/store/system/core/services/system.service';
 
 @Component({
   selector: 'app-search-input',

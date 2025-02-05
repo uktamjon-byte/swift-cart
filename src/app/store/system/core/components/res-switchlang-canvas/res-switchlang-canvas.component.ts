@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as bootstrap from 'bootstrap';
-import { SystemService } from 'src/app/store/system/services/system.service';
+import { SystemService } from 'src/app/store/system/core/services/system.service';
 
 @Component({
   selector: 'app-res-switchlang-canvas',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemService } from '../../../services/system.service';
+import { SystemService } from '../../services/system.service';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,7 @@ import { SystemService } from '../../../services/system.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  ngZone: any;
 
   constructor(private systemService:SystemService) { }
 
@@ -17,15 +19,20 @@ export class HeaderComponent implements OnInit {
    
 
   ngOnInit() {
-    
   let scrollValue =  window.scrollY
   console.log('scroll ', scrollValue)
 
-  //this.searchInput?.addEventListener
+  //  this.ngZone.runOutsideAngular(() => {
+  //       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  //       tooltipTriggerList.forEach(tooltipTriggerEl => {
+  //         new bootstrap.Tooltip(tooltipTriggerEl, {
+  //           placement: 'top'
+  //         });
+  //       });
+  //     })
   } 
 
   activateResInput(){
-    console.log('clicked')
     this.systemService.activeInputResBackdrop.next(true);
   }
 
@@ -34,16 +41,6 @@ export class HeaderComponent implements OnInit {
   }
 
   activateBottomTab(){
-    console.log('clickedtab')
     this.systemService.triggerBottomTab.next(true);
   }
-
-  
-
-  
-  // document.addEventListener('scrollTop', (){
-          
-  // })
-  
-
 }
