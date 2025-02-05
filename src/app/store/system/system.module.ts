@@ -6,8 +6,8 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { SystemService } from './services/system.service';
-import { StickyDirective } from './types/directives/sticky.directive';
+import { SystemService } from './core/services/system.service';
+import { StickyDirective } from './core/directives/sticky.directive';
 import { FooterComponent } from '../system/core/components/footer/footer.component';
 import { BottomNavigationComponent } from './core/components/bottom-navigation/bottom-navigation.component';
 import { ResCategorySidebarComponent } from './core/components/res-category-sidebar/res-category-sidebar.component';
@@ -15,7 +15,7 @@ import { ResSwitchlangCanvasComponent } from './core/components/res-switchlang-c
 import { SearchInputResComponent } from './core/components/search-input-res/search-input-res.component';
 import { SearchInputComponent } from './core/components/search-input/search-input.component';
 import { SharedModule } from 'src/app/shared/components/shared-module';
-import { ScrollTopDirective } from './types/directives/scroll-top.directive';
+import { ScrollTopDirective } from './core/directives/scroll-top.directive';
 
 
 

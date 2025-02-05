@@ -1,0 +1,24 @@
+<ul class="pagination">
+    <li class="pagination-item me-2" 
+    [ngClass]="{ 'disabled': isDisabledPrev }"
+    (click)="!isDisabledPrev && prev()"
+    [attr.aria-disabled]="isDisabledPrev">
+        <i class="fa-solid fa-angle-left"></i>
+    </li>
+  
+    <li
+    *ngFor="let pagelist of pageLists; index as i"
+    (click)="goToPage(i)"
+      class="pagination-item-active pagination-item"
+      [class.pagination-item-active]="pagelist.active"
+    >
+      {{pagelist.page}}
+    </li>
+  
+    <li class="pagination-item ms-2" 
+    [ngClass]="{ 'disabled': isDisabledNext }"
+    (click)="!isDisabledNext && next()"
+    [attr.aria-disabled]="isDisabledNext">
+        <i class="fa-solid fa-angle-right"></i>
+    </li>
+  </ul>

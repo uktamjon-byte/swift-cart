@@ -6,15 +6,17 @@ import { SearchInputResComponent } from '../../store/system/core/components/sear
 import { SearchInputComponent } from '../../store/system/core/components/search-input/search-input.component';
 import { ResCategorySidebarComponent } from '../../store/system/core/components/res-category-sidebar/res-category-sidebar.component';
 import { ResSwitchlangCanvasComponent } from '../../store/system/core/components/res-switchlang-canvas/res-switchlang-canvas.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
     LangDropdownComponent,
+    PaginationComponent
   ], // Declare the component here
   imports: [CommonModule],           // Import CommonModule for Angular directives (ngIf, ngFor, etc.)
   exports: [
     LangDropdownComponent,
-
+    PaginationComponent
   ]       // Export the component to make it reusable
 })
 export class SharedModule { }

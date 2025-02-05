@@ -1,0 +1,44 @@
+<div class="blog-detail pe-4 mt-4">
+    <div class="blog-img">
+        <img src="../../../../../../../assets/imagis/post-image.jpg" alt="post-img">
+    </div>
+    <div class="blog-info py-3">
+        <small class="blog-author">
+          <i class="fa-regular fa-user me-2"></i>
+          <span>{{postDetails?.author}}</span>
+        </small>
+        <small class="blog-release ms-3">
+          <i class="fa-regular fa-calendar me-2"></i>
+          <span>{{postDetails?.date | date}}</span>
+        </small>
+    </div>
+    <div class="blog-content">
+        <h5 class="mt-3 cursor-pointer">{{postDetails?.postTitle}}</h5>
+        <p>{{postDetails?.details?.content}}</p>
+    </div>
+    <div class="social-share d-flex flex-row align-items-center mt-4">
+        <div class="row">
+            <div class="col-lg-5"><h5>Social Share</h5></div>
+            <div class="col-lg-7">
+              <ul class="ps-0 inline-list">
+                <li> <a><i class="fa-regular fa-calendar"></i></a></li>
+                <li> <a><i class="fa-regular fa-calendar"></i></a></li>
+                <li> <a><i class="fa-regular fa-calendar"></i></a></li>
+                <li> <a><i class="fa-regular fa-calendar"></i></a></li>
+             </ul>
+        </div>
+        </div>
+        
+        
+    </div>
+    <div class="blog-tags">
+        <div class="row">
+            <div class="col-lg-2"><h5>Tags</h5></div>
+            <div class="col-lg-10">
+              <ul class="ps-0 inline-list">
+                <li *ngFor="let tag of postDetails?.details?.tags" > <a><i class="fa-regular fa-calendar me-2"></i><span>{{tag}}</span></a></li>
+             </ul>
+        </div>
+        </div>
+    </div>
+</div>

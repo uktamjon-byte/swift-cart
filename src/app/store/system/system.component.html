@@ -3,6 +3,7 @@
     <app-search-input-res *ngIf="isResInputActive"></app-search-input-res>
       <app-header></app-header>
       <app-res-switchlang-canvas></app-res-switchlang-canvas>
+      <router-outlet></router-outlet>
       <div class="input-backdrop position-absolute h-100 d-none"
       [ngClass]="{
         'activeBackdrop': inpActiveBacdrop === true,

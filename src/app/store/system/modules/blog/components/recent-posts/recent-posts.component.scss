@@ -1,0 +1,56 @@
+@import '../../../../../../../assets/sass/variables.scss';
+@import '../../../../../../../assets/sass/mixins.scss';
+
+.recent-post{
+    width: 100%;
+    .recent-post-title{
+       @include blogPostTitleStyle();
+    }
+    .post-img{
+        height: 65px;
+        width: 70px;
+        min-width: 70px;
+       
+       
+        margin-right: 15px;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: $radius-default;
+            border: 1px solid $color-gray-lite;
+        }
+    }
+
+    .post-info{
+        width: calc(100% - 85px);
+        h6{
+            max-height: 36px;
+            &:hover{
+                text-decoration-line: underline;
+            }
+        }
+        a{
+            color: $color-black;
+            font-weight: $font-medium;
+            display: block;
+            max-width: 100%; /* Already in your code: ensuring the truncation has bounds */
+            margin-bottom: 13px;
+            overflow: hidden; /* Ensure content outside the box is hidden */
+            text-overflow: ellipsis; /* Already present: used to add "..." for truncated text */
+            white-space: nowrap; /* Ensures text stays on one line */
+            text-decoration-line: underline !important;
+            text-decoration-color: transparent !important;
+            transition: $transition-200;
+        }   
+        span{
+            font-size: 14px;
+            font-weight: $font-light;
+            color: $color-gray;
+            i{
+                font-size: 16px;
+                color: $color-primary;
+            }
+        }    
+       }
+    }

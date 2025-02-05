@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IFooterMain } from '../../../types/system.enum';
+import { IFooterMain } from '../../types/system.enum';
 
 @Component({
   selector: 'app-footer',

@@ -1,0 +1,48 @@
+@import '../../../../assets/sass/variables.scss';
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 22px;
+    padding-bottom: 6px;
+    //margin-bottom: 6px;
+    .pagination-item{
+       cursor: pointer;
+       height: 32px;
+       width: 32px;
+       color: $color-black;
+       background: $color-white;
+       border: 1px solid $color-gray-lite;
+       border-radius: 8px !important;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       text-align: center;
+       font-size: 14px;
+       transition: $transition-200;
+       margin: 0 3px;
+       i{
+        font-size: 14px;
+        color: $color-gray-dark-5;
+       }
+       &:hover{
+        border: 1px solid $color-primary;
+       }
+    }
+    .pagination-item-active{
+        height: 32px;
+        width: 32px;
+        background-color: $color-primary;
+        color: $color-white;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
