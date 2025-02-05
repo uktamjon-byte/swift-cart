@@ -1,0 +1,48 @@
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+
+      <div class="sidebar-menu-curve-background mt-4">
+        <ul  class=" nav nav-tabs sidebar-menu-tab d-flex justify-content-between">
+          <li *ngFor="let category of categories" 
+          class="nav-item d-flex justify-content-center align-items-center cursor-pointer px-2" 
+          [ngClass]="{'active': buttonContent === category.keyName}" 
+          (click)='showMenu(category.keyName)'>{{category.name}}</li>
+        </ul>
+      </div>
+
+      <button type="button" class="btn-close cursor-pointer" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+     
+
+      <div class="menu-content">
+        <section class="category-content" *ngIf="buttonContent === 'categories'">
+          <ul>
+            <li *ngFor="let menu of navMenu" class="py-2 fs-6">
+              <i class="{{menu?.icon}} me-2"></i> {{menu?.categoryName}}
+            </li>
+          </ul>
+        </section>
+        
+
+        <section class="main-menu" *ngIf="buttonContent=== 'menu'">
+          <ul>
+            <li class="py-2 fs-6">Shop</li>
+            <li class="py-2 fs-6">Blog</li>
+          </ul>
+        </section>
+
+        <section class="contact d-flex flex-row justify-content-around" *ngIf="buttonContent=== 'more'">
+          <div class="contact-link">
+            <span class="d-flex align-items-center justify-content-center"><i class="fa-solid fa-envelope"></i></span>
+            <small>Contact</small>
+          </div>
+
+          <div class="contact-link">
+            <span class="d-flex align-items-center justify-content-center"><i class="fa-solid fa-message"></i></span>
+            <small>Blog</small>
+          </div>
+        </section>
+      </div>
+    </div>
+</div>

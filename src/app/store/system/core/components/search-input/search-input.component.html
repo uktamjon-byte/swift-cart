@@ -1,0 +1,27 @@
+
+<div class="input-categories d-flex flex-row align-items-center" >
+    <div class="return-arrow ps-2 d-none cursor-pointer">
+        <span class="text-center" (click)="inActivateResInput()"><i class="fa-solid fa-arrow-left fs-5"></i></span>
+    </div>
+    <input 
+    type="text" 
+    placeholder="Search"
+    id="search-inp" 
+    class="search-product" 
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    >
+   <div class="category-list">
+      <select class="form-select form-select-sm costom-select" aria-label="Small select example">
+          <option selected value="all">All Categories</option>
+          <option value="rus">Men's Fashion</option>
+          <option value="rus">Shirts</option>
+          <option value="rus">Jackets</option>
+          <option value="rus">Electronics</option>
+      </select>
+   </div>
+   <div class="search-btn mx-2">
+      <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass fw-2"></i></button>
+   </div>
+</div>
+
