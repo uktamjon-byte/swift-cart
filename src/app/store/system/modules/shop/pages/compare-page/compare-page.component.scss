@@ -1,0 +1,80 @@
+@import'../../../../../../../assets/sass/variables.scss';
+@import'../../../../../../../assets/sass/scroll-bar.scss';
+
+.compare-table {
+    border-collapse: collapse; /* Ensures borders don't add extra spacing */
+    table-layout: auto;
+    tbody{
+        @include scrollStyle(false)
+    }
+}
+
+.compare-table td {
+    //width: auto; /* Makes each cell adjust */
+    text-align: center; /* Centers text */
+    padding: 20px 30px; /* Adds spacing */
+    border: 1px solid #ddd; /* Optional: Adds borders */
+    min-width: 300px;
+    flex-grow: 1;
+    z-index: 1;
+    position: relative;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 350px;
+   // width: clamp(30%, 40%, 50%);
+}
+.compare-table tr {
+    display: table-row; /* Flex each row */
+    width: 100%;
+    .header-row{
+        i{
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+    }
+}
+
+.compare-table th{
+    position: sticky;
+    left: 0;
+    width: 225px !important;
+    text-align: center;
+    z-index: 5;
+    min-width: 200px;
+    //background-color: $color-white;
+    border: 1px solid #ddd;
+      &::after{
+      content: "";
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-left: 1px solid $color-gray-lite;
+      border-right: 1px solid $color-gray-lite;
+    }
+    //background-color: $color-white;
+}
+
+.action-btn{
+    button{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid $color-gray-lite;
+        i{
+            color: $color-gray-dark;
+        }
+        &:hover{
+            border: 1px solid $color-primary-alpha-80;
+            i{
+                color: $color-primary-alpha-80;
+            }
+        }
+    }
+   
+}

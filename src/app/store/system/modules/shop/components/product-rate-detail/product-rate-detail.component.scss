@@ -1,0 +1,145 @@
+
+@import '../../../../../../../assets/sass/variables.scss';
+@import '../../../../../../../assets/sass/mixins.scss';
+
+:host {
+    display: flex; /* or flex if needed */
+  }
+
+
+@mixin underline($left) {
+    content: "";
+    position: absolute;
+    left: $left;
+    transform: translateX(-50%);
+    bottom: -12px;
+    height: 1px;
+    background: $color-primary;
+    width: 0px;
+    transition: width 0.4s ease-in-out;
+}
+
+    .wrapper{
+        .headings{
+            border-bottom: 1px solid $color-gray-dark-lite;
+            position: relative;
+            cursor: pointer;
+            h5{
+                color: black !important;
+                font-weight: $font-medium !important;            
+                padding-bottom: .25rem;
+                position: relative;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    bottom: -12px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    height: 2px;
+                    width: 0;
+                    background: $color-primary;
+                    transition: width 0.3s ease-in-out;
+                  }
+                  &::after{
+                    content: "";
+                    width: 12px;
+                    position: absolute;  
+                    transform: translateX(-50%);    
+                    left: 50%;        
+                    bottom: -19px;
+                    height: 8px;
+                    width: 15px;
+                    background: $color-primary;
+                    border-bottom-left-radius: 12px;
+                    border-bottom-right-radius: 12px;
+                    opacity: 0;
+                    transition: .15s ease-in-out;
+                    z-index: 1;
+                  }
+
+                 
+                }
+                h5.active-link{
+                    &::before {
+                        width: 100% !important; // Full width underline
+                    }
+                    &::after {
+                        opacity: 1 !important; // Show the semi-dot
+                        left: 50%;
+                    }
+                }
+                h5:not(.active-link):hover::before {
+                    width: 50px !important;
+                }
+                
+                .heading{
+                    &::before{
+                        @include underline(50%);
+                    }
+                    &:hover::before{            
+                        width:50px;
+                    }
+                 
+                }
+        }
+
+        .review{
+            .post-review{
+                .star-rating{
+                    i{
+                        color: $color-gray-lite;
+                        font-size: 18px;
+                        cursor: pointer;
+                        transition: $transition-200;
+                    }
+                    i.filled{
+                        color: $color-yellow;
+                    }
+
+                    i:hover{
+                        color: $color-yellow; // Example of hover effect
+                   }
+
+                }
+
+                .button-wrapper{
+                    .back-drop{
+                      @include backDropBtnStyles();
+                    }
+                }
+
+
+            }
+        }
+
+        .spacification{
+            border: 1px solid $color-gray-lite;
+            border-radius: $default-border-radius;
+            overflow: hidden;
+            margin: 50px 0;
+            .title{
+                background-color: $color-gray;
+                padding: 15px 20px;
+                background-color: $color-white-dark;
+                h5{
+                    font-size: 26px;
+                    line-height: 24px;
+                }
+            }
+        }
+        .inline-item{
+            padding: 20px !important;
+            margin-bottom: 0 !important;
+            label{
+                font-weight: 700;
+                line-height: 23px;
+                width: 190px;
+                min-width: 190px;
+                margin-bottom: 0;
+            }
+            span{
+                line-height: 23px;
+                color: $color-gray;
+            }
+        }
+    }

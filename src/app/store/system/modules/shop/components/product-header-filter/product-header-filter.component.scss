@@ -1,0 +1,64 @@
+@import '../../../../../../../assets/sass/variables.scss';
+.view-active{
+  color: $color-primary-alpha-80 !important;
+  transition: $transition-200;
+}
+.filter-items{
+    width: 50%;
+    i{
+        font-size: 20px;
+        color: $color-gray-dark;
+        cursor: pointer;
+    }
+    select{
+        width: fit-content;
+    }
+}
+
+@media screen and (max-width:992px) {
+  .header-filter{
+    flex-direction: column !important;
+  }
+  .filter-items{
+    margin-top: 6px;
+    width: 100%;
+    background-color: $color-dark-4;
+    padding: 6px 4px;
+    border-radius: $default-border-radius;
+    .filter-icons{
+      justify-content: space-between !important;
+      width: 100%;
+      &:active{
+        color: $color-primary-alpha-15;
+      }
+    }
+    .left-items{
+      display: block !important;
+      i{
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width:576px) {
+  .filter-icons{
+    width: 50% !important;
+    justify-content: space-between;
+  }
+  // .filter-items{
+  //   flex-direction: column !important;
+
+  //   .right-items{
+  //     flex-direction: column !important;
+  //     .view-types{
+  //      display: inline !important;
+  //     }
+  //   }
+
+  //   .left-items{
+  //     display: inline !important;
+  //   }
+  // }
+}

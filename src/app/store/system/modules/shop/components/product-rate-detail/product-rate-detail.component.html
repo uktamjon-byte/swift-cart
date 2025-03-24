@@ -1,0 +1,93 @@
+<div class="wrapper w-100">
+    <div class="headings d-flex flex-row justify-content-center pb-1">
+     <h5 class="me-5 heading" [ngClass]="{'active-link': activeInfoLink === 0}" 
+     (click)="toggleUnderline(0)">Description</h5>
+     <h5 class="heading me-5"  [ngClass]="{'active-link': activeInfoLink === 1}" 
+     (click)="toggleUnderline(1)">Reviews(0)</h5>
+     <h5 class="heading"  [ngClass]="{'active-link': activeInfoLink === 2}" 
+     (click)="toggleUnderline(2)">Specification</h5>
+    </div>
+   <div class="description mt-5 fs-5" *ngIf="activeInfoLink===0">
+     {{details?.description}}
+    </div>
+   <div class="row review"  *ngIf="activeInfoLink===1">
+     <div class="post-review col-lg-6 col-md-12 mt-3">
+       <h5>Add a Review</h5>
+         <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+           <h6 class="d-block">Your rating</h6>
+           <div class="star-rating d-flex justify-content-start gap-1 mb-2">
+             <ng-container *ngFor="let star of stars; let i = index">
+               <i class="fa-solid fa-star" 
+                  [class.filled]="i < selectedRating || i < hoveredRating"
+                  (click)="rate(i + 1)"
+                  (mouseover)="hover(i + 1)"
+                  (mouseleave)="resetHover()">
+               </i>
+           </ng-container>
+           <p *ngIf="reviewForm.get('rating')?.invalid && submitted" class="error-message d-block">
+             Add your rating
+           </p>  
+
+           </div>
+           <div class="form-group mb-4 position-relative">
+               <label for="name" class="fs-6" translate>Name</label>
+               <input 
+               type="text" 
+               id='name' 
+               class="form-control" 
+               placeholder="Enter your name"
+               formControlName="name"
+               [ngClass]="{'has-error':reviewForm.get('name')?.touched && reviewForm.get('name')?.invalid}"
+               />
+               <p class="error-message" *ngIf="reviewForm.get('name')?.touched && reviewForm.get('name')?.invalid"> 
+                      Name is required
+               </p>  
+           </div> 
+          
+           <div class="form-group">
+             <label for="comment">Comment</label>
+             <textarea 
+             class="form-control"  
+             [ngClass]="{'has-error':reviewForm.get('comment')?.touched && reviewForm.get('comment')?.invalid}" 
+             placeholder="Leave a comment"  
+             id="comment" 
+             name="comment" 
+             formControlName="comment"
+             rows="6">
+           </textarea>
+             <p class="error-message" *ngIf="reviewForm.get('comment')?.touched && reviewForm.get('comment')?.invalid"> 
+                  Comment is required
+           </p>  
+           </div>
+
+
+           <div class="button-wrapper d-inline-block position-relative my-3">
+               <button class="btn btn-primary " [disabled]="reviewForm.invalid">
+                  Submit a Review
+               </button>
+               <div class="back-drop w-100 h-100 position-absolute" *ngIf="submitted">
+                   <mat-spinner [diameter]="20"></mat-spinner>   
+               </div>
+           </div>
+       </form>
+     </div>
+     <div class="review-list col-lg-6 col-md-12">
+         <div class="user-list"></div>
+         <div class="empty-message d-flex justify-content-center align-items-center flex-column h-100">
+           <img src="./../../../../../../../assets/imagis/no-comment.svg" alt="no comments">
+           <h4 class="comment-caption mt-3">Be the first one to review.</h4>
+         </div>
+     </div>
+   </div>
+   <div class="spacification" *ngIf="activeInfoLink===2">
+      <div class="spacification-row" *ngFor="let productSP of productsSP">
+        <div class="title"><h5>{{productSP.mainTitle}}</h5></div>
+        <ul class="inline-item">
+          <li *ngFor="let item of productSP.items">
+            <label>{{item.name}}</label>
+            <span>{{item.description}}</span>
+          </li>
+        </ul>
+      </div>
+   </div>
+</div>     

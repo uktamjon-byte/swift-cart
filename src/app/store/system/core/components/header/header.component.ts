@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SystemService } from '../../services/system.service';
 import * as bootstrap from 'bootstrap';
+import { placements } from '@popperjs/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit  {
   ngZone: any;
 
   constructor(private systemService:SystemService) { }
@@ -19,18 +20,25 @@ export class HeaderComponent implements OnInit {
    
 
   ngOnInit() {
-  let scrollValue =  window.scrollY
-  console.log('scroll ', scrollValue)
 
-  //  this.ngZone.runOutsideAngular(() => {
-  //       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-  //       tooltipTriggerList.forEach(tooltipTriggerEl => {
-  //         new bootstrap.Tooltip(tooltipTriggerEl, {
-  //           placement: 'top'
-  //         });
-  //       });
-  //     })
   } 
+
+  @ViewChild('tooltipContainer', { static: false }) tooltipContainer!: ElementRef;
+
+    ngAfterViewInit() {
+        // Initialize tooltips
+        const tooltipElements = this.tooltipContainer.nativeElement.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltipElements.forEach((tooltipEl: HTMLElement) => {
+            new bootstrap.Tooltip(tooltipEl,{
+              placement:'top'
+            });
+          
+            const tooltipInstance = new bootstrap.Tooltip(tooltipEl);
+            tooltipEl.addEventListener('click', () => {
+              tooltipInstance.hide();
+          });
+        });
+    }
 
   activateResInput(){
     this.systemService.activeInputResBackdrop.next(true);

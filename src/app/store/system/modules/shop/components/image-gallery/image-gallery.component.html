@@ -1,0 +1,22 @@
+<div class="gallery d-flex flex-row justify-content-start gap-2">
+    <img style="width: 72.5px;" *ngFor="let img of prodDetails?.image; let i = index" 
+      [src]="img"
+      [ngClass]="{'active-image': activePicture === i}" 
+      alt="Gallery Image" 
+      (click)="activateIndex(i)">
+</div>
+  
+  <!-- Lightbox Modal -->
+  <div class="buttons-area position-reletive">
+  <div class="lightbox position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" *ngIf="isLightboxOpen" (click)="closeLightbox()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+        <span class="close-btn position-absolute" (click)="closeLightbox()">&times;</span>
+        <img [src]="images[currentIndex]" alt="Large View">
+        <div class="navigation">
+          <button class="prev-btn position-absolute" (click)="prevImage($event)">&#10094;</button>
+          <button class="next-btn position-absolute" (click)="nextImage($event)">&#10095;</button>
+        </div>
+      </div>
+   </div>
+  </div>
+  

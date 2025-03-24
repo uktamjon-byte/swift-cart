@@ -95,6 +95,10 @@ export class ResCategorySidebarComponent implements OnInit {
     }
   }
 
+  closeCanvas(){
+    this.systemService.triggerSidebar.next(false)
+  }
+
   ngOnDestroy(): void {
     // Complete the destroy$ Subject to clean up subscriptions
     this.$destroy.next();

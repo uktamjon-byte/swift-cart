@@ -9,7 +9,6 @@ import { PaginationService } from 'src/app/shared/services/pagination.service';
   styleUrls: ['./all-posts.component.scss']
 })
 export class AllPostsComponent implements OnInit {
-@Input() posts:IPostBlog[]=[]
   constructor(
     private blogService:BlogService, 
     private paginationService: PaginationService
@@ -19,10 +18,10 @@ export class AllPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.blogPostCard = this.blogService.postBlogs;
-       console.log('sssssssssssssssss', this.posts)
       setTimeout(() => {
         this.paginationService.showPaginationSubject.next(true);
       }, 0);
+
   }
   
 

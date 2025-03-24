@@ -1,0 +1,25 @@
+<div class="shop-content d-flex flex-row">
+    <div class="left-side me-4">
+        <app-product-categories></app-product-categories>
+        <app-product-filters></app-product-filters>
+    </div>
+    <div class="right-side">
+        <app-product-header-filter></app-product-header-filter>
+        <div  
+        [ngClass]="{'list-view': isListView, '': !isListView}"
+        class="product-card-container 
+        d-flex  
+        flex-row 
+        flex-wrap
+        gap-2  
+        justify-content-lg-start 
+        justify-content-md-between 
+        justify-content-sm-start
+        my-2">
+            <app-product-card [product]="item" *ngFor="let item of product"></app-product-card>
+        </div>
+        <app-pagination class="mt-2"></app-pagination>
+    </div>
+</div>
+<app-responsive-sidebar-filters></app-responsive-sidebar-filters>
+

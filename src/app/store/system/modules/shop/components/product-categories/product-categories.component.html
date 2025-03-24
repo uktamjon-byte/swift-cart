@@ -1,0 +1,23 @@
+<div class="categories" >
+    <h5 class="categaries-title mb-3 pb-3">Browse Categories</h5> 
+    <ul class="inline-list">
+        <li *ngFor="let category of categories">
+            <i 
+            class="fa-solid fa-angle-right toggle-icon" 
+            *ngIf="category.isParent"
+            (click)="showSubcategories($event)">
+           </i>
+            <a href="#">{{category?.name}}</a>
+            <ul class="submenu" 
+            *ngIf="category?.subcategories"
+            >
+                <li *ngFor="let subcategory of category.subcategories">
+                    <i class="fa-solid fa-angle-right toggle-icon" *ngIf="subcategory.subcategories" (click)="showSubcategories($event)"></i><a href="#">{{subcategory?.name}}</a>
+                    <ul class="submenu" *ngIf="subcategory.subcategories">
+                        <li *ngFor="let subsubcategory of subcategory.subcategories"><a href="#">{{subsubcategory.name}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

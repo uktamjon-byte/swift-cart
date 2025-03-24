@@ -1,0 +1,51 @@
+@import '../../../../../../../assets/sass/mixins.scss';
+@import '../../../../../../../assets/sass/variables.scss';
+
+.categaries-title{
+  @include blogPostTitleStyle();
+}
+
+.submenu{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.submenu.open {
+  max-height: 500px; /* Adjust if needed */
+}
+
+/* Rotate arrow smoothly */
+.toggle-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.toggle-icon.rotate {
+  transform: rotate(90deg);
+}
+
+.categories{
+  .inline-list{
+    padding: 0 !important;
+  }
+  ul{
+    li{
+      margin-bottom: 10px;
+      white-space: nowrap;
+      i{
+        margin-right: 10px;
+        color: $color-gray-dark;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      a{
+          color: $color-gray;
+          transition: .15s ease-in-out;
+          white-space: nowrap;
+          &:hover{
+            color: $color-primary-hover;
+          }
+      }
+    }
+  }
+}

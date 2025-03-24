@@ -1,0 +1,6 @@
+
+app-blog-page-card{
+    flex: 1 1 260px; /* Allows cards to shrink/grow */
+    max-width: 350px; /* Prevents them from growing too large */
+    min-width: 270px; /* Prevents them from becoming too small */
+}

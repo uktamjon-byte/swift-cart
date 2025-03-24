@@ -124,6 +124,7 @@ button {
     background: none;
     border: none;
     outline: none !important;
+    box-shadow: none !important;
     &.has-error{
          border:$input-error-style !important;
     }
@@ -144,7 +145,11 @@ p{
     width: 94%;
 }
 
+.error-message{
+    color: $error-text-message;
+}
 
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

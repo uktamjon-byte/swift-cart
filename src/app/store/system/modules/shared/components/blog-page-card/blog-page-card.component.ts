@@ -9,18 +9,16 @@ import { IPostBlog } from '../../../blog/types/interfaces/blog.interface';
   styleUrls: ['./blog-page-card.component.scss']
 })
 export class BlogPageCardComponent implements OnInit {
-  @Input() posts:IPostBlog[]=[]
-  blogPostCard:IPostBlog[]=[];
+  @Input() posts:IPostBlog={} as IPostBlog;
   
   constructor( private blogService:BlogService, 
     private paginationService: PaginationService) { }
 
-  ngOnInit(): void {
-    this.blogPostCard = this.posts;
-       
+  ngOnInit(): void { 
       setTimeout(() => {
         this.paginationService.showPaginationSubject.next(true);
       }, 0);
+
   }
   }
 
