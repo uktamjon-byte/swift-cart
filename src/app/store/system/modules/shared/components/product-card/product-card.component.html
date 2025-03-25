@@ -1,0 +1,41 @@
+<div class="product-container">
+    <div class="product-card  d-flex flex-column p-2" [ngClass]="{'list-view': isListView, '': !isListView}">
+        <div class="product-img position-relative">
+            <img src="{{product.image[0]}}" alt="product">
+            <small *ngIf="product.status !== 'In stock'" class="position-absolute" [ngClass]="getStatusClass(product.status)">{{product.status}}</small>
+            <div class="like-compare position-absolute">
+                <span [ngClass]="{'active-wish-icon': isAddWishlistActive}" 
+                class="like-icon icons d-flex align-items-center justify-content-center mb-1" 
+                (click)="addWishList()"><i class="fa-solid fa-heart"></i></span>
+                <span 
+                [ngClass]="{'active': isCampareListActive}" 
+                class="compare-icon icons d-flex align-items-center justify-content-center" 
+                 (click)="addCampareList()"><i class="fa-solid fa-code-compare"></i></span>
+            </div>
+        </div>
+        <div class="product-info">
+            <h6 [routerLink]="[product.id]">{{product.title}}</h6>
+            <div class="rating-stars mb-2">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <small class="ms-2">0 Reviews</small>
+            </div>
+            <div class="price-cart d-flex flex-row justify-content-between">
+                <span class="price ms-2">{{product.price}}</span>
+                <span 
+                class="cart d-flex align-items-center justify-content-center"
+                *ngIf="!isListView"
+                ><i class="fa-solid fa-cart-shopping"></i></span>
+            </div>
+
+            <button 
+            *ngIf="isListView"
+            class="btn btn-primary mt-4"
+            >Add to Cart</button>
+        </div>
+    </div>
+</div>
+

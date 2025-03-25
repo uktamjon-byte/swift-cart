@@ -1,0 +1,31 @@
+<div class="compare-list">
+    <div class="empty-list d-flex justify-content-center flex-column align-items-center py-5" *ngIf="products.length <= 0">
+        <img src="../../../../../../../assets/imagis/empty-list.svg" class="align-self-center" alt="Empty List">
+        <div class="list-title mt-3"><h4>No product in the compare list.</h4></div>
+    </div>
+
+    <div class="table-responsive my-5 w-100 position-relative" *ngIf="products.length > 0">
+        <table class="table-bordered compare-table d-table w-100">
+            <tbody>
+                <tr>
+                    <th [ngStyle]="{'background-color': products.length > 3 ? 'white' : 'initial'}"
+                    >Product Overview</th>
+                    <td *ngFor="let product of products" class="header-row position-relative">{{product.name}}<i class="fa-solid fa-xmark position-absolute"></i></td>
+                </tr>
+                <tr *ngFor="let feature of featureList; let i = index">
+                    <th [ngStyle]="{'background-color': products.length > 3 ? 'white' : 'initial'}">{{feature}}</th>
+                    <td *ngFor="let product of products">{{product.values[i]}}</td>
+                </tr>
+                <tr>
+                    <th [ngStyle]="{'background-color': products.length > 3 ? 'white' : 'initial'}">Actions</th>
+                    <td *ngFor="let product of products; let i = index" class="action-btn">
+                        <button class="me-2"><i class="fa-regular fa-heart"></i></button>
+                        <button><i class="fa-solid fa-cart-shopping"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    
+</div>

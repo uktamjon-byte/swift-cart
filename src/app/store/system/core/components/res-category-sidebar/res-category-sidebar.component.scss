@@ -7,13 +7,15 @@
     margin: 0 auto;
     .sidebar-menu-tab{
         background: $color-primary-alpha-12;
-        width: 285px;
+        width: 100%;
         margin: auto;
         border-radius: 10px;
         height: 38px;
         .nav-item{
             width: 33%;
             height: 100%;
+            overflow: hidden;          
+            text-overflow: ellipsis;
             &:hover{
                 cursor: pointer;
             }
@@ -82,3 +84,19 @@
         }
     }
 }
+
+@media screen and (max-width:426px) {
+    .offcanvas{
+      width: 75% !important;
+    }
+    .btn-close{
+       display: none;
+    }
+
+    .sidebar-menu-curve-background{
+        .nav-item{
+            width: auto !important;
+        }
+    }
+    
+  }

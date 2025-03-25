@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AllPostsComponent } from './components/all-posts/all-posts.component';
-import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { AllPostsComponent } from './pages/all-posts/all-posts.component';
+import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 import { BlogComponent } from './blog.component';
 
 

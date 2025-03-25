@@ -1,0 +1,85 @@
+<div class="product-details">
+    <div class="upper-title">
+        <h6>{{productDetails?.title}}</h6>
+    </div>
+    <div class="top-wrapper">
+      <div class="top-content d-flex flex-row row">
+
+        <div class="image-area-wrapper col-lg-4">
+          <div class="img-area p-2 my-2 w-100">
+            <div id="carouselExampleAutoplaying" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item"   [ngClass]="{'active': i === activeIndex}" *ngFor="let img of productDetails?.image; let i = index">
+                    <img  style="height: 466px;" (click)="displayPicture(i)" src="{{img}}" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev costom-slide-btn" (click)="prev()" type="button" data-bs-target="#carouselExampleAutoplaying">
+                  <span class="carousel-control-prev-icon costom-slide-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next costom-slide-btn" (click)="next()" type="button" data-bs-target="#carouselExampleAutoplaying">
+                  <span class="carousel-control-next-icon costom-slide-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>         
+        </div>
+        <app-image-gallery [prodDetails]="productDetails"></app-image-gallery>
+        </div>
+        
+        <div class="details px-3 col-lg-4">
+              <h3>{{productDetails?.title}}</h3>
+                   <div class="rating-stars mb-2">
+                   <i class="fa-regular fa-star"></i>
+                   <i class="fa-regular fa-star"></i>
+                   <i class="fa-regular fa-star"></i>
+                   <i class="fa-regular fa-star"></i>
+                   <i class="fa-regular fa-star"></i>
+               <small class="ms-2">0 Reviews</small>
+          </div>
+
+        <small class="product-status" [ngClass]="getProductStatus(productDetails?.status)">{{productDetails?.status}}</small>
+
+        <div class="compare-icons mb-4">
+          <span class="me-5 add-wishlist"><i class="fa-regular fa-heart me-1"></i> <small>Wishlist</small></span>
+          <span class="compare" (click)="isCompareActive = !isCompareActive"><i class="fa-solid fa-code-compare me-1" [ngClass]="{'active':isCompareActive}"></i> <small>Compare</small></span>
+        </div>
+
+        <span class="price mb-4">${{productDetails?.price}}</span>
+
+        <div class="buttons d-flex flex-row align-items-center mb-5 pb-4">
+          <span class="me-2 input-label ">Quantity</span>
+          <div class="qny d-flex align-items-center">
+            <input class="me-4 px-2" type="number" min="1" max="100" step="1" value="1">
+            <button type="button" class="btn btn-primary" [disabled]="productDetails?.status==='Out of Stock' ">Add to Card</button>
+          </div>
+        </div>
+
+        <span class="category">Categories: {{productDetails?.category}}</span>
+        <div>
+          Tags: <a href="#" class="me-2" *ngFor="let tag of productDetails?.tags">{{tag}},</a>
+        </div>
+        </div>
+      
+        <div class="feature-list col-lg-4 d-lg-block d-none">
+          <div class="single-feature d-flex flex-row align-items-center mt-3 ms-5" *ngFor="let feature of features">
+            <div class="feature-icon">
+              <i class="fa-solid" [ngClass]="'fa-' + feature.icon"></i>
+            </div>
+            <div class="feature-details">
+              <h6>{{ feature.title }}</h6>
+              <span>{{ feature.info }}</span>
+            </div>
+          </div>
+        </div>
+
+     </div>
+ 
+    </div>
+    
+
+    <div class="bottom-content w-100 d-flex justify-content-center mt-4">
+       <app-product-rate-detail [details]="productDetails"></app-product-rate-detail>
+    </div>
+
+</div>
+

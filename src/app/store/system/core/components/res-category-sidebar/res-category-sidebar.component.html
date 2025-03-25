@@ -27,8 +27,8 @@
 
         <section class="main-menu" *ngIf="buttonContent=== 'menu'">
           <ul>
-            <li class="py-2 fs-6">Shop</li>
-            <li class="py-2 fs-6">Blog</li>
+            <a [routerLink]="['']" data-bs-dismiss="offcanvas"><li class="py-2 fs-6">Shop</li></a>
+           <a [routerLink]="['/blog']" data-bs-dismiss="offcanvas"><li class="py-2 fs-6">Blog</li></a> 
           </ul>
         </section>
 

@@ -70,11 +70,11 @@ header{
 
     .compare-icons{
         font-size: 21px;
-        color: $color-dark;
         width: 144px;
         .links{
             position: relative;
             cursor: pointer;
+            color: $color-dark !important;
             &:last-child{
                 margin-right: 10px;
             }

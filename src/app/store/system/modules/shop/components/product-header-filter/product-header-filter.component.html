@@ -1,0 +1,41 @@
+<div class="header-filter d-flex align-items-start justify-content-between flex-sm-row w-100">
+  <h4 class="mt-2">Shop</h4>
+  <div class="filter-items d-flex flex-column flex-sm-row align-items-center justify-content-end w-100" #tooltipContainer>
+    
+    <div class="filter-icons d-flex flex-row flex-sm-row align-items-center">
+      <div class="left-items ms-1 d-none align-items-center me-3" (click)="toggleSidebar()">
+        <i class="fa-solid fa-sliders me-1"></i><span>Filters</span>
+      </div>
+
+      <div class="view-types d-flex">
+        <span
+         class="me-3" 
+         (click)="gridView()"
+         ><i class="fa-solid fa-th-large" [ngClass]="{'view-active': isGridViewActive}" data-bs-toggle="tooltip" data-bs-title="Grid View">
+         </i>
+        </span>
+        <span class="me-3" (click)="listView()"><i class="fa-solid fa-list" [ngClass]="{'view-active': isListViewActive}" data-bs-toggle="tooltip" data-bs-title="List View"></i></span>
+      </div>
+    </div>
+
+    <div class="select-box d-flex flex-row mt-2 mt-sm-0">
+      <select class="form-select form-select-md me-3" aria-label="Large select example">
+        <option>Relevance</option>
+        <option value="1">Alphabetic</option>
+        <option value="2">Top Rated</option>
+        <option value="3" selected>Latest</option>
+        <option value="4">Price: Low to High</option>
+        <option value="5">Price: High to Low</option>
+      </select>
+
+      <select class="form-select form-select-md" aria-label="Large select example">
+        <option selected>10</option>
+        <option value="1">20</option>
+        <option value="2">30</option>
+        <option value="3">40</option>
+      </select>
+    </div>
+    
+  </div>
+
+</div>

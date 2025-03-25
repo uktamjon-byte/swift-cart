@@ -1,0 +1,61 @@
+@import '../../../../../../../assets/sass/variables.scss';
+
+.active-image{
+  border: 1px solid $color-primary !important;
+}
+.gallery {
+    img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+      border:1px solid $color-gray-dark-lite;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+  
+  .lightbox {
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    overflow: hidden;
+    .lightbox-content {
+        max-width: 65%;
+        max-height: 70%;
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+    }
+  
+    .close-btn {
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+      cursor: pointer;
+      color: rgb(153, 157, 160);
+    }
+  
+    .navigation {
+      .prev-btn{
+         top: 50%;
+         left: 10px;
+      }
+      .next-btn{
+        top: 50%;
+        right: 10px;
+      }
+      button {
+        background: none;
+        border: none;
+        color: rgb(174, 166, 166);
+        font-size: 30px;
+        cursor: pointer;
+        padding: 10px;
+      }
+    }
+  }
+  

@@ -1,0 +1,16 @@
+@import '../../../../../../../assets/sass/mixins.scss';
+@import '../../../../../../../assets/sass/variables.scss';
+.filter-title{
+    @include blogPostTitleStyle();
+}
+.price-filter{
+    input{
+        border: 1px solid $color-dark-4;
+        border-radius: 8px;
+        padding: 6px 4px;
+        max-width: 65px;
+        &:last-child{
+            max-width: 70px;
+        }
+    }  
+}

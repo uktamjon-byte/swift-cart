@@ -24,19 +24,18 @@
                         <span class="fs-4 cursor-pointer"(click)="activateBottomTab()"><i class="fa-solid fa-globe"></i></span>
                      </div>
         
-                <div class="compare-icons d-flex flex-row align-items-center justify-content-between">
-                    <div class="links ms-2"  data-bs-toggle="tooltip" data-bs-title="compare items"><i class="fa-solid fa-code-compare"></i><span class="badge">0</span></div>
-                    <div class="links"><i class="fa-regular fa-heart"></i><span class="badge">0</span></div>
-                    <div class="links"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></div>
+                <div class="compare-icons d-flex flex-row align-items-center justify-content-between" #tooltipContainer>
+                    <a class="links ms-2" [routerLink]="['/compare-page']"  data-bs-toggle="tooltip" data-bs-title="Compare items"><i class="fa-solid fa-code-compare"></i><span class="badge">0</span></a>
+                    <a class="links" data-bs-toggle="tooltip" data-bs-title="Wish List"><i class="fa-regular fa-heart"></i><span class="badge">0</span></a>
+                    <a class="links" data-bs-toggle="tooltip" data-bs-title="My Cart"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></a>
                 </div>
-        
             </div>
         </div>
 
         <div class=" top-nav-categories w-100 d-flex justify-content-center">
             <nav class="top-nav mt-3 d-flex flex-row justify-content-start main-container align-items-center">
                     <div class="category-btn"><button class=" btn btn-primary">ALL CATEGORIES<i class="fa-solid fa-list ms-2"></i></button></div>
-                    <a href="#" class="mx-3">Shop</a>
+                    <a [routerLink]="['/']" class="mx-3">Shop</a>
                     <a [routerLink]="['/blog']">Blog</a>
             </nav>
         </div>

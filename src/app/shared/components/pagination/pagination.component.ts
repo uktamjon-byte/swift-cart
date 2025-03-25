@@ -5,7 +5,7 @@ import { IPostBlog } from 'src/app/store/system/modules/blog/types/interfaces/bl
 import { IPageLists } from '../../types/interface';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { AllPostsComponent } from 'src/app/store/system/modules/blog/components/all-posts/all-posts.component';
+import { AllPostsComponent } from 'src/app/store/system/modules/blog/pages/all-posts/all-posts.component';
 
 @Component({
   selector: 'app-pagination',

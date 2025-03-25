@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { BlogRoutingModule } from './blog-routing.module';
 
 import { BlogComponent } from './blog.component';
-import { AllPostsComponent } from './components/all-posts/all-posts.component';
-import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { AllPostsComponent } from './pages/all-posts/all-posts.component';
+import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 import { PostCategoriesComponent } from './components/post-categories/post-categories.component';
 import { RecentPostsComponent } from './components/recent-posts/recent-posts.component';
 import { SearchPostComponent } from './components/search-post/search-post.component';

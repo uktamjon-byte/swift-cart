@@ -16,13 +16,16 @@ public blogPosts:IPostBlog[]=[];
   ) { }
   showPagination = false;
   ngOnInit(): void {
-   this.blogPosts = this.blogService.postBlogs
+   this.blogPosts = this.blogService.postBlogs;
+   this.paginationService.showPaginationSubject
+   .subscribe(isVisible => {
+     this.showPagination = isVisible;
+   });
+
+   console.log('blogsss', this.blogPosts)
   }
 
   ngAfterViewInit() {
-    this.paginationService.showPaginationSubject
-    .subscribe(isVisible => {
-      this.showPagination = isVisible;
-    });
+  
   }
 }

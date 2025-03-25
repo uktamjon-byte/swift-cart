@@ -1,0 +1,11 @@
+@import '../../../../../../../assets/sass/variables.scss';
+.btn-close{
+    border-radius: 50%;
+    border: 1px solid $color-dark-3;
+}
+
+@media screen and (max-width:425px) {
+  .offcanvas{
+    width: 60% !important;
+  }
+}
