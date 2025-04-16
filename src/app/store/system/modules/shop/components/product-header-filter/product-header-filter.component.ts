@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as bootstrap from 'bootstrap';
-import { ShopService } from '../../services/shop.service';
+import { ShopService } from '../../../shared/services/shop.service';
 
 @Component({
   selector: 'app-product-header-filter',

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as bootstrap from 'bootstrap';
-import { ShopService } from '../../services/shop.service';
+import { ShopService } from '../../../shared/services/shop.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({

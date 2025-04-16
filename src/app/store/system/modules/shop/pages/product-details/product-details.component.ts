@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ShopService } from '../../services/shop.service';
+import { ShopService } from '../../../shared/services/shop.service';
 import { IFeture, IProduct } from '../../types/interfaces/interfaces';
 import { ImageGalleryComponent } from '../../components/image-gallery/image-gallery.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';

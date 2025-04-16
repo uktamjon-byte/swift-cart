@@ -27,7 +27,7 @@
                 <div class="compare-icons d-flex flex-row align-items-center justify-content-between" #tooltipContainer>
                     <a class="links ms-2" [routerLink]="['/compare-page']"  data-bs-toggle="tooltip" data-bs-title="Compare items"><i class="fa-solid fa-code-compare"></i><span class="badge">0</span></a>
                     <a class="links" data-bs-toggle="tooltip" data-bs-title="Wish List"><i class="fa-regular fa-heart"></i><span class="badge">0</span></a>
-                    <a class="links" data-bs-toggle="tooltip" data-bs-title="My Cart"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></a>
+                    <button (click)="displayRightSidebar()" class="links" data-bs-toggle="tooltip" data-bs-title="My Cart"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></button>
                 </div>
             </div>
         </div>

@@ -10,7 +10,6 @@ import { ResponsiveSidebarFiltersComponent } from './components/responsive-sideb
 import { ProductContentComponent } from './pages/product-content/product-content.component';
 import { CategoriesService } from '../shared/services/categories.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ShopService } from './services/shop.service';
 import { PageSharedModule } from "../shared/page-shared.module";
 import { SharedModule } from 'src/app/shared/components/shared-module';
 import { BlogService } from '../blog/services/blog.service';
@@ -18,6 +17,8 @@ import { ImageGalleryComponent } from './components/image-gallery/image-gallery.
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProductRateDetailComponent } from './components/product-rate-detail/product-rate-detail.component';
 import { ComparePageComponent } from './pages/compare-page/compare-page.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AddedProductsSidebarComponent } from './components/added-products-sidebar/added-products-sidebar.component';
 
 
 
@@ -33,6 +34,7 @@ import { ComparePageComponent } from './pages/compare-page/compare-page.componen
     ImageGalleryComponent,
     ProductRateDetailComponent,
     ComparePageComponent,
+    AddedProductsSidebarComponent,
   ],
   imports: [
     CommonModule,
@@ -42,10 +44,10 @@ import { ComparePageComponent } from './pages/compare-page/compare-page.componen
     SharedModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    HttpClientModule
 ],
   providers:[
     CategoriesService,
-    ShopService,
     BlogService
   ]
 })

@@ -84,6 +84,10 @@ body, .mat-body, .mat-body-1, .mat-typography .mat-body, .mat-typography .mat-bo
         z-index: 2000 !important; /* Ensure it appears above Angular CDK overlays */
       }
   }
+
+  html{
+    top: 0 !important;
+  }
   
 
 /* 3. Remove list styles (for ul, ol) */

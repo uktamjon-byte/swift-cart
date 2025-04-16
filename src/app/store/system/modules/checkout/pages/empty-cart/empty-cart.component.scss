@@ -1,0 +1,22 @@
+@import '../../../../../../../assets/sass/variables.scss';
+.empty-cart-container{
+  .cart-caption{
+    h5{
+        color: $color-black;
+    }
+    span{
+        color: $color-gray;
+    }
+  }
+  .back-to-shop-link{
+    a{
+    border: 1px solid $color-primary;
+    border-radius: $default-border-radius;
+    transition: $transition-150;
+    &:hover{
+        background-color: $color-primary;
+        color: $color-white;
+    }
+  }
+}
+}

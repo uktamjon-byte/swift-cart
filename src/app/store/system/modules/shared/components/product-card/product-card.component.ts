@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from '../../../shop/types/interfaces/interfaces';
-import { ShopService } from '../../../shop/services/shop.service';
+import { ShopService } from '../../services/shop.service';
 
 @Component({
   selector: 'app-product-card',
@@ -34,6 +34,10 @@ isCampareListActive:boolean = false;
       case 'New': return 'new';
       default: return '';
     }
+  }
+
+  addToCheckout(){
+    this.shopService.isShopSidebarActive.next(true);
   }
 
 }

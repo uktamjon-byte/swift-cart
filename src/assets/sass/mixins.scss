@@ -55,6 +55,23 @@
     align-items: center;
   }
 
+  @mixin mainTitleOverflow($size){
+    font-size: $size;
+    line-height: 18px;
+    max-height: 36px;
+    display: -webkit-box;
+    color: $color-black;
+    text-overflow: ellipsis;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: $font-semibold;
+    transition: $transition-150;
+    cursor: pointer;
+    &:hover{
+      text-decoration-line: underline !important;
+    }
+  }
   @mixin blogPostTitleStyle(){
         border-bottom:  1px solid $border-color-lite;
         position: relative;
