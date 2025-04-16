@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { SystemService } from '../../services/system.service';
 import * as bootstrap from 'bootstrap';
 import { placements } from '@popperjs/core';
+import { ShopService } from '../../../modules/shared/services/shop.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { placements } from '@popperjs/core';
 export class HeaderComponent implements OnInit, AfterViewInit  {
   ngZone: any;
 
-  constructor(private systemService:SystemService) { }
+  constructor(private systemService:SystemService, private shopService:ShopService) { }
 
    searchInput = document.getElementById('search-inp');
    searchNav = document.getElementById('search-nav');
@@ -50,5 +51,10 @@ export class HeaderComponent implements OnInit, AfterViewInit  {
 
   activateBottomTab(){
     this.systemService.triggerBottomTab.next(true);
+  }
+
+  displayRightSidebar(){
+    this.shopService.isShopSidebarActive.next(true);
+    console.log('dislay sidebar products service', this.shopService.isShopSidebarActive.value)
   }
 }

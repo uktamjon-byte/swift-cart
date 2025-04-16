@@ -27,6 +27,7 @@
                 <span class="price ms-2">{{product.price}}</span>
                 <span 
                 class="cart d-flex align-items-center justify-content-center"
+                (click)="addToCheckout()"
                 *ngIf="!isListView"
                 ><i class="fa-solid fa-cart-shopping"></i></span>
             </div>

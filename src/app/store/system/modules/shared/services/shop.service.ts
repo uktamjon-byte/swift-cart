@@ -1,10 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnDestroy } from "@angular/core";
 import { BehaviorSubject, Subject } from "rxjs";
-import { IProduct } from "../types/interfaces/interfaces";
-import { ProductStatus } from "../types/enums/enums";
-
-@Injectable()
+import { IProduct } from "../../shop/types/interfaces/interfaces";
+import { ProductStatus } from "../../shop/types/enums/enums";
+import * as bootstrap from 'bootstrap';
+@Injectable({
+  providedIn:'root'
+})
 export class ShopService {
   pruduct:IProduct[]=[];
   public filterSidebarStatus = new BehaviorSubject<boolean>(false);
@@ -12,7 +14,9 @@ export class ShopService {
   public toggleListView = new BehaviorSubject<boolean>(false);
   public isAddWishlistActive = new BehaviorSubject<boolean>(false);
   public isCampareListActive = new BehaviorSubject<boolean>(false);
-  constructor(private http: HttpClient) {
+  public isShopSidebarActive = new BehaviorSubject<boolean>(false);
+
+  constructor() {
     this.pruduct.push(
       {
       id:1,
@@ -119,9 +123,23 @@ export class ShopService {
       category:'Electronics',
       tags:['Electronics', 'Gadgets', 'Hot Deals', 'Gears']
     }
-  )
+  );
+
+
+  this.isShopSidebarActive.subscribe((res)=>{
+    console.log('is shop sidebar', res);
+    if(res){
+    this.openOffcanvas();
+    }
+  });
   }
 
- 
+   openOffcanvas(): void {
+        const offcanvasElement = document.getElementById('offcanvasAddedProducts');
+        if (offcanvasElement) {
+          const offcanvasInstance = new bootstrap.Offcanvas(offcanvasElement);
+          offcanvasInstance.show();
+        }
+      }
   
 }

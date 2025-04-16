@@ -1,0 +1,32 @@
+@import '../../../../../assets/sass/variables.scss';
+.navigation-buttons{
+    a{
+        width: 290px;
+        border: 1px solid $color-dark-4;
+        &.active{
+            background-color: $color-primary;
+            color: $color-white;
+        }      
+        .step-tag-text{
+            position: relative;
+            text-wrap: nowrap;
+            .sub-text{
+                position: absolute;
+                right: -35px;
+                font-size: 32px;
+                width: 50px;
+                top: -9px;
+                color: $color-black;
+                opacity: 0.15;
+               // transform: translateY(50%);
+              }
+        }
+       
+    }
+}
+
+@media screen and (max-width:768px) {
+.navigation-buttons{
+  display: none !important;
+}
+}

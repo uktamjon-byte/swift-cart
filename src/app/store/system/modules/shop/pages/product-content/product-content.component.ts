@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { ShopService } from '../../services/shop.service';
+import { ShopService } from '../../../shared/services/shop.service';
 import { IProduct } from '../../types/interfaces/interfaces';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -20,7 +20,7 @@ export class ProductContentComponent implements OnInit, OnDestroy {
     this.shopService.toggleListView
     .pipe(takeUntil(this.$destroy))
     .subscribe((val)=>{
-      this.isListView = val
+      this.isListView = val    
     })
   }
 

@@ -1,0 +1,323 @@
+<div class="checkout-container">
+    <div class="row">
+        <div class="col-lg-8">
+           <form class="info-section" [formGroup]="checkoutForm"  (ngSubmit)="submitCheckoutForm()">
+            <div class="account-details">
+                <h5 class="pb-3 mb-4">Account Details</h5>
+                <div class="row my-2">
+                    <div class="col-lg-6">
+                        <label>Email</label>
+                        <input 
+                        type="text" 
+                        formControlName="email" 
+                        class="form-control"
+                        [ngClass]="{'has-error':checkoutForm.get('email')?.touched && checkoutForm.get('email')?.invalid}"
+                        >                
+                       <p class="error-message" *ngIf="checkoutForm.get('email')?.touched && checkoutForm.get('email')?.invalid"> 
+                        <span class="error-message" *ngIf="checkoutForm.get('email')?.errors?.['required']">
+                            Email is required
+                        </span>
+                        <span class="error-message" *ngIf="checkoutForm.get('email')?.errors?.['email']">
+                           Enter your valid email
+                        </span>
+                        </p> 
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Phone</label>
+                        <input 
+                        type="tel" 
+                        formControlName="phone"  
+                        class="form-control"
+                        [ngClass]="{'has-error':checkoutForm.get('phone')?.touched && checkoutForm.get('phone')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="checkoutForm.get('phone')?.touched && checkoutForm.get('phone')?.invalid">
+                            <span class="error-message" *ngIf="checkoutForm.get('phone')?.errors?.['required']">
+                                Phone number is required
+                            </span>
+                            <span class="error-message" *ngIf="checkoutForm.get('phone')?.errors?.['pattern']">
+                               Enter your valid number
+                            </span>
+                         </p>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="billing-details">
+                <h5 class="pb-3 mb-4">Billing Details</h5>
+                <div class="row my-2">
+                    <div class="col-lg-6">
+                        <label>First Name</label>
+                        <input 
+                         type="text" 
+                         formControlName="firstName" 
+                         class="form-control"
+                         [ngClass]="{'has-error':checkoutForm.get('firstName')?.touched && checkoutForm.get('firstName')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="checkoutForm.get('firstName')?.touched && checkoutForm.get('firstName')?.invalid"> 
+                            First name is required
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Last Name</label>
+                        <input 
+                        type="text" 
+                        formControlName="lastName" 
+                        class="form-control"
+                        [ngClass]="{'has-error':checkoutForm.get('lastName')?.touched && checkoutForm.get('lastName')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="checkoutForm.get('lastName')?.touched && checkoutForm.get('lastName')?.invalid"> 
+                            Last name is required
+                        </p>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <label>Street Address</label>
+                    <div class="col-lg-12">
+                        <input 
+                        type="text" 
+                        formControlName="address1" 
+                        class="form-control" 
+                        placeholder="Address line 1"
+                        [ngClass]="{'has-error':checkoutForm.get('address1')?.touched && checkoutForm.get('address1')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="checkoutForm.get('address1')?.touched && checkoutForm.get('address1')?.invalid"> 
+                            Address is required
+                        </p>
+                    </div>
+                    <div class="col-lg-12 mt-3">
+                        <input type="text" formControlName="address2" class="form-control" placeholder="Address line 2 (optional)">
+                    </div>
+                 </div>
+                 <div class="row my-2">
+                    <div class="col-lg-6">
+                        <label>City</label>
+                        <input 
+                        type="text" 
+                        formControlName="city" 
+                        class="form-control"
+                        [ngClass]="{'has-error':checkoutForm.get('city')?.touched && checkoutForm.get('city')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="checkoutForm.get('city')?.touched && checkoutForm.get('city')?.invalid"> 
+                            City is required
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Postcode / ZIP</label>
+                        <input 
+                        type="text" 
+                        formControlName="postCode" 
+                        class="form-control"
+                        [ngClass]="{'has-error':checkoutForm.get('postCode')?.touched && checkoutForm.get('postCode')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="checkoutForm.get('postCode')?.touched && checkoutForm.get('postCode')?.invalid"> 
+                            Post code is required
+                        </p>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-lg-6">
+                        <label>Country</label>
+                       <select 
+                       class="form-select costom-select" 
+                       (change)="onCountryChange($event)" 
+                       formControlName="country"
+                       [ngClass]="{'has-error':checkoutForm.get('country')?.touched && checkoutForm.get('country')?.invalid}"
+                       >
+                         <option value="">Please select a Country</option>
+                         <option *ngFor="let country of countries" [value]='country.name'>
+                            {{country.name}}
+                         </option>
+                       </select>
+                       <p class="error-message" *ngIf="checkoutForm.get('country')?.touched && checkoutForm.get('country')?.invalid"> 
+                        Country is required
+                    </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>State / Province</label>
+                        <select 
+                        class="form-select costom-select" 
+                        formControlName="region"
+                        [ngClass]="{'has-error':checkoutForm.get('region')?.touched && checkoutForm.get('region')?.invalid}"
+                        >
+                            <option value="">Please select a region</option>
+                            <option *ngFor="let region of regions" [value]="region">
+                               {{region}}
+                            </option>
+                          </select>
+                          <p class="error-message" *ngIf="checkoutForm.get('country')?.touched && checkoutForm.get('country')?.invalid"> 
+                            Region is required
+                          </p>
+                    </div>
+                    <div class="col-lg-12 mt-2">
+                        <label> Order Note </label>
+                        <textarea rows="3" class="form-control" formControlName="note" placeholder="Special note for delivery (optional)"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-methods">
+                <h5 class="pb-3 mb-4">Payments Methods</h5>
+                <div class="card-method p-3 mb-3">
+                    <div class="method-item d-flex flex-row mb-3" *ngFor="let method of paymentMethods">
+                        <input 
+                        class="form-check-input" 
+                        formControlName="paymentMethod" 
+                        type="radio"
+                        [value]="method.name" 
+                        name="paymentMethod"
+                        [checked]="method.isActive"
+                        >
+                        <div class="method-title d-flex flex-column ms-3">
+                            <label class="fw-5">{{method.name}}</label>
+                            <span>{{method.description}}</span>
+                        </div>
+                    </div>
+                    <p class="error-message" *ngIf="checkoutForm.get('paymentMethod')?.touched && checkoutForm.get('paymentMethod')?.invalid"> 
+                        Payment method is required
+                    </p>
+                </div>
+                
+            </div>
+            <div class="credit-card  p-3 mb-3" *ngIf="selectedPaymentMethod === 'PayPal' || selectedPaymentMethod === 'DushanbeCity'"
+            > 
+                <h4>Please, Enter your card data</h4>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="cart-number-area mb-3">
+                            <label class="fw-5">Cart Number</label>
+                            <input 
+                            class="form-control" 
+                            autocomplete="cc-number"
+                            inputmode="numeric"
+                            formControlName="cardNumber" 
+                            mask="0000 0000 0000 0000"
+                            placeholder="1234 1234 1234 1234"
+                            type="text"
+                            name="paymentMethod"
+                            [ngClass]="{'has-error':checkoutForm.get('cardNumber')?.touched && checkoutForm.get('cardNumber')?.invalid}"
+                            >
+                           <p class="error-message" *ngIf="checkoutForm.get('cardNumber')?.touched && checkoutForm.get('cardNumber')?.invalid"> 
+                               Card number is required
+                           </p>
+                        </div>
+                        <div class="country-area mt-3">
+                            <label>Country</label>
+                            <select 
+                            class="form-select costom-select" 
+                            formControlName="cardholderCountry"
+                            [ngClass]="{'has-error':checkoutForm.get('cardholderCountry')?.touched && checkoutForm.get('cardholderCountry')?.invalid}"
+                            >
+                              <option value="">Please, select your country</option>
+                              <option *ngFor="let country of countries" [value]='country.name'>
+                                 {{country.name}}
+                              </option>
+                            </select>
+                            <p class="error-message" *ngIf="checkoutForm.get('cardholderCountry')?.touched && checkoutForm.get('cardholderCountry')?.invalid"> 
+                               Country is required
+                            </p>
+                        </div>                       
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="expire-area mb-2">
+                            <label class="fw-5">Expire Date</label>
+                            <input 
+                            class="form-control" 
+                            autocomplete="cc-number"
+                            inputmode="numeric"
+                            formControlName="expireDate" 
+                            mask="00 / 00"
+                            [dropSpecialCharacters]="false"
+                            placeholder="01 / 24"
+                            type="text"
+                            name="paymentMethod"
+                            [ngClass]="{'has-error':checkoutForm.get('expireDate')?.touched && checkoutForm.get('expireDate')?.invalid}"
+                            >
+                           <p class="error-message" *ngIf="checkoutForm.get('expireDate')?.touched && checkoutForm.get('expireDate')?.invalid"> 
+                               Expire date is required
+                           </p>
+                       </div>
+                       <div class="cvc-area mt-3">
+                        <label class="fw-5">CVC</label>
+                        <input 
+                        class="form-control" 
+                        autocomplete="cc-number"
+                        inputmode="numeric"
+                        formControlName="cvc" 
+                        mask="000"
+                        placeholder="CVC"
+                        type="text"
+                        name="paymentMethod"
+                        [ngClass]="{'has-error':checkoutForm.get('cvc')?.touched && checkoutForm.get('cvc')?.invalid}"
+                        >
+                       <p class="error-message" *ngIf="checkoutForm.get('cvc')?.touched && checkoutForm.get('cvc')?.invalid"> 
+                           CVC is required
+                       </p>
+                       </div>
+                    </div>
+                </div>                                     
+            </div>
+
+            <div class="shipping-methods">
+                <h5 class="pb-3 mb-4">Shipping Methods</h5>
+                <div class="card-method p-3 mb-3">
+                    <div class="method-item d-flex flex-row justify-content-between mb-3" *ngFor="let ship of shippingMethods">                  
+                        <div class="shipping-title d-flex flex-row">
+                            <input 
+                            class="form-check-input"
+                            type="radio" 
+                            formControlName="shippingMethod" 
+                            [value]="ship.name"
+                             name="shippingMethod">
+                            <label class="fw-5 ms-3">{{ship.name}}</label>
+                        </div>
+                        <div class="cost">{{ship.price | currency:'USD'}}</div>
+                    </div>
+                    <p class="error-message" *ngIf="checkoutForm.get('shippingMethod')?.touched && checkoutForm.get('shippingMethod')?.invalid"> 
+                        Shipping method is required
+                    </p>
+                </div>
+                
+            </div>
+        </form>
+        </div>
+        <div class="col-lg-4">
+            <div class="order-summary w-100 my-3 position-sticky">
+                <h5>Order Summary</h5>
+                <div class="selected-products d-flex flex-row align-items-start justify-content-between" *ngFor="let orderProduct of orderProducts">
+                    <div class="product-img position-relative">
+                        <img src="{{orderProduct.image[3]}}" alt="product">
+                        <span class="position-absolute d-flex align-items-center justify-content-center">10</span>
+                    </div>
+                    <div class="product-caption ms-2">
+                        <label class="">{{orderProduct.title}}</label>                     
+                    </div>
+                    <div class="total-price">{{orderProduct.price | currency:'USD'}}</div>
+                </div>
+                <div class="total-price d-flex justify-content-between align-items-center">
+                    <label>Subtotal</label>
+                    <span>$1010010</span>
+                </div>
+                <div class="total-price d-flex justify-content-between align-items-center">
+                    <label>Shipping Costs</label>
+                    <span>$1010010</span>
+                </div>
+                <div class="total d-flex justify-content-between align-items-center mt-3 pt-2">
+                    <label>Total</label>
+                    <span>$1010010</span>
+                </div>
+                <div class="d-flex justify-content-center align-items-center  pt-2">
+                    <input 
+                    class="form-check-input me-2 mt-0" 
+                    type="checkbox" 
+                    (change)="isTermsChecked = !isTermsChecked"
+                    [checked]="isTermsChecked"
+                    >
+                    <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                </div>
+                <div class="proceed-btn d-flex justify-content-center mt-3">
+                    <button class="btn btn-primary w-100" type="submit" [disabled]="checkoutForm.invalid || !isTermsChecked" (click)="submitCheckoutForm()">Submit</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

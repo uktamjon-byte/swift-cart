@@ -3,3 +3,8 @@ export enum NotifyMessageType{
     warning = 'bg-warning',
     notify = 'bg-info',  
 }
+
+export enum DialogWindowButtonType{
+    delete = 'delete',
+    cancel = 'cancel',
+}

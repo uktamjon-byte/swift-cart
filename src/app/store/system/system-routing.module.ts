@@ -11,10 +11,16 @@ const routes: Routes = [
       import('../system/modules/blog/blog.module').then((m) => m.BlogModule),
   },
   {
+    path: 'checkout',
+    loadChildren: () =>
+      import('../system/modules/checkout/checkout.module').then((m) => m.CheckoutModule),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('../system/modules/shop/shop.module').then((m) => m.ShopModule),
   }
+  
  ]
 }
 ];
