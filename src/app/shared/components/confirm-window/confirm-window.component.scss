@@ -9,9 +9,10 @@ button{
     &:hover{
         opacity: 0.7;
     }
-    &:first-child{
-        background-color: $color-red;
-        color: $color-white;
+    &:last-child{
+        background-color: $color-yellow;
+        color: $color-gray-lite;
+        margin-right: 4px;
     }
 }
 span{

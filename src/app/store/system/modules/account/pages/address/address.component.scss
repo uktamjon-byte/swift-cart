@@ -1,0 +1,74 @@
+@import'../../../../../../../assets/sass/variables.scss';
+@import'../../../../../../../assets/sass/mixins.scss';
+.address{
+    .address-card{
+        border: 1px solid $border-color;
+        border-radius: $default-border-radius;
+        height: 200px;
+        width: 272px;
+        .top-items {
+            h5{
+                font-weight: 600;
+            }
+        }
+        .bottom-items button{  
+            transition: $transition-200; 
+                i{
+                    color: $color-gray;
+                    margin-right: 5px;
+                    transition: $transition-200; 
+                } 
+                &:last-child:hover{
+                   color: $color-red;
+                   i{
+                    color: $color-red;
+                   }
+                }
+                &:first-child:hover{
+                    color: $color-primary;
+                    i{
+                     color: $color-primary;
+                    }
+                 }
+                &:first-child{
+                    margin-right: 20px;
+                }
+           
+        }
+    }
+    .add-address button{
+        transition: $transition-150;
+      border: 1px solid $color-primary;
+      color: black;
+      
+      &:hover{
+        background-color: $color-primary;
+        color: $color-white;
+      }
+    }
+}
+
+.change-edit-address{
+    .address-details{
+        h5{
+            @include blogPostTitleStyle()
+        }
+    }
+    .buttons button{
+        transition: $transition-150;
+        &:first-child{
+            border: 1px solid $color-primary;
+        }
+        &:first-child:hover{
+           color: $color-white;
+           background-color: $color-primary;
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .address-card{
+        width: 100% !important;
+        flex-direction: column;
+    }
+}

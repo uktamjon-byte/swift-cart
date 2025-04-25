@@ -1,0 +1,113 @@
+<div class="panel-inner mb-4">
+    <div class="panel-header py-3 px-3  d-flex justify-content-start align-items-center">
+        <h4>My Profile</h4>
+    </div>
+    <div class="panel-body p-3">
+        <div class="profile">
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                <div class="row my-2">
+                    <div class="col-lg-6">
+                        <label>Email</label>
+                        <input 
+                        type="text" 
+                        formControlName="email" 
+                        class="form-control"
+                        [ngClass]="{'has-error':profileForm.get('email')?.touched && profileForm.get('email')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid"> 
+                            <span class="error-message" *ngIf="profileForm.get('email')?.errors?.['required']">
+                               Email is required
+                            </span>
+                            <span class="error-message" *ngIf="profileForm.get('email')?.errors?.['email']">
+                               Enter your valid email
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Phone</label>
+                        <input 
+                        type="text" 
+                        formControlName="phone" 
+                        class="form-control"
+                        [ngClass]="{'has-error':profileForm.get('phone')?.touched && profileForm.get('phone')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="profileForm.get('phone')?.touched && profileForm.get('phone')?.invalid"> 
+                            Phone number is required
+                        </p>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-lg-6">
+                        <label>First Name</label>
+                        <input 
+                        type="text" 
+                        formControlName="firstName" 
+                        class="form-control"
+                        [ngClass]="{'has-error':profileForm.get('firstName')?.touched && profileForm.get('firstName')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="profileForm.get('firstName')?.touched && profileForm.get('firstName')?.invalid"> 
+                            First name is required
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Last Name</label>
+                        <input 
+                        type="text" 
+                        formControlName="lastName" 
+                        class="form-control"
+                        [ngClass]="{'has-error':profileForm.get('lastName')?.touched && profileForm.get('lastName')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="profileForm.get('lastName')?.touched && profileForm.get('lastName')?.invalid"> 
+                            Last name is required
+                        </p>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-lg-6">
+                        <label>Password</label>
+                        <input 
+                        type="password" 
+                        formControlName="password" 
+                        class="form-control"
+                        [ngClass]="{'has-error':profileForm.get('password')?.touched && profileForm.get('password')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="profileForm.get('password')?.touched && profileForm.get('password')?.invalid">
+                            <span class="error-message" *ngIf="profileForm.get('password')?.errors?.['required']">
+                                Password is required
+                            </span>
+                            <span *ngIf="profileForm.get('password')?.errors?.['minlength'] && 
+                            profileForm.get('password')?.errors?.['minlength']?.['requiredLength']">
+                               Password must contain
+                                {{ profileForm.get('password')?.errors?.['minlength']?.['requiredLength'] }}
+                                characters.Now 
+                                has {{ profileForm.get('password')?.errors?.['minlength']?.['actualLength'] }}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Confirm Password</label>
+                        <input 
+                        type="password" 
+                        formControlName="passwordConfirm" 
+                        class="form-control"
+                        [ngClass]="{'has-error':profileForm.get('passwordConfirm')?.touched && profileForm.get('passwordConfirm')?.invalid}"
+                        >
+                        <p class="error-message" *ngIf="profileForm.get('passwordConfirm')?.touched && profileForm.get('passwordConfirm')?.invalid">
+                            <span class="error-message" *ngIf="profileForm.get('passwordConfirm')?.errors?.['required']">
+                                Password conformation is required
+                            </span>
+                            <span *ngIf="profileForm.get('passwordConfirm')?.errors?.['minlength'] && 
+                            profileForm.get('passwordConfirm')?.errors?.['minlength']?.['requiredLength']">
+                               Password must contain
+                                {{ profileForm.get('passwordConfirm')?.errors?.['minlength']?.['requiredLength'] }}
+                                characters.Now 
+                                has {{ profileForm.get('passwordConfirm')?.errors?.['minlength']?.['actualLength'] }}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="button mt-4"><button class="btn btn-primary" type="submit">Save Changes</button></div>
+            </form>
+        </div>
+    </div>
+</div>

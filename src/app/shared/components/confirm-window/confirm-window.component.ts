@@ -15,11 +15,11 @@ export class ConfirmWindowComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { title?: string; message: string }
   ) {}
   ngOnInit(): void {
-    console.log(this.data)
+    
   }
 
-  onOk(): void {
-    this.dialogRef.close(DialogWindowButtonType.delete);
+  onConfirm(): void {
+    this.dialogRef.close(DialogWindowButtonType.confirm);
   }
 
   onCancel(): void {

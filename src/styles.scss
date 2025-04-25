@@ -1,43 +1,30 @@
 
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
+
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat.core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
 $ang-swift-cart-primary: mat.define-palette(mat.$indigo-palette);
  $ang-swift-cart-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
 $ang-swift-cart-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
 $ang-swift-cart-theme: mat.define-light-theme((
+
   color: (
     primary: $ang-swift-cart-primary,
     accent: $ang-swift-cart-accent,
     warn: $ang-swift-cart-warn,
   )
+
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include mat.all-component-themes($ang-swift-cart-theme);
 
 /* You can add global styles to this file, and also import other style files */
 @import "@fontsource/poppins";
 @import "assets/sass/variables.scss";
-@import './assets/sass/scroll-bar.scss';
+@import "assets/sass/mixins.scss";
+@import "assets/sass/scroll-bar.scss";
 
 @font-face{
     font-family: 'Poppins';
@@ -74,7 +61,7 @@ $font-base-regular:'Poppins';
 /* 2. Set the font to a consistent baseline */
 
 body, .mat-body, .mat-body-1, .mat-typography .mat-body, .mat-typography .mat-body-1 {
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Poppins-Light', sans-serif !important;
     @include scrollStyle(true);
     height: 100%;
     font-size: 16px !important;
@@ -94,6 +81,7 @@ body, .mat-body, .mat-body-1, .mat-typography .mat-body, .mat-typography .mat-bo
 ul,
 ol {
     list-style: none;
+    padding-left: 0 !important;
 }
 
 /* 4. Remove link decoration */
@@ -110,7 +98,7 @@ img {
 }
 
 .eng {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins-Bold', sans-serif;
   }
   
   /* Russian language */
@@ -153,7 +141,112 @@ p{
     color: $error-text-message;
 }
 
+table td, th {
+    padding: 15px 25px !important;
+    min-width: 120px !important;
+}
+
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: $font-base-regular, "Helvetica Neue", sans-serif; }
 
+@import'./assets/sass/variables.scss';
+.panel-inner{
+    border: 1px solid $border-color;
+    border-radius: $default-border-radius;
+    .panel-header{
+        background-color: $color-gray-lite;
+         span:hover{
+            color: $color-primary-hover;
+            cursor: pointer;
+        }
+       
+    }
+    .panel-body{
+        overflow-x: auto !important;
+    }
+    table{
+        width: 100%;
+        thead{
+            border-bottom: 1px solid $border-color;
+            tr th{
+                white-space: nowrap;
+            }
+        }
+        tbody > tr{
+            color: $color-black;
+            td:not(:nth-child(2)){
+                white-space: nowrap;
+                //display: inline-block;
+            }
+            td:last-child{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                column-gap: 8px;
+            }
+            // td:nth-child(4), td:nth-child(5){
+            //    padding: 25px 10px !important;
+            // }
+            span{
+                padding: 2px 10px;
+                background-color: #eef5f5;
+                color: $color-info;
+                border-radius: 20px;
+                font-size: 12px;
+                text-align: center;
+                display: inline-block;
+                white-space: nowrap;
+            }
+            h4{
+                @include mainTitleOverflow(16px)
+            }
+            img{
+                height: 50px;
+                width: 55px;
+                border-radius: $radius-default;
+                overflow: hidden;
+                border: 1px solid #e2e8f0;
+            }
+            a, button{
+                border-radius: $default-border-radius;
+                background-color: $color-gray-lite;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 28px;
+                width: 28px;
+                cursor: pointer;
+                transition: $transition-200;
+                i{
+                    transition: $transition-200;
+                    color: $color-gray;
+                    font-size: 15px;
+                }
+                &:hover{
+                    background: #eef5f5;
+                    border: 1px solid $color-primary;
+                    i{
+                        color: $color-primary-hover;
+                   
+                    }
+                }
+            }
+           
+        }
+    }
+   
+}
+@media screen and (max-width:768px) {
+    .panel-inner{
+        .panel-body{
+            overflow-x: auto !important;
+            // table tbody tr td{
+            //     background-color: red;
+            //     min-width: 12px !important;
+            // }
+        }
+       
+    }
+   
+}

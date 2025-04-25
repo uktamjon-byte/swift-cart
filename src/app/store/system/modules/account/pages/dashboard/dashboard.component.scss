@@ -1,0 +1,12 @@
+@import'../../../../../../../assets/sass/variables.scss';
+.panel{
+    .panel-body{
+        li{
+            padding: 6px 0;
+            color: $color-gray;
+            i{
+                margin-right: 10px;
+            }
+        }
+    }
+}

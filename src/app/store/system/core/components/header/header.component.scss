@@ -105,6 +105,12 @@ header{
 }
 
 }
+@media screen and (max-width:1024px) {
+    app-search-input{
+        width: 500px;
+    }
+}
+
 
 @media screen and (max-width:992px) {
     .wrapper{

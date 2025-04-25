@@ -67,8 +67,6 @@ selectedPaymentMethod:string = '';
       const firstMethod = this.paymentMethods[0];
       firstMethod.isActive = true; // visually checked
       this.checkoutForm.get('paymentMethod')?.setValue(firstMethod.name); // set form value
-      console.log('methods', this.paymentMethods)
-      console.log('form', this.checkoutForm)
     }
     if (this.shippingMethods.length > 0) {
       const firstMethod = this.shippingMethods[0]; // visually checked

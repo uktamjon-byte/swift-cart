@@ -5,6 +5,6 @@ export enum NotifyMessageType{
 }
 
 export enum DialogWindowButtonType{
-    delete = 'delete',
+    confirm = 'confirm',
     cancel = 'cancel',
 }

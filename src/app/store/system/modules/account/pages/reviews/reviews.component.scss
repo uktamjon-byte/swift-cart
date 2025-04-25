@@ -1,0 +1,12 @@
+@import'../../../../../../../assets/sass/variables.scss';
+tbody > tr{
+  
+    td:nth-child(4), td:nth-child(5){
+       padding: 25px 10px !important;
+    }
+    td:last-child label > i{
+       margin-right: 2px;
+       font-size: 14px;
+       color: $color-gray;
+    }
+}

@@ -1,0 +1,8 @@
+<section>
+    <div class="account-wrapper">
+        <ul>
+            <li *ngFor="let list of navbarList"><i [class]="list.icon"></i><a [routerLink]="list.link" routerLinkActive="active">{{list.title}}</a></li>
+            <li><i class="fa-solid fa-right-from-bracket"></i><button (click)="logout()">Logout</button></li>
+        </ul>
+    </div>
+</section>

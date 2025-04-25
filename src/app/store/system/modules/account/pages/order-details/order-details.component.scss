@@ -1,0 +1,122 @@
+@import '../../../../../../../assets/sass/variables.scss';
+@import '../../../../../../../assets/sass/mixins.scss';
+.back-to-account{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: $color-gray;
+    cursor: pointer;
+    transition: $transition-150;
+    margin: 0 40px;
+    &:hover{
+        opacity: 0.9;
+       
+    }
+    i{
+        padding: 6px;
+        color: $color-white;
+        transition: $transition-150;
+    }
+}
+.order-details{
+    margin-top: 10px !important;
+   h4{
+    @include blogPostTitleStyle();
+    font-weight: $font-semibold;
+   }
+   .order-info div{
+    h5{
+        font-weight: $font-semibold;
+    }
+    ul{
+        li{
+            margin-bottom: 9px;
+            label{
+                padding-right: 10px;
+                font-weight: 600;
+                min-width: 165px;
+            }
+            span{
+                color: $color-gray;
+                word-break: break-all;
+            }
+        }
+    }
+    address{
+        span{
+            color: $color-gray;
+            margin-bottom: 9px;
+        }
+    }
+   }
+   .details-middle{
+    table tbody tr{
+        td{
+            label{
+               display: none;
+            }
+        }
+    }
+}
+
+   .details-bottom{
+    ul li{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 9px;
+       &:last-child{
+        border-bottom: 1px solid $border-color;
+        padding-bottom: 8px;
+       } 
+      span{
+        font-weight: $font-semibold;
+      }
+    }
+    .total-price{
+        font-weight: $font-semibold;
+        font-size: 18px;
+    }
+   }
+}
+
+@media screen and (max-width:1024px) {
+    .details-middle{
+        table{
+            thead tr th{
+                padding: 5px 10px !important;
+            }
+        }
+    }
+}
+  
+@media screen and (max-width:768px) {
+    .details-middle{
+        table{
+            thead{
+                display: none;
+            }
+            tr{
+                display: flex;
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            th, td{
+                border: none;
+                padding: 3px 15px !important;
+                display: flex;
+                span{
+                    font-weight: $font-semibold;
+                    margin-left: 20px;
+                }
+                label{
+                    display: block !important;
+                    color: $color-gray;
+                }
+
+            }
+        }
+    }
+    .details-wrapper {
+        width: 60% !important;
+    }
+}
