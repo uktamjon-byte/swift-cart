@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShopComponent } from './shop.component';
 import { ShopRoutingModule } from './shop-routing.module';
-import { ProductCategoriesComponent } from './components/product-categories/product-categories.component';
 import { ProductFiltersComponent } from './components/product-filters/product-filters.component';
 import { ProductHeaderFilterComponent } from './components/product-header-filter/product-header-filter.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
@@ -25,7 +24,6 @@ import { AddedProductsSidebarComponent } from './components/added-products-sideb
 @NgModule({
   declarations: [
     ShopComponent,
-    ProductCategoriesComponent,
     ProductFiltersComponent,
     ProductHeaderFilterComponent,
     ProductDetailsComponent,
@@ -33,8 +31,7 @@ import { AddedProductsSidebarComponent } from './components/added-products-sideb
     ProductContentComponent,
     ImageGalleryComponent,
     ProductRateDetailComponent,
-    ComparePageComponent,
-    AddedProductsSidebarComponent,
+    ComparePageComponent
   ],
   imports: [
     CommonModule,

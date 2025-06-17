@@ -10,8 +10,8 @@
   },
   "private": true,
   "dependencies": {
-    "@abacritt/angularx-social-login": "^1.2.5",
     "@angular/animations": "^14.2.0",
+    "@abacritt/angularx-social-login": "1.2.5",
     "@angular/cdk": "^14.2.7",
     "@angular/common": "^14.2.0",
     "@angular/compiler": "^14.2.0",
@@ -31,6 +31,7 @@
     "ngx-img-zoom": "^4.1.2",
     "ngx-mask": "^13.1.11",
     "rxjs": "~7.5.0",
+    "swiper": "^9.4.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

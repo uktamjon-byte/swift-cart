@@ -9,7 +9,7 @@ $ang-swift-cart-primary: mat.define-palette(mat.$indigo-palette);
 $ang-swift-cart-warn: mat.define-palette(mat.$red-palette);
 
 $ang-swift-cart-theme: mat.define-light-theme((
-
+    
   color: (
     primary: $ang-swift-cart-primary,
     accent: $ang-swift-cart-accent,
@@ -25,6 +25,7 @@ $ang-swift-cart-theme: mat.define-light-theme((
 @import "assets/sass/variables.scss";
 @import "assets/sass/mixins.scss";
 @import "assets/sass/scroll-bar.scss";
+@import 'swiper/swiper-bundle.min.css';
 
 @font-face{
     font-family: 'Poppins';

@@ -1,0 +1,46 @@
+@import '../../../../../../../assets/sass/variables.scss';
+
+.categories-wrapper{
+    .featured-categories-tab{
+        width: 80%;
+        li{
+            border: 1px solid $border-color;
+            border-radius: $default-border-radius;
+            height: 110px;
+            width: 120px;
+            margin: 0 10px 20px;
+            padding:10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: $transition-150;
+            &:hover{
+              border: 1px solid $color-primary;
+            }
+            .category-image{
+                position: relative;
+                width: 50%;
+                margin-bottom: 10px;
+                // padding-bottom: 50%;
+            }
+            img{
+                max-height: 100%;
+                max-width: 100%;
+            }
+            span{
+                font-size: 14px;
+                display: block;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+.bottom-content{
+   .product-swiper{
+    padding-bottom: 45px;
+   }
+}

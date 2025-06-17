@@ -1,0 +1,13 @@
+@import'../../../../../../../assets/sass/variables.scss';
+.ad-card{
+ border-radius: 8px;
+ border: 1px solid $border-color;
+ overflow: hidden;
+ img{
+    transition: $transition-100;
+ }
+ 
+ &:hover img{
+   transform: scale(1.1);
+ }
+}
