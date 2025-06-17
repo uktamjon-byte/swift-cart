@@ -32,6 +32,10 @@
     li{
       margin-bottom: 10px;
       white-space: nowrap;
+      ul{
+        margin-left: 12px;
+      }
+    
       i{
         margin-right: 10px;
         color: $color-gray-dark;

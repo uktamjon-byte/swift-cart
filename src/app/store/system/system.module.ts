@@ -16,7 +16,7 @@ import { SearchInputResComponent } from './core/components/search-input-res/sear
 import { SearchInputComponent } from './core/components/search-input/search-input.component';
 import { SharedModule } from 'src/app/shared/components/shared-module';
 import { ScrollTopDirective } from './core/directives/scroll-top.directive';
-import { OrderDetailsComponent } from './modules/account/pages/order-details/order-details.component';
+import { PageSharedModule } from './modules/shared/page-shared.module';
 
 
 
@@ -37,13 +37,15 @@ export function HttpLoaderFactory(http: HttpClient) {
         SearchInputComponent,
         SearchInputResComponent,
         ResCategorySidebarComponent,
-        ResSwitchlangCanvasComponent
+        ResSwitchlangCanvasComponent,
+        
   ],
   imports: [
     CommonModule,
     SystemRoutingModule,
     SharedModule,
     HttpClientModule,
+    PageSharedModule,
     TranslateModule.forRoot({
               loader: {
                 provide: TranslateLoader,

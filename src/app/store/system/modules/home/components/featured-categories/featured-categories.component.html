@@ -1,0 +1,49 @@
+<section class="categories my-5">
+    <div class="top-content text-center">
+        <h4 class="fw-bold">Top Categories in Sales and Trendings</h4>
+        <p>Last Month up to 1500+ Products Sales From this category. You can choose a product from here and save money</p>
+        <div class="categories-wrapper d-flex justify-content-center w-100">
+            <ul class="featured-categories-tab d-flex flex-row flex-wrap mt-3 justify-content-center">
+                <li>
+                 <div class="category-image"><img src="../../../../../../../assets/imagis/feature-laptop.png" alt="glasses"></div>
+                 <span>Laptop</span>
+                </li>
+                <li>
+                 <div class="category-image"><img src="../../../../../../../assets/imagis/feature-glasses.jpeg" alt="glasses"></div>
+                 <span>Men's Fashion</span>
+                </li>
+                <li>
+                 <div class="category-image"><img src="../../../../../../../assets/imagis/feature-phone.jpeg" alt="glasses"></div>
+                 <span>Mobiles</span>
+                </li>
+                <li>
+                 <div class="category-image"><img src="../../../../../../../assets/imagis/feature-tv.png" alt="glasses"></div>
+                 <span>Television</span>
+                </li>
+                <li>
+                    <div class="category-image"><img src="../../../../../../../assets/imagis/feature-tv.png" alt="glasses"></div>
+                    <span>Television</span>
+                   </li>
+                   <li>
+                    <div class="category-image"><img src="../../../../../../../assets/imagis/feature-tv.png" alt="glasses"></div>
+                    <span>Television</span>
+                   </li>
+                
+             </ul>
+        </div>
+      
+    </div>
+    <div class="bottom-content">
+        <swiper
+         [slidesPerView]="1"
+         [spaceBetween]="15"
+         [pagination]="{ clickable: true }"
+         [breakpoints]="breakpoints"
+         class="product-swiper"
+>
+         <ng-template swiperSlide *ngFor="let product of products">
+            <app-product-card [product]="product"></app-product-card>
+         </ng-template>
+       </swiper>
+    </div>
+</section>

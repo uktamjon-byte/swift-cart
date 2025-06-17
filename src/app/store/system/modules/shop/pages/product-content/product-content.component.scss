@@ -41,9 +41,6 @@ app-product-card{
     flex: 1 1 calc(25% - 10px); /* 25% width but adjusts as needed */
     min-width: 20%; /* Prevents shrinking too much */
     max-width: 25%; /* Prevents growing too large */
-    box-sizing: border-box;
-    border: 1px solid $color-dark-4;
-    border-radius: $default-border-radius;   
 }
 
 @media screen and (max-width:991px) {

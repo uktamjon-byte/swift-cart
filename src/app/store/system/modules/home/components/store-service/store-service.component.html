@@ -1,0 +1,26 @@
+<div class="features position-relative my-3">
+    <swiper
+      *ngIf="swiperNavConfig?.prevEl && swiperNavConfig?.nextEl"
+      [slidesPerView]="3"
+      [spaceBetween]="30"
+      [navigation]="swiperNavConfig"
+      [loop]="true"
+      [autoplay]="{ delay: 4000, disableOnInteraction: false }"
+      [breakpoints]='breakpoints'
+      class="featureSwiper"
+   >
+ <ng-template swiperSlide *ngFor="let feature of features">
+   <div class="feature-card d-flex flex-row align-items-center justify-content-center">
+     <div class="feature-icon me-3"><i [class]="feature.icon" alt="Feature icon"></i></div>
+     <div class="feature-details">
+       <h5 class="m-0">{{ feature.title }}</h5>
+       <p>{{ feature.description }}</p>
+     </div>     
+   </div>
+ </ng-template>
+    </swiper>
+     <div class="controls">
+       <button #prevFeatureBtn class="prev position-absolute end-0 me-2"><i class="fa-solid fa-angle-right"></i></button>
+       <button #nextFeatureBtn class="prev position-absolute start-0  ms-2"><i class="fa-solid fa-angle-left"></i></button>
+     </div>
+</div>

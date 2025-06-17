@@ -6,6 +6,11 @@ import { SystemComponent } from './system.component';
 const routes: Routes = [
  {path:'', component: SystemComponent, children: [
   {
+    path: '',
+    loadChildren: () =>
+      import('../system/modules/home/home.module').then((m) => m.HomeModule),
+  },
+  {
     path: 'blog',
     loadChildren: () =>
       import('../system/modules/blog/blog.module').then((m) => m.BlogModule),
@@ -16,7 +21,7 @@ const routes: Routes = [
       import('../system/modules/checkout/checkout.module').then((m) => m.CheckoutModule),
   },
   {
-    path: '',
+    path: 'account',
     loadChildren: () =>
       import('../system/modules/account/account.module').then((m) => m.AccountModule),
   },

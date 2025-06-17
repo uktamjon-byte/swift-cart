@@ -129,7 +129,9 @@ export class ShopService {
   this.isShopSidebarActive.subscribe((res)=>{
     console.log('is shop sidebar', res);
     if(res){
-    this.openOffcanvas();
+      this.openOffcanvas();
+    }else{
+      this.closeOffcanvas();
     }
   });
   }
@@ -139,6 +141,14 @@ export class ShopService {
         if (offcanvasElement) {
           const offcanvasInstance = new bootstrap.Offcanvas(offcanvasElement);
           offcanvasInstance.show();
+        }
+      }
+
+      closeOffcanvas(): void {
+        const offcanvasElement = document.getElementById('offcanvasAddedProducts');
+        if (offcanvasElement) {
+          const offcanvasInstance = new bootstrap.Offcanvas(offcanvasElement);
+          offcanvasInstance.hide();
         }
       }
   

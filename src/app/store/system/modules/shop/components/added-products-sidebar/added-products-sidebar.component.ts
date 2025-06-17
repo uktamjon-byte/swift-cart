@@ -15,24 +15,12 @@ export class AddedProductsSidebarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('init')
-    // this.shopService.isShopSidebarActive
-    // .subscribe((val)=>{
-    //   console.log('-----', val);
-    //   if(val){     
-    //     this.openOffcanvas()
-     
-    // }
-    // });
-    this.selectedProducts = this.shopService.pruduct
+    this.selectedProducts = this.shopService.pruduct;
   }
 
-  // openOffcanvas(): void {
-  //       const offcanvasElement = document.getElementById('offcanvasAddedProducts');
-  //       if (offcanvasElement) {
-  //         const offcanvasInstance = new bootstrap.Offcanvas(offcanvasElement);
-  //         offcanvasInstance.show();
-  //       }
-  //     }
+  inactivateSidebar(){
+    this.shopService.isShopSidebarActive.next(false);
+    console.log('disactive')
+  }
 
 }

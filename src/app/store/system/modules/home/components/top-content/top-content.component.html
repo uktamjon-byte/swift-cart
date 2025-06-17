@@ -1,0 +1,41 @@
+<section>
+    <div class="row">
+        <div class="col-lg-3 left-content">
+            <app-product-categories></app-product-categories>
+        </div>
+        <div class="col-lg-6 middle-content">      
+              <div class="swiper-wrapper position-relative">
+                <swiper
+                [slidesPerView]="1"
+                [navigation]="{ prevEl: prevBtn, nextEl: nextBtn }"
+                [pagination]="{ clickable: true }"
+                [autoplay]="{ delay: 3000, disableOnInteraction: false }"
+                [loop]="true"
+                class="mySwiper"> 
+               
+               <ng-template swiperSlide *ngFor="let image of images">
+                    <img [src]="image.srcImg" [alt]="image.alt" class="w-100 h-100 object-fit-cover" />
+                    <div class="title position-absolute top-50 start-50">
+                      <h2>{{image.title}}</h2>
+                      <span>
+                        {{image.caption}}
+                     </span>
+                    </div>
+               </ng-template>
+              </swiper>
+              <div class="controls">
+                <button #prevBtn class="prev position-absolute end-0 top-50 me-2"><i class="fa-solid fa-angle-right"></i></button>
+                <button #nextBtn class="prev position-absolute start-0 top-50 ms-2"><i class="fa-solid fa-angle-left"></i></button>
+              </div>
+              </div>
+            
+            
+        </div>
+        <div class="col-lg-3 right-content">
+          <div class="banner-links d-flex flex-column row-gap-3">
+            <a href="#"><img src="../../../../../../../assets/imagis/bannerlink1.png" alt=""></a>
+            <a href="#"><img src="../../../../../../../assets/imagis/bannerlink2.png" alt=""></a>
+          </div>
+        </div>
+    </div>
+</section>

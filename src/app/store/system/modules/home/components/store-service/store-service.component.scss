@@ -1,0 +1,96 @@
+
+@import'../../../../../../../assets/sass/variables.scss';
+.features{
+    border: 1px solid $border-color;
+    border-radius: $default-border-radius;
+    &:hover{
+        .controls button:first-child{
+          animation: slideLeft .5s forwards;
+        }
+        .controls button:last-child{
+          animation: slideRight .5s forwards;
+        }
+    }
+    .controls button{
+      top: 38%;
+    }
+    &:hover{
+      .controls button:first-child{
+        animation: slideLeft .5s forwards;
+      }
+      .controls button:last-child{
+        animation: slideRight .5s forwards;
+      }
+    }
+    .feature-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s ease;
+      .feature-icon i{
+        font-size: 32px;
+        color: $color-primary;
+      }
+      .feature-details{
+      
+        h5{
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: 600 !important;
+        }
+        p{
+        width: 100%; 
+        font-size: 14px;
+        line-height: 22px;
+        color: $color-gray;
+        margin-top: 2px;
+        }
+      }
+    }
+  }
+  
+
+.controls button{
+    opacity: 0;
+    height: 30px;
+    width: 30px;
+    background-color: $color-primary-alpha-30;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: $transition-150;
+    &:hover{
+      background-color: $color-primary;
+    }
+    i{
+      color: $color-white;
+    }
+  }
+  @keyframes slideLeft {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideRight {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
