@@ -64,8 +64,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       }
 
       ngOnDestroy() {
-        this.regisService.destroy$.next(); // Emit a value to complete all Observables
-        this.regisService.destroy$.complete(); // Cleanup the destroy$ Subject
+        this.regisService.destroy$.next(); 
+        this.regisService.destroy$.complete();
       }
 
 }

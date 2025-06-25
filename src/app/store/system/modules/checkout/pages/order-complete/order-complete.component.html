@@ -3,11 +3,12 @@
         <img src="./../../../../../../../assets/imagis/no-comment.svg" alt="empty-cart">
     </div>
     <div class="cart-caption text-center py-2">
-        <h4 class="m-0">No completed orders</h4>
-        <span>Looks like you haven't completed any orders yet.</span>
+        <h4 class="m-0">{{ 'noCompletedOrders' | translate }}</h4>
+        <span>{{ 'noCompletedOrdersDescription' | translate }}</span>
     </div>
     <div class="back-to-shop-link my-3">
-        <a [routerLink]="['/shop']" class="btn btn-md">Continue Shopping</a>
+        <a [routerLink]="['/shop']" class="btn btn-md">
+            {{ 'continueShopping' | translate }}
+        </a>
     </div>
 </div>
-

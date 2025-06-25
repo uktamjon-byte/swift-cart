@@ -12,6 +12,7 @@ import { SwiperModule } from 'swiper/angular';
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
 import { PostSectionComponent } from './components/post-section/post-section.component';
 import { BlogService } from '../blog/services/blog.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
@@ -32,7 +33,8 @@ SwiperCore.use([Navigation, Pagination, Autoplay]);
     CommonModule,
     HomeRoutingModule,
     PageSharedModule,
-    SwiperModule
+    SwiperModule,
+    TranslateModule
   ],
   providers:[
     BlogService

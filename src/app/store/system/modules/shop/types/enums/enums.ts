@@ -1,5 +1,5 @@
 export enum ProductStatus{
-    out='Out of Stock',
-    in='In stock',
-    new='New'
+    out='out',
+    in='in',
+    new='new'
 }

@@ -19,6 +19,7 @@ export class LangDropdownComponent implements OnInit {
     const selectedLang = $event.target.value;
     localStorage.setItem('lang', selectedLang);
     this.translateService.use(selectedLang);
+    console.log('lang', selectedLang)
   }
 
 }

@@ -6,6 +6,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogModule} from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmWindowComponent } from './confirm-window/confirm-window.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -14,11 +15,16 @@ import { ConfirmWindowComponent } from './confirm-window/confirm-window.componen
     PaginationComponent,
     ConfirmWindowComponent
   ], // Declare the component here
-  imports: [CommonModule, MatDialogModule],           // Import CommonModule for Angular directives (ngIf, ngFor, etc.)
+  imports: [
+      CommonModule,
+      MatDialogModule,
+      TranslateModule
+    ],           // Import CommonModule for Angular directives (ngIf, ngFor, etc.)
   exports: [
     LangDropdownComponent,
     PaginationComponent,
-    ConfirmWindowComponent
+    ConfirmWindowComponent,
+    TranslateModule
   ]       // Export the component to make it reusable
 })
 export class SharedModule { }

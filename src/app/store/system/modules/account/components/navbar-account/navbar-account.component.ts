@@ -12,12 +12,12 @@ export class NavbarAccountComponent implements OnInit {
   constructor(private dialog:MatDialog) { }
 
   navbarList=[
-    {title:'Dashboard', icon:'fa-solid fa-gauge', link:'/dashboard'},
-    {title:'My Orders', icon:'fa-solid fa-cart-shopping', link:'/orders'},
-    {title:'My Wishlist', icon:'fa-regular fa-heart', link:'/wishlist'},
-    {title:'My Review', icon:'fa-solid fa-message', link:'/reviews'},
-    {title:'My Addresses', icon:'fa-solid fa-address-card', link:'/address'},
-    {title:'My Profile', icon:'fa-solid fa-user', link:'/profile'}
+    {title:'dashboard', icon:'fa-solid fa-gauge', link:'/account/dashboard'},
+    {title:'myOrders', icon:'fa-solid fa-cart-shopping', link:'/account/orders'},
+    {title:'wishList', icon:'fa-regular fa-heart', link:'/account/wishlist'},
+    {title:'myReviews', icon:'fa-solid fa-message', link:'/account/reviews'},
+    {title:'myAddresses', icon:'fa-solid fa-address-card', link:'/account/address'},
+    {title:'myProfile', icon:'fa-solid fa-user', link:'/account/profile'}
   ]
   ngOnInit(): void {
   }

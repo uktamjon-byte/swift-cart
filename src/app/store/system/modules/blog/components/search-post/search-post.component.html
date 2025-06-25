@@ -1,14 +1,15 @@
 
     <div class="search-post d-flex flex-row align-items-center ps-2 pe-1 justify-content-between">
-        <input 
-        type="text" 
-        name="" 
-        id="" 
-        class="serach"
-        placeholder="Search Blog Posts"
-        >
-        <div class="search-btn">
-            <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass fw-2"></i></button>
-        </div> 
-    </div>
+  <input 
+    type="text" 
+    id="blog-search" 
+    class="serach"
+    [placeholder]="'searchBlogPlaceholder' | translate"
+  >
+  <div class="search-btn">
+    <button class="btn btn-primary">
+      <i class="fa-solid fa-magnifying-glass fw-2"></i>
+    </button>
+  </div> 
+</div>
 

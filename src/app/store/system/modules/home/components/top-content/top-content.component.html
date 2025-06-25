@@ -16,9 +16,9 @@
                <ng-template swiperSlide *ngFor="let image of images">
                     <img [src]="image.srcImg" [alt]="image.alt" class="w-100 h-100 object-fit-cover" />
                     <div class="title position-absolute top-50 start-50">
-                      <h2>{{image.title}}</h2>
+                      <h2>{{image.title | translate}}</h2>
                       <span>
-                        {{image.caption}}
+                        {{image.caption | translate}}
                      </span>
                     </div>
                </ng-template>

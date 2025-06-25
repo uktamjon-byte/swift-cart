@@ -11,6 +11,7 @@ import { AddressComponent } from './pages/address/address.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OrderDetailsComponent } from './pages/order-details/order-details.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -29,7 +30,8 @@ import { OrderDetailsComponent } from './pages/order-details/order-details.compo
   imports: [
     CommonModule,
     AccountRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ]
 })
 export class AccountModule { }

@@ -19,13 +19,6 @@ import { ScrollTopDirective } from './core/directives/scroll-top.directive';
 import { PageSharedModule } from './modules/shared/page-shared.module';
 
 
-
-
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
-
 @NgModule({
   declarations: [
     SystemComponent,
@@ -33,11 +26,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     StickyDirective,
     ScrollTopDirective,
     FooterComponent,
-       BottomNavigationComponent,
-        SearchInputComponent,
-        SearchInputResComponent,
-        ResCategorySidebarComponent,
-        ResSwitchlangCanvasComponent,
+    BottomNavigationComponent,
+    SearchInputComponent,
+    SearchInputResComponent,
+    ResCategorySidebarComponent,
+    ResSwitchlangCanvasComponent,
         
   ],
   imports: [
@@ -45,14 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SystemRoutingModule,
     SharedModule,
     HttpClientModule,
-    PageSharedModule,
-    TranslateModule.forRoot({
-              loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient],
-              },
-            }),
+    PageSharedModule
   ],
   providers: [
     SystemService

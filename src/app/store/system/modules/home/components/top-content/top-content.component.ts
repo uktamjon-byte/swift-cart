@@ -27,13 +27,26 @@ export class TopContentComponent implements OnInit{
 
   
 
-  images=[
-    {srcImg:'../../../../../../../assets/imagis/banner1.png', alt:'bannerimage', title:'Mavic Pro', caption:'The creatives shop for flying cameras and flight controllers'},
-    {srcImg:'../../../../../../../assets/imagis/banner2.png', alt:'bannerimage', title:'3D Virtual Reality', caption:'There are a upgrade for the quality and control in the home'},
-    {srcImg:'../../../../../../../assets/imagis/banner3.png', alt:'bannerimage', title:'XIAOMI SPEAKER', caption:'The creatives shop for flying cameras and flight controllers'},
-    
-  ]
-
+ images = [
+  {
+    srcImg: '../../../../../../../assets/imagis/banner1.png',
+    alt: 'bannerimage',
+    title: 'bannerMavicProTitle',
+    caption: 'bannerMavicProCaption'
+  },
+  {
+    srcImg: '../../../../../../../assets/imagis/banner2.png',
+    alt: 'bannerimage',
+    title: 'bannerVirtualRealityTitle',
+    caption: 'bannerVirtualRealityCaption'
+  },
+  {
+    srcImg: '../../../../../../../assets/imagis/banner3.png',
+    alt: 'bannerimage',
+    title: 'bannerXiaomiSpeakerTitle',
+    caption: 'bannerXiaomiSpeakerCaption'
+  }
+];
  
   
 

@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IConfig, NgxMaskModule,  } from 'ngx-mask';
 import { OrderCompleteComponent } from './pages/order-complete/order-complete.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,
@@ -32,7 +33,8 @@ const maskConfig: Partial<IConfig> = {
     FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
-    MatDialogModule
+    MatDialogModule,
+    TranslateModule
   ],
   providers:[]
 })

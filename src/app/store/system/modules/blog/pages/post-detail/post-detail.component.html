@@ -18,7 +18,7 @@
     </div>
     <div class="social-share d-flex flex-row align-items-center mt-4">
         <div class="row">
-            <div class="col-lg-5"><h5>Social Share</h5></div>
+            <div class="col-lg-5"><h5>{{'socialShare' | translate}}</h5></div>
             <div class="col-lg-7">
               <ul class="ps-0 inline-list">
                 <li> <a><i class="fa-regular fa-calendar"></i></a></li>
@@ -33,7 +33,7 @@
     </div>
     <div class="blog-tags">
         <div class="row">
-            <div class="col-lg-2"><h5>Tags</h5></div>
+            <div class="col-lg-2"><h5>{{'tags' | translate}}</h5></div>
             <div class="col-lg-10">
               <ul class="ps-0 inline-list">
                 <li *ngFor="let tag of postDetails?.details?.tags" > <a><i class="fa-regular fa-calendar me-2"></i><span>{{tag}}</span></a></li>

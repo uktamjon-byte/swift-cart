@@ -1,50 +1,67 @@
 <footer>
-    <div class="subscribe-section bg-primary">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-12 col-lg-6 mb-3 my-3 text-center">
-                   <h3 class="text-white">Subscribe to Our Newsletter </h3>
-                   <p  class="text-white">Subscribe to our Newletter && get notifications about discounts</p>
-                </div>
-                <div class="col-md-12 col-lg-6 justify-content-center d-flex">
-                    <div class="sub-area d-flex flex-row justify-content-between pe-1 ps-2 mb-3">
-                        <input
-                         type="text"
-                          class="sub-inp"
-                          placeholder="Email address"
-                          >
-                        <button class="btn btn-primary my-1">Subscribe</button>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>
+  <!-- 🔹 Subscribe Section -->
+  <div class="subscribe-section bg-primary">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
 
-    <div class="contact-info-section mt-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-lg-3" *ngFor="let item of footerList">   
-                    <h5>{{item.headerTitile}}</h5>                     
-                    <ul class="info ps-0"  [ngClass]="item.isFooterTag? 'footer-tags': '' ">     
-                        <li *ngFor="let childItem of item.menuList" class="mb-2"><a href="#"><i [ngClass]="childItem.iconClass"></i> {{childItem.title}}</a></li>
-                    </ul>
-                  
-                    <div class="social-accaunt-icon d-flex flex-row justify-content-around mt-4" *ngIf="item.hasSocialAccount">
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-       
+        <div class="col-md-12 col-lg-6 mb-3 my-3 text-center">
+          <h3 class="text-white">{{ 'subscribeTitle' | translate }}</h3>
+          <p class="text-white">
+            {{ 'subscribeDescription' | translate }}
+          </p>
         </div>
-    </div>
 
-    <div class="copyright-section py-4  w-100 justify-content-center d-flex">
-        <div class="main-container border-top">
-            <p class="pt-2">SwiftCart 2025.All rights reserved.</p>
-        </div>     
+        <div class="col-md-12 col-lg-6 justify-content-center d-flex">
+          <div class="sub-area d-flex flex-row justify-content-between pe-1 ps-2 mb-3">
+            <input
+              type="text"
+              class="sub-inp"
+              [placeholder]="'emailPlaceholder' | translate"
+            />
+            <button class="btn btn-primary my-1">
+              {{ 'subscribeBtn' | translate }}
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
-           
+  </div>
+
+  <!-- 🔹 Contact Info Section -->
+  <div class="contact-info-section mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-lg-3" *ngFor="let item of footerList">   
+          <h5>{{ item.headerTitile | translate }}</h5>
+
+          <ul class="info ps-0" [ngClass]="item.isFooterTag ? 'footer-tags' : ''">
+            <li *ngFor="let childItem of item.menuList" class="mb-2">
+              <a [routerLink]="childItem.src">
+                <i [ngClass]="childItem.iconClass"></i>
+                {{ childItem.title | translate }}
+              </a>
+            </li>
+          </ul>
+
+          <div
+            class="social-accaunt-icon d-flex flex-row justify-content-around mt-4"
+            *ngIf="item.hasSocialAccount"
+          >
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Copyright -->
+  <div class="copyright-section py-4 w-100 justify-content-center d-flex">
+    <div class="main-container border-top">
+      <p class="pt-2">{{ 'copyright' | translate }}</p>
+    </div>
+  </div>
 </footer>

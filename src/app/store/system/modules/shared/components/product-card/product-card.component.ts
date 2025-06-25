@@ -30,8 +30,8 @@ isCampareListActive:boolean = false;
 
   getStatusClass(status: string): string {
     switch (status) {
-      case 'Out of Stock': return 'out-of-stock';
-      case 'New': return 'new';
+      case 'out': return 'out-of-stock';
+      case 'new': return 'new';
       default: return '';
     }
   }

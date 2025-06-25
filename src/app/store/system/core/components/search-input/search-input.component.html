@@ -5,7 +5,7 @@
     </div>
     <input 
     type="text" 
-    placeholder="Search"
+    placeholder="{{'search' | translate}}"
     id="search-inp" 
     class="search-product" 
     (focus)="onFocus()"
@@ -13,11 +13,11 @@
     >
    <div class="category-list">
       <select class="form-select form-select-sm costom-select" aria-label="Small select example">
-          <option selected value="all">All Categories</option>
-          <option value="rus">Men's Fashion</option>
-          <option value="rus">Shirts</option>
-          <option value="rus">Jackets</option>
-          <option value="rus">Electronics</option>
+          <option selected value="all">{{'allCategories' | translate}}</option>
+          <option value="rus"> {{'mensFashion' | translate}}</option>
+          <option value="rus">{{'shirt' | translate}}</option>
+          <option value="rus">{{'jacket' | translate}}</option>
+          <option value="rus">{{'electronic' | translate}}</option>
       </select>
    </div>
    <div class="search-btn mx-2">

@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private notifyMessage:NotifyServiceMessage,
     private loginService:LoginService,
-    private translateService:TranslateService,
     private authFacebookService: SocialAuthService
     ) { 
       this.loginForm = new FormGroup({
@@ -123,8 +122,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.loginService.destroy$.next(); // Emit a value to complete all Observables
-    this.loginService.destroy$.complete(); // Cleanup the destroy$ Subject
+    this.loginService.destroy$.next(); 
+    this.loginService.destroy$.complete();
 
     this.authFacebookService.signOut();
   }

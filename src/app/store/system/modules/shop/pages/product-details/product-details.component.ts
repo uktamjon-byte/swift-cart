@@ -25,33 +25,35 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   constructor(private route:ActivatedRoute, private shopService:ShopService) { 
     
   }
-  features:IFeture[] = [ 
-    {
-      title:'24/7 SUPPORT',
-      info:'Support every time',
-      icon:'headphones'
-    },
-    {
-      title:'ACCEPT PAYMENTS',
-      info:'Visa, Master, Paypal',
-      icon:'wallet'
-    },
-    {
-      title:'SECURED PAYMENT',
-      info:'100% secured',
-      icon:'shield'
-    },
-    {
-      title:'FREE SHIPPING',
-      info:'Order over $100',
-      icon:'truck'
-    },
-    {
-      title:'30 DAYS RETURN',
-      info:'30 days guarantee',
-      icon:'calendar'
-    }
-  ]
+  
+ features: IFeture[] = [
+  {
+    title: 'featureSupportTitle',
+    info: 'featureSupportInfo',
+    icon: 'headphones'
+  },
+  {
+    title: 'featurePaymentsTitle',
+    info: 'featurePaymentsInfo',
+    icon: 'wallet'
+  },
+  {
+    title: 'featureSecuredTitle',
+    info: 'featureSecuredInfo',
+    icon: 'shield'
+  },
+  {
+    title: 'featureShippingTitle',
+    info: 'featureShippingInfo',
+    icon: 'truck'
+  },
+  {
+    title: 'featureReturnTitle',
+    info: 'featureReturnInfo',
+    icon: 'calendar'
+  }
+];
+
   
 
 
