@@ -1,12 +1,12 @@
 <header>
     <div class="wrapper w-100 d-flex justify-content-center">
         <div class="store-title d-flex justify-content-between flex-row align-items-center main-container">
-            <div class="title"><h6>Welcome to SwiftCart store</h6></div>
+            <div class="title"><h6 >{{ 'welcomeTo' | translate }}</h6></div>
             <div class="store-links d-flex flex-row align-items-center">
-                <div class="contact-link"><a href="" class="me-3"><i class="fa-regular fa-envelope me-2"></i>Contact</a></div>
+                <div class="contact-link"><a href="" class="me-3" translate><i class="fa-regular fa-envelope me-2"></i>contactText</a></div>
                 <app-lang-dropdown class="dropdown"></app-lang-dropdown>
-                <div class="login-link"><a class="ms-3" [routerLink]="['/auth/login']"><i class="fa-solid fa-right-to-bracket me-2"></i>Login / Register</a></div>
-                <div class="login-link ms-2 ps-3"><a class="" [routerLink]="['/dashboard']"><i class="fa-solid fa-user me-2"></i>Account</a></div>
+                <div class="login-link"><a class="ms-3" [routerLink]="['/auth']"><i class="fa-solid fa-right-to-bracket me-2"></i>{{'loginRegisterText' | translate}}</a></div>
+                <div class="login-link ms-2 ps-3"><a class="" [routerLink]="['/account']"><i class="fa-solid fa-user me-2"></i>{{'accountText' | translate}}</a></div>
             </div>
         </div>
     </div>
@@ -25,19 +25,19 @@
                         <span class="fs-4 cursor-pointer"(click)="activateBottomTab()"><i class="fa-solid fa-globe"></i></span>
                      </div>
         
-                <div class="compare-icons d-flex flex-row align-items-center justify-content-between" #tooltipContainer>
-                    <a class="links ms-2" [routerLink]="['/compare-page']"  data-bs-toggle="tooltip" data-bs-title="Compare items"><i class="fa-solid fa-code-compare"></i><span class="badge">0</span></a>
-                    <a class="links" data-bs-toggle="tooltip" data-bs-title="Wish List"><i class="fa-regular fa-heart"></i><span class="badge">0</span></a>
-                    <button (click)="displayRightSidebar()" class="links" data-bs-toggle="tooltip" data-bs-title="My Cart"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></button>
+                <div class="compare-icons d-flex flex-row align-items-center justify-content-between">
+                    <a class="links ms-2" [routerLink]="['/compare-page']" [title]="'compareItems' | translate"><i class="fa-solid fa-code-compare"></i><span class="badge">0</span></a>
+                    <a class="links" [title]="'wishList' | translate"><i class="fa-regular fa-heart"></i><span class="badge">0</span></a>
+                    <button (click)="displayRightSidebar()" class="links" [title]="'myCart' | translate"><i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span></button>
                 </div>
             </div>
         </div>
 
         <div class=" top-nav-categories w-100 d-flex justify-content-center">
             <nav class="top-nav mt-3 d-flex flex-row justify-content-start main-container align-items-center">
-                    <div class="category-btn"><button class=" btn btn-primary">ALL CATEGORIES<i class="fa-solid fa-list ms-2"></i></button></div>
-                    <a [routerLink]="['/']" class="mx-3">Shop</a>
-                    <a [routerLink]="['/blog']">Blog</a>
+                    <div class="category-btn"><button class=" btn btn-primary">{{'allCategories' | translate}}<i class="fa-solid fa-list ms-2"></i></button></div>
+                    <a [routerLink]="['/']" class="mx-3">{{'shop' | translate}}</a>
+                    <a [routerLink]="['/blog']">{{'blog' | translate}}</a>
             </nav>
         </div>
     </div>    

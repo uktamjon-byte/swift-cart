@@ -6,7 +6,7 @@
           <li *ngFor="let category of categories" 
           class="nav-item d-flex justify-content-center align-items-center cursor-pointer px-2" 
           [ngClass]="{'active': buttonContent === category.keyName}" 
-          (click)='showMenu(category.keyName)'>{{category.name}}</li>
+          (click)='showMenu(category.keyName)'>{{category.name | translate}}</li>
         </ul>
       </div>
 
@@ -19,7 +19,7 @@
         <section class="category-content" *ngIf="buttonContent === 'categories'">
           <ul>
             <li *ngFor="let menu of navMenu" class="py-2 fs-6">
-              <i class="{{menu?.icon}} me-2"></i> {{menu?.categoryName}}
+              <i class="{{menu?.icon}} me-2"></i> {{menu.categoryName | translate}}
             </li>
           </ul>
         </section>
@@ -27,20 +27,20 @@
 
         <section class="main-menu" *ngIf="buttonContent=== 'menu'">
           <ul>
-            <a [routerLink]="['']" data-bs-dismiss="offcanvas"><li class="py-2 fs-6">Shop</li></a>
-           <a [routerLink]="['/blog']" data-bs-dismiss="offcanvas"><li class="py-2 fs-6">Blog</li></a> 
+            <a [routerLink]="['']" data-bs-dismiss="offcanvas"><li class="py-2 fs-6">{{'shop' | translate}}</li></a>
+           <a [routerLink]="['/blog']" data-bs-dismiss="offcanvas"><li class="py-2 fs-6">{{'blog' | translate}}</li></a> 
           </ul>
         </section>
 
         <section class="contact d-flex flex-row justify-content-around" *ngIf="buttonContent=== 'more'">
           <div class="contact-link">
             <span class="d-flex align-items-center justify-content-center"><i class="fa-solid fa-envelope"></i></span>
-            <small>Contact</small>
+            <small>{{'contact' | translate}}</small>
           </div>
 
           <div class="contact-link">
             <span class="d-flex align-items-center justify-content-center"><i class="fa-solid fa-message"></i></span>
-            <small>Blog</small>
+            <small>{{'blog' | translate}}</small>
           </div>
         </section>
       </div>

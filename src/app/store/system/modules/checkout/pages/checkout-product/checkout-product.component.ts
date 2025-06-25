@@ -43,16 +43,16 @@ selectedPaymentMethod:string = '';
   ]; 
   
   paymentMethods = [
-    { name: 'PayPal', isActive:false, description: 'Pay via your PayPal account'},
-    { name: 'Cash on Delivery', isActive:false, description: 'Pay with cash upon delivery'},
-    { name: 'DushanbeCity', isActive:false, description: 'Pay via your DushanbeCity account'},
-  ]; 
+  { name: 'paymentPaypalName', isActive: false, description: 'paymentPaypalDescription' },
+  { name: 'paymentCashName', isActive: false, description: 'paymentCashDescription' },
+  { name: 'paymentDcName', isActive: false, description: 'paymentDcDescription' }
+];
 
   shippingMethods = [
-    { name: 'Free Shipping', price:0},
-    { name: 'Local Pickup', price: 12},
-    { name: 'Flat Rate', price: 20},
-  ]; 
+  { name: 'freeShipping', price: 0 },
+  { name: 'localPickup', price: 12 },
+  { name: 'flatRate', price: 20 }
+];
 
  
   

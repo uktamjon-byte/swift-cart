@@ -16,17 +16,17 @@ export class ResCategorySidebarComponent implements OnInit {
 
   categories = [
     {
-      name:'Categories',
+      name:'categories',
       keyName:'categories'
     },
 
     {
-      name:'Menu',
+      name:'menu',
       keyName:'menu'
     },
 
     {
-      name:'More',
+      name:'more',
       keyName:'more'
     }
 
@@ -34,43 +34,43 @@ export class ResCategorySidebarComponent implements OnInit {
 
  
 
-  navMenu = [
-    {
-      id:0,
-      categoryName:'Televisions',
-      icon: 'fa-solid fa-language',
-    },
-    {
-      id:1,
-      categoryName:'Watches',
-      icon: 'fa-solid fa-language',
-    },
-    {
-      id:2,
-      categoryName:'Fashion',
-      icon: 'fa-solid fa-language',
-    },
-    {
-      id:3,
-      categoryName:'Backpacks',
-      icon: 'fa-solid fa-language',
-    },
-    {
-      id:4,
-      categoryName:'Tablets',
-      icon: 'fa-solid fa-language',
-    }
-    , {
-      id:5,
-      categoryName:'Shoes',
-      icon: 'fa-solid fa-language',
-    },
-    {
-      id:6,
-      categoryName:'All Categories',
-      icon: 'fa-solid fa-language',
-    }
-  ];
+navMenu = [
+  {
+    id: 0,
+    categoryName: 'categoryTelevisions',
+    icon: 'fa-solid fa-language'
+  },
+  {
+    id: 1,
+    categoryName: 'categoryWatches',
+    icon: 'fa-solid fa-language'
+  },
+  {
+    id: 2,
+    categoryName: 'categoryFashion',
+    icon: 'fa-solid fa-language'
+  },
+  {
+    id: 3,
+    categoryName: 'categoryBackpacks',
+    icon: 'fa-solid fa-language'
+  },
+  {
+    id: 4,
+    categoryName: 'categoryTablets',
+    icon: 'fa-solid fa-language'
+  },
+  {
+    id: 5,
+    categoryName: 'categoryShoes',
+    icon: 'fa-solid fa-language'
+  },
+  {
+    id: 6,
+    categoryName: 'categoryAll',
+    icon: 'fa-solid fa-language'
+  }
+];
 
 
   ngOnInit() {

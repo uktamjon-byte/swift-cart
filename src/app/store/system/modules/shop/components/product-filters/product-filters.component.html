@@ -1,6 +1,6 @@
 <div class="filter">
-   <h5 class="filter-title mb-4 pb-3">Filters</h5>
-   <h5>Price</h5>
+   <h5 class="filter-title mb-4 pb-3">{{'filters' | translate}}</h5>
+   <h5>{{'price' | translate}}</h5>
    <div class="price-filter d-flex flex-row justify-content-around align-items-center mb-4">
     <!-- from price -->
      <input type="number" [value]="fromToPrice.from" min="0" class=" me-3" (change)="changePrice($event)">

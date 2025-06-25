@@ -1,56 +1,58 @@
 <div class="cart-container">
-    <div class="row">
-        <div class="col-lg-8">
-            <table class="w-100 border-collapse mb-3">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Prudoct Name</th>
-                        <th>Unit Price</th>
-                        <th>Quantity</th>
-                        <th>Line Total</th>
-                        <th><i class="fa-solid fa-xmark" (click)="deleteAllProduct()"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="py-3" *ngFor="let selectedProduct of selectedProducts">
-                        <td>
-                            <img src="{{selectedProduct.image[0]}}" alt="product image">
-                        </td>
-                        <td>
-                            <a href="#">{{selectedProduct.title}}</a>
-                        </td>                     
-                        <td>
-                            <label>Unit Price:</label>
-                            <span>{{selectedProduct.price | currency:'USD'}}</span>
-                        </td>
-                        <td>
-                            <label>Quantity:</label>
-                            <input type="number" class="px-1" value="1">
-                        </td>
-                        <td>
-                            <label>Line Price:</label>
-                            <span>{{selectedProduct.price | currency:'USD'}}</span>
-                        </td>
-                        <td>
-                            <i class="fa-solid fa-xmark" (click)="deleteProduct()"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-lg-4">
-            <div class="proceed-checkout w-100 my-3 position-sticky">
-                <h5>Cart Summary</h5>
-                <div class="total-price d-flex justify-content-between align-items-center mt-5">
-                    <label>Total</label>
-                    <span>$1010010</span>
-                </div>
-                <div class="proceed-btn d-flex justify-content-center mt-3">
-                    <a [routerLink]="['/checkout/checkout']" class="btn btn-primary w-100">Proceed to Checkout</a>
-                </div>
-                
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <table class="w-100 border-collapse mb-3">
+        <thead>
+          <tr>
+            <th>{{ 'productImage' | translate }}</th>
+            <th>{{ 'productName' | translate }}</th>
+            <th>{{ 'unitPrice' | translate }}</th>
+            <th>{{ 'quantity' | translate }}</th>
+            <th>{{ 'lineTotal' | translate }}</th>
+            <th><i class="fa-solid fa-xmark" (click)="deleteAllProduct()"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="py-3" *ngFor="let selectedProduct of selectedProducts">
+            <td>
+              <img [src]="selectedProduct.image[0]" alt="product image">
+            </td>
+            <td>
+              <a href="#">{{ selectedProduct.title }}</a>
+            </td>
+            <td>
+              <label>{{ 'unitPrice' | translate }}:</label>
+              <span>{{ selectedProduct.price | currency:'USD' }}</span>
+            </td>
+            <td>
+              <label>{{ 'quantity' | translate }}:</label>
+              <input type="number" class="px-1" [value]="1">
+            </td>
+            <td>
+              <label>{{ 'lineTotal' | translate }}:</label>
+              <span>{{ selectedProduct.price | currency:'USD' }}</span>
+            </td>
+            <td>
+              <i class="fa-solid fa-xmark" (click)="deleteProduct()"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <div class="col-lg-4">
+      <div class="proceed-checkout w-100 my-3 position-sticky">
+        <h5>{{ 'cartSummary' | translate }}</h5>
+        <div class="total-price d-flex justify-content-between align-items-center mt-5">
+          <label>{{ 'total' | translate }}</label>
+          <span>$1010010</span>
+        </div>
+        <div class="proceed-btn d-flex justify-content-center mt-3">
+          <a [routerLink]="['/checkout/checkout']" class="btn btn-primary w-100">
+            {{ 'proceedToCheckout' | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

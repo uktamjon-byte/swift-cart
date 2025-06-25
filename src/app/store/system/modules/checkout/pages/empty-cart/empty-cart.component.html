@@ -3,10 +3,13 @@
         <img src="./../../../../../../../assets/imagis/no-comment.svg" alt="empty-cart">
     </div>
     <div class="cart-caption text-center py-2">
-        <h4 class="m-0">Your cart is empty</h4>
-        <span>Looks like you haven't made any choice yet.</span>
+        <h4 class="m-0">{{ 'cartEmptyTitle' | translate }}</h4>
+        <span>{{ 'cartEmptyDescription' | translate }}</span>
     </div>
     <div class="back-to-shop-link my-3">
-        <a [routerLink]="['/shop']" class="btn btn-md">Continue Shopping</a>
+        <a [routerLink]="['/shop']" class="btn btn-md">
+            {{ 'continueShopping' | translate }}
+        </a>
     </div>
 </div>
+

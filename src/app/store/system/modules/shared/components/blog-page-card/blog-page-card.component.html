@@ -16,7 +16,9 @@
         </div>
       </div>
       <div class="read-more-link">
-        <a href="#" [routerLink]="['/blog', posts.id]" class="ms-3 mb-3">Read More... <i class="fa-solid fa-arrow-right"></i></a>
+       <a href="#" [routerLink]="['/blog', posts.id]" class="ms-3 mb-3">
+             {{ 'readMore' | translate }} <i class="fa-solid fa-arrow-right"></i>
+      </a>
       </div>   
     </div>
   </div>

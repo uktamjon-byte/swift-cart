@@ -11,6 +11,7 @@ import { SearchPostComponent } from './components/search-post/search-post.compon
 import { BlogService } from './services/blog.service';
 import { SharedModule } from 'src/app/shared/components/shared-module';
 import { PageSharedModule } from '../shared/page-shared.module';
+import { TranslateModule} from '@ngx-translate/core';
 
 
 
@@ -30,7 +31,7 @@ import { PageSharedModule } from '../shared/page-shared.module';
     CommonModule,
     BlogRoutingModule,
     SharedModule,
-    PageSharedModule
+    PageSharedModule,
   ],
   providers: [
     BlogService

@@ -7,70 +7,71 @@ import { ICategory } from "../types/interfaces";
 export class CategoriesService {
     categories:ICategory[]= [];
   constructor(private http: HttpClient) {
-    this.categories.push(
-        {
-            name: "Electronics",
-            id:1,
-            isParent: true,
-            subcategories: [
-              {
-                name: "Mobile Accessories",
-                id:1,
-                isParent: true,
-                subcategories: [
-                  { name: "Cables"},
-                  { name: "Chargers"},
-                  { name: "Power Bank"},
-                  { name: "Headphones"},
-                  { name: "Screen Protectors "}
-                ]
-              },
-              {
-                name: "Hot Brands",
-                id:2,
-                isParent: true,
-                subcategories: [
-                  { name: "OnePlus" },
-                  { name: "Apple" },
-                  { name: "Samsung" },
-                  { name: "Huawei" },
-                  { name: "Sony" }
-                ]
-              },
-              {
-                name: "Laptops",
-                id:3,
-                isParent: true,
-                subcategories: [
-                  { name: "MacBook" },
-                  { name: "Gaming" },
-                  { name: "Ultraslim" },
-                  { name: "Tablets" },
-                  { name: "All Laptops" }
-                ]
-              },
-              {
-                name: "Computer Accessories",
-                id:4,
-                isParent: true,
-                subcategories: [
-                  { name: "Monitors" },
-                  { name: "Keyboard & Mouse" },
-                  { name: "Pendrive" },
-                  { name: "Tablets" },
-                  { name: "Speaker" }
-                ]
-              },
-              { name: "Earbuds", id:5, isParent:false }
-            ]
-          },
-          { name: "Men's Fashion" ,id:2, isParent:false},
-          { name: "Consumer Electronics" ,id:2, isParent:false },
-          { name: "Watches" ,id:2, isParent:false },
-          { name: "Home Appliances",id:2, isParent:false },
-          { name: "Backpacks" ,id:2, isParent:false },
-          { name: "Women's Fashion" ,id:2, isParent:false }
-    )
+this.categories.push(
+  {
+    name: "category.electronics",
+    id: 1,
+    isParent: true,
+    subcategories: [
+      {
+        name: "category.mobileAccessories",
+        id: 1,
+        isParent: true,
+        subcategories: [
+          { name: "category.cables" },
+          { name: "category.chargers" },
+          { name: "category.powerBank" },
+          { name: "category.headphones" },
+          { name: "category.screenProtectors" }
+        ]
+      },
+      {
+        name: "category.hotBrands",
+        id: 2,
+        isParent: true,
+        subcategories: [
+          { name: "brand.onePlus" },
+          { name: "brand.apple" },
+          { name: "brand.samsung" },
+          { name: "brand.huawei" },
+          { name: "brand.sony" }
+        ]
+      },
+      {
+        name: "category.laptops",
+        id: 3,
+        isParent: true,
+        subcategories: [
+          { name: "laptop.macBook" },
+          { name: "laptop.gaming" },
+          { name: "laptop.ultraslim" },
+          { name: "laptop.tablets" },
+          { name: "laptop.allLaptops" }
+        ]
+      },
+      {
+        name: "category.computerAccessories",
+        id: 4,
+        isParent: true,
+        subcategories: [
+          { name: "accessory.monitors" },
+          { name: "accessory.keyboardMouse" },
+          { name: "accessory.pendrive" },
+          { name: "accessory.tablets" },
+          { name: "accessory.speaker" }
+        ]
+      },
+      { name: "category.earbuds", id: 5, isParent: false }
+    ]
+  },
+  { name: "category.mensFashion", id: 2, isParent: false },
+  { name: "category.consumerElectronics", id: 3, isParent: false },
+  { name: "category.watches", id: 4, isParent: false },
+  { name: "category.homeAppliances", id: 5, isParent: false },
+  { name: "category.backpacks", id: 6, isParent: false },
+  { name: "category.womensFashion", id: 7, isParent: false }
+);
+
   }
 
 

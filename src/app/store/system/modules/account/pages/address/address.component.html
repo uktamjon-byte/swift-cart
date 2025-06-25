@@ -1,6 +1,6 @@
 <div class="panel-inner mb-4">
     <div class="panel-header py-3 px-3  d-flex justify-content-start align-items-center">
-        <h4>My Addresses</h4>
+        <h4>{{'myAddresses' | translate}}</h4>
     </div>
     <div class="panel-body p-3">
         <div class="address" *ngIf="isAddressCardActive">
@@ -28,8 +28,8 @@
                         <span>Savar</span>
                     </div>
                     <div class="bottom-items">
-                        <button><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></button>
-                        <button><i class="fa-solid fa-trash"></i><span>Delete</span></button>
+                        <button><i class="fa-solid fa-pen-to-square"></i><span>{{'edit' | translate}}</span></button>
+                        <button><i class="fa-solid fa-trash"></i><span>{{'delete' | translate}}</span></button>
                     </div>
                 </div>
                 <div class="address-card p-3 d-flex flex-column justify-content-between">
@@ -41,8 +41,8 @@
                         <span>Savar</span>
                     </div>
                     <div class="bottom-items">
-                        <button><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></button>
-                        <button><i class="fa-solid fa-trash"></i><span>Delete</span></button>
+                        <button><i class="fa-solid fa-pen-to-square"></i><span>{{'edit' | translate}}</span></button>
+                        <button><i class="fa-solid fa-trash"></i><span>{{'delete' | translate}}</span></button>
                     </div>
                 </div>
                 <div class="address-card p-3 d-flex flex-column justify-content-between">
@@ -54,20 +54,20 @@
                         <span>Savar</span>
                     </div>
                     <div class="bottom-items">
-                        <button><i class="fa-solid fa-pen-to-square"></i><span>Edit</span></button>
-                        <button><i class="fa-solid fa-trash"></i><span>Delete</span></button>
+                        <button><i class="fa-solid fa-pen-to-square"></i><span>{{'edit' | translate}}</span></button>
+                        <button><i class="fa-solid fa-trash"></i><span>{{'delete' | translate}}</span></button>
                     </div>
                 </div>
             </div>  
-            <div class="add-address mt-3"><button class="btn btn-md" (click)="toggleAddress()">Add New Address</button></div>
+            <div class="add-address mt-3"><button class="btn btn-md" (click)="toggleAddress()">{{'addAddress' | translate}}</button></div>
         </div>
         <div class="change-edit-address" *ngIf="isEditAddressActive">
             <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
                 <div class="address-details">
-                    <h5 class="pb-3 mb-4">New Address</h5>
+                    <h5 class="pb-3 mb-4">{{'myAddresses' | translate}}</h5>
                     <div class="row my-2">
                         <div class="col-lg-6">
-                            <label>First Name</label>
+                            <label>{{'firstNameLabel' | translate}}</label>
                             <input 
                             type="text" 
                             formControlName="firstName" 
@@ -75,11 +75,11 @@
                             [ngClass]="{'has-error':addressForm.get('firstName')?.touched && addressForm.get('firstName')?.invalid}"
                             >                
                            <p class="error-message" *ngIf="addressForm.get('firstName')?.touched && addressForm.get('firstName')?.invalid">   
-                                Email is required
+                                {{'emailAddressEmptyError' | translate}}
                             </p> 
                         </div>
                         <div class="col-lg-6">
-                            <label>Last Name</label>
+                            <label>{{'lastNameLabel' | translate}}</label>
                             <input 
                             type="text" 
                             formControlName="lastName"  
@@ -87,93 +87,103 @@
                             [ngClass]="{'has-error':addressForm.get('lastName')?.touched && addressForm.get('lastName')?.invalid}"
                             >
                             <p class="error-message" *ngIf="addressForm.get('lastName')?.touched && addressForm.get('lastName')?.invalid">                  
-                                    Phone number is required
+                                    {{'lastNameEmptyError' | translate}}
                              </p>
                         </div>
                     </div>  
-                    <div class="row my-2">
-                        <label>Street Address</label>
-                        <div class="col-lg-12">
-                            <input 
-                            type="text" 
-                            formControlName="address1" 
-                            class="form-control" 
-                            placeholder="Address line 1"
-                            [ngClass]="{'has-error':addressForm.get('address1')?.touched && addressForm.get('address1')?.invalid}"
-                            >
-                            <p class="error-message" *ngIf="addressForm.get('address1')?.touched && addressForm.get('address1')?.invalid"> 
-                                Address is required
-                            </p>
-                        </div>
-                        <div class="col-lg-12 mt-3">
-                            <input type="text" formControlName="address2" class="form-control" placeholder="Address line 2 (optional)">
-                        </div>
-                     </div>
-                     <div class="row my-2">
-                        <div class="col-lg-6">
-                            <label>City</label>
-                            <input 
-                            type="text" 
-                            formControlName="city" 
-                            class="form-control"
-                            [ngClass]="{'has-error':addressForm.get('city')?.touched && addressForm.get('city')?.invalid}"
-                            >
-                            <p class="error-message" *ngIf="addressForm.get('city')?.touched && addressForm.get('city')?.invalid"> 
-                                City is required
-                            </p>
-                        </div>
-                        <div class="col-lg-6">
-                            <label>Postcode / ZIP</label>
-                            <input 
-                            type="text" 
-                            formControlName="postCode" 
-                            class="form-control"
-                            [ngClass]="{'has-error':addressForm.get('postCode')?.touched && addressForm.get('postCode')?.invalid}"
-                            >
-                            <p class="error-message" *ngIf="addressForm.get('postCode')?.touched && addressForm.get('postCode')?.invalid"> 
-                                Post code is required
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-lg-6">
-                            <label>Country</label>
-                           <select 
-                           class="form-select costom-select" 
-                           (change)="onCountryChange($event)" 
-                           formControlName="country"
-                           [ngClass]="{'has-error':addressForm.get('country')?.touched && addressForm.get('country')?.invalid}"
-                           >
-                             <option value="">Please select a Country</option>
-                             <option *ngFor="let country of countries" [value]='country.name'>
-                                {{country.name}}
-                             </option>
-                           </select>
-                           <p class="error-message" *ngIf="addressForm.get('country')?.touched && addressForm.get('country')?.invalid"> 
-                            Country is required
-                        </p>
-                        </div>
-                        <div class="col-lg-6">
-                            <label>State / Province</label>
-                            <select 
-                            class="form-select costom-select" 
-                            formControlName="region"
-                            [ngClass]="{'has-error':addressForm.get('region')?.touched && addressForm.get('region')?.invalid}"
-                            >
-                                <option value="">Please select a region</option>
-                                <option *ngFor="let region of regions" [value]="region">
-                                   {{region}}
-                                </option>
-                              </select>
-                              <p class="error-message" *ngIf="addressForm.get('region')?.touched && addressForm.get('region')?.invalid"> 
-                                Region is required
-                              </p>
-                        </div>
-                    </div>
-                    <div class="buttons d-flex column-gap-3 mt-4">
-                        <button class="btn" (click)="toggleAddress()">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save Changes</button>
-                    </div>
+                   <div class="row my-2">
+  <label>{{ 'streetAddress' | translate }}</label>
+  <div class="col-lg-12">
+    <input 
+      type="text" 
+      formControlName="address1" 
+      class="form-control" 
+      [placeholder]="'addressLine1' | translate"
+      [ngClass]="{'has-error': addressForm.get('address1')?.touched && addressForm.get('address1')?.invalid}"
+    >
+    <p class="error-message" *ngIf="addressForm.get('address1')?.touched && addressForm.get('address1')?.invalid"> 
+      {{ 'EmptyError' | translate }}
+    </p>
+  </div>
+  <div class="col-lg-12 mt-3">
+    <input 
+      type="text" 
+      formControlName="address2" 
+      class="form-control" 
+      [placeholder]="'addressLine2' | translate"
+    >
+  </div>
+</div>
+
+<div class="row my-2">
+  <div class="col-lg-6">
+    <label>{{ 'cityLabel' | translate }}</label>
+    <input 
+      type="text" 
+      formControlName="city" 
+      class="form-control"
+      [ngClass]="{'has-error': addressForm.get('city')?.touched && addressForm.get('city')?.invalid}"
+    >
+    <p class="error-message" *ngIf="addressForm.get('city')?.touched && addressForm.get('city')?.invalid"> 
+      {{ 'cityEmptyError' | translate }}
+    </p>
+  </div>
+  <div class="col-lg-6">
+    <label>{{ 'postCodeLabel' | translate }}</label>
+    <input 
+      type="text" 
+      formControlName="postCode" 
+      class="form-control"
+      [ngClass]="{'has-error': addressForm.get('postCode')?.touched && addressForm.get('postCode')?.invalid}"
+    >
+    <p class="error-message" *ngIf="addressForm.get('postCode')?.touched && addressForm.get('postCode')?.invalid"> 
+      {{ 'postCodeEmptyError' | translate }}
+    </p>
+  </div>
+</div>
+
+<div class="row my-2">
+  <div class="col-lg-6">
+    <label>{{ 'countryLabel' | translate }}</label>
+    <select 
+      class="form-select costom-select" 
+      (change)="onCountryChange($event)" 
+      formControlName="country"
+      [ngClass]="{'has-error': addressForm.get('country')?.touched && addressForm.get('country')?.invalid}"
+    >
+      <option value="">{{ 'selectCountry' | translate }}</option>
+      <option *ngFor="let country of countries" [value]="country.name">
+        {{ country.name }}
+      </option>
+    </select>
+    <p class="error-message" *ngIf="addressForm.get('country')?.touched && addressForm.get('country')?.invalid"> 
+      {{ 'countryEmptyError' | translate }}
+    </p>
+  </div>
+
+  <div class="col-lg-6">
+    <label>{{ 'regionLabel' | translate }}</label>
+    <select 
+      class="form-select costom-select" 
+      formControlName="region"
+      [ngClass]="{'has-error': addressForm.get('region')?.touched && addressForm.get('region')?.invalid}"
+    >
+      <option value="">{{ 'selectRegion' | translate }}</option>
+      <option *ngFor="let region of regions" [value]="region">
+        {{ region }}
+      </option>
+    </select>
+    <p class="error-message" *ngIf="addressForm.get('region')?.touched && addressForm.get('region')?.invalid"> 
+      {{ 'regionEmptyError' | translate }}
+    </p>
+  </div>
+</div>
+
+<div class="buttons d-flex column-gap-3 mt-4">
+  <button class="btn" (click)="toggleAddress()">{{ 'cancel' | translate }}</button>
+  <button class="btn btn-primary" type="submit">{{ 'saveChanges' | translate }}</button>
+</div>
+
                 </div>
             </form>
            

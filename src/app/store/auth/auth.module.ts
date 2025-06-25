@@ -55,7 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     MatProgressSpinnerModule,
     SocialLoginModule,
-     TranslateModule.forRoot({
+     TranslateModule.forChild({
           loader: {
             provide: TranslateLoader,
             useFactory: HttpLoaderFactory,

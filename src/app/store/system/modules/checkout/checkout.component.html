@@ -1,17 +1,18 @@
 <div class="w-100 d-flex justify-content-center">
-    <div class="main-container" *ngIf="!isCartEmpty">
-        <div class="navigation-buttons d-flex justify-content-around align-items-center my-4">
-            <a routerLink="/checkout/cart-view" routerLinkActive="active" class="btn btn-lg">
-                <span class="step-tag-text">My Cart<span class="sub-text">01</span></span>
-            </a>
-            <a routerLink="/checkout/checkout" routerLinkActive="active" class="btn btn-lg">
-                <span class="step-tag-text">Checkout<span class="sub-text">02</span></span>
-            </a>
-            <a routerLink="/checkout/order-complete" routerLinkActive="active" class="btn btn-lg">
-                <span class="step-tag-text">Order Complete<span class="sub-text">03</span></span>
-            </a>
-        </div>
-        <router-outlet></router-outlet>
+  <div class="main-container" *ngIf="!isCartEmpty">
+    <div class="navigation-buttons d-flex justify-content-around align-items-center my-4">
+      <a routerLink="/checkout/cart-view" routerLinkActive="active" class="btn btn-lg">
+        <span class="step-tag-text">{{ 'myCart' | translate }}<span class="sub-text">01</span></span>
+      </a>
+      <a routerLink="/checkout/checkout" routerLinkActive="active" class="btn btn-lg">
+        <span class="step-tag-text">{{ 'checkout' | translate }}<span class="sub-text">02</span></span>
+      </a>
+      <a routerLink="/checkout/order-complete" routerLinkActive="active" class="btn btn-lg">
+        <span class="step-tag-text">{{ 'orderComplete' | translate }}<span class="sub-text">03</span></span>
+      </a>
     </div>
-    <app-empty-cart *ngIf="isCartEmpty"></app-empty-cart>
+    <router-outlet></router-outlet>
+  </div>
+  <app-empty-cart *ngIf="isCartEmpty"></app-empty-cart>
 </div>
+

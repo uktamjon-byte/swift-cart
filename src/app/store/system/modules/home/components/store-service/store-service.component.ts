@@ -31,22 +31,21 @@ export class StoreServiceComponent implements OnInit {
   };
 
   features = [
-    {
-      icon: 'fa-solid fa-wallet',
-      title: '24/7 Support',
-      description: 'We’re always here for you.',
-    },
-    {
-      icon: 'fa-solid fa-truck',
-      title: 'Fast Shipping',
-      description: 'Lightning fast delivery.',
-    },
-    {
-      icon: 'fa-solid fa-shield',
-      title: 'Secure Payments',
-      description: 'Your data is safe with us.',
-    },
-    // Add more...
+  {
+    icon: 'fa-solid fa-wallet',
+    title: 'supportTitle',
+    description: 'supportDescription'
+  },
+  {
+    icon: 'fa-solid fa-truck',
+    title: 'shippingTitle',
+    description: 'shippingDescription'
+  },
+  {
+    icon: 'fa-solid fa-shield',
+    title: 'paymentTitle',
+    description: 'paymentDescription'
+  }
   ];
 
 }

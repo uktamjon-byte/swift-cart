@@ -7,6 +7,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ShopService } from './services/shop.service';
 import { ProductCategoriesComponent } from './components/product-categories/product-categories.component';
 import { AddedProductsSidebarComponent } from '../shop/components/added-products-sidebar/added-products-sidebar.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -17,7 +18,7 @@ import { AddedProductsSidebarComponent } from '../shop/components/added-products
     ProductCategoriesComponent,
     AddedProductsSidebarComponent
   ],
-  imports: [CommonModule,RouterModule],  
+  imports: [CommonModule,RouterModule, TranslateModule],  
   exports: [
     BlogPageCardComponent,
     ProductCardComponent,

@@ -13,14 +13,16 @@
                     <img  style="height: 466px;" (click)="displayPicture(i)" src="{{img}}" class="d-block w-100" alt="...">
                   </div>
                 </div>
-                <button class="carousel-control-prev costom-slide-btn" (click)="prev()" type="button" data-bs-target="#carouselExampleAutoplaying">
-                  <span class="carousel-control-prev-icon costom-slide-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next costom-slide-btn" (click)="next()" type="button" data-bs-target="#carouselExampleAutoplaying">
-                  <span class="carousel-control-next-icon costom-slide-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
+               <button class="carousel-control-prev costom-slide-btn" (click)="prev()" type="button" data-bs-target="#carouselExampleAutoplaying">
+                <span class="carousel-control-prev-icon costom-slide-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">{{ 'previous' | translate }}</span>
+              </button>
+
+              <button class="carousel-control-next costom-slide-btn" (click)="next()" type="button" data-bs-target="#carouselExampleAutoplaying">
+                <span class="carousel-control-next-icon costom-slide-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">{{ 'next' | translate }}</span>
+              </button>
+
               </div>         
         </div>
         <app-image-gallery [prodDetails]="productDetails"></app-image-gallery>
@@ -34,29 +36,29 @@
                    <i class="fa-regular fa-star"></i>
                    <i class="fa-regular fa-star"></i>
                    <i class="fa-regular fa-star"></i>
-               <small class="ms-2">0 Reviews</small>
+               <small class="ms-2">{{'reviews' | translate}}</small>
           </div>
 
         <small class="product-status" [ngClass]="getProductStatus(productDetails?.status)">{{productDetails?.status}}</small>
 
         <div class="compare-icons mb-4">
-          <span class="me-5 add-wishlist"><i class="fa-regular fa-heart me-1"></i> <small>Wishlist</small></span>
-          <span class="compare" (click)="isCompareActive = !isCompareActive"><i class="fa-solid fa-code-compare me-1" [ngClass]="{'active':isCompareActive}"></i> <small>Compare</small></span>
+          <span class="me-5 add-wishlist"><i class="fa-regular fa-heart me-1"></i> <small>{{'wishList' | translate}}</small></span>
+          <span class="compare" (click)="isCompareActive = !isCompareActive"><i class="fa-solid fa-code-compare me-1" [ngClass]="{'active':isCompareActive}"></i> <small>{{'compare' | translate}}</small></span>
         </div>
 
         <span class="price mb-4">${{productDetails?.price}}</span>
 
         <div class="buttons d-flex flex-row align-items-center mb-5 pb-4">
-          <span class="me-2 input-label ">Quantity</span>
+          <span class="me-2 input-label ">{{'quantity' | translate}}</span>
           <div class="qny d-flex align-items-center">
             <input class="me-4 px-2" type="number" min="1" max="100" step="1" value="1">
-            <button type="button" class="btn btn-primary" [disabled]="productDetails?.status==='Out of Stock' ">Add to Card</button>
+            <button type="button" class="btn btn-primary" [disabled]="productDetails?.status==='out' ">{{'addCart' | translate}}</button>
           </div>
         </div>
 
-        <span class="category">Categories: {{productDetails?.category}}</span>
+        <span class="category">{{'blogCategories' | translate}}: {{productDetails?.category}}</span>
         <div>
-          Tags: <a href="#" class="me-2" *ngFor="let tag of productDetails?.tags">{{tag}},</a>
+          {{'tags' | translate}}: <a href="#" class="me-2" *ngFor="let tag of productDetails?.tags">{{tag}},</a>
         </div>
         </div>
       
@@ -66,8 +68,8 @@
               <i class="fa-solid" [ngClass]="'fa-' + feature.icon"></i>
             </div>
             <div class="feature-details">
-              <h6>{{ feature.title }}</h6>
-              <span>{{ feature.info }}</span>
+              <h6>{{ feature.title | translate}}</h6>
+              <span>{{ feature.info | translate}}</span>
             </div>
           </div>
         </div>
