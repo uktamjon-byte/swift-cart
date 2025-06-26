@@ -1,0 +1,110 @@
+<div class="login-page">
+    <div class="auth-wrapper d-flex vh-100 w-100 align-middle">
+        <div class="auth-left h-100 position-relative"></div>
+    <a 
+        href="#" 
+        class="home-link p-2 rounded-pill position-absolute" 
+        data-bs-title="Back to Home"><i class="fa-solid fa-arrow-left text-dark"></i>
+    </a>
+        <div class="auth-right vh-100 position-relative">   
+            <div class="bg-login h-100 w-100 position-absolute"></div>
+            <div class="bg-sm-login h-50 w-100 position-relative d-none"></div>
+            <div class="bg-header-contaner position-relative d-none">
+                <h1 translate>welcome</h1>
+                <p translate>getAccess</p>
+            </div>
+                <div class="auth-container min-vh-100 d-flex justify-content-center align-items-center flex-column">
+                    <div class="auth-title-container d-flex justify-content-between flex-row mb-2 mt-3 align-items-center w-100">
+
+                        <div class="header-title fs-3 bg-secondary text-light pe-1 rounded-1">
+                            <i class="fa-solid fa-s bg-primary p-2 rounded-start-1"></i>
+                            <span class="ps-1">SwiftCart</span>
+                        </div>
+                        <div class="drop-down">
+                              <app-lang-dropdown></app-lang-dropdown>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="auth-content position-relative w-100">
+                        <h1 class="auth-welcome fw-bold fs-2 text-dark" translate>welcome</h1>
+                        <div class="login-page">
+                        <h1 class="fw-bold fs-4 text-dark mb-2 mt-3" translate>login</h1>
+                        <p translate>accountDetail</p>                      
+                   <div class="container">
+        <form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
+            <div class="inp-field mb-4 position-relative">
+                <label for="email" class="fs-6" translate>email</label>
+                <input 
+                type="email" 
+                id='email' 
+                class="login-input form-control" 
+                placeholder="{{ 'emailPlaceholder' | translate }}"
+                formControlName="email"
+                [ngClass]="{'has-error':adminLoginForm.get('email')?.touched && adminLoginForm.get('email')?.invalid}"
+                />
+                <span class="inp-icon"><i class="fa-regular fa-envelope"></i></span>
+                <p class="error-message" *ngIf="adminLoginForm.get('email')?.touched && adminLoginForm.get('email')?.invalid">
+                    <span class="error-message" *ngIf="adminLoginForm.get('email')?.errors?.['required']">
+                        {{ 'emptyInputError' | translate }}
+                    </span>
+                    <span class="error-message" *ngIf="adminLoginForm.get('email')?.errors?.['email']">
+                        {{ 'validEmailError' | translate }}
+                    </span>
+                </p>  
+            </div> 
+           
+            <div class="inp-field mb-4 position-relative">
+                <label for="password" class="fs-6" translate>password</label>
+                <input 
+                [type]="passwordType" 
+                id="password" 
+                class="login-input form-control" 
+                placeholder="{{ 'passwordPlaceholder' | translate }}"
+                formControlName="password"
+                [ngClass]="{'has-error':adminLoginForm.get('password')?.touched && adminLoginForm.get('password')?.invalid}"
+                />
+                <span class="inp-icon"><i class="fa-regular fa-user"></i></span>
+                <span class="eye-icon position-absolute" 
+                    (click)="passwordType = passwordType === 'password' ? 'text' : 'password'">
+                    <i [class]="passwordType === 'password' ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                </span>
+                <p class="error-message" *ngIf="adminLoginForm.get('password')?.touched && adminLoginForm.get('password')?.invalid">
+                    <span class="error-message" *ngIf="adminLoginForm.get('password')?.errors?.['required']">
+                        {{ 'emptyInputError' | translate }}
+                    </span>
+                    <span *ngIf="adminLoginForm.get('password')?.errors?.['minlength'] && 
+                    adminLoginForm.get('password')?.errors?.['minlength']?.['requiredLength']">
+                        {{ 'passwordContain' | translate }}
+                        {{ adminLoginForm.get('password')?.errors?.['minlength']?.['requiredLength'] }}
+                        {{ 'characters' | translate }}. 
+                        {{ 'has' | translate }} {{ adminLoginForm.get('password')?.errors?.['minlength']?.['actualLength'] }}
+                    </span>
+                </p>
+            </div>
+
+            <div class="mb-4 login-checkbox align-items-center">
+                <div class="d-inline">
+                    <input type="checkbox" class="form-check-input me-2"> 
+                    <span translate>rememberme</span>
+                </div>
+                <a class="float-end" [routerLink]="['/auth/reset']" translate>forgotPassword?</a>
+            </div>
+
+            <div class="button-wrapper position-relative">
+                <button class="btn btn-primary w-100" [disabled]="adminLoginForm.invalid">
+                    {{ 'signIn' | translate }}
+                </button>
+                <div class="back-drop w-100 h-100 position-absolute" *ngIf="showBackDrop">
+                    <mat-spinner [diameter]="20"></mat-spinner>   
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>                                     
+</div>
+</div>
+</div>
+
