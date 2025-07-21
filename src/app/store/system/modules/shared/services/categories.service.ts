@@ -6,7 +6,7 @@ import { ICategory } from "../types/interfaces";
 @Injectable()
 export class CategoriesService {
     categories:ICategory[]= [];
-  constructor(private http: HttpClient) {
+constructor(private http: HttpClient) {
 this.categories.push(
   {
     name: "category.electronics",

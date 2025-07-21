@@ -1,0 +1,36 @@
+<nav class="sidebar-nav  pt-3 position-relative" [ngClass]="{'open-sidebar': isToggledSidebar, 'toggle-sidebar': isResizedSidebar}">
+        <div class="profile-logo px-4 d-flex flex-row align-items-center position-relative">
+            <img src="../../../../../assets/imagis/sidebar-logo-mini.svg" alt="logo">
+            <span class="logo-name">SwiftCart</span>
+             <span class="dropdown-angle position-absolute d-flex justify-content-center align-items-center" (click)="isResizedSidebar = !isResizedSidebar">
+                    <i  class="fa-solid" [ngClass]="isResizedSidebar ? 'fa-angle-right' : 'fa-angle-left'"></i>
+            </span>
+        </div>
+        <div class="main-wrapper">
+            <ul class="my-3">
+                    <li class="main-item " 
+                    *ngFor="let category of categories" 
+                    (click)="toggleSubmenu(category)" 
+                    >
+                    <div class="main-icon-container d-inline-block text-center" >
+                       <i class="main-icon" [class]="category.icon"></i>
+                       <div class="floating-category-popup" *ngIf="!isFloatingPopup">
+                            <div class="popup-title">{{ category.name | translate}}</div>
+                            <ul *ngIf="category.subcategories">
+                                <li *ngFor="let sub of category.subcategories">{{ sub.name | translate}}</li>
+                            </ul>
+                        </div>
+                    </div> 
+                    <span class="category-name">{{category.name | translate}}</span> 
+                    <span class="pull-right-container"><i *ngIf="category.isParent" [ngClass]="{'rotate':category.isOpen}" 
+                        class="fa-solid fa-angle-right"></i>
+                    </span> 
+                        <ul class="sub-categories" *ngIf="category.subcategories && !isResizedSidebar" [ngClass]="{'open':category.isOpen}">
+                            <li *ngFor="let subCategory of category.subcategories">{{subCategory.name | translate}}</li>
+                        </ul>
+                         
+                    </li>
+                </ul>
+        </div>  
+ 
+</nav>

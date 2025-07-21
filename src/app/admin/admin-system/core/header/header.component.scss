@@ -1,0 +1,114 @@
+@import '../../../../../assets/sass/variables.scss';
+
+::ng-deep .menu-header {
+  pointer-events: none; /* Prevent accidental clicks */
+  user-select: none;
+    .profile-info{
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+::ng-deep .profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+header{
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+.left-tems{  
+    .logo-title{
+        img{
+          width: 45px;
+        }  
+        h3{
+            font-weight: 800;
+            color: $color-white;
+            font-size: 26px;
+            margin-left: 4px;
+            margin-bottom: 0 !important;
+       }
+    }
+   a{
+    border-radius: 40px;
+    border: 1px solid $border-color;
+    transition: $transition-150;
+    span{
+        font-weight: 600;
+    }
+    &:hover{
+        border: 1px solid $color-primary;
+        i{
+            color: $color-primary;
+        }
+        span{
+           color: $color-primary;
+        }
+    }
+   }
+}
+}
+.right-items{
+    .profile-dropdown{
+        width: 40px;
+        height: 40px;
+        border: 1px solid gray;
+        border-radius: 50%;     
+        .dropdown-img{
+          outline: 1px solid $border-color;
+          outline-offset: 2px;
+          background-color: #007bff;
+          width: 39px;
+          height: 39px;
+           border-radius: 50%;     
+        }
+        .dropdown-angle{
+             width: 20px;
+             height: 20px;
+             border: 1px solid gray;
+             background-color: $color-dark-4;
+             border-radius: 50%;
+             bottom: -6px;
+             right: -3px;
+            i{
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+  @media screen and (max-width: 992px)  {
+    header{
+        background-color: #222530; 
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 20;
+        border-bottom: 0 !important;
+    .left-tems{
+        .toggle-icon{
+            display: flex !important;
+            cursor: pointer;
+        }
+        .logo-title{
+            display: flex !important;
+        }
+        a{
+            display: none !important;
+        }
+        i{
+            font-size: 28px;
+            color: $color-gray-dark;
+            cursor: pointer;
+        }
+    }
+}
+}

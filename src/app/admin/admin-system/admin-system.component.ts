@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from './services/admin.service';
 
 @Component({
   selector: 'app-admin-system',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-system.component.scss']
 })
 export class AdminSystemComponent implements OnInit {
-
-  constructor() { }
+  isSidebarToggled:boolean = false;
+  constructor(private adminService:AdminService) { }
 
   ngOnInit(): void {
+     this.adminService.toggleSidebar.subscribe(val=>{
+      this.isSidebarToggled = val
+     })
+  }
+
+  toggleSidebar(){
+    this.adminService.toggleSidebar.next(false)
   }
 
 }

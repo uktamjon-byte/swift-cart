@@ -4,8 +4,8 @@ import { AdminAuthComponent } from './admin-auth/admin-auth.component';
 
 
 const routes: Routes = [
-  {path:'', component:AdminAuthComponent},
-  {path: 'admin-system', loadChildren:()=>import('./admin-system/admin-system.module').then(m=>(m.AdminSystemModule))}
+  {path:'admin-auth', component:AdminAuthComponent},
+  {path: '', loadChildren:()=>import('./admin-system/admin-system.module').then(m=>(m.AdminSystemModule))}
 ];
 
 @NgModule({

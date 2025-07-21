@@ -1,0 +1,28 @@
+  @import '../../../assets/sass/variables.scss';
+  
+  .active-sidebar{
+    display: inline-block !important;
+    transition: $transition-150;
+    z-index: 10;
+  }
+
+  .main-backdrop{
+    background-color: rgb(129 133 131 / 65%);
+    animation: fadeIn 0.1s ease-in ;
+  }
+
+  @keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+   @media screen and (max-width: 992px)  {
+        .open-sidebar{
+           position: relative;
+           left: 240px;
+    }
+      .page-content{
+        margin-top: 72px;
+     }
+
+   }
