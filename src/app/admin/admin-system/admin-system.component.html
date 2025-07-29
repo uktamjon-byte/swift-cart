@@ -1,14 +1,14 @@
-<div class="nav-container d-flex vh-100">
+<div class="nav-container d-flex">
        <app-left-sidebar [ngClass]="{'active-sidebar': isSidebarToggled}"></app-left-sidebar>
       
-       <div class="main-content d-flex flex-column flex-grow-1 hv-100">
+       <div class="main-content d-flex flex-column flex-grow-1">
          <app-header></app-header>
          <!-- <div class="sub-content h-100 d-flex flex-column align-items-between position-relative"> -->
-          <div class="page-content flex-grow-1" >
-               tryt
+          <div class="page-content flex-grow-1 px-3">
+              <router-outlet></router-outlet>
           </div>
           <app-footer></app-footer>
-          <div *ngIf="isSidebarToggled" (click)="toggleSidebar()" class="main-backdrop position-absolute w-100 vh-100"></div>
+          <div *ngIf="isSidebarToggled" (click)="toggleSidebar()" class="main-backdrop position-fixed w-100 "></div>
          <!-- </div> -->
       </div>
 </div>

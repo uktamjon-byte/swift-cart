@@ -359,7 +359,25 @@
   "sidebarTools": "Tools",
   "sidebarReports": "Reports",
   "sidebarSettings": "Settings",
-  "storefront": "Storefront"
+  "storefront": "Storefront",
+
+   
+    "latestSearches": "Latest Searches",
+    "keyword": "Keyword",
+    "results": "Results",
+    "hits": "Hits",
+    "latestOrders": "Latest Orders", 
+    "customer": "Customer",
+    "status": "Status",
+    "orderReview": "Order Review",
+    "product": "Product",
+    "rating": "Rating",
+    "noData": "No Data Available",
+
+  "topSales": "TOP SALES",
+  "totalOrders": "TOTAL ORDERS",
+  "totalProducts": "TOTAL PRODUCTS",
+  "totalCustomers": "TOTAL CUSTOMERS"
 
   
 }

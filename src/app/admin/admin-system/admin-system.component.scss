@@ -6,9 +6,16 @@
     z-index: 10;
   }
 
+  .page-content{
+    background-color: $color-gray-lite;
+    
+  }
+
   .main-backdrop{
     background-color: rgb(129 133 131 / 65%);
     animation: fadeIn 0.1s ease-in ;
+    top: 0;
+    bottom: 0;
   }
 
   @keyframes fadeIn {

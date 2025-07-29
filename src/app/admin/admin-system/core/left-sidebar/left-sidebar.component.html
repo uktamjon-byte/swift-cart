@@ -14,7 +14,7 @@
                     >
                     <div class="main-icon-container d-inline-block text-center" >
                        <i class="main-icon" [class]="category.icon"></i>
-                       <div class="floating-category-popup" *ngIf="!isFloatingPopup">
+                       <div class="floating-category-popup" *ngIf="isFloatingPopup === false">
                             <div class="popup-title">{{ category.name | translate}}</div>
                             <ul *ngIf="category.subcategories">
                                 <li *ngFor="let sub of category.subcategories">{{ sub.name | translate}}</li>

@@ -15,11 +15,6 @@ import { BlogService } from '../blog/services/blog.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
-
-
-
-
-
 @NgModule({
   declarations: [
     TopContentComponent,
@@ -27,17 +22,15 @@ SwiperCore.use([Navigation, Pagination, Autoplay]);
     FeaturedCategoriesComponent,
     BannerComponent,
     HomeComponent,
-    PostSectionComponent
+    PostSectionComponent,
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     PageSharedModule,
+    TranslateModule,
     SwiperModule,
-    TranslateModule
   ],
-  providers:[
-    BlogService
-  ]
+  providers: [BlogService],
 })
-export class HomeModule { }
+export class HomeModule {}

@@ -1,0 +1,130 @@
+<main>
+<h4 class="my-3 fw-bold">{{'dashboard' | translate}}</h4>
+<section>
+    <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 rid" *ngFor="let card of cards">
+         <div class="d-flex flex-row align-items-center card-item">
+           <div class="left-items d-flex flex-column">
+           <span class="fs-4 fw-bold">{{ card.value }}</span>
+           <span >{{ card.infoTitle | translate}}</span>
+        </div>
+          <div class="right-items d-flex align-items-center justify-content-center ms-auto">
+             <i [class]="card.icon"></i>
+          </div>
+       </div>
+        </div>
+    </div>
+    
+</section>
+<section>
+<div class="row">
+  <div class="col-lg-7 ">
+      <div style="display: block; background-color: white; border-radius: 6px;" class="my-4">
+        <canvas baseChart
+        [data]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend">
+      </canvas>
+    </div>
+  </div>
+  <div class="col-lg-5 ">
+    <div class="table-responsive my-4" style=" background-color: white; border-radius: 6px;">
+      <div class="table-header" style="padding: 15px 24px; overflow: auto;">
+         <h6 class="mb-0 fw-bold">{{'latestSearches' | translate}}</h6>
+      </div>  
+      <table>
+        <thead>
+          <tr>
+            <th>{{'keyword' | translate}}</th>
+            <th>{{'results' | translate}}</th>
+            <th>{{'hits' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Laptopdfsdfsdfdsfdsfsdfsdf</td>
+            <td>15</td>
+            <td>66</td>
+          </tr>
+            <tr>
+            <td>Laptop</td>
+            <td>15</td>
+            <td>66</td>
+          </tr>
+            <tr>
+            <td>Laptop</td>
+            <td>15</td>
+            <td>66</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+
+<section>
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="table-responsive my-4" style=" background-color: white; border-radius: 6px;">
+      <div class="table-header" style="padding: 15px 24px; overflow: auto;">
+         <h6 class="mb-0 fw-bold">{{'latestOrders' | translate}}</h6>
+      </div>  
+      <table>
+        <thead>
+          <tr>
+            <th>{{'orderId' | translate}}</th>
+            <th>{{'customer' | translate}}</th>
+            <th>{{'status' | translate}}</th>
+            <th>{{'total' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td>15</td>
+              <td>James</td>
+              <td><span>panding</span></td>
+              <td>12000$</td>
+          </tr>
+            <tr>
+              <td>15</td>
+              <td>James</td>
+              <td><span>panding</span></td>
+              <td>12000$</td>
+          </tr>
+            <tr>
+              <td>15</td>
+              <td>James</td>
+              <td><span>panding</span></td>
+              <td>12000$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+    <div class="col-lg-5">
+       <div class="table-responsive my-4" style=" background-color: white; border-radius: 6px;">
+      <div class="table-header" style="padding: 15px 24px; overflow: auto;">
+         <h6 class="mb-0 fw-bold">{{'orderReview' | translate}}</h6>
+      </div>  
+      <table>
+        <thead>
+          <tr>
+            <th>{{'product' | translate}}</th>
+            <th>{{'customer' | translate}}</th>
+            <th>{{'rating' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+                   
+        </tbody>
+       
+      </table>
+        <div class="no-data d-flex align-items-center justify-content-center py-2 fw-bold">{{'noData' | translate}}</div>
+    </div>
+    </div>
+  </div>
+</section>
+</main>

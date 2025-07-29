@@ -127,6 +127,10 @@ button {
 button:focus {
     outline: none;
 }
+.row {
+    margin: 0 !important;
+    padding: 0 !important;
+}
 
 p{
     color: $color-dark-2;
@@ -232,8 +236,7 @@ body { margin: 0; font-family: $font-base-regular, "Helvetica Neue", sans-serif;
                     background: #eef5f5;
                     border: 1px solid $color-primary;
                     i{
-                        color: $color-primary-hover;
-                   
+                        color: $color-primary-hover;                  
                     }
                 }
             }

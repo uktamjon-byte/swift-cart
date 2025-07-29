@@ -361,5 +361,23 @@
   "sidebarTools": "Инструменты",
   "sidebarReports": "Отчёты",
   "sidebarSettings": "Настройки",
-  "storefront": "Витрина"
+  "storefront": "Витрина",
+
+    "latestSearches": "Последние поиски",
+    "keyword": "Ключевое слово",
+    "results": "Результаты",
+    "hits": "Попадания",
+    "latestOrders": "Последние заказы",
+    "customer": "Клиент",
+    "status": "Статус",
+    "orderReview": "Обзор заказов",
+    "product": "Продукт",
+    "rating": "Оценка",
+    "noData": "Данные отсутствуют",
+
+  "topSales": "ЛУЧШИЕ ПРОДАЖИ",
+  "totalOrders": "ВСЕГО ЗАКАЗОВ",
+  "totalProducts": "ВСЕГО ПРОДУКТОВ",
+  "totalCustomers": "ВСЕГО КЛИЕНТОВ"
+
 }

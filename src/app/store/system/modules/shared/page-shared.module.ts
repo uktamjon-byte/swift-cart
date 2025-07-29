@@ -9,22 +9,20 @@ import { ProductCategoriesComponent } from './components/product-categories/prod
 import { AddedProductsSidebarComponent } from '../shop/components/added-products-sidebar/added-products-sidebar.component';
 import { TranslateModule } from '@ngx-translate/core';
 
-
-
 @NgModule({
   declarations: [
     BlogPageCardComponent,
     ProductCardComponent,
     ProductCategoriesComponent,
-    AddedProductsSidebarComponent
+    AddedProductsSidebarComponent,
   ],
-  imports: [CommonModule,RouterModule, TranslateModule],  
+  imports: [CommonModule, RouterModule, TranslateModule],
   exports: [
     BlogPageCardComponent,
     ProductCardComponent,
     ProductCategoriesComponent,
-    AddedProductsSidebarComponent
+    AddedProductsSidebarComponent,
   ],
-  providers:[CategoriesService,ShopService] 
+  providers: [CategoriesService, ShopService],
 })
-export class PageSharedModule { }
+export class PageSharedModule {}

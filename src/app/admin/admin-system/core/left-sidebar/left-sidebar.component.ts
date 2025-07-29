@@ -148,15 +148,15 @@ export class LeftSidebarComponent implements OnInit {
   ngOnInit() {
     this.adminService.toggleSidebar.subscribe((val) => {
       this.isToggledSidebar = val;
-      if (!val) {
+      if (val === false) {
         setTimeout(() => {
           this.isFloatingPopup = val;
+          console.log('val false isfloat', this.isFloatingPopup);
         }, 1000);
       } else {
         this.isFloatingPopup = val;
+        console.log('val true floarte', this.isFloatingPopup);
       }
-
-      console.log('val', val);
     });
   }
 
