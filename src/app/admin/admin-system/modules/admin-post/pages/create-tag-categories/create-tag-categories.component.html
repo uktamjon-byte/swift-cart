@@ -1,0 +1,32 @@
+<section class="content mt-3">
+    <div class="title mb-3"><h5 class="fw-bold">{{componentTitle}}</h5></div>
+    <div class="box">
+         <div class="box-body">
+            <form [formGroup]="categoryTagForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <label for="name">
+                                  {{'name' | translate}}
+                                <span>*</span>
+                            </label>
+                                <div class="col-lg-9">
+                                    <input 
+                                      type="text" 
+                                      class="form-control"
+                                      formControlName="name" 
+                                      [ngClass]="{'has-error':categoryTagForm.get('name')?.touched && categoryTagForm.get('name')?.invalid}"
+                                      >
+                                      <p class="error-message" *ngIf="categoryTagForm.get('name')?.touched && categoryTagForm.get('name')?.invalid"> 
+                                           {{'emptyInputError' | translate}}
+                                      </p>
+                                </div>
+                                <button class="button btn btn-primary mt-3" type="submit">{{buttonText}}</button>
+                        </div>
+                    </div>
+                   
+                </div>
+            </form>
+         </div>
+    </div>
+</section>

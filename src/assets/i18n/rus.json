@@ -362,6 +362,7 @@
   "sidebarReports": "Отчёты",
   "sidebarSettings": "Настройки",
   "storefront": "Витрина",
+   "posts": "Посты",
 
     "latestSearches": "Последние поиски",
     "keyword": "Ключевое слово",
@@ -378,6 +379,52 @@
   "topSales": "ЛУЧШИЕ ПРОДАЖИ",
   "totalOrders": "ВСЕГО ЗАКАЗОВ",
   "totalProducts": "ВСЕГО ПРОДУКТОВ",
-  "totalCustomers": "ВСЕГО КЛИЕНТОВ"
+  "totalCustomers": "ВСЕГО КЛИЕНТОВ",
+
+  "blogPosts": "Блог Посты",
+  "createBlogPost": "Создать пост в блоге",
+  "id": "ID",
+  "featuredImage": "Изображение",
+  "title": "Заголовок",
+  "user": "Пользователь",
+  "publishStatus": "Статус публикации",
+  "created": "Дата создания",
+
+  "mainTitle": "Форма публикации блога",
+  "general": "Общее",
+  "metaTitle": "Мета-заголовок",
+  "metaDescription": "Мета-описание",
+  "publish": "Публикация",
+  "published": "Опубликовано",
+  "unpublished": "Не опубликовано",
+  "selectCategories": "Выберите категории",
+  "addTags": "Добавить теги",
+  "save": "Сохранить",
+  "saveAndEdit": "Сохранить и редактировать",
+  "saveAndExit": "Сохранить и выйти",
+
+  "createPost": "Создать пост",
+  "companyUpdates": "Обновления компании",
+  "guidesTutorials": "Руководства и учебники",
+  "news": "Новости",
+  "promotions": "Акции",
+  "shoppingTips": "Советы по покупкам",
+  "testimonials": "Отзывы",
+
+  "blogCategoriesTitle": "Категории Блога",
+  "createPostCategories": "Создать категорию поста",
+  "name": "Название",
+
+  "postCreate": "Создать пост",
+  "postEdit": "Редактировать пост",
+  "postCategoryCreate": "Создать категорию поста",
+  "postCategoryCreateBtn": "Создать категорию",
+  "postCategoryEdit": "Редактировать категорию поста",
+  "postCategoryEditBtn": "Редактировать категорию",
+  "postTagCreate": "Создать тег поста",
+  "postTagCreateBtn": "Создать тег",
+  "postTagEditBtn": "Редактировать тег",
+  "postTagEdit": "Редактировать тег поста"
 
 }
+

@@ -1,0 +1,103 @@
+<section class="grid-section">
+  <div class="top-section my-4">
+    <div class="title">
+      <h4 class="fw-bold">{{ 'blogPosts' | translate }}</h4>
+    </div>
+    <div class="create-post-btn d-flex justify-content-end">
+      <a [routerLink]="'/blog/post/create'" class="btn btn-primary">
+        {{ 'createBlogPost' | translate }}
+      </a>
+    </div>
+  </div>
+
+  <div class="bottom-section">
+    <dx-data-grid
+      [columnAutoWidth]="true"
+      [columnHidingEnabled]="true"
+      id="gridContainer"
+      [dataSource]="dataSource"
+      [remoteOperations]="false"
+      [allowColumnReordering]="true"
+      [rowAlternationEnabled]="true"
+      [showBorders]="true"
+      [width]="'100%'"
+      (onContentReady)="contentReady($event)"
+      (onInitialized)="onInitGrid($event)"
+      (onRowClick)="onRowClick($event)"
+    >
+      <dxo-toolbar>
+        <!-- Delete Button -->
+        <dxi-item
+          location="before"
+          widget="dxButton"
+          [options]="{
+            text: ( 'delete' | translate ),
+            icon: 'trash',
+            type: 'danger',
+            elementAttr: { class: 'custom-delete-btn' },
+            onClick: deleteSelected
+          }"
+        ></dxi-item>
+
+        <!-- Search Panel -->
+        <dxi-item name="searchPanel" ></dxi-item>
+      </dxo-toolbar>
+
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager
+        [visible]="true"
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[10, 25, 50, 100]"
+      ></dxo-pager>
+
+      <dxo-selection
+        mode="multiple"
+        [showCheckBoxesMode]="'always'"
+        [allowSelectAll]="true"
+      ></dxo-selection>
+
+      <dxi-column dataField="id" alignment="left" [caption]="'id' | translate"></dxi-column>
+
+      <dxi-column
+        dataField="image"
+        [caption]="'featuredImage' | translate"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="imageCellTemplate"
+      ></dxi-column>
+
+      <div *dxTemplate="let data of 'imageCellTemplate'">
+        <img
+          [src]="data.value"
+          style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"
+        />
+      </div>
+
+      <dxi-column
+        dataField="title"
+        [caption]="'title' | translate"
+        alignment="left"
+      ></dxi-column>
+
+      <dxi-column
+        dataField="user"
+        [caption]="'user' | translate"
+        dataType="string"
+        [width]="150"
+      ></dxi-column>
+
+      <dxi-column
+        dataField="publishStatus"
+        [caption]="'publishStatus' | translate"
+      ></dxi-column>
+
+      <dxi-column
+        dataField="date"
+        dataType="date"
+        [caption]="'created' | translate"
+      ></dxi-column>
+
+      <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
+    </dx-data-grid>
+  </div>
+</section>

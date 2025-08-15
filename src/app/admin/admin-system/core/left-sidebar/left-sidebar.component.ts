@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { ICategories } from '../intefaces/category';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -21,6 +22,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-gauge',
       isOpen: false,
+      link: '/dashboard',
     },
     {
       name: 'sidebarProducts',
@@ -28,17 +30,22 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-cube',
       isOpen: false,
+      link: '/products',
       subcategories: [
-        { name: 'sidebarCreateProduct', id: 1 },
-        { name: 'sidebarAllProducts', id: 2 },
-        { name: 'sidebarCategories', id: 3 },
-        { name: 'sidebarBrands', id: 4 },
-        { name: 'sidebarAttributes', id: 5 },
-        { name: 'sidebarAttributeSets', id: 6 },
-        { name: 'sidebarVariations', id: 7 },
-        { name: 'sidebarOptions', id: 1 },
-        { name: 'sidebarTags', id: 8 },
-        { name: 'sidebarReviews', id: 9 },
+        { name: 'sidebarCreateProduct', id: 1, subLink: '/product/create' },
+        { name: 'sidebarAllProducts', id: 2, subLink: '/allProducts' },
+        { name: 'sidebarCategories', id: 3, subLink: '/product/categories' },
+        { name: 'sidebarBrands', id: 4, subLink: '/product/brand' },
+        { name: 'sidebarAttributes', id: 5, subLink: '/product/attributes' },
+        {
+          name: 'sidebarAttributeSets',
+          id: 6,
+          subLink: '/product/attributeSets',
+        },
+        { name: 'sidebarVariations', id: 7, subLink: '/product/variations' },
+        { name: 'sidebarOptions', id: 1, subLink: '/product/options' },
+        { name: 'sidebarTags', id: 8, subLink: '/product/tags' },
+        { name: 'sidebarReviews', id: 9, subLink: '/product/review' },
       ],
     },
     {
@@ -47,6 +54,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-dollar-sign',
       isOpen: false,
+      link: '/sales',
     },
     {
       name: 'sidebarFlashSales',
@@ -54,6 +62,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-bolt',
       isOpen: false,
+      link: '/flashsales',
     },
     {
       name: 'sidebarCoupons',
@@ -61,6 +70,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-tag',
       isOpen: false,
+      link: '/coupons',
     },
     {
       name: 'sidebarPages',
@@ -68,6 +78,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-file',
       isOpen: false,
+      link: '/pages',
     },
     {
       name: 'sidebarMenus',
@@ -75,13 +86,20 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-bars',
       isOpen: false,
+      link: '/menu',
     },
     {
       name: 'sidebarBlog',
       id: 8,
-      isParent: false,
+      isParent: true,
       icon: 'fa-solid fa-book',
       isOpen: false,
+      link: '/blog',
+      subcategories: [
+        { name: 'posts', id: 1, subLink: '/blog/post' },
+        { name: 'categories', id: 2, subLink: '/blog/category' },
+        { name: 'tags', id: 3, subLink: 'blog/tag' },
+      ],
     },
     {
       name: 'sidebarImport',
@@ -89,6 +107,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-download',
       isOpen: false,
+      link: '/import',
     },
     {
       name: 'sidebarMedia',
@@ -96,6 +115,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-camera-retro',
       isOpen: false,
+      link: '/media',
     },
     {
       name: 'sidebarUsers',
@@ -103,9 +123,10 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-users',
       isOpen: false,
+      link: '/users',
       subcategories: [
-        { name: 'sidebarUsersList', id: 1 },
-        { name: 'sidebarRoles', id: 2 },
+        { name: 'sidebarUsersList', id: 1, subLink: '/users/list' },
+        { name: 'sidebarRoles', id: 2, subLink: '/users/roles' },
       ],
     },
     {
@@ -114,10 +135,15 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-earth-americas',
       isOpen: false,
+      link: '/localization',
       subcategories: [
-        { name: 'sidebarLanguage', id: 1 },
-        { name: 'sidebarCurrencyRates', id: 2 },
-        { name: 'sidebarTaxes', id: 3 },
+        { name: 'sidebarLanguage', id: 1, subLink: '/localization/language' },
+        {
+          name: 'sidebarCurrencyRates',
+          id: 2,
+          subLink: '/localization/currency',
+        },
+        { name: 'sidebarTaxes', id: 3, subLink: '/localization/taxes' },
       ],
     },
     {
@@ -126,6 +152,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-wrench',
       isOpen: false,
+      link: '/tools',
     },
     {
       name: 'sidebarReports',
@@ -133,6 +160,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-chart-simple',
       isOpen: false,
+      link: '/reports',
     },
     {
       name: 'sidebarSettings',
@@ -140,10 +168,11 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-gears',
       isOpen: false,
+      link: '/settings',
     },
   ];
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit() {
     this.adminService.toggleSidebar.subscribe((val) => {
@@ -173,6 +202,7 @@ export class LeftSidebarComponent implements OnInit {
       console.log('open', category.isOpen);
     } else {
       // only click  - (navigate)
+      this.router.navigate([category.link]);
     }
   }
 }

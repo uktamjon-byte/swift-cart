@@ -7,11 +7,19 @@ const routes: Routes = [
     path: '',
     component: AdminSystemComponent,
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
-        path: '',
+        path: 'dashboard',
         loadChildren: () =>
           import('../admin-system/modules/dashboard/dashboard.module').then(
             (m) => m.AdminDashboardModule
+          ),
+      },
+      {
+        path: 'blog',
+        loadChildren: () =>
+          import('../admin-system/modules/admin-post/admin-post.module').then(
+            (m) => m.AdminPostModule
           ),
       },
     ],

@@ -8,7 +8,7 @@
     "password": "Password",
     "emailPlaceholder": "Enter your email",
     "passwordPlaceholder": "Enter your password",
-    "emptyInputError": "Input field cannot be empty",
+    "emptyInputError": "This field cannot be empty",
     "validEmailError": "Enter your valid email address",
     "passwordContain": "Password must contain",
     "characters": "characters",
@@ -360,6 +360,7 @@
   "sidebarReports": "Reports",
   "sidebarSettings": "Settings",
   "storefront": "Storefront",
+  "posts": "Posts",
 
    
     "latestSearches": "Latest Searches",
@@ -377,7 +378,52 @@
   "topSales": "TOP SALES",
   "totalOrders": "TOTAL ORDERS",
   "totalProducts": "TOTAL PRODUCTS",
-  "totalCustomers": "TOTAL CUSTOMERS"
+  "totalCustomers": "TOTAL CUSTOMERS",
 
-  
+  "blogPosts": "Blog Posts",
+  "createBlogPost": "Create Blog Post",
+  "delete": "Delete",
+  "id": "ID",
+  "featuredImage": "Featured Image",
+  "title": "Title",
+  "user": "User",
+  "publishStatus": "Publish Status",
+  "created": "Created",
+
+  "mainTitle": "Blog Post Form",
+  "general": "General",
+  "metaTitle": "Meta Title",
+  "metaDescription": "Meta Description",
+  "publish": "Publish",
+  "published": "Published",
+  "unpublished": "Unpublished",
+  "selectCategories": "Select Categories",
+  "addTags": "Add Tags",
+  "save": "Save",
+  "saveAndEdit": "Save & Edit",
+  "saveAndExit": "Save & Exit",
+
+  "createPost": "Create Post",
+  "companyUpdates": "Company Updates",
+  "guidesTutorials": "Guides & Tutorials",
+  "news": "News",
+  "promotions": "Promotions",
+  "shoppingTips": "Shopping Tips",
+  "testimonials": "Testimonials",
+
+  "blogCategoriesTitle": "Blog Categories",
+  "createPostCategories": "Create Post Categories",
+  "name": "Name",
+
+  "postCreate": "Create Post",
+  "postEdit": "Edit Post",
+  "postCategoryCreate": "Create Post Category",
+  "postCategoryCreateBtn": "Create Category",
+  "postCategoryEdit": "Edit Post Category",
+  "postCategoryEditBtn": "Edit Category",
+  "postTagCreate": "Create Post Tag",
+  "postTagCreateBtn": "Create Tag",
+  "postTagEditBtn": "Edit Tag",
+  "postTagEdit": "Post Edit Tag"
+
 }

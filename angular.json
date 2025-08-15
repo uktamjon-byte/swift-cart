@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+             "allowedCommonJsDependencies": [
+                          "jszip"
+             ],
             "outputPath": "dist/ang-swift-cart",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,15 +30,17 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss",
+            "styles": [             
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/swiper/swiper-bundle.min.css",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/devextreme/dist/css/dx.common.css",
+               "node_modules/devextreme/dist/css/dx.material.blue.light.css",
+              "src/styles.scss"           
             ],
             "scripts": [
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
-                "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
                 
             ]
           },

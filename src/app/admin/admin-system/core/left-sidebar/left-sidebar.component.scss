@@ -1,5 +1,41 @@
 @import '../../../../../assets/sass/variables.scss';
 @import '../../../../../assets/sass/scroll-bar.scss';
+.active{
+   background-color: #2a2a3c !important;
+}
+
+.subActive{
+    background-color: #2a2a3c !important;
+    border-radius: 8px;
+    padding: 4px 8px;
+    &::before{
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $color-primary;
+        position: absolute;
+        //transform: translateY(-50%); 
+        right: 205px;
+        top: 16px;
+    }
+}
+.floatSubActive{
+    background-color: #2a2a3c !important;
+    border-radius: 8px;
+    padding: 4px 8px;
+    &::before{
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $color-primary;
+        position: absolute;
+        //transform: translateY(-50%); 
+        right: 137px;
+        top: 16px;
+    }
+}
 .sidebar-nav{
     width: 240px;
     background-color: #222530;

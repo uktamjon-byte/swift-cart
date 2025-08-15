@@ -1,0 +1,52 @@
+@import '../../../../../../../assets/sass/variables.scss';
+::ng-deep .dx-htmleditor {
+  border-radius: 8px !important;
+ box-shadow: 0 0 0 1px #8c8c8c26 !important;
+ border-color:#d9d9d9 !important;
+}
+
+::ng-deep .dx-tagbox {
+  max-height: auto;
+  overflow-y: visible !important;
+  white-space: normal;
+  box-shadow: 0 0 0 1px #8c8c8c26 !important;
+ 
+}
+::ng-deep .dx-tagbox:focus{
+    border: 1px solid #0068e1cc !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border 0.15s ease-in-out;
+}
+
+::ng-deep .dx-tag-content {
+  flex-wrap: wrap !important; /* Forces tags to wrap */
+  gap: 4px;
+  padding-bottom: 4px;
+}
+
+::ng-deep .dx-tag {
+  margin-bottom: 4px;
+}
+
+   
+    .page-form-footer{
+        background-color: white;
+        left: 240px;
+        box-shadow: 0 0 2px #0000002e;
+    }
+
+     @media screen and (max-width: 1024px)  {
+    .col-lg-8,
+    .col-lg-4{
+      flex: 1 1 calc(100% - 0.5rem);
+    }
+  } 
+
+    @media screen and (max-width: 992px)  {
+         .page-form-footer{
+          position: static !important;
+          background-color: inherit !important;
+          box-shadow: none !important;
+         }
+    }
