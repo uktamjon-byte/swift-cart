@@ -18,6 +18,12 @@
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "dropzone": ["node_modules/dropzone/dist/dropzone.js"]
+    },
+    "typeRoots": ["node_modules/@types", "src/typings"],
     "lib": [
       "es2020",
       "dom"

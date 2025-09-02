@@ -424,6 +424,12 @@
   "postTagCreate": "Create Post Tag",
   "postTagCreateBtn": "Create Tag",
   "postTagEditBtn": "Edit Tag",
-  "postTagEdit": "Post Edit Tag"
+  "postTagEdit": "Post Edit Tag",
+
+  "thumbnail": "Thumbnail",
+  "filename": "Filename",
+  "uploadFiles": "Upload Files",
+  "clickUpload": "Click or drag files here to upload"
+
 
 }

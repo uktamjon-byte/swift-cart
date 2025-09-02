@@ -1,4 +1,16 @@
 @import '../../../../../../../assets/sass/variables.scss';
+.image-wrapper{
+  span{
+    top: 2px;
+    right: 10px;
+    color: $color-gray-dark-5;
+    transition: $transition-150;
+    font-size: 21px;
+    &:hover{
+      color: black;
+    }
+  }
+}
 ::ng-deep .dx-htmleditor {
   border-radius: 8px !important;
  box-shadow: 0 0 0 1px #8c8c8c26 !important;

@@ -18,7 +18,11 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
              "allowedCommonJsDependencies": [
-                          "jszip"
+                          "jszip",
+                          "dropzone",
+                          "devexpress-diagram",
+                          "devexpress-gantt",
+                          "devextreme-quill"
              ],
             "outputPath": "dist/ang-swift-cart",
             "index": "src/index.html",
@@ -36,7 +40,8 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/devextreme/dist/css/dx.common.css",
                "node_modules/devextreme/dist/css/dx.material.blue.light.css",
-              "src/styles.scss"           
+              "src/styles.scss",          
+              "node_modules/dropzone/dist/min/dropzone.min.css"
             ],
             "scripts": [
               "node_modules/@popperjs/core/dist/umd/popper.min.js",

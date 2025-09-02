@@ -61,20 +61,6 @@ export class PostsComponent implements OnInit {
   @ViewChild(DxDataGridComponent, { static: false })
   dataGrid!: DxDataGridComponent;
 
-  // deleteSelected = () => {
-  //   const selectedRows = this.dataGrid.instance.getSelectedRowsData();
-
-  //   // Remove selected rows from dataSource
-  //   this.dataSource = this.dataSource.filter(
-  //     (item) => !selectedRows.some((selected) => selected.ID === item.id)
-  //   );
-  // };
-
-  // navigateToCreatePost() {
-  //   console.log('navigate from posts');
-  //   this.router.navigate(['blog/post/create']);
-  // }
-
   public onInitGrid(e: any) {
     console.log('init grid', e);
     this.gridInstance = e.component;

@@ -1,7 +1,9 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { ICategories } from '../intefaces/category';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { ICategory } from 'src/app/store/system/modules/shared/types/interfaces';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -14,6 +16,7 @@ export class LeftSidebarComponent implements OnInit {
   isParent: boolean = false;
   isSidebarCollapsed = false;
   isFloatingPopup = false;
+  currentUrl: string = '';
 
   categories: ICategories[] = [
     {
@@ -23,6 +26,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-gauge',
       isOpen: false,
       link: '/dashboard',
+      pattern: 'dashboard',
     },
     {
       name: 'sidebarProducts',
@@ -31,6 +35,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-cube',
       isOpen: false,
       link: '/products',
+      pattern: 'products',
       subcategories: [
         { name: 'sidebarCreateProduct', id: 1, subLink: '/product/create' },
         { name: 'sidebarAllProducts', id: 2, subLink: '/allProducts' },
@@ -55,6 +60,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-dollar-sign',
       isOpen: false,
       link: '/sales',
+      pattern: 'sales',
     },
     {
       name: 'sidebarFlashSales',
@@ -63,6 +69,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-bolt',
       isOpen: false,
       link: '/flashsales',
+      pattern: 'flashsales',
     },
     {
       name: 'sidebarCoupons',
@@ -71,6 +78,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-tag',
       isOpen: false,
       link: '/coupons',
+      pattern: 'coupons',
     },
     {
       name: 'sidebarPages',
@@ -79,6 +87,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-file',
       isOpen: false,
       link: '/pages',
+      pattern: 'pages',
     },
     {
       name: 'sidebarMenus',
@@ -87,6 +96,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-bars',
       isOpen: false,
       link: '/menu',
+      pattern: 'menu',
     },
     {
       name: 'sidebarBlog',
@@ -94,11 +104,12 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-book',
       isOpen: false,
-      link: '/blog',
+      link: '/blog/category',
+      pattern: 'blog',
       subcategories: [
         { name: 'posts', id: 1, subLink: '/blog/post' },
         { name: 'categories', id: 2, subLink: '/blog/category' },
-        { name: 'tags', id: 3, subLink: 'blog/tag' },
+        { name: 'tags', id: 3, subLink: '/blog/tag' },
       ],
     },
     {
@@ -108,6 +119,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-download',
       isOpen: false,
       link: '/import',
+      pattern: 'import',
     },
     {
       name: 'sidebarMedia',
@@ -116,6 +128,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-camera-retro',
       isOpen: false,
       link: '/media',
+      pattern: 'media',
     },
     {
       name: 'sidebarUsers',
@@ -124,6 +137,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-users',
       isOpen: false,
       link: '/users',
+      pattern: 'users',
       subcategories: [
         { name: 'sidebarUsersList', id: 1, subLink: '/users/list' },
         { name: 'sidebarRoles', id: 2, subLink: '/users/roles' },
@@ -136,6 +150,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-earth-americas',
       isOpen: false,
       link: '/localization',
+      pattern: 'localization',
       subcategories: [
         { name: 'sidebarLanguage', id: 1, subLink: '/localization/language' },
         {
@@ -153,6 +168,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-wrench',
       isOpen: false,
       link: '/tools',
+      pattern: 'tools',
     },
     {
       name: 'sidebarReports',
@@ -161,6 +177,7 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-chart-simple',
       isOpen: false,
       link: '/reports',
+      pattern: 'reports',
     },
     {
       name: 'sidebarSettings',
@@ -169,37 +186,62 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-gears',
       isOpen: false,
       link: '/settings',
+      pattern: 'settings',
     },
   ];
 
   constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit() {
+    this.currentUrl = this.router.url;
+    this.openParentsFor(this.currentUrl);
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.currentUrl = event.urlAfterRedirects;
+        console.log('url', event.urlAfterRedirects);
+        this.openParentsFor(this.currentUrl);
+      });
+
     this.adminService.toggleSidebar.subscribe((val) => {
       this.isToggledSidebar = val;
       if (val === false) {
         setTimeout(() => {
           this.isFloatingPopup = val;
-          console.log('val false isfloat', this.isFloatingPopup);
         }, 1000);
       } else {
         this.isFloatingPopup = val;
-        console.log('val true floarte', this.isFloatingPopup);
       }
     });
   }
 
+  openParentsFor(url: string) {
+    console.log('current url', url);
+    this.categories.forEach((category) => {
+      if (category.subcategories?.some((sub) => url.includes(sub.subLink))) {
+        category.isOpen = true; // open parent
+      } else {
+        category.isOpen = false; // close others (optional)
+      }
+    });
+  }
+
+  isCategoryActive(category: ICategories) {
+    const [, firstSegment] = this.currentUrl.split('/');
+    return firstSegment === category.pattern;
+  }
+
   toggleSubmenu(category: ICategories) {
     for (let i = 0; i < this.categories.length; i++) {
-      if (this.categories[i].id === category.id) {
-        continue;
-      }
+      if (category.id)
+        if (this.categories[i].id === category.id) {
+          continue;
+        }
       this.categories[i].isOpen = false;
     }
-
+    console.log('link', category.link);
     if (category.isParent) {
       category.isOpen = !category.isOpen;
-      console.log('open', category.isOpen);
     } else {
       // only click  - (navigate)
       this.router.navigate([category.link]);

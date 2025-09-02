@@ -4,6 +4,8 @@ import { FileManagerComponent } from '../../../shared/components/file-manager/fi
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PostMode } from '../../types/enums/post.enum';
+import { PostBlogService } from '../services/post.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-post',
@@ -15,7 +17,14 @@ export class CreatePostComponent implements OnInit {
   postMode!: PostMode;
   mainTitle = null;
   postId: number = 0;
-  constructor(private route: ActivatedRoute) {
+  selectedImage: string =
+    '../../../../../../../assets/imagis/download-file-image.png';
+  isImageLoaded: boolean = false;
+  constructor(
+    private route: ActivatedRoute,
+    private postService: PostBlogService,
+    private dialog: MatDialog
+  ) {
     this.postForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -65,9 +74,33 @@ export class CreatePostComponent implements OnInit {
     }
   }
 
-  displayFileManager() {}
+  displayFileManager() {
+    this.postService.isFileManagerActive.next(true);
+    const dialogRef = this.dialog.open(FileManagerComponent, {
+      height: '80%',
+      data: {
+        title: 'File Manager',
+        isDialog: true,
+      },
+    });
 
-  handleFile() {}
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedImage = result.image;
+        this.isImageLoaded = true;
+        this.postForm.get('image')?.setValue(result.image);
+      }
+      console.log('dialog result', result);
+    });
+  }
+
+  removeImage($event: MouseEvent) {
+    $event.stopPropagation();
+    this.isImageLoaded = false;
+    this.selectedImage =
+      '../../../../../../../assets/imagis/download-file-image.png';
+    this.postForm.get('image')?.reset();
+  }
 
   onSubmit() {
     console.log('postform', this.postForm.value);

@@ -22,6 +22,13 @@ const routes: Routes = [
             (m) => m.AdminPostModule
           ),
       },
+      {
+        path: 'media',
+        loadChildren: () =>
+          import('../admin-system/modules/media/media.module').then(
+            (m) => m.MediaModule
+          ),
+      },
     ],
   },
 ];

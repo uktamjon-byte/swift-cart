@@ -16,10 +16,11 @@ import {
 } from 'devextreme-angular';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { CreateTagCategoriesComponent } from './pages/create-tag-categories/create-tag-categories.component';
-import { AdminSharedModule } from '../shared/modules/admin-shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostBlogService } from './pages/services/post.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { AdminSharedModule } from '../shared/modules/admin-shared.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -40,9 +41,10 @@ import { TranslateModule } from '@ngx-translate/core';
     DxCheckBoxModule,
     DxSelectBoxModule,
     DxTagBoxModule,
-    AdminSharedModule,
     ReactiveFormsModule,
     TranslateModule,
+    AdminSharedModule,
+    MatDialogModule,
   ],
   providers: [PostBlogService],
 })

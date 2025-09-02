@@ -6,6 +6,7 @@ export interface ICategories {
   isOpen: boolean;
   link: string;
   subcategories?: ISubcategories[];
+  pattern: string;
 }
 
 interface ISubcategories {

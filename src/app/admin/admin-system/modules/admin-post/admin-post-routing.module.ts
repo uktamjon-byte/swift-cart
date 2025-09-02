@@ -7,7 +7,6 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { CreateTagCategoriesComponent } from './pages/create-tag-categories/create-tag-categories.component';
 import { ComponentMode, PostMode } from './types/enums/post.enum';
-import { Observable } from 'rxjs';
 
 const routes: Routes = [
   {

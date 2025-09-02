@@ -424,7 +424,11 @@
   "postTagCreate": "Создать тег поста",
   "postTagCreateBtn": "Создать тег",
   "postTagEditBtn": "Редактировать тег",
-  "postTagEdit": "Редактировать тег поста"
+  "postTagEdit": "Редактировать тег поста",
 
+  "thumbnail": "Заставка",
+  "filename": "Имя файла",
+   "uploadFiles": "Загрузить файлы",
+  "clickUpload": "Нажмите здесь или перетащите файлы чтобы загрузить"
 }
 

@@ -11,25 +11,38 @@
                     <li class="main-item " 
                       *ngFor="let category of categories" 
                       (click)="toggleSubmenu(category)"
-                      [routerLinkActive]="'active'" 
+                      [ngClass]="{ 'active': isCategoryActive(category)}"
+                        
                     >
                      <div class="main-icon-container d-inline-block text-center" >
                        <i class="main-icon" [class]="category.icon"></i>
-                       <div class="floating-category-popup" *ngIf="isFloatingPopup === false">
-                            <div class="popup-title">{{ category.name | translate}}</div>
+                       <div class="floating-category-popup" 
+                       *ngIf="isFloatingPopup === false">
+                            <div class="popup-title">
+                                {{ category.name | translate}}
+                            </div>
                             <ul *ngIf="category.subcategories">
-                                <li *ngFor="let sub of category.subcategories" class="position-relative"><a [routerLink]="sub.subLink" [routerLinkActive]="'floatSubActive'">{{ sub.name | translate}}</a></li>
+                                <li 
+                                *ngFor="let sub of category.subcategories" 
+                                class="position-relative">
+                                    <a 
+                                    [routerLink]="sub.subLink" 
+                                    [routerLinkActive]="'floatSubActive'" 
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    >
+                                    {{ sub.name | translate}}
+                                </a>
+                            </li>
                             </ul>
                         </div>
                      </div> 
-                    <a routerLinkActive="active"><span class="category-name">{{category.name | translate}}</span></a> 
+                    <a><span class="category-name">{{category.name | translate}}</span></a> 
                     <span class="pull-right-container"><i *ngIf="category.isParent" [ngClass]="{'rotate':category.isOpen}" 
                         class="fa-solid fa-angle-right"></i>
                     </span> 
                         <ul class="sub-categories" *ngIf="category.subcategories && !isResizedSidebar" [ngClass]="{'open':category.isOpen}">
                             <li *ngFor="let subCategory of category.subcategories" class="position-relative"><a [routerLink]="subCategory.subLink" [routerLinkActive]="'subActive'" (click)="$event.stopPropagation()">{{subCategory.name | translate}}</a></li>
-                        </ul>
-                         
+                        </ul>                     
                     </li>
                 </ul>
         </div>  

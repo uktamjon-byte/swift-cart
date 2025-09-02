@@ -1,17 +1,112 @@
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
+<section class="content" [ngClass]="{'dialog-style' : isDialog}">
+  <div [ngClass]="{'dialog-header' : isDialog}">
+        <h4 class="fw-bold mt-2">{{isDialog?  dataDialogTitle : 'sidebarMedia'  | translate}}</h4>
+        <span *ngIf="isDialog" (click)="closeDialog()"><i class="fa-solid fa-xmark"></i></span>
   </div>
+    <div class="box mt-3">
+        <div class="box-body">
+            <form class="drop-file d-flex justify-content-center align-items-center position-relative">
+              <dropzone
+                #dzRef="ngxDropzone"
+                [config]="config"
+                [message]="'clickUpload' | translate"
+                (success)="onSuccess($event)"
+                (error)="onError($event)"
+                (sending)="onSending($event)">
+              </dropzone>
+              <button class="btn btn-primary position-absolute" type="button" (click)="uploadAllFiles()">{{'uploadFiles' | translate}}</button>
+            </form>
+    <dx-data-grid
+      [columnAutoWidth]="true"
+      [columnHidingEnabled]="true"
+      id="gridContainer"
+      [dataSource]="dataSource"
+      [remoteOperations]="false"
+      [allowColumnReordering]="true"
+      [rowAlternationEnabled]="true"
+      [showBorders]="true"
+      [width]="'100%'"
+      (onContentReady)="contentReady($event)"
+      (onInitialized)="onInitGrid($event)"
+    >
+      <dxo-toolbar>
+        <!-- Delete Button -->
+        <dxi-item
+          location="before"
+          widget="dxButton"
+          [options]="{
+            text: ( 'delete' | translate ),
+            icon: 'trash',
+            type: 'danger',
+            elementAttr: { class: 'custom-delete-btn' },
+            onClick: deleteSelected
+          }"
+        ></dxi-item>
+
+        <!-- Search Panel -->
+        <dxi-item name="searchPanel" ></dxi-item>
+      </dxo-toolbar>
+
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager
+        [visible]="true"
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[10, 25, 50, 100]"
+      ></dxo-pager>
+
+      <dxo-selection
+        mode="multiple"
+        [showCheckBoxesMode]="'always'"
+        [allowSelectAll]="true"
+      ></dxo-selection>
+
+      <dxi-column dataField="id" alignment="left" [caption]="'id' | translate"></dxi-column>
+
+      <dxi-column
+        dataField="image"
+        [caption]="'thumbnail' | translate"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="imageCellTemplate"
+      ></dxi-column>
+
+      <div *dxTemplate="let data of 'imageCellTemplate'">
+        <img
+          [src]="data.value"
+          style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"
+        />
+      </div>
+
+      <dxi-column
+        dataField="title"
+        [caption]="'filename' | translate"
+        alignment="left"
+      ></dxi-column>
+
+      <dxi-column
+        dataField="date"
+        dataType="date"
+        [caption]="'created' | translate"
+        alignment="right"
+      ></dxi-column>
+
+      <dxi-column
+       *ngIf="isDialog"
+        caption="Actions"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        [width]="120"
+        cellTemplate="actionsCell">
+      </dxi-column>
+
+  <div *dxTemplate="let cell of 'actionsCell'">
+  <button mat-button color="primary" (click)="selectImage(cell.data)">
+    Insert
+  </button>
 </div>
+
+      <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
+    </dx-data-grid>
+        </div>
+    </div>
+</section>

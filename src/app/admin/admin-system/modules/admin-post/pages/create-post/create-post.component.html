@@ -98,11 +98,12 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <div 
-                                    class="image-wrapper m-0 d-flex align-items-center justify-content-center" 
+                                    class="image-wrapper m-0 d-flex align-items-center justify-content-center position-relative" 
                                     [ngClass]="{'has-error': postForm.get('metaDescription')?.touched && postForm.get('metaDescription')?.invalid}"
                                     (click)="displayFileManager()"
                                 >
-                                    <img src="../../../../../../../assets/imagis/download-file-image.png" alt="">
+                                    <img [src]="selectedImage">
+                                    <span *ngIf="isImageLoaded" class="position-absolute" (click)="removeImage($event)"><i class="fa-solid fa-xmark"></i></span>
                                 </div> 
                             </div>
                         </div>
@@ -197,4 +198,3 @@
         </form>
     </section>
 </div>
-<app-file-manager #fileManager (fileSelected)="handleFile()"></app-file-manager>
