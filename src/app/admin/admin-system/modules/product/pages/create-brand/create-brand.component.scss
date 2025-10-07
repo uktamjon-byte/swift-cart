@@ -1,0 +1,11 @@
+@import'../../../../../../../assets/sass/variables.scss';
+.image-wrapper{
+  span{
+    right: 9px;
+    top: 3px;
+    color: $color-gray-dark;
+    &:hover{
+      color: rgba(0, 0, 0, 0.499);
+    }
+  } 
+}

@@ -19,7 +19,6 @@ export class CreateTagCategoriesComponent implements OnInit {
   componentTitle = null;
   buttonText = null;
   constructor(
-    private postBlogService: PostBlogService,
     private route: ActivatedRoute,
     private translate: TranslateService
   ) {

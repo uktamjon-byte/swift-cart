@@ -13,4 +13,5 @@ interface ISubcategories {
   name: string;
   id: number;
   subLink: string;
+  visible?: boolean;
 }

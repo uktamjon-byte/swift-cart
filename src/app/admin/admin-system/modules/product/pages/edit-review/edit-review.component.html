@@ -1,0 +1,94 @@
+<section class="right-column mt-4 border-radius-2">
+    <h5 class="fw-bold mb-3">{{'editReview' | translate}}</h5>
+    <div class="row bg-white">
+        <div class="col-lg-4">
+            <div class="left-info mt-3">
+                <div class="header px-3 py-2 fw-bold">
+                    {{'reviewInfo' | translate}}
+                </div>
+                <div class="main ">
+                    <div class="panel py-2 position-relative ms-2"><span class="ms-2 fw-bold">{{'general' | translate}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+             <div class="box px-3 shadow-none">
+                        <div class="box-header">
+                            <a class="fw-bold active-title-underline position-relative">{{ 'general' | translate }}</a>  
+                        </div>
+                        <div class="box-body">
+                            <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                            <div class="form-rating mb-2">
+                                  <label for="title" class="text-left">
+                                          {{ 'rating' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                               <select class="form-select" aria-label="Default select example" formControlName="rating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="3">4</option>
+                                    <option value="3">5</option>
+                                </select>
+                                 <p class="error-message" *ngIf="reviewForm.get('rating')?.touched && reviewForm.get('rating')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                                </div>
+                                <div class="form-title">
+                                  <label for="title" class="text-left">
+                                          {{ 'title' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                                <input 
+                                    type="text" 
+                                    id="title" 
+                                    class="form-control"
+                                    formControlName="title"
+                                    [ngClass]="{'has-error': reviewForm.get('title')?.touched && reviewForm.get('title')?.invalid}"
+                                >
+                                 <p class="error-message" *ngIf="reviewForm.get('title')?.touched && reviewForm.get('title')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                                </div>              
+                            
+                                 <div class="form-group mt-3">
+                                <label for="meta-description" class="text-left">
+                                    {{ 'description' | translate }}
+                                    <span class="text-red">*</span>
+                                </label>
+                                <textarea 
+                                    class="meta-description form-control w-100" 
+                                    style="height: 130px;" 
+                                    id="description"
+                                    formControlName="description"
+                                    [ngClass]="{'has-error': reviewForm.get('description')?.touched && reviewForm.get('description')?.invalid}"
+                                ></textarea>
+                                <p class="error-message" *ngIf="reviewForm.get('description')?.touched && reviewForm.get('description')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+
+                                <div class="form-status mt-3">
+                                    <label for="title" class="text-left d-block">
+                                            {{ 'status' | translate }}
+                                            <span class="text-red">*</span>
+                                    </label>
+                                    <input class="form-check-input me-3" type="checkbox" value="" id="checkDefault" formControlName="status">
+                                     <label class="form-check-label" for="checkDefault">
+                                             {{ 'approveReview' | translate }}                              
+                                     </label>
+                                <p class="error-message" *ngIf="reviewForm.get('description')?.touched && reviewForm.get('description')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                                </div>
+                            </div>
+                                <div class="action-btns mt-3">
+                                   <button class="btn btn-primary btn-md" type="submit">{{'save' | translate}}</button>
+                                </div>
+                            </form>
+                        </div>
+                 </div>
+        </div>      
+    </div>                  
+</section>

@@ -1,34 +1,10 @@
-
-
-
 @use '@angular/material' as mat;
-@include mat.core();
-$ang-swift-cart-primary: mat.define-palette(mat.$indigo-palette);
- $ang-swift-cart-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-$ang-swift-cart-warn: mat.define-palette(mat.$red-palette);
-
-$ang-swift-cart-theme: mat.define-light-theme((
-    
-  color: (
-    primary: $ang-swift-cart-primary,
-    accent: $ang-swift-cart-accent,
-    warn: $ang-swift-cart-warn,
-  )
-
-));
-
-@include mat.all-component-themes($ang-swift-cart-theme);
-
-/* You can add global styles to this file, and also import other style files */
+@import'./assets/sass/variables.scss';
 @import "@fontsource/poppins";
 @import "assets/sass/variables.scss";
 @import "assets/sass/mixins.scss";
 @import "assets/sass/scroll-bar.scss";
 @import 'swiper/swiper-bundle.min.css';
-// @import "~devextreme/dist/css/dx.common.css";
-// @import "~devextreme/dist/css/dx.material.blue.light.css";
-
 
 @font-face{
     font-family: 'Poppins';
@@ -48,79 +24,31 @@ $ang-swift-cart-theme: mat.define-light-theme((
     
 }
 
+@include mat.core();
+$ang-swift-cart-primary: mat.define-palette(mat.$indigo-palette);
+ $ang-swift-cart-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$ang-swift-cart-warn: mat.define-palette(mat.$red-palette);
+
+$ang-swift-cart-theme: mat.define-light-theme((
+    
+  color: (
+    primary: $ang-swift-cart-primary,
+    accent: $ang-swift-cart-accent,
+    warn: $ang-swift-cart-warn,
+  )
+
+));
+
+
+
+@include mat.all-component-themes($ang-swift-cart-theme);
+
 $font-base-light:'Poppins-Light';
 $font-base-bold:'Poppins-Bold';
 $font-base-regular:'Poppins';
 
- .dx-datagrid-search-panel::after {
-  display: none !important;
-}
-
-.dx-data-row:hover {
-  background-color: #f0f8ff !important;  /* Light blue */
-  cursor: pointer;
-}
-
-/* Remove border and hover effect on the search panel input */
-
-.dx-datagrid-search-panel {
-    border-radius: 8px !important;
-    input{
-        padding: 9px 16px 11px !important;
-        padding-left: 46px !important;
-        height: 30px !important;        
-    }
-    input:focus{
-        border: none !important;
-    }
-   .dx-icon-search{
-     margin-top: -22px !important;
-   }
-  .dx-placeholder{
-    top: -8px !important;
-  }
-}
- .dx-datagrid-search-text {
-  color: #111827;
-  font-size: 17px;
-}
-.dx-texteditor.dx-state-focused::before {
-  content: none !important;
-  display: none !important;
-  border: none !important;
-}
-
-.custom-delete-btn {
-  /* Match the search bar height */
-  background-color: #fff !important; /* Bootstrap's danger red */
-  border-radius: 8px !important;
-  border: 1px solid #d0d5dd;
-  padding: 2px 12px !important;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  transition: all .2s ease-in-out;
-  width: auto !important;
-  padding: 0 !important;
-  .dx-icon{
-    color: #d0d5dd !important;
-  }
-  .dx-button-text{
-   color: #3333337d !important;
-   text-transform: none !important;
-  }
-}
-
- .custom-delete-btn:hover{
-   border: 1px solid #0068e1;
-    .dx-icon{
-    color: #0068e1 !important;
-  }
-  .dx-button-text{
-   color: #0068e1 !important;
-  }
-}
-/* 1. Remove default margin and padding */
+/* 2. Set the font to a consistent baseline */
 *,
 *::before,
 *::after {
@@ -128,26 +56,6 @@ $font-base-regular:'Poppins';
     padding: 0;
     box-sizing: border-box;
 }
-
-dropzone {
-//   display: block;
-//   width: 100%;
-//   min-height: 200px;
-//   border: none !important;
-//   border-radius: 8px;
-//   background: #f8f9fa;
-//   padding: 16px;
-  .dz-message{
-    border: none !important;
-    background-color: inherit !important;
-       .dz-text{
-            font-size: 18px !important;
-            color: $color-gray-dark-5 !important;
-        }
-  }
-}
-
-/* 2. Set the font to a consistent baseline */
 
 body, .mat-body, .mat-body-1, .mat-typography .mat-body, .mat-typography .mat-body-1 {
     font-family: 'Poppins-Light', sans-serif !important;
@@ -164,6 +72,8 @@ body, .mat-body, .mat-body-1, .mat-typography .mat-body, .mat-typography .mat-bo
   html{
     top: 0 !important;
   }
+
+body { margin: 0; font-family: $font-base-regular, "Helvetica Neue", sans-serif; }
   
 h1, h2, h3, h4, h5, h6{
     margin-bottom: 0 !important;
@@ -235,24 +145,133 @@ p{
     padding: 0 !important;
     margin: 0 !important;
 }
-.policy-paragraph-styles{
-    line-height: 24px;
-    color: $color-gray;
-}
-
-.main-container{
-    width: 94%;
-}
-
-.error-message{
-    color: $error-text-message;
-}
 
 table td, th {
     padding: 15px 25px !important;
     min-width: 120px !important;
 }
 
+// devextreme datagrid styling
+ .dx-datagrid-search-panel::after {
+  display: none !important;
+}
+
+.dx-data-row:hover {
+  background-color: #f0f8ff !important;  /* Light blue */
+  cursor: pointer;
+}
+
+.dx-datagrid-search-panel {
+    border-radius: 8px !important;
+    input{
+        padding: 9px 16px 11px !important;
+        padding-left: 46px !important;
+        height: 30px !important;        
+    }
+    input:focus{
+        border: none !important;
+    }
+   .dx-icon-search{
+     margin-top: -22px !important;
+   }
+  .dx-placeholder{
+    top: -8px !important;
+  }
+}
+ .dx-datagrid-search-text {
+  color: #111827;
+  font-size: 17px;
+}
+
+  ::ng-deep .dx-datagrid-search-panel {
+      border-radius: 8px;
+      background-color: #f3f4f6; // light gray
+      border: 1px solid #d0d5dd !important;
+    width: 277px;
+    max-width: 100%;
+    height: 30px !important;
+    transition: .2s ease-in-out;
+    .dx-placeholder{
+       top: -8px !important;
+    }
+     .dx-icon-search{
+      margin-top: -20px !important;
+   }
+   .dx-texteditor::after{  
+      border-bottom: 1px solid red !important;
+      &:hover{
+        border-bottom: red !important;
+      }
+   }
+}
+
+//devextreme text editor stylings
+.dx-texteditor.dx-state-focused::before {
+  content: none !important;
+  display: none !important;
+  border: none !important;
+}
+
+//costom  delete botton stylings
+.custom-delete-btn {
+  background-color: #fff !important;
+  border-radius: 8px !important;
+  border: 1px solid #d0d5dd;
+  padding: 2px 12px !important;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: all .2s ease-in-out;
+  width: auto !important;
+  padding: 0 !important;
+  .dx-icon{
+    color: #d0d5dd !important;
+  }
+  .dx-button-text{
+   color: #3333337d !important;
+   text-transform: none !important;
+  }
+}
+
+ .custom-delete-btn:hover{
+   border: 1px solid #0068e1;
+    .dx-icon{
+    color: #0068e1 !important;
+  }
+  .dx-button-text{
+   color: #0068e1 !important;
+  }
+}
+
+//dropzone stylings
+dropzone {
+  .dz-message{
+    border: none !important;
+    background-color: inherit !important;
+       .dz-text{
+            font-size: 18px !important;
+            color: $color-gray-dark-5 !important;
+        }
+  }
+}
+
+
+.policy-paragraph-styles{
+    line-height: 24px;
+    color: $color-gray;
+}
+
+//costum main contaite
+.main-container{
+    width: 94%;
+}
+
+//input error message styling
+.error-message{
+    color: $error-text-message;
+}
+
+//admin box container stylings
  .box{
         position: relative;
         width: 100%;
@@ -270,6 +289,35 @@ table td, th {
             padding: 20px;
             .form-group{
                 font-weight: bold;
+                .selected-image-container{
+                  margin-top: 6px;
+                  width: 100% !important;
+                  display: flex;
+                  flex-wrap: wrap;
+                  flex-direction: row;
+                  gap: 6px;
+                  .image-item{
+                     flex: 0 0 40%;  
+                     max-width: 40%;                 
+                    span{
+                            top: 2px;
+                            left: 117px;
+                            color: $color-gray-dark-5;
+                            transition: $transition-150;
+                            font-size: 18px;
+                            cursor: pointer;
+                            &:hover{
+                            color: black;
+                            }
+                        } 
+                  }
+                   .selected-images{
+                       width: 100%;
+                      border: 1px solid $border-color;
+                      border-radius: 4px;
+                }
+                }
+              
                 .image-wrapper{
                         width: 180px;
                         height: 170px;
@@ -277,7 +325,7 @@ table td, th {
                         border-radius: 8px;
                         z-index: 0;
                         cursor: pointer;
-                        overflow: hidden; 
+                        overflow: hidden;
                     }
                 label{
                     margin-bottom: 4px;
@@ -290,11 +338,7 @@ table td, th {
         }
     }
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: $font-base-regular, "Helvetica Neue", sans-serif; }
-
-@import'./assets/sass/variables.scss';
+//store tables styling
 .panel-inner{
     border: 1px solid $border-color;
     border-radius: $default-border-radius;
@@ -321,7 +365,6 @@ body { margin: 0; font-family: $font-base-regular, "Helvetica Neue", sans-serif;
             color: $color-black;
             td:not(:nth-child(2)){
                 white-space: nowrap;
-                //display: inline-block;
             }
             td:last-child{
                 display: flex;
@@ -329,9 +372,6 @@ body { margin: 0; font-family: $font-base-regular, "Helvetica Neue", sans-serif;
                 align-items: center;
                 column-gap: 8px;
             }
-            // td:nth-child(4), td:nth-child(5){
-            //    padding: 25px 10px !important;
-            // }
             span{
                 padding: 2px 10px;
                 background-color: #eef5f5;
@@ -382,38 +422,146 @@ body { margin: 0; font-family: $font-base-regular, "Helvetica Neue", sans-serif;
 }
 
 
-  ::ng-deep .dx-datagrid-search-panel {
- //padding: 6px 6px !important;
-      border-radius: 8px;
-      background-color: #f3f4f6; // light gray
-      border: 1px solid #d0d5dd !important;
-    width: 277px;
-    max-width: 100%;
-    height: 30px !important;
-    transition: .2s ease-in-out;
-    .dx-placeholder{
-       top: -8px !important;
-    }
-     .dx-icon-search{
-      margin-top: -20px !important;
-   }
-   .dx-texteditor::after{  
-      border-bottom: 1px solid red !important;
-      &:hover{
-        border-bottom: red !important;
-      }
-   }
+//html editor styles
+ .dx-htmleditor {
+    border-radius: 8px !important;
+    box-shadow: 0 0 0 1px #8c8c8c26 !important;
+    border-color:#d9d9d9 !important;
+}
+
+//devextreme tagbox styles
+ .dx-tagbox {
+  overflow-y: visible !important;
+  white-space: normal;
+  box-shadow: 0 0 0 1px #8c8c8c26 !important;
+ 
+}
+
+ .dx-tag-content {
+  flex-wrap: wrap !important; /* Forces tags to wrap */
+  gap: 4px;
+  padding-bottom: 4px;
 }
 
 
+//ng select costom styling
+.ng-select .ng-select-container {
+  .ng-placeholder{
+    font-weight: 200 !important;
+  }
+}
+
+.ng-select.has-error .ng-select-container {
+  border: 1px solid $color-red !important;
+  // border-radius: 6px;
+  // box-shadow: 0 0 4px rgba(255, 0, 0, 0.3);
+}
+
+.ng-select .ng-input > input {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ng-select .ng-select-container:focus {
+  border-color: #2196f3; 
+  box-shadow: none !important;  /* Hover effect */
+}
+
+.ng-select .ng-value {
+  background: #e3f2fd;      /* Background for selected tags */
+  border-radius: 10px !important;
+  padding: 2px 8px;
+  margin: 2px;
+  color: #1976d2;
+  font-weight: 300;
+  input:focus{
+    border: none !important;
+  }
+}
+
+ .ng-select .ng-value .ng-value-icon {
+  color: #1976d2;           /* X-mark color */
+}
+
+.ng-select .ng-option {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 300 !important;
+}
+
+.ng-select .ng-option:hover {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.status-approved {
+  background-color: #28a745;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.status-pending {
+  background-color: #ffc107;
+  color: #212529;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.status-rejected {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.active-title-underline{
+    &::before{
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: #0068e1;
+      position: absolute;
+      top: 34px;       // adjust as needed
+      left: 2px;
+      transform: scaleX(1);          
+      transform-origin: center;   
+      transition: transform 0.3s ease;
+    }  
+  }
+.left-info{
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    .header{
+        background-color: #f6f6f7;
+    }
+    .main{
+        border-top: #ddd;
+         padding: 10px 0 10px 8px;
+        background-color: #eee;
+        .panel{
+            background-color: white;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            &::before{
+                content: '';
+                width: 2px;
+                height: 100%;
+                background-color: $color-primary;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+//store tabel stylings
 @media screen and (max-width:768px) {
     .panel-inner{
         .panel-body{
             overflow-x: auto !important;
-            // table tbody tr td{
-            //     background-color: red;
-            //     min-width: 12px !important;
-            // }
         }
        
     }

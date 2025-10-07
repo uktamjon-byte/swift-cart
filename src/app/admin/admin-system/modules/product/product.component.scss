@@ -1,0 +1,37 @@
+.active-status {
+  color: green;
+  font-weight: bold;
+  background-color: #8080809e;
+  padding: 4px 6px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.inactive-status {
+  color: red;
+  font-weight: bold;
+  background-color: #8080809e;
+  padding: 4px 6px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.status-badge {
+  padding: 4px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 13px;
+}
+
+.status-in-stock {
+  background-color: #28a745; /* green */
+}
+
+.status-out-stock {
+  background-color: #dc3545; /* red */
+}
+
+.status-new {
+  background-color: #007bff; /* blue */
+}

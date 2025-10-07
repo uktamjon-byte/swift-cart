@@ -342,6 +342,7 @@
   "sidebarTags": "Tags",
   "sidebarReviews": "Reviews",
   "sidebarSales": "Sales",
+  "sidebarOrders": "Orders",
   "sidebarFlashSales": "Flash Sales",
   "sidebarCoupons": "Coupons",
   "sidebarPages": "Pages",
@@ -429,7 +430,27 @@
   "thumbnail": "Thumbnail",
   "filename": "Filename",
   "uploadFiles": "Upload Files",
-  "clickUpload": "Click or drag files here to upload"
+  "clickUpload": "Click or drag files here to upload",
+
+  "selectTags": "Select Tags",
+  "stockAvailable": "Stock Availability",
+  "inventory": "Inventory",
+  "enableProduct": "Enable the product",
+  "enableCategory": "Enable the category",
+
+  "editProduct": "Edit Product",
+  "createCategory": "Create Category",
+  "editCategory": "Edit Category",
+  "createBrand": "Create Brand",
+  "editBrand": "Edit Brand",
+  "createTag": "Create tag",
+  "approveReview": "Approve this review",
+  "editReview": "Edit Review",
+  "categoryInfo": "Category Information",
+  "brandInfo": "Brand Information",
+  "reviewInfo": "Review Information",
+  "tagInfo": "Tag Information"
+
 
 
 }

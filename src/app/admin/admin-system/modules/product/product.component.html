@@ -1,0 +1,138 @@
+<section class="grid-section">
+  <div class="top-section my-4">
+    <div class="title">
+      <h4 class="fw-bold">{{ 'sidebarAllProducts' | translate }}</h4>
+    </div>
+    <div class="create-post-btn d-flex justify-content-end">
+      <a [routerLink]="'/product/create'" class="btn btn-primary">
+        {{ 'sidebarCreateProduct' | translate }}
+      </a>
+    </div>
+  </div>
+
+  <div class="bottom-section">
+    <dx-data-grid
+      [columnAutoWidth]="true"
+      [columnHidingEnabled]="true"
+      id="gridContainer"
+      [dataSource]="products"
+      [remoteOperations]="false"
+      [allowColumnReordering]="true"
+      [rowAlternationEnabled]="true"
+      [showBorders]="true"
+      [width]="'100%'"
+      (onContentReady)="contentReady($event)"
+      (onInitialized)="onInitGrid($event)"
+      (onRowClick)="onRowClick($event)"
+    >
+      <dxo-toolbar>
+        <!-- Delete Button -->
+        <dxi-item
+          location="before"
+          widget="dxButton"
+          [options]="{
+            text: ( 'delete' | translate ),
+            icon: 'trash',
+            type: 'danger',
+            elementAttr: { class: 'custom-delete-btn' },
+            onClick: deleteSelected
+          }"
+        ></dxi-item>
+
+        <!-- Search Panel -->
+        <dxi-item name="searchPanel" ></dxi-item>
+      </dxo-toolbar>
+
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager
+        [visible]="true"
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[10, 25, 50, 100]"
+      ></dxo-pager>
+
+      <dxo-selection
+        mode="multiple"
+        [showCheckBoxesMode]="'always'"
+        [allowSelectAll]="true"
+      ></dxo-selection>
+
+      <dxi-column dataField="id" alignment="left" [caption]="'id' | translate"></dxi-column>
+
+      <dxi-column
+        dataField="images"
+        [caption]="'featuredImage' | translate"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="imageCellTemplate"
+      ></dxi-column>
+
+      <div *dxTemplate="let cellData of 'imageCellTemplate'">
+        <img
+           *ngIf="cellData.data.images?.link"
+           [src]="cellData.data.images.link"
+          style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"
+        />
+      </div>
+
+      <dxi-column
+        dataField="name"
+        [caption]="'name' | translate"
+        alignment="left"
+      ></dxi-column>
+
+  <dxi-column
+        dataField="availability"
+        [caption]="'stockAvailable' | translate "
+        cellTemplate="availabilityCell">
+  </dxi-column>
+  <div *dxTemplate="let cellData of 'availabilityCell'">
+  <span
+    [ngClass]="{
+      'status-in-stock': cellData.value === 'in',
+      'status-out-stock': cellData.value === 'out',
+      'status-new': cellData.value === 'new'
+    }"
+    class="status-badge"
+  >
+    {{ cellData.value === 'in' ? 'In Stock' :
+       cellData.value === 'out' ? 'Out of Stock' :
+       cellData.value === 'new' ? 'New' : '' }}
+  </span>
+</div>
+
+<dxi-column
+    dataField="isEnabled"
+    [caption]="'status' | translate"
+    dataType="boolean"
+    [width]="150"
+    cellTemplate="statusCell">
+</dxi-column>
+
+<!-- Use the same syntax as imageCellTemplate -->
+<div *dxTemplate="let cellData of 'statusCell'">
+  <span
+    [ngClass]="{
+      'active-status': cellData.value,
+      'inactive-status': !cellData.value
+    }"
+  >
+    {{ cellData.value ? 'Active' : 'Inactive' }}
+  </span>
+</div>
+
+      <dxi-column
+        dataField="price"
+        [caption]="'price' | translate "
+      ></dxi-column>
+
+      <dxi-column
+        dataField="updatedDate"
+        dataType="date"
+        [caption]="'updated' | translate"
+      ></dxi-column>
+
+      <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
+    </dx-data-grid>
+  </div>
+</section>
+

@@ -1,0 +1,250 @@
+<div class="content">
+    <section class="content-header my-3">
+        <h4 class="fw-bold">{{ (isEditable? 'editProduct' : 'sidebarCreateProduct' ) | translate }}</h4>
+    </section>
+    <section class="main-content">
+        <form class="post-form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="left-column col-lg-8 col-md-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h5 class="fw-bold">{{ 'general' | translate }}</h5>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="title" class="text-left">
+                                    {{ 'title' | translate }}
+                                    <span class="text-red">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="title" 
+                                    class="form-control"
+                                    formControlName="title"
+                                    [ngClass]="{'has-error': productForm.get('title')?.touched && productForm.get('title')?.invalid}"
+                                >
+                                <p class="error-message" *ngIf="productForm.get('title')?.touched && productForm.get('title')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="editor">
+                                    {{ 'description' | translate }}
+                                    <span class="text-red">*</span>
+                                </label>
+                                <dx-html-editor                     
+                                    [height]="400"
+                                    formControlName="description"
+                                    [ngClass]="{'has-error': productForm.get('description')?.touched && productForm.get('description')?.invalid}"
+                                    [toolbar]="{ items: [ 'undo', 'redo', 'separator', 'bold', 'italic', 'underline', 'strike',
+                                    'separator', 'font', 'size', 'alignLeft', 'alignCenter', 'alignRight', 'alignJustify',
+                                    'separator', 'orderedList', 'bulletList', 'separator', 'link', 'image', 'clear',
+                                    'codeBlock', 'blockquote', 'insertTable', 'header', 'color', 'background' ] }"
+                                >
+                                </dx-html-editor>
+                                <p class="error-message" *ngIf="productForm.get('description')?.touched && productForm.get('description')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                            <div class="bottom-items col-lg-6 mt-3">
+                                <div class="form-group mt-3">
+                                   <label for="brand" class="text-left">
+                                        {{'sidebarBrands' | translate}}
+                                        <span class="text-red">*</span>
+                                    </label>
+                                    <select 
+                                        class="form-select" 
+                                        formControlName="brand"
+                                         [ngClass]="{'has-error': productForm.get('brand')?.touched && productForm.get('brand')?.invalid}"
+                                    >
+                                        <option value="lenovo">Lenovo</option>
+                                        <option value="asus">Asus</option>
+                                    </select>
+                                     <p class="error-message" *ngIf="productForm.get('brand')?.touched && productForm.get('brand')?.invalid"> 
+                                       {{ 'emptyInputError' | translate }}
+                                    </p>
+                                </div>                                  
+                                  <div class="form-group mt-3">
+                                      <label for="categories" class="text-left">
+                                        {{'categories' | translate}}
+                                        <span class="text-red">*</span>
+                                    </label>
+                                     <ng-select
+                                        [items]="cities"
+                                        bindLabel="name"
+                                        bindValue="name"
+                                        [multiple]="true"
+                                        [placeholder]="'selectCategories' | translate"
+                                        formControlName="categories"
+                                        [ngClass]="{'has-error': productForm.get('categories')?.touched && productForm.get('categories')?.invalid}"
+                                        >
+                                    </ng-select>
+                                    <p class="error-message" *ngIf="productForm.get('categories')?.touched && productForm.get('categories')?.invalid"> 
+                                       {{ 'emptyInputError' | translate }}
+                                    </p>
+                            </div>
+                            <div class="form-group mt-3">
+                                      <label for="categories" class="text-left">
+                                        {{'tags' | translate}}
+                                        <span class="text-red">*</span>
+                                    </label>
+                                     <ng-select
+                                        [items]="cities"
+                                        bindLabel="name"
+                                        bindValue="name"
+                                        [multiple]="true"
+                                        [placeholder]="'selectTags' | translate"
+                                        formControlName="tags"
+                                        [ngClass]="{'has-error': productForm.get('tags')?.touched && productForm.get('tags')?.invalid}"
+                                        >
+                                    </ng-select>
+                                     <p class="error-message" *ngIf="productForm.get('tags')?.touched && productForm.get('tags')?.invalid"> 
+                                       {{ 'emptyInputError' | translate }}
+                                    </p>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="form-check-label" for="switchCheckDefault">{{'status' | translate}}</label>
+                                <div class="form-check form-switch d-flex align-items-center">                                 
+                                    <input class="form-check-input me-3" formControlName="enabled" type="checkbox" role="switch" id="switchCheckDefault">
+                                    <label class="form-check-label fw-100" for="switchCheckDefault">{{'enableProduct' | translate}}</label>
+                                    <p class="error-message" *ngIf="productForm.get('enabled')?.touched && productForm.get('enabled')?.invalid"> 
+                                       {{ 'emptyInputError' | translate }}
+                                    </p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-column col-lg-4 col-md-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h5 class="fw-bold">{{ 'featuredImage' | translate }}</h5>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div 
+                                    class="image-wrapper m-0 d-flex align-items-center justify-content-center" 
+                                    (click)="displayFileManager()"
+                                >
+                                <img [src]="placeholderImage">
+                                </div> 
+                                <div class="selected-image-container">
+                                    <div class="image-item position-relative" *ngFor="let selectedImage of selectedImages">
+                                        <img  [src]="selectedImage.image" class="selected-images">
+                                        <span class="position-absolute" (click)="removeImage($event, selectedImage.id)"><i class="fa-solid fa-xmark"></i></span>
+                                    </div>                           
+                                </div>
+                                 <p class="error-message" *ngIf="isClicked && selectedImages.length === 0"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h5 class="fw-bold">{{ 'inventory' | translate }}</h5>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="title" class="text-left">
+                                    {{ 'stockAvailable' | translate }}
+                                    <span class="text-red">*</span>
+                                </label>
+                                <select 
+                                    class="form-select" 
+                                    formControlName="availability"
+                                    [ngClass]="{'has-error': productForm.get('availability')?.touched && productForm.get('availability')?.invalid}"
+                                >
+                                    <option value="in"> {{ 'in' | translate }}</option>
+                                    <option value="out">{{ 'out' | translate }}</option>
+                                </select>
+                                <p class="error-message" *ngIf="productForm.get('publishStatus')?.touched && productForm.get('publishStatus')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h5 class="fw-bold">{{ 'price' | translate }}</h5>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="title" class="text-left">
+                                    {{ 'price' | translate }}
+                                    <span class="text-red">*</span>
+                                </label>
+                               <div class="input-group flex-nowrap">
+                                    <span class="input-group-text" id="addon-wrapping">$</span>
+                                    <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    formControlName="price" 
+                                    aria-label="Username" 
+                                    aria-describedby="addon-wrapping"
+                                    [ngClass]="{'has-error': productForm.get('price')?.touched && productForm.get('price')?.invalid}"
+                                    >
+                                </div>
+                                <p class="error-message" *ngIf="productForm.get('postCategory')?.touched && productForm.get('postCategory')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h5 class="fw-bold">SEO</h5>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="meta-title" class="text-left">
+                                    {{ 'metaTitle' | translate }}
+                                    <span class="text-red">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="meta-title" 
+                                    class="form-control"
+                                    formControlName="metaTitle"
+                                    [ngClass]="{'has-error': productForm.get('metaTitle')?.touched && productForm.get('metaTitle')?.invalid}"
+                                >
+                                <p class="error-message" *ngIf="productForm.get('metaTitle')?.touched && productForm.get('metaTitle')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="meta-description" class="text-left">
+                                    {{ 'metaDescription' | translate }}
+                                    <span class="text-red">*</span>
+                                </label>
+                                <textarea 
+                                    class="meta-description form-control w-100" 
+                                    style="height: 130px;" 
+                                    id="meta-description"
+                                    formControlName="metaDescription"
+                                    [ngClass]="{'has-error': productForm.get('metaDescription')?.touched && productForm.get('metaDescription')?.invalid}"
+                                ></textarea>
+                                <p class="error-message" *ngIf="productForm.get('metaDescription')?.touched && productForm.get('metaDescription')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-form-footer d-flex align-items-center justify-content-end position-fixed bottom-0 end-0 px-2 py-2">
+                <div class="control-btns">
+                    <button class="btn btn-outline-secondary me-2" type="submit">{{ 'save' | translate }}</button>
+                    <input type="submit">
+                    <button class="btn btn-outline-primary me-2">{{ 'saveAndEdit' | translate }}</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>

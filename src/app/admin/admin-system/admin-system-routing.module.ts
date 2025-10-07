@@ -29,6 +29,13 @@ const routes: Routes = [
             (m) => m.MediaModule
           ),
       },
+      {
+        path: 'product',
+        loadChildren: () =>
+          import('../admin-system/modules/product/product.module').then(
+            (m) => m.ProductModule
+          ),
+      },
     ],
   },
 ];

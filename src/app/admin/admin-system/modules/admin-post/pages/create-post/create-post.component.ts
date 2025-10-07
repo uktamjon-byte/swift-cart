@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { event } from 'devextreme/events';
 import { FileManagerComponent } from '../../../shared/components/file-manager/file-manager.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -36,7 +35,6 @@ export class CreatePostComponent implements OnInit {
       tags: new FormControl('', Validators.required),
     });
   }
-  editorValue: string = 'Text Editor';
 
   blogCategories = [
     { id: 1, title: 'companyUpdates' },

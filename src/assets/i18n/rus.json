@@ -131,7 +131,7 @@
   "productPrice": "Цена",
   "productAvailability": "Наличие",
 
-    "streetAddressLabel": "Улица / Адрес",
+  "streetAddressLabel": "Улица / Адрес",
   "addressLine1": "Адрес, строка 1",
   "addressLine2": "Адрес, строка 2 (необязательно)",
   "streetAddressEmptyError": "Адрес улицы обязателен",
@@ -344,6 +344,7 @@
   "sidebarTags": "Теги",
   "sidebarReviews": "Отзывы",
   "sidebarSales": "Продажи",
+  "sidebarOrders": "Заказы",
   "sidebarFlashSales": "Молниеносные распродажи",
   "sidebarCoupons": "Купоны",
   "sidebarPages": "Страницы",
@@ -429,6 +430,28 @@
   "thumbnail": "Заставка",
   "filename": "Имя файла",
    "uploadFiles": "Загрузить файлы",
-  "clickUpload": "Нажмите здесь или перетащите файлы чтобы загрузить"
+  "clickUpload": "Нажмите здесь или перетащите файлы чтобы загрузить",
+
+  "selectTags": "Выберите теги",
+  "stockAvailable": "Доступность товара",
+  "inventory": "Инвентарь",
+  "enableProduct": "Разрешить использование продукта",
+  "enableCategory": "Разрешить использование категорию",
+
+  "editProduct": "Редактировать продукт",
+  "createCategory": "Создать категорию",
+  "editCategory": "Редактировать категорию",
+   "createBrand": "Создать бренд",
+   "createTag": "Создать тег",
+  "editBrand": "Редактировать бренд",
+  "approveReview": "Одобрить этот отзыв",
+
+  "editReview": "Редактировать отзыв",
+  "categoryInfo": "Информация о категории",
+  "brandInfo": "Информация о бренде",
+  "reviewInfo": "Информация об отзыве",
+  "tagInfo": "Информация о теге"
+
+  
 }
 

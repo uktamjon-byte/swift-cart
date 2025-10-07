@@ -41,7 +41,8 @@
               "node_modules/devextreme/dist/css/dx.common.css",
                "node_modules/devextreme/dist/css/dx.material.blue.light.css",
               "src/styles.scss",          
-              "node_modules/dropzone/dist/min/dropzone.min.css"
+              "node_modules/dropzone/dist/min/dropzone.min.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css"
             ],
             "scripts": [
               "node_modules/@popperjs/core/dist/umd/popper.min.js",

@@ -1,6 +1,6 @@
 <div class="content">
     <section class="content-header my-3">
-        <h4 class="fw-bold">{{ 'createPost' | translate}}</h4>
+        <h4 class="fw-bold">{{ 'createBlogPost' | translate}}</h4>
     </section>
     <section class="main-content">
         <form class="post-form" [formGroup]="postForm" (ngSubmit)="onSubmit()">
@@ -32,8 +32,7 @@
                                     {{ 'description' | translate }}
                                     <span class="text-red">*</span>
                                 </label>
-                                <dx-html-editor
-                                    [(value)]="editorValue"                       
+                                <dx-html-editor                       
                                     [height]="400"
                                     formControlName="description"
                                     [ngClass]="{'has-error': postForm.get('description')?.touched && postForm.get('description')?.invalid}"

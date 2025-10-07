@@ -1,0 +1,47 @@
+<section class="right-column mt-4 border-radius-2">
+    <h5 class="fw-bold mb-3">{{title | translate}}</h5>
+    <div class="row bg-white">
+        <div class="col-lg-4">
+            <div class="left-info mt-3">
+                <div class="header px-3 py-2 fw-bold">
+                    {{'tagInfo' | translate}}
+                </div>
+                <div class="main ">
+                    <div class="panel py-2 position-relative ms-2"><span class="ms-2 fw-bold">{{'general' | translate}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+             <div class="box px-3 shadow-none">
+                        <div class="box-header">
+                            <a class="fw-bold active-title-underline position-relative">{{ 'general' | translate }}</a>  
+                        </div>
+                        <div class="box-body">
+                            <form [formGroup]="tagForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group"> 
+                                <div class="form-title">
+                                  <label for="title" class="text-left">
+                                          {{ 'title' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                                <input 
+                                    type="text" 
+                                    id="title" 
+                                    class="form-control"
+                                    formControlName="title"
+                                    [ngClass]="{'has-error': tagForm.get('title')?.touched && tagForm.get('title')?.invalid}"
+                                >
+                                 <p class="error-message" *ngIf="tagForm.get('title')?.touched && tagForm.get('title')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                                </div>              
+                            </div>
+                                <div class="action-btns mt-3">
+                                   <button class="btn btn-primary btn-md" type="submit">{{'save' | translate}}</button>
+                                </div>
+                            </form>
+                        </div>
+                 </div>
+        </div>      
+    </div>                  
+</section>

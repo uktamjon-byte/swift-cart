@@ -1,9 +1,19 @@
 @import '../../../../../../../assets/sass/variables.scss';
-
     .page-form-footer{
         background-color: white;
         left: 240px;
         box-shadow: 0 0 2px #0000002e;
+    }
+    .form-check{
+      input{
+        width: 50px;
+        height: 23px;
+          clip-path: circle(50% at 50% 50%);
+      }
+      label{
+        margin-bottom: 0 !important;
+        font-weight: 400;
+      }
     }
 
      @media screen and (max-width: 1024px)  {

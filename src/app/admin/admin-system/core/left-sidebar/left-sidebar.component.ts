@@ -35,10 +35,10 @@ export class LeftSidebarComponent implements OnInit {
       icon: 'fa-solid fa-cube',
       isOpen: false,
       link: '/products',
-      pattern: 'products',
+      pattern: 'product',
       subcategories: [
         { name: 'sidebarCreateProduct', id: 1, subLink: '/product/create' },
-        { name: 'sidebarAllProducts', id: 2, subLink: '/allProducts' },
+        { name: 'sidebarAllProducts', id: 2, subLink: 'product/list' },
         { name: 'sidebarCategories', id: 3, subLink: '/product/categories' },
         { name: 'sidebarBrands', id: 4, subLink: '/product/brand' },
         { name: 'sidebarAttributes', id: 5, subLink: '/product/attributes' },
@@ -48,19 +48,20 @@ export class LeftSidebarComponent implements OnInit {
           subLink: '/product/attributeSets',
         },
         { name: 'sidebarVariations', id: 7, subLink: '/product/variations' },
-        { name: 'sidebarOptions', id: 1, subLink: '/product/options' },
-        { name: 'sidebarTags', id: 8, subLink: '/product/tags' },
-        { name: 'sidebarReviews', id: 9, subLink: '/product/review' },
+        { name: 'sidebarOptions', id: 8, subLink: '/product/options' },
+        { name: 'sidebarTags', id: 9, subLink: '/product/tag' },
+        { name: 'sidebarReviews', id: 10, subLink: '/product/review' },
       ],
     },
     {
       name: 'sidebarSales',
       id: 3,
-      isParent: false,
+      isParent: true,
       icon: 'fa-solid fa-dollar-sign',
       isOpen: false,
       link: '/sales',
       pattern: 'sales',
+      subcategories: [{ name: 'sidebarOrders', id: 1, subLink: '/sale/order' }],
     },
     {
       name: 'sidebarFlashSales',
@@ -141,6 +142,7 @@ export class LeftSidebarComponent implements OnInit {
       subcategories: [
         { name: 'sidebarUsersList', id: 1, subLink: '/users/list' },
         { name: 'sidebarRoles', id: 2, subLink: '/users/roles' },
+        { name: 'users', id: 1, subLink: 'users/edit/:id', visible: false },
       ],
     },
     {
@@ -159,6 +161,12 @@ export class LeftSidebarComponent implements OnInit {
           subLink: '/localization/currency',
         },
         { name: 'sidebarTaxes', id: 3, subLink: '/localization/taxes' },
+        {
+          name: 'blog',
+          id: 1,
+          subLink: 'localization/edit/:id',
+          visible: false,
+        },
       ],
     },
     {
@@ -200,6 +208,13 @@ export class LeftSidebarComponent implements OnInit {
       .subscribe((event: any) => {
         this.currentUrl = event.urlAfterRedirects;
         console.log('url', event.urlAfterRedirects);
+        const [, firstSegment] = this.currentUrl.split('/');
+        this.categories.forEach((category) => {
+          console.log('irems', firstSegment, category.pattern);
+          if (firstSegment === category.pattern) {
+            category.isOpen = true;
+          }
+        });
         this.openParentsFor(this.currentUrl);
       });
 
@@ -216,7 +231,6 @@ export class LeftSidebarComponent implements OnInit {
   }
 
   openParentsFor(url: string) {
-    console.log('current url', url);
     this.categories.forEach((category) => {
       if (category.subcategories?.some((sub) => url.includes(sub.subLink))) {
         category.isOpen = true; // open parent
@@ -239,7 +253,6 @@ export class LeftSidebarComponent implements OnInit {
         }
       this.categories[i].isOpen = false;
     }
-    console.log('link', category.link);
     if (category.isParent) {
       category.isOpen = !category.isOpen;
     } else {
