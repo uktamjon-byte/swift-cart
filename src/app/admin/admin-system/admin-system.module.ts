@@ -8,7 +8,6 @@ import { AdminSystemRoutingModule } from './admin-system-routing.module';
 import { SharedModule } from '../../shared/components/shared-module';
 import { MatMenuModule } from '@angular/material/menu';
 import { AdminService } from './services/admin.service';
-import { ProductComponent } from './modules/product/product.component';
 
 @NgModule({
   declarations: [

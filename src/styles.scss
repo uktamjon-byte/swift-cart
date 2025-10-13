@@ -77,6 +77,23 @@ body { margin: 0; font-family: $font-base-regular, "Helvetica Neue", sans-serif;
   
 h1, h2, h3, h4, h5, h6{
     margin-bottom: 0 !important;
+    color: #444 !important;
+    line-height: 28px !important;
+}
+h6{
+  font-size: 16px !important;
+}
+h5{
+  font-size: 18px !important;
+}
+h4{
+  font-size: 20px !important;
+}
+h3{
+  font-size: 22px !important;
+}
+h2{
+  font-size: 24px !important;
 }
 /* 3. Remove list styles (for ul, ol) */
 ul,
@@ -496,24 +513,59 @@ dropzone {
 }
 
 .status-approved {
-  background-color: #28a745;
-  color: #fff;
-  padding: 2px 8px;
-  border-radius: 12px;
-}
-
-.status-pending {
-  background-color: #ffc107;
-  color: #212529;
-  padding: 2px 8px;
-  border-radius: 12px;
+  background-color: #d4edda;
+  color: #155724;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .status-rejected {
-  background-color: #dc3545;
-  color: #fff;
-  padding: 2px 8px;
-  border-radius: 12px;
+  background-color: #f8d7da;
+  color: #721c24;
+   padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.status-pending {
+  background-color: #fffae6;
+  color: #b38f00;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.status-processing {
+  background-color: #e6f3ff;
+  color: #007bff;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.status-shipped {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.status-delivered {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.status-cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .active-title-underline{
@@ -530,6 +582,7 @@ dropzone {
       transition: transform 0.3s ease;
     }  
   }
+  
 .left-info{
     border: 1px solid $border-color;
     border-radius: 8px;

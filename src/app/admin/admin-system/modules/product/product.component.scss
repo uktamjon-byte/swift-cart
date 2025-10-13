@@ -1,19 +1,17 @@
 .active-status {
-  color: green;
-  font-weight: bold;
-  background-color: #8080809e;
-  padding: 4px 6px;
-  border-radius: 10px;
-  font-size: 13px;
+  background-color: #d4edda;
+  color: #155724;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .inactive-status {
-  color: red;
-  font-weight: bold;
-  background-color: #8080809e;
-  padding: 4px 6px;
-  border-radius: 10px;
-  font-size: 13px;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .status-badge {
@@ -25,13 +23,25 @@
 }
 
 .status-in-stock {
-  background-color: #28a745; /* green */
+  background-color: #d4edda;
+  color: #155724;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .status-out-stock {
-  background-color: #dc3545; /* red */
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .status-new {
-  background-color: #007bff; /* blue */
+  background-color: #e6f3ff;
+  color: #007bff;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
 }

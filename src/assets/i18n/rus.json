@@ -450,7 +450,27 @@
   "categoryInfo": "Информация о категории",
   "brandInfo": "Информация о бренде",
   "reviewInfo": "Информация об отзыве",
-  "tagInfo": "Информация о теге"
+  "tagInfo": "Информация о теге",
+
+
+
+  "orderInfo": "Информация о заказе",
+  "addressInfo": "Информация об адресе",
+  "itemsOrdered": "Заказанные товары",
+
+  "shippingMethod": "Способ доставки",
+  "paymentMethod": "Способ оплаты",
+  "currency": "Валюта",
+  "currencyRate": "Курс валюты",
+
+  "customerName": "Имя клиента",
+  "customerEmail": "Электронная почта клиента",
+  "customerNumber": "Номер телефона клиента",
+  "customerGroup": "Группа клиентов",
+
+  "billingAddress": "Платежный адрес",
+  "shippingAddress": "Адрес доставки",
+  "orderdetails":"Подробная информация о заказе"
 
   
 }

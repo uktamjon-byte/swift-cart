@@ -449,8 +449,24 @@
   "categoryInfo": "Category Information",
   "brandInfo": "Brand Information",
   "reviewInfo": "Review Information",
-  "tagInfo": "Tag Information"
+  "tagInfo": "Tag Information",
 
+  "orderInfo": "Order Information",
+  "addressInfo": "Address Information",
+  "itemsOrdered": "Items Ordered",
 
+  "shippingMethod": "Shipping Method",
+  "paymentMethod": "Payment Method",
+  "currency": "Currency",
+  "currencyRate": "Currency Rate",
+
+  "customerName": "Customer Name",
+  "customerEmail": "Customer Email",
+  "customerNumber": "Customer Number",
+  "customerGroup": "Customer Group",
+
+  "billingAddress": "Billing Address",
+  "shippingAddress": "Shipping Address",
+  "orderdetails":"Order Details"
 
 }

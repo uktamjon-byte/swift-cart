@@ -1,0 +1,166 @@
+<section class="right-column mt-4 border-radius-2">
+    <h4 class="fw-bold mb-3">{{'orderdetails' | translate}}</h4>
+             <div class="box px-3">
+                        <div class="box-header">
+                            <h4 class="fw-bold position-relative">{{ 'accountInfo' | translate }}</h4>  
+                        </div>
+                        <div class="box-body">
+                      <div class="row">
+                        <div class="col-lg-6">
+                            <div class="order-info">
+                            <h5 class="fw-bold">{{ 'orderInfo' | translate }}</h5>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>{{ 'orderId' | translate }}</td>
+                                    <td>155</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'orderDate' | translate }}</td>
+                                    <td>Sep 25, 2025</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'orderStatus' | translate }}</td>
+                                    <td>
+                                    <select class="form-select">
+                                        <option *ngFor="let status of orderStatus">{{ status.name }}</option>
+                                    </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'shippingMethod' | translate }}</td>
+                                    <td>Flat Rate</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'paymentMethod' | translate }}</td>
+                                    <td>Bank Transfer</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'currency' | translate }}</td>
+                                    <td>USD</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'currencyRate' | translate }}</td>
+                                    <td>240</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="account-info">
+                            <h5 class="fw-bold">{{ 'accountInfo' | translate }}</h5>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>{{ 'customerName' | translate }}</td>
+                                    <td>Legend</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'customerEmail' | translate }}</td>
+                                    <td>toshmatovuktam2000@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'customerNumber' | translate }}</td>
+                                    <td>+992 99458875</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'customerGroup' | translate }}</td>
+                                    <td>Registered</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                        </div>
+
+                    <div class="row">
+                    <div class="box-header my-3">
+                        <h4 class="fw-bold position-relative">{{ 'addressInfo' | translate }}</h4>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="order-info">
+                        <h5 class="fw-bold">{{ 'billingAddress' | translate }}</h5>
+                        <span>
+                            victor fabrizio sarmiento tuñoque
+                            <br>
+                            Mz. k lote75 los olivos enrique milla ochoa
+                            <br>
+                            casa de 4 pisos entrada odeon
+                            <br>
+                            Los Olivos, Lima, Faridpur 15720
+                            <br>
+                            Bangladesh
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="account-info">
+                        <h5 class="fw-bold">{{ 'shippingAddress' | translate }}</h5>
+                        <span>
+                            victor fabrizio sarmiento tuñoque
+                            <br>
+                            Mz. k lote75 los olivos enrique milla ochoa
+                            <br>
+                            casa de 4 pisos entrada odeon
+                            <br>
+                            Los Olivos, Lima, Faridpur 15720
+                            <br>
+                            Bangladesh
+                        </span>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="box-header my-2">
+                        <h4 class="fw-bold position-relative">{{ 'itemsOrdered' | translate }}</h4>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="item-table">
+                        <table class="table product-table">
+                            <thead>
+                            <tr>
+                                <th>{{ 'product' | translate }}</th>
+                                <th>{{ 'unitPrice' | translate }}</th>
+                                <th>{{ 'quantity' | translate }}</th>
+                                <th>{{ 'lineTotal' | translate }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>MSI Gaming Core I7 8Th Gen 15.6-Inch Gaming Fhd Thin and Light Laptop</td>
+                                <td>155</td>
+                                <td>1</td>
+                                <td>166</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        </div>
+
+                        <div class="order-total">
+                        <table class="table product-table">
+                            <tbody>
+                            <tr>
+                                <td>{{ 'subtotal' | translate }}</td>
+                                <td>1555</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'flatRate' | translate }}</td>
+                                <td>1555</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'total' | translate }}</td>
+                                <td>1555</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    </div>
+
+                 </div>                   
+

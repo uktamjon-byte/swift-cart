@@ -1,0 +1,38 @@
+@import '../../../../../../../assets/sass/variables.scss';
+table{
+      border: none !important;
+      border-collapse: collapse;
+ tr{
+    td{
+        border: none !important;
+    }
+    td:first-child{
+        font-weight: bold !important;
+        white-space: nowrap;
+    }
+    .form-select{
+        width: fit-content;
+    }
+}
+}
+table td, th {
+    padding: 8px 25px !important;
+}
+
+.product-table{
+    tr{    
+        th{
+           border-bottom: 1px solid $border-color;
+        }
+     td:first-child{
+        font-weight: 500 !important;
+    }
+    }
+}
+.order-total{
+    width: 300px;
+    float: right;
+    tr:last-child{
+        border-top: 1px solid $border-color;
+    }
+}

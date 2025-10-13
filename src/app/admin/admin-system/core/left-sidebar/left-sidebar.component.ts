@@ -59,9 +59,11 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-dollar-sign',
       isOpen: false,
-      link: '/sales',
+      link: '/sales/order',
       pattern: 'sales',
-      subcategories: [{ name: 'sidebarOrders', id: 1, subLink: '/sale/order' }],
+      subcategories: [
+        { name: 'sidebarOrders', id: 1, subLink: '/sales/order' },
+      ],
     },
     {
       name: 'sidebarFlashSales',
@@ -140,9 +142,8 @@ export class LeftSidebarComponent implements OnInit {
       link: '/users',
       pattern: 'users',
       subcategories: [
-        { name: 'sidebarUsersList', id: 1, subLink: '/users/list' },
+        { name: 'sidebarUsers', id: 1, subLink: '/users/list' },
         { name: 'sidebarRoles', id: 2, subLink: '/users/roles' },
-        { name: 'users', id: 1, subLink: 'users/edit/:id', visible: false },
       ],
     },
     {
