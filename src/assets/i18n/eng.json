@@ -467,6 +467,18 @@
 
   "billingAddress": "Billing Address",
   "shippingAddress": "Shipping Address",
-  "orderdetails":"Order Details"
+  "orderdetails":"Order Details",
+  "image": "Image",
+  "enableUser": "Enable the user",
+  "roles": "Roles",
+  "userInfo": "User Information",
+  "permissions": "Permissions",
+  "permissionInfo": "Permission Information",
+  "createPermission": "Create Permission",
+  "editPermission": "Edit Permission",
+  "editRole": "Edit Role",
+  "createRole": "Create Role",
+  "code": "Code",
+  "selectAll": "Select All"
 
 }

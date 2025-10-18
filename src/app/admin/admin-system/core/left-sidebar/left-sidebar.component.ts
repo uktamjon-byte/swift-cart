@@ -17,6 +17,7 @@ export class LeftSidebarComponent implements OnInit {
   isSidebarCollapsed = false;
   isFloatingPopup = false;
   currentUrl: string = '';
+  currentSegment: string = '';
 
   categories: ICategories[] = [
     {
@@ -144,6 +145,7 @@ export class LeftSidebarComponent implements OnInit {
       subcategories: [
         { name: 'sidebarUsers', id: 1, subLink: '/users/list' },
         { name: 'sidebarRoles', id: 2, subLink: '/users/roles' },
+        { name: 'permissions', id: 3, subLink: '/users/permissions' },
       ],
     },
     {
@@ -203,6 +205,7 @@ export class LeftSidebarComponent implements OnInit {
 
   ngOnInit() {
     this.currentUrl = this.router.url;
+
     this.openParentsFor(this.currentUrl);
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -210,6 +213,7 @@ export class LeftSidebarComponent implements OnInit {
         this.currentUrl = event.urlAfterRedirects;
         console.log('url', event.urlAfterRedirects);
         const [, firstSegment] = this.currentUrl.split('/');
+        this.currentSegment = firstSegment;
         this.categories.forEach((category) => {
           console.log('irems', firstSegment, category.pattern);
           if (firstSegment === category.pattern) {
@@ -235,16 +239,24 @@ export class LeftSidebarComponent implements OnInit {
     this.categories.forEach((category) => {
       if (category.subcategories?.some((sub) => url.includes(sub.subLink))) {
         category.isOpen = true; // open parent
+        console.log('includes');
+        console.log('categoru list', this.categories);
       } else {
         category.isOpen = false; // close others (optional)
+        console.log('not includes', url);
       }
     });
   }
 
-  isCategoryActive(category: ICategories) {
-    const [, firstSegment] = this.currentUrl.split('/');
-    return firstSegment === category.pattern;
+  isActive(category: ICategories): boolean {
+    return this.currentSegment === category.pattern;
   }
+
+  // isCategoryActive(category: ICategories) {
+  //   const [, firstSegment] = this.currentUrl.split('/');
+  //   console.log('segment of iscategoryactive', firstSegment);
+  //   return firstSegment === category.pattern;
+  // }
 
   toggleSubmenu(category: ICategories) {
     for (let i = 0; i < this.categories.length; i++) {

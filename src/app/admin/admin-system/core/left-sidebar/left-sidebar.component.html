@@ -11,7 +11,7 @@
                     <li class="main-item " 
                       *ngFor="let category of categories" 
                       (click)="toggleSubmenu(category)"
-                      [ngClass]="{ 'active': isCategoryActive(category)}"
+                      [ngClass]="{ 'active': currentSegment === category.pattern }"
                         
                     >
                      <div class="main-icon-container d-inline-block text-center" >

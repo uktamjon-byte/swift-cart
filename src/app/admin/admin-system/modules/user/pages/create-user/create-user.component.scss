@@ -1,0 +1,9 @@
+@import '../../../../../../../assets/sass/variables.scss';
+.password-form{
+    .eye-icon{
+        right: 10px;
+        top: 52%;
+        color:  $color-gray-dark;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,221 @@
+<section class="right-column mt-4">
+    <h5 class="fw-bold mb-3">{{'Create User' | translate}}</h5>
+    <div class="row bg-white rounded-2">
+        <div class="col-lg-4">
+            <div class="left-info mt-3">
+                <div class="header px-3 py-2 fw-bold">
+                    {{'userInfo' | translate}}
+                </div>
+                <div class="main ">
+                    <div class="panel py-2 position-relative ms-2"><span class="ms-2 fw-bold">{{'general' | translate}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+             <div class="box px-3 shadow-none">
+                        <div class="box-header">
+                            <a class="fw-bold active-title-underline position-relative">{{ 'general' | translate }}</a>  
+                        </div>
+                        <div class="box-body">
+                            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                            <div class="form-name mb-2">
+                                  <label for="name" class="text-left">
+                                          {{ 'name' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    class="form-control"
+                                    formControlName="name"
+                                    [ngClass]="{'has-error': userForm.get('name')?.touched && userForm.get('name')?.invalid}"
+                                >
+                                 <p class="error-message" *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                            <div class="form-last mb-2">
+                                  <label for="lastName" class="text-left">
+                                          {{ 'lastNameLabel' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                                <input 
+                                    type="text" 
+                                    id="lastName" 
+                                    class="form-control"
+                                    formControlName="lastName"
+                                    [ngClass]="{'has-error': userForm.get('lastName')?.touched && userForm.get('lastName')?.invalid}"
+                                >
+                                 <p class="error-message" *ngIf="userForm.get('lastName')?.touched && userForm.get('lastName')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                             <div class="form-email mb-2">
+                                  <label for="email" class="text-left">
+                                          {{ 'email' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    class="form-control"
+                                    formControlName="email"
+                                    [ngClass]="{'has-error': userForm.get('email')?.touched && userForm.get('email')?.invalid}"
+                                >
+                                 <p class="error-message" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                            <div class="form-phone mb-2">
+                                  <label for="phone" class="text-left">
+                                          {{ 'phone' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                                <input 
+                                    type="telephone" 
+                                    id="phone" 
+                                    class="form-control"
+                                    formControlName="phone"
+                                    [ngClass]="{'has-error': userForm.get('phone')?.touched && userForm.get('phone')?.invalid}"
+                                >
+                                 <p class="error-message" *ngIf="userForm.get('phone')?.touched && userForm.get('phone')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+                            <div class="form-roles mb-2">
+                                  <label for="roles" class="text-left">
+                                          {{ 'roles' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                               <select class="form-select" aria-label="Default select example" formControlName="roles">
+                                    <option value="admin">Admin</option>
+                                    <option value="customer">Customer</option>
+                                    <option value="superadmin">Superadmin</option>
+                                </select>
+                                 <p class="error-message" *ngIf="userForm.get('rating')?.touched && userForm.get('rating')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                                </div>
+                            <div class="password-form mb-2 position-relative">
+                                    <label for="password" class="fs-6" translate>password</label>
+                                    <input 
+                                    [type]="passwordType" 
+                                    id="password" 
+                                    class="password-input form-control" 
+                                    formControlName="password"
+                                    [ngClass]="{'has-error':userForm.get('password')?.touched && userForm.get('password')?.invalid}"
+                                    />
+                                    <span class="eye-icon position-absolute" 
+                                        (click)="passwordType = passwordType === 'password' ? 'text' : 'password'">
+                                        <i [class]="passwordType === 'password' ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                                    </span>
+                                    <p class="error-message" *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid">
+                                        <span class="error-message" *ngIf="userForm.get('password')?.errors?.['required']">
+                                            {{ 'emptyInputError' | translate }}
+                                        </span>
+                                        <span *ngIf="userForm.get('password')?.errors?.['minlength'] && 
+                                        userForm.get('password')?.errors?.['minlength']?.['requiredLength']">
+                                            {{ 'passwordContain' | translate }}
+                                            {{ userForm.get('password')?.errors?.['minlength']?.['requiredLength'] }}
+                                            {{ 'characters' | translate }}. 
+                                            {{ 'has' | translate }} {{ userForm.get('password')?.errors?.['minlength']?.['actualLength'] }}
+                                        </span>
+                                    </p>
+                                </div>
+
+                            <div class="password-form mb-2 position-relative">
+                                    <label for="comfirm" class="fs-6" translate>password</label>
+                                    <input 
+                                    [type]="passwordType" 
+                                    id="comfirm" 
+                                    class="password-input form-control" 
+                                    formControlName="comfirm"
+                                    [ngClass]="{'has-error':userForm.get('comfirm')?.touched && userForm.get('comfirm')?.invalid}"
+                                    />
+                                    <span class="eye-icon position-absolute" 
+                                        (click)="passwordType = passwordType === 'password' ? 'text' : 'password'">
+                                        <i [class]="passwordType === 'password' ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                                    </span>
+                                    <p class="error-message" *ngIf="userForm.get('comfirm')?.touched && userForm.get('comfirm')?.invalid">
+                                        <span class="error-message" *ngIf="userForm.get('comfirm')?.errors?.['required']">
+                                            {{ 'emptyInputError' | translate }}
+                                        </span>
+                                        <span *ngIf="userForm.get('comfirm')?.errors?.['minlength'] && 
+                                        userForm.get('comfirm')?.errors?.['minlength']?.['requiredLength']">
+                                            {{ 'passwordContain' | translate }}
+                                            {{ userForm.get('comfirm')?.errors?.['minlength']?.['requiredLength'] }}
+                                            {{ 'characters' | translate }}. 
+                                            {{ 'has' | translate }} {{ userForm.get('comfirm')?.errors?.['minlength']?.['actualLength'] }}
+                                        </span>
+                                    </p>
+                                </div>
+                             <div class="form-image password-form mb-2 position-relative">
+                                  <label for="image" class="text-left">
+                                          {{ 'image' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                                <input 
+                                    type="file" 
+                                    accept="image/*" 
+                                    id="image" 
+                                    [value]="''"
+                                    class="form-control"
+                                    (change)="onFileChange($event)"
+                                    (blur)="onFileBlur()"
+                                    [ngClass]="{'has-error': userForm.get('image')?.touched && userForm.get('image')?.invalid}"
+                                >
+                                <span class="eye-icon position-absolute" 
+                                *ngIf="isImageSelected"
+                                        (click)="removeImage()">
+                                        <i class="fa-solid fa-xmark"></i>
+                                </span>
+                                   <p
+                                        class="error-message"
+                                        *ngIf="userForm.get('image')?.touched && userForm.get('image')?.hasError('required')"
+                                    >
+                                         {{ 'emptyInputError' | translate }}
+                                    </p>
+                            </div>        
+                            
+                            <!-- <div class="form-group mb-2">
+                                    <label for="meta-description" class="text-left">
+                                        {{ 'description' | translate }}
+                                        <span class="text-red">*</span>
+                                    </label>
+                                    <textarea 
+                                        class="meta-description form-control w-100" 
+                                        style="height: 130px;" 
+                                        id="description"
+                                        formControlName="description"
+                                        [ngClass]="{'has-error': userForm.get('description')?.touched && userForm.get('description')?.invalid}"
+                                    ></textarea>
+                                    <p class="error-message" *ngIf="userForm.get('description')?.touched && userForm.get('description')?.invalid"> 
+                                        {{ 'emptyInputError' | translate }}
+                                    </p>
+                                </div> -->
+
+                            <div class="form-status mb-2">
+                                    <label for="title" class="text-left d-block">
+                                            {{ 'status' | translate }}
+                                            <span class="text-red">*</span>
+                                    </label>
+                                    <input class="form-check-input me-3" type="checkbox" id="checkDefault" formControlName="status">
+                                     <label class="form-check-label" for="checkDefault">
+                                             {{ 'enableUser' | translate }}                              
+                                     </label>
+                                <p class="error-message" *ngIf="userForm.get('status')?.touched && userForm.get('status')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                             </div>
+                            </div>
+                                <div class="action-btns mt-3">
+                                   <button class="btn btn-primary btn-md" type="submit">{{'save' | translate}}</button>
+                                </div>
+                            </form>
+                        </div>
+                 </div>
+        </div>      
+    </div>                  
+</section>
+
