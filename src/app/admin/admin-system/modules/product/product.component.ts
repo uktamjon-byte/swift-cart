@@ -42,17 +42,7 @@ export class ProductComponent implements OnInit {
     this.route.navigate([`product/edit/${rowData.id}`]);
     console.log('roew data', rowData);
   }
-
-  deleteSelected = () => {
-    const selectedData = this.dataGrid.instance.getSelectedRowsData();
-    if (selectedData.length === 0) return;
-
-    // Remove selected rows from dataSource
-    this.products = this.products.filter(
-      (item) => !selectedData.some((sel) => sel.id === item.id)
-    );
-
-    // Refresh grid selection
-    this.dataGrid.instance.clearSelection();
-  };
+  onRowRemoved(e: any) {
+    console.log('Deleted:', e.data);
+  }
 }

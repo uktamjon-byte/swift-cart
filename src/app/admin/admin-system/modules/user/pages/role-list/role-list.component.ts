@@ -96,16 +96,9 @@ export class RoleListComponent implements OnInit {
     }
   };
 
-  deleteSelected = () => {
-    const selectedData = this.dataGrid.instance.getSelectedRowsData();
-    if (selectedData.length === 0) return;
-
-    this.roles = this.roles.filter(
-      (item) => !selectedData.some((sel) => sel.id === item.id)
-    );
-
-    this.dataGrid.instance.clearSelection();
-  };
+  onRowRemoved(e: any) {
+    console.log('Deleted:', e.data);
+  }
 
   onRowClick($event: any) {
     this.selectedRole = $event.data;

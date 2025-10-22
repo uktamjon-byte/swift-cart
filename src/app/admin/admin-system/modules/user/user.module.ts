@@ -8,6 +8,7 @@ import {
   DxDataGridModule,
   DxBulletModule,
   DxTemplateModule,
+  DxButtonModule,
 } from 'devextreme-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PermissionListComponent } from './pages/permission-list/permission-list.component';
@@ -16,12 +17,20 @@ import { RoleListComponent } from './pages/role-list/role-list.component';
 import { CreateRoleComponent } from './pages/create-role/create-role.component';
 
 @NgModule({
-  declarations: [UserListComponent, CreateUserComponent, PermissionListComponent, CreatePermissionComponent, RoleListComponent, CreateRoleComponent],
+  declarations: [
+    UserListComponent,
+    CreateUserComponent,
+    PermissionListComponent,
+    CreatePermissionComponent,
+    RoleListComponent,
+    CreateRoleComponent,
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,
     DxDataGridModule,
     DxBulletModule,
+    DxButtonModule,
     DxTemplateModule,
     TranslateModule,
     ReactiveFormsModule,

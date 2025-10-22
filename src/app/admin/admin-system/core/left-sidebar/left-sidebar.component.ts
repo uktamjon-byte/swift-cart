@@ -175,15 +175,27 @@ export class LeftSidebarComponent implements OnInit {
     {
       name: 'sidebarTools',
       id: 13,
-      isParent: false,
+      isParent: true,
       icon: 'fa-solid fa-wrench',
       isOpen: false,
       link: '/tools',
       pattern: 'tools',
+      subcategories: [
+        { name: 'countries', id: 1, subLink: '/tools/countries' },
+      ],
+    },
+    {
+      name: 'sidebarCustomerCare',
+      id: 14,
+      isParent: false,
+      icon: 'fa-brands fa-intercom',
+      isOpen: false,
+      link: '/customer/care',
+      pattern: 'customer',
     },
     {
       name: 'sidebarReports',
-      id: 14,
+      id: 15,
       isParent: false,
       icon: 'fa-solid fa-chart-simple',
       isOpen: false,
@@ -192,7 +204,7 @@ export class LeftSidebarComponent implements OnInit {
     },
     {
       name: 'sidebarSettings',
-      id: 15,
+      id: 16,
       isParent: false,
       icon: 'fa-solid fa-gears',
       isOpen: false,

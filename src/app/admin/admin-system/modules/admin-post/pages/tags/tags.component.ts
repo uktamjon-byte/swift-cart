@@ -42,17 +42,9 @@ export class TagsComponent implements OnInit {
     }
   };
 
-  deleteSelected = () => {
-    const selectedData = this.dataGrid.instance.getSelectedRowsData();
-    if (selectedData.length === 0) return;
-
-    this.dataSource = this.dataSource.filter(
-      (item) => !selectedData.some((sel) => sel.id === item.id)
-    );
-
-    this.dataGrid.instance.clearSelection();
-  };
-
+  onRowRemoved(e: any) {
+    console.log('Deleted:', e.data);
+  }
   onRowClick($event: any) {
     console.log('reree');
     this.selectedPost = $event.data;

@@ -25,19 +25,13 @@
       (onInitialized)="onInitGrid($event)"
       (onRowClick)="onRowClick($event)"
     >
+                 <!-- ✅ Editing config -->
+      <dxo-editing
+        mode="row"
+        [allowDeleting]="true"
+        [useIcons]="true"
+      ></dxo-editing>
       <dxo-toolbar>
-        <!-- Delete Button -->
-        <dxi-item
-          location="before"
-          widget="dxButton"
-          [options]="{
-            text: ( 'delete' | translate ),
-            icon: 'trash',
-            type: 'danger',
-            elementAttr: { class: 'custom-delete-btn' },
-            onClick: deleteSelected
-          }"
-        ></dxi-item>
 
         <!-- Search Panel -->
         <dxi-item name="searchPanel" ></dxi-item>
@@ -49,12 +43,6 @@
         [showPageSizeSelector]="true"
         [allowedPageSizes]="[10, 25, 50, 100]"
       ></dxo-pager>
-
-      <dxo-selection
-        mode="multiple"
-        [showCheckBoxesMode]="'always'"
-        [allowSelectAll]="true"
-      ></dxo-selection>
 
       <dxi-column dataField="id" alignment="left" [caption]="'id' | translate"></dxi-column>
 

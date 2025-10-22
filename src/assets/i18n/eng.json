@@ -479,6 +479,9 @@
   "editRole": "Edit Role",
   "createRole": "Create Role",
   "code": "Code",
-  "selectAll": "Select All"
+  "selectAll": "Select All",
+  "cities": "Cities",
+  "countries": "Countries",
+  "addCity": "Add City"
 
 }

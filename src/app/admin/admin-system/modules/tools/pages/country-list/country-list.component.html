@@ -1,12 +1,7 @@
 <section class="grid-section">
   <div class="top-section my-4">
     <div class="title">
-      <h4 class="fw-bold">{{ 'blogCategoriesTitle' | translate }}</h4>
-    </div>
-    <div class="create-post-btn d-flex justify-content-end">
-      <a class="btn btn-primary" [routerLink]="'/blog/category/create'">
-        {{ 'createPostCategories' | translate }}
-      </a>
+      <h4 class="fw-bold">{{ 'countries' | translate }}</h4>
     </div>
   </div>
   <div class="bottom-section">
@@ -15,25 +10,15 @@
       [columnAutoWidth]="true"
       [columnHidingEnabled]="true"
       id="gridContainer"
-      [dataSource]="dataSource"
+      [dataSource]="countries"
       [remoteOperations]="false"
       [allowColumnReordering]="true"
       [rowAlternationEnabled]="true"
       [showBorders]="true"
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
-      (onRowClick)="onRowClick($event)"
-      (onRowRemoved)="onRowRemoved($event)"
     >
-                 <!-- ✅ Editing config -->
-      <dxo-editing
-        mode="row"
-        [allowDeleting]="true"
-        [useIcons]="true"
-      ></dxo-editing>
       <dxo-toolbar>
-   
-
         <!-- Search Panel -->
         <dxi-item name="searchPanel"></dxi-item>
       </dxo-toolbar>
@@ -48,11 +33,23 @@
       <dxi-column dataField="id" alignment="left" caption="{{ 'id' | translate }}">
       </dxi-column>
 
-      <dxi-column dataField="title" dataType="string" caption="{{ 'name' | translate }}">
+      <dxi-column dataField="name" dataType="string" caption="{{ 'name' | translate }}">
       </dxi-column>
 
-      <dxi-column dataField="date" dataType="date" caption="{{ 'created' | translate }}">
+      <dxi-column dataField="code" dataType="string" caption="{{ 'code' | translate }}">
       </dxi-column>
+      <dxi-column
+        caption="{{ 'cities' | translate }}"
+        alignment="left"
+        cellTemplate="citiesTemplate"
+      >
+      </dxi-column>
+
+      <div *dxTemplate="let data of 'citiesTemplate'">
+        <a (click)="goToCities(data.data.id)" class="link-style">
+          {{ 'cities' | translate }}
+        </a>
+      </div>
       <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
 
       <div *dxTemplate="let d of 'discountCellTemplate'">
@@ -72,3 +69,6 @@
     </dx-data-grid>
   </div>
 </section>
+
+
+
