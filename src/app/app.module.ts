@@ -21,6 +21,9 @@ import {
   DROPZONE_CONFIG,
   DropzoneConfigInterface,
 } from 'ngx-dropzone-wrapper';
+import { BreadcrumbModule } from 'xng-breadcrumb';
+import { NotifyServiceMessage } from './shared/services/notify.service';
+import { SaveEditToolbarComponent } from './shared/components/save-edit-toolbar/save-edit-toolbar.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   url: '/api/upload', // <-- your backend endpoint
@@ -42,6 +45,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     SharedModule,
     TranslateModule,
     DropzoneModule,
+    BreadcrumbModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -51,7 +55,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       },
     }),
   ],
-  providers: [{ provide: DROPZONE_CONFIG, useValue: DEFAULT_DROPZONE_CONFIG }],
+  providers: [
+    { provide: DROPZONE_CONFIG, useValue: DEFAULT_DROPZONE_CONFIG },
+    NotifyServiceMessage,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

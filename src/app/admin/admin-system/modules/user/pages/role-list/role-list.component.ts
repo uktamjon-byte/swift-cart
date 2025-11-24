@@ -2,6 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { IRole } from '../../types/interfaces/user.interface';
 import { Router } from '@angular/router';
+import { BreadcrumbService } from 'xng-breadcrumb';
+import { RowRemovingEvent } from 'devextreme/ui/data_grid';
+import { RoleService } from '../../services/role.service';
+import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
+import { NotifyMessageType } from 'src/app/shared/enums/notify.enum';
+import { NotifyServiceMessage } from 'src/app/shared/services/notify.service';
 
 @Component({
   selector: 'app-role-list',
@@ -12,82 +18,39 @@ export class RoleListComponent implements OnInit {
   collapsed = false;
   selectedRole!: IRole;
   @ViewChild('grid', { static: false }) dataGrid!: DxDataGridComponent;
-  constructor(private router: Router) {}
+  private destroy$ = new Subject<void>();
+  roles: IRole[] = [];
+  constructor(
+    private router: Router,
+    private roleService: RoleService,
+    private notifyServiceMessage: NotifyServiceMessage
+  ) {}
 
-  roles: IRole[] = [
-    {
-      id: 1,
-      name: 'Admin',
-      description: 'Has full access to all system features and settings.',
-      permissions: [
-        {
-          id: 1,
-          name: 'View Users',
-          description: 'Can view all registered users.',
-          code: 1001,
-        },
-        {
-          id: 2,
-          name: 'Edit Users',
-          description: 'Can edit user profiles and settings.',
-          code: 1002,
-        },
-        {
-          id: 3,
-          name: 'Delete Users',
-          description: 'Can permanently remove users from the system.',
-          code: 1003,
-        },
-        {
-          id: 4,
-          name: 'Manage Roles',
-          description:
-            'Can create, edit, or delete roles and their permissions.',
-          code: 1004,
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: 'Editor',
-      description: 'Can manage and edit content but has limited user access.',
-      permissions: [
-        {
-          id: 5,
-          name: 'View Users',
-          description: 'Can see user list but not edit it.',
-          code: 1001,
-        },
-        {
-          id: 6,
-          name: 'Edit Content',
-          description: 'Can modify and update website content.',
-          code: 2001,
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: 'Viewer',
-      description: 'Can only view content and reports without making changes.',
-      permissions: [
-        {
-          id: 7,
-          name: 'View Dashboard',
-          description: 'Can access and view dashboard analytics.',
-          code: 3001,
-        },
-        {
-          id: 8,
-          name: 'View Reports',
-          description: 'Can view generated reports.',
-          code: 3002,
-        },
-      ],
-    },
-  ];
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.roleService
+      .getRoles()
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((e) => {
+          this.notifyServiceMessage.opeSnackBar(
+            'Something went wrong, please try again later',
+            NotifyMessageType.error
+          );
+          return EMPTY;
+        })
+      )
+      .subscribe((data) => {
+        if (data.success) {
+          this.roles = data.data;
+          console.log('data', data);
+        } else {
+          this.notifyServiceMessage.opeSnackBar(
+            data.message,
+            NotifyMessageType.error
+          );
+        }
+      });
+  }
 
   contentReady = (e: any) => {
     if (!this.collapsed) {
@@ -96,12 +59,47 @@ export class RoleListComponent implements OnInit {
     }
   };
 
-  onRowRemoved(e: any) {
+  editRow(e: any) {
+    const role = e.row.data;
+    this.router.navigate([`/users/roles/edit/${role.id}`]);
+  }
+
+  onRowRemoving(e: RowRemovingEvent) {
+    e.cancel = true;
+    const data = e.data;
+    this.roleService
+      .deleteRoles(e.data.id)
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((e) => {
+          this.notifyServiceMessage.opeSnackBar(
+            'Something went wrong, please try again later',
+            NotifyMessageType.error
+          );
+          return EMPTY;
+        })
+      )
+      .subscribe((res) => {
+        if (res.success) {
+          this.roles = this.roles.filter((r) => r.id !== e.data.id);
+          this.notifyServiceMessage.opeSnackBar(
+            'Role has been deleted successfully',
+            NotifyMessageType.notify
+          );
+        } else {
+          e.cancel = true;
+          this.notifyServiceMessage.opeSnackBar(
+            res.message,
+            NotifyMessageType.error
+          );
+        }
+      });
+
     console.log('Deleted:', e.data);
   }
 
-  onRowClick($event: any) {
-    this.selectedRole = $event.data;
-    this.router.navigate([`/users/roles/edit/${this.selectedRole.id}`]);
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

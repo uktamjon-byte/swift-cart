@@ -512,6 +512,46 @@ dropzone {
   color: #0d47a1;
 }
 
+.active-status {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.inactive-status {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.status-in-stock {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.status-out-stock {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.status-new {
+  background-color: #e6f3ff;
+  color: #007bff;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
 .status-approved {
   background-color: #d4edda;
   color: #155724;

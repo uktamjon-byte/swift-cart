@@ -1,0 +1,109 @@
+<section class="grid-section">
+  <div class="top-section my-4">
+    <div class="title">
+      <h4 class="fw-bold">{{ 'faq' | translate }}</h4>
+    </div>
+    <div class="create-post-btn d-flex justify-content-end">
+      <a class="btn btn-primary" [routerLink]="'/pages/faq/create'">
+        {{ 'createFaq' | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="bottom-section">
+    <dx-data-grid
+      #grid
+      [columnAutoWidth]="true"
+      [columnHidingEnabled]="true"
+      id="gridContainer"
+      [dataSource]="faqs"
+      [remoteOperations]="false"
+      [allowColumnReordering]="true"
+      [rowAlternationEnabled]="true"
+      [showBorders]="true"
+      [width]="'100%'"
+      (onContentReady)="contentReady($event)"
+      (onRowClick)="onRowClick($event)"
+       (onRowRemoved)="onRowRemoved($event)"
+    >
+          <!-- ✅ Editing config -->
+      <dxo-editing
+        mode="row"
+        [allowDeleting]="true"
+        [useIcons]="true"
+      ></dxo-editing>
+      <dxo-toolbar>
+
+        <!-- Search Panel -->
+        <dxi-item name="searchPanel"></dxi-item>
+      </dxo-toolbar>
+
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager
+        [visible]="true"
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[10, 25, 50, 100]"
+      ></dxo-pager>
+
+      <dxi-column dataField="id" alignment="left" caption="{{ 'id' | translate }}">
+      </dxi-column>
+
+      <dxi-column dataField="title" dataType="string" caption="{{ 'title' | translate }}">
+      </dxi-column>
+
+    <!-- Description Column -->
+  <dxi-column
+    dataField="description"
+    dataType="string"
+    cellTemplate="desCell"
+    caption="{{ 'description' | translate }}"
+  ></dxi-column>
+
+  <div *dxTemplate="let data of 'desCell'">
+    <span>
+      {{
+       truncateText(data.data.description, 30)
+      }}
+    </span>
+  </div>
+
+  <!-- Status Column -->
+  <dxi-column
+    dataField="isActive"
+    [caption]="'status' | translate"
+    dataType="boolean"
+    [width]="150"
+    cellTemplate="statusCell"
+  ></dxi-column>
+
+  <div *dxTemplate="let cellData of 'statusCell'">
+    <span
+      [ngClass]="{
+        'active-status': cellData.value,
+        'inactive-status': !cellData.value
+      }"
+    >
+      {{ cellData.value ? 'Active' : 'Inactive' }}
+    </span>
+  </div>
+      <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
+
+      <div *dxTemplate="let d of 'discountCellTemplate'">
+        <div class="chart-cell">
+          <dx-bullet
+            [showTarget]="false"
+            [showZeroLevel]="true"
+            [startScaleValue]="0"
+            [endScaleValue]="100"
+            [value]="d.value * 100"
+          >
+            <dxo-size [width]="150" [height]="35"></dxo-size>
+            <dxo-margin [top]="5" [bottom]="0" [left]="5"></dxo-margin>
+          </dx-bullet>
+        </div>
+      </div>
+    </dx-data-grid>
+  </div>
+</section>
+
+
+

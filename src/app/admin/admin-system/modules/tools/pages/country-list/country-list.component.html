@@ -18,6 +18,12 @@
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
     >
+     <!-- ✅ Editing config -->
+      <dxo-editing
+        mode="row"
+        [allowDeleting]="true"
+        [useIcons]="true"
+      ></dxo-editing>
       <dxo-toolbar>
         <!-- Search Panel -->
         <dxi-item name="searchPanel"></dxi-item>

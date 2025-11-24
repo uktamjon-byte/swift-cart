@@ -39,7 +39,7 @@ export class ProductComponent implements OnInit {
   onRowClick($event: any) {
     console.log('reree');
     const rowData = $event.data;
-    this.route.navigate([`product/edit/${rowData.id}`]);
+    this.route.navigate([`product/list/edit/${rowData.id}`]);
     console.log('roew data', rowData);
   }
   onRowRemoved(e: any) {

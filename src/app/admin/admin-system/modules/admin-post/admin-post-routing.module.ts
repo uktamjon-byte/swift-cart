@@ -12,17 +12,29 @@ const routes: Routes = [
   {
     path: '',
     component: AdminPostComponent,
+
     children: [
-      { path: '', redirectTo: 'post', pathMatch: 'full' },
-      { path: 'post', component: PostsComponent },
-      { path: 'tag', component: TagsComponent },
-      { path: 'category', component: CategoriesComponent },
+      {
+        path: '',
+        redirectTo: 'post',
+        pathMatch: 'full',
+        data: { breadcrumb: 'Post' },
+      },
+      { path: 'post', component: PostsComponent, data: { breadcrumb: 'Post' } },
+      { path: 'tag', component: TagsComponent, data: { breadcrumb: 'Tag' } },
+      {
+        path: 'category',
+        component: CategoriesComponent,
+        data: { breadcrumb: 'Category' },
+      },
       {
         path: 'post/create',
         component: CreatePostComponent,
+
         data: {
           mode: PostMode.createPost,
           postCreate: 'Create Post',
+          breadcrumb: 'Create',
         },
       },
       {
@@ -31,6 +43,7 @@ const routes: Routes = [
         data: {
           mode: PostMode.editPost,
           postEdit: 'Edit Post',
+          breadcrumb: 'Edit',
         },
       },
       {
@@ -40,6 +53,7 @@ const routes: Routes = [
           mode: ComponentMode.createCategory,
           postCategoryCreate: 'Create Post Category',
           postCategoryCreateBtn: 'Create Category',
+          breadcrumb: 'Create',
         },
       },
       {
@@ -49,6 +63,7 @@ const routes: Routes = [
           mode: ComponentMode.editCategory,
           postCategoryEdit: 'Edit Post Category',
           postCategoryEditBtn: 'Edit Category',
+          breadcrumb: 'Edit',
         },
       },
       {
@@ -58,6 +73,7 @@ const routes: Routes = [
           mode: ComponentMode.createTag,
           postTagCreate: 'Create Post Tag',
           postTagCreateBtn: 'Create Tag',
+          breadcrumb: 'Create',
         },
       },
       {
@@ -67,6 +83,7 @@ const routes: Routes = [
           mode: ComponentMode.editTag,
           postTagEdit: 'Edit Post Tag',
           postTagEditBtn: 'Edit Tag',
+          breadcrumb: 'Edit',
         },
       },
     ],

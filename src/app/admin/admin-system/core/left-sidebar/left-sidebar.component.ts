@@ -42,14 +42,6 @@ export class LeftSidebarComponent implements OnInit {
         { name: 'sidebarAllProducts', id: 2, subLink: 'product/list' },
         { name: 'sidebarCategories', id: 3, subLink: '/product/categories' },
         { name: 'sidebarBrands', id: 4, subLink: '/product/brand' },
-        { name: 'sidebarAttributes', id: 5, subLink: '/product/attributes' },
-        {
-          name: 'sidebarAttributeSets',
-          id: 6,
-          subLink: '/product/attributeSets',
-        },
-        { name: 'sidebarVariations', id: 7, subLink: '/product/variations' },
-        { name: 'sidebarOptions', id: 8, subLink: '/product/options' },
         { name: 'sidebarTags', id: 9, subLink: '/product/tag' },
         { name: 'sidebarReviews', id: 10, subLink: '/product/review' },
       ],
@@ -87,11 +79,15 @@ export class LeftSidebarComponent implements OnInit {
     {
       name: 'sidebarPages',
       id: 6,
-      isParent: false,
+      isParent: true,
       icon: 'fa-solid fa-file',
       isOpen: false,
       link: '/pages',
       pattern: 'pages',
+      subcategories: [
+        { name: 'userRequest', id: 1, subLink: '/pages/user/request' },
+        { name: 'faq', id: 2, subLink: '/pages/faq' },
+      ],
     },
     {
       name: 'sidebarMenus',
@@ -185,17 +181,8 @@ export class LeftSidebarComponent implements OnInit {
       ],
     },
     {
-      name: 'sidebarCustomerCare',
-      id: 14,
-      isParent: false,
-      icon: 'fa-brands fa-intercom',
-      isOpen: false,
-      link: '/customer/care',
-      pattern: 'customer',
-    },
-    {
       name: 'sidebarReports',
-      id: 15,
+      id: 14,
       isParent: false,
       icon: 'fa-solid fa-chart-simple',
       isOpen: false,
@@ -204,7 +191,7 @@ export class LeftSidebarComponent implements OnInit {
     },
     {
       name: 'sidebarSettings',
-      id: 16,
+      id: 15,
       isParent: false,
       icon: 'fa-solid fa-gears',
       isOpen: false,
@@ -217,7 +204,7 @@ export class LeftSidebarComponent implements OnInit {
 
   ngOnInit() {
     this.currentUrl = this.router.url;
-
+    this.currentSegment = this.currentUrl.split('/').join('');
     this.openParentsFor(this.currentUrl);
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -227,7 +214,6 @@ export class LeftSidebarComponent implements OnInit {
         const [, firstSegment] = this.currentUrl.split('/');
         this.currentSegment = firstSegment;
         this.categories.forEach((category) => {
-          console.log('irems', firstSegment, category.pattern);
           if (firstSegment === category.pattern) {
             category.isOpen = true;
           }
@@ -271,6 +257,7 @@ export class LeftSidebarComponent implements OnInit {
   // }
 
   toggleSubmenu(category: ICategories) {
+    this.isActive(category);
     for (let i = 0; i < this.categories.length; i++) {
       if (category.id)
         if (this.categories[i].id === category.id) {

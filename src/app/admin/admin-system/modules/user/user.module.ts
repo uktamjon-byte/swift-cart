@@ -10,11 +10,15 @@ import {
   DxTemplateModule,
   DxButtonModule,
 } from 'devextreme-angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { PermissionListComponent } from './pages/permission-list/permission-list.component';
 import { CreatePermissionComponent } from './pages/create-permission/create-permission.component';
 import { RoleListComponent } from './pages/role-list/role-list.component';
 import { CreateRoleComponent } from './pages/create-role/create-role.component';
+import { PermissionService } from './services/permission.service';
+import { SharedModule } from 'src/app/shared/components/shared-module';
+import { RoleService } from './services/role.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,8 @@ import { CreateRoleComponent } from './pages/create-role/create-role.component';
     DxTemplateModule,
     TranslateModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
+  providers: [PermissionService, RoleService, UserService],
 })
 export class UserModule {}

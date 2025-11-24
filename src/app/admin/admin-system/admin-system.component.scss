@@ -18,6 +18,24 @@
     bottom: 0;
   }
 
+.breadcrumb-home i {
+  color: $color-gray-dark;;
+  font-size: 16px;
+}
+
+.breadcrumb{
+  margin-top: 10px;
+  margin-right: 6px;
+   float: right;
+   .fa-angle-right{
+     font-size: 13px !important;
+  }
+}
+
+.home-icon:hover {
+  color: #007bff;
+}
+
   @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

@@ -482,6 +482,13 @@
   "selectAll": "Select All",
   "cities": "Cities",
   "countries": "Countries",
-  "addCity": "Add City"
+  "addCity": "Add City",
+
+  "userRequest": "User Request",
+  "question": "Question",
+  "createFaq": "Create FAQ",
+  "editFaq": "Edit FAQ",
+  "faqInfo": "FAQ Information",
+   "activateStatus": "Activate status"
 
 }

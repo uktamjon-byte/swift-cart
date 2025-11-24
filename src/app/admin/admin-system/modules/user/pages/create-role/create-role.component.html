@@ -55,44 +55,77 @@
                                 <label class="text-left">
                                         {{ 'permissions' | translate }}
                                         <span class="text-red">*</span>
-                                  </label>
-                             <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                             <input 
-                                             class="form-check-input me-2"
-                                             type="checkbox" 
-                                             (change)="selectAll($event)"
-                                             id="checkDefault">
-                                            {{ 'selectAll' | translate }}
-                                        </th>
-                                        <th>{{ 'name' | translate }}</th>
-                                        <th>{{ 'code' | translate }}</th>
-                                    </tr>
-                                </thead>
-                                    <tbody>
-                                    <tr *ngFor="let permission of permissions" class="border-top-0">
-                                        <td>
-                                            <input 
-                                             class="form-check-input"
-                                             (change)="selectboxOnChange($event, permission)"
-                                             type="checkbox" 
-                                             [checked]="isSelected(permission)"
-                                             id="checkDefault">
-                                            </td>
-                                        <td>{{permission.name}}</td>
-                                        <td>{{permission.code}}</td>
-                                    </tr>
-                                    </tbody>
-                            </table>
-                            </div>                            
+                                </label>
+                        <dx-data-grid
+                        #grid
+                        [columnAutoWidth]="false"
+                        [columnHidingEnabled]="false"
+                        id="gridContainer"
+                        [dataSource]="permissions"
+                        [remoteOperations]="false"
+                        [allowColumnReordering]="true"
+                        [rowAlternationEnabled]="true"
+                        [showBorders]="true"
+                        keyExpr="id"
+                        [width]="'100%'"
+                        (onContentReady)="contentReady($event)"
+                        [selection]="{ mode: 'multiple', showCheckBoxesMode: 'always' }"
+                        (onSelectionChanged)="onSelectionChanged($event)"
+                        >
+                        <dxo-toolbar>
+                            <!-- Search Panel -->
+                            <dxi-item name="searchPanel"></dxi-item>
+                        </dxo-toolbar>
+                        <dxo-selection mode="multiple"></dxo-selection>
+                        <dxo-paging [pageSize]="10"></dxo-paging>
+                        <dxo-pager
+                            [visible]="true"
+                            [showPageSizeSelector]="true"
+                            [allowedPageSizes]="[10, 25, 50, 100]"
+                        ></dxo-pager>
+
+
+                        <dxi-column dataField="name" [width]="'50%'" dataType="string" caption="{{ 'name' | translate }}">
+                        </dxi-column>
+
+                        
+
+                        <dxi-column dataField="code" dataType="string" caption="{{ 'code' | translate }}">
+                        </dxi-column>
+
+                        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
+
+                        <div *dxTemplate="let d of 'discountCellTemplate'">
+                            <div class="chart-cell">
+                            <dx-bullet
+                                [showTarget]="false"
+                                [showZeroLevel]="true"
+                                [startScaleValue]="0"
+                                [endScaleValue]="100"
+                                [value]="d.value * 100"
+                            >
+                                <dxo-size [width]="150" [height]="35"></dxo-size>
+                                <dxo-margin [top]="5" [bottom]="0" [left]="5"></dxo-margin>
+                            </dx-bullet>
                             </div>
-                                <div class="action-btns mt-3">
-                                   <button class="btn btn-primary btn-md" type="submit">{{'save' | translate}}</button>
-                                </div>
-                            </form>
                         </div>
+                        </dx-data-grid>
+        </div>                            
+            </div>
+                <div class="action-btns mt-3 d-flex flex-row">
+                        <app-save-edit-toolbar
+                        [editMode]="isEdit"
+                        entityName="Role"
+                        (save)="saveRole()"
+                         [invalid]="roleForm.invalid"
+                        [loading]="isSaving"
+                ></app-save-edit-toolbar>
+                <button class="btn btn-secondary align-self-center ms-2" (click)="cancelEdit()">
+                    {{ 'cancel' | translate }}
+                </button>
+                </div>
+        </form>
+            </div>
                  </div>
         </div>      
     </div>                  

@@ -12,20 +12,69 @@ import { TagListComponent } from './pages/tag-list/tag-list.component';
 import { CreateTagComponent } from './pages/create-tag/create-tag.component';
 
 const routes: Routes = [
-  { path: 'list', component: ProductComponent },
-  { path: 'create', component: CreateProductComponent },
-  { path: 'edit/:id', component: CreateProductComponent },
-  { path: 'categories', component: ProductCategoriesComponent },
-  { path: 'categories/create', component: CreateCategoryComponent },
-  { path: 'categories/edit/:id', component: CreateCategoryComponent },
-  { path: 'brand', component: BrandListComponent },
-  { path: 'brand/create', component: CreateBrandComponent },
-  { path: 'brand/edit/:id', component: CreateBrandComponent },
-  { path: 'review', component: ReviewListComponent },
-  { path: 'review/edit/:id', component: EditReviewComponent },
-  { path: 'tag', component: TagListComponent },
-  { path: 'tag/create', component: CreateTagComponent },
-  { path: 'tag/edit/:id', component: CreateTagComponent },
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
+  { path: 'list', component: ProductComponent, data: { breadcrumb: 'List' } },
+  {
+    path: 'create',
+    component: CreateProductComponent,
+    data: { breadcrumb: 'Create' },
+  },
+  {
+    path: 'list/edit/:id',
+    component: CreateProductComponent,
+    data: { breadcrumb: 'Edit' },
+  },
+  {
+    path: 'categories',
+    component: ProductCategoriesComponent,
+    data: { breadcrumb: 'Categories' },
+  },
+  {
+    path: 'categories/create',
+    component: CreateCategoryComponent,
+    data: { breadcrumb: 'Create' },
+  },
+  {
+    path: 'categories/edit/:id',
+    component: CreateCategoryComponent,
+    data: { breadcrumb: 'Edit' },
+  },
+  {
+    path: 'brand',
+    component: BrandListComponent,
+    data: { breadcrumb: 'Brand' },
+  },
+  {
+    path: 'brand/create',
+    component: CreateBrandComponent,
+    data: { breadcrumb: 'Create' },
+  },
+  {
+    path: 'brand/edit/:id',
+    component: CreateBrandComponent,
+    data: { breadcrumb: 'Edit' },
+  },
+  {
+    path: 'review',
+    component: ReviewListComponent,
+    data: { breadcrumb: 'Review' },
+  },
+  {
+    path: 'review/edit/:id',
+    component: EditReviewComponent,
+    data: { breadcrumb: 'Edit' },
+  },
+  { path: 'tag', component: TagListComponent, data: { breadcrumb: 'Tag' } },
+  {
+    path: 'tag/create',
+    component: CreateTagComponent,
+    data: { breadcrumb: 'Create' },
+  },
+  {
+    path: 'tag/edit/:id',
+    component: CreateTagComponent,
+    data: { breadcrumb: 'Edit' },
+  },
 ];
 
 @NgModule({

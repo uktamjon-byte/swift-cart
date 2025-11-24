@@ -8,6 +8,7 @@ import { AdminSystemRoutingModule } from './admin-system-routing.module';
 import { SharedModule } from '../../shared/components/shared-module';
 import { MatMenuModule } from '@angular/material/menu';
 import { AdminService } from './services/admin.service';
+import { BreadcrumbModule } from 'xng-breadcrumb';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AdminService } from './services/admin.service';
     AdminSystemRoutingModule,
     SharedModule,
     MatMenuModule,
+    BreadcrumbModule,
   ],
   providers: [AdminService],
 })

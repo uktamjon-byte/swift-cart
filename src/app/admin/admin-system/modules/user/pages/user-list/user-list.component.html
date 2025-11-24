@@ -4,7 +4,7 @@
       <h4 class="fw-bold">{{ 'sidebarUsers' | translate }}</h4>
     </div>
     <div class="create-post-btn d-flex justify-content-end">
-      <a class="btn btn-primary" [routerLink]="'/users/create'">
+      <a class="btn btn-primary" [routerLink]="'/users/list/create'">
         {{ 'createUser' | translate }}
       </a>
     </div>
@@ -22,8 +22,7 @@
       [showBorders]="true"
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
-      (onRowClick)="onRowClick($event)"
-      (onRowRemoved)="onRowRemoved($event)"
+      (onRowRemoving)="onRowRemoving($event)"
     >
           <!-- ✅ Editing config -->
       <dxo-editing
@@ -47,7 +46,7 @@
       <dxi-column dataField="id" alignment="left" caption="{{ 'id' | translate }}">
       </dxi-column>
 
-      <dxi-column dataField="name" dataType="string" caption="{{ 'name' | translate }}">
+      <dxi-column dataField="firstName" dataType="string" caption="{{ 'name' | translate }}">
       </dxi-column>
 
        <dxi-column dataField="lastName" dataType="string" caption="{{ 'lastName' | translate }}">
@@ -56,11 +55,15 @@
       <dxi-column dataField="email" dataType="string" caption="{{ 'email' | translate }}">
       </dxi-column>
 
-      <dxi-column dataField="createdDate" dataType="date" caption="{{ 'created' | translate}}">
+      <dxi-column dataField="createdAt" dataType="date" caption="{{ 'created' | translate}}">
       </dxi-column>
-         <!-- ✅ Command column for edit/delete icons -->
       <dxi-column type="buttons" [width]="100">
-        <dxi-button name="delete"></dxi-button>
+          <dxi-button
+            hint="Edit"
+            icon="edit"
+            [onClick]="editRow.bind(this)"
+          ></dxi-button>
+          <dxi-button name="delete"></dxi-button>
       </dxi-column>
       <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
 

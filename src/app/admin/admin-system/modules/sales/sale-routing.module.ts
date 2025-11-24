@@ -4,8 +4,22 @@ import { OrderListComponent } from './pages/order-list/order-list.component';
 import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 
 const routes: Routes = [
-  { path: 'order', component: OrderListComponent },
-  { path: 'order/:id', component: OrderDetailComponent },
+  {
+    path: '',
+    redirectTo: 'order',
+    pathMatch: 'full',
+    data: { breadcrumb: 'Sales' },
+  },
+  {
+    path: 'order',
+    component: OrderListComponent,
+    data: { breadcrumb: 'Order' },
+  },
+  {
+    path: 'order/:id',
+    component: OrderDetailComponent,
+    data: { breadcrumb: 'Edit' },
+  },
 ];
 
 @NgModule({

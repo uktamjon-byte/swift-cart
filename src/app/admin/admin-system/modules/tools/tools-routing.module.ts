@@ -4,8 +4,22 @@ import { CountryListComponent } from './pages/country-list/country-list.componen
 import { CityListComponent } from './pages/city-list/city-list.component';
 
 const routes: Routes = [
-  { path: 'countries', component: CountryListComponent },
-  { path: 'countries/cities/:id', component: CityListComponent },
+  {
+    path: '',
+    redirectTo: 'countries',
+    pathMatch: 'full',
+    data: { breadcrumb: 'Tools' },
+  },
+  {
+    path: 'countries',
+    component: CountryListComponent,
+    data: { breadcrumb: 'Countries' },
+  },
+  {
+    path: 'countries/cities/:id',
+    component: CityListComponent,
+    data: { breadcrumb: 'Create Cities' },
+  },
 ];
 
 @NgModule({

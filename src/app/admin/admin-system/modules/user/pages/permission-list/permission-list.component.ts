@@ -1,73 +1,109 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { IPermission } from '../../types/interfaces/user.interface';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { Router } from '@angular/router';
+import { PermissionService } from '../../services/permission.service';
+import { NotifyServiceMessage } from 'src/app/shared/services/notify.service';
+import { NotifyMessageType } from 'src/app/shared/enums/notify.enum';
+import { EMPTY, Subject } from 'rxjs';
+import { catchError, takeUntil } from 'rxjs/operators';
+import {
+  ContentReadyEvent,
+  RowClickEvent,
+  RowRemovingEvent,
+} from 'devextreme/ui/data_grid';
+import { BreadcrumbService } from 'xng-breadcrumb';
 
 @Component({
   selector: 'app-permission-list',
   templateUrl: './permission-list.component.html',
   styleUrls: ['./permission-list.component.scss'],
 })
-export class PermissionListComponent implements OnInit {
+export class PermissionListComponent implements OnInit, OnDestroy {
   collapsed = false;
   @ViewChild('grid', { static: false }) dataGrid!: DxDataGridComponent;
   selectedPermission!: IPermission;
-  constructor(private router: Router) {}
+  permissions!: IPermission[];
+  private destroy$ = new Subject<void>();
+  constructor(
+    private router: Router,
+    private permissionService: PermissionService,
+    private notifyServiceMessage: NotifyServiceMessage
+  ) {}
 
-  permissions: IPermission[] = [
-    {
-      id: 1,
-      name: 'View Users',
-      description: 'Allows viewing the list of users and their profiles.',
-      code: 4,
-      createdDate: new Date('2025-01-01T10:00:00Z'),
-      updatedDate: new Date('2025-01-05T12:00:00Z'),
-    },
-    {
-      id: 2,
-      name: 'Edit Users',
-      description: 'Grants permission to modify user details.',
-      code: 6,
-      createdDate: new Date('2025-01-02T09:30:00Z'),
-      updatedDate: new Date('2025-01-06T14:00:00Z'),
-    },
-    {
-      id: 3,
-      name: 'Delete Users',
-      description: 'Allows deleting user accounts from the system.',
-      code: 3,
-      createdDate: new Date('2025-01-03T08:45:00Z'),
-      updatedDate: new Date('2025-01-07T16:20:00Z'),
-    },
-    {
-      id: 4,
-      name: 'Manage Roles',
-      description: 'Enables managing roles and assigning permissions.',
-      code: 2,
-      createdDate: new Date('2025-01-04T11:15:00Z'),
-      updatedDate: new Date('2025-01-08T10:40:00Z'),
-    },
-  ];
+  ngOnInit(): void {
+    this.permissionService
+      .getPermissions()
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((e) => {
+          this.notifyServiceMessage.opeSnackBar(
+            'Something went wrong, please try again later',
+            NotifyMessageType.error
+          );
+          return EMPTY;
+        })
+      )
+      .subscribe((data) => {
+        if (data.success) {
+          this.permissions = data.data;
+          console.log('data', data);
+        } else {
+          this.notifyServiceMessage.opeSnackBar(
+            data.message,
+            NotifyMessageType.error
+          );
+        }
+      });
+  }
 
-  ngOnInit(): void {}
-
-  contentReady = (e: any) => {
+  contentReady = (e: ContentReadyEvent) => {
     if (!this.collapsed) {
       this.collapsed = true;
       e.component.expandRow(['EnviroCare']);
     }
   };
 
-  onRowRemoved(e: any) {
-    console.log('Deleted:', e.data);
+  onRowRemoving(e: RowRemovingEvent) {
+    e.cancel = true;
+    this.permissionService
+      .deletePermission(e.data.id)
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((e) => {
+          this.notifyServiceMessage.opeSnackBar(
+            'Something went wrong, please try again later',
+            NotifyMessageType.error
+          );
+          return EMPTY;
+        })
+      )
+      .subscribe((data) => {
+        if (data.success) {
+          this.permissions = this.permissions.filter((r) => r.id !== e.data.id);
+          this.notifyServiceMessage.opeSnackBar(
+            'Permission has been deleted successfully',
+            NotifyMessageType.notify
+          );
+        } else {
+          e.cancel = true;
+          this.notifyServiceMessage.opeSnackBar(
+            data.message,
+            NotifyMessageType.error
+          );
+        }
+      });
   }
 
-  onRowClick($event: any) {
-    console.log('reree');
-    this.selectedPermission = $event.data;
-    // this.postBlogService.setPost(this.selectedPost);
-    this.router.navigate([
-      `/users/permissions/edit/${this.selectedPermission.id}`,
-    ]);
+  editRow(e: any) {
+    const permission = e.row.data;
+    this.router.navigate([`/users/permissions/edit/${permission.id}`], {
+      state: { permission },
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

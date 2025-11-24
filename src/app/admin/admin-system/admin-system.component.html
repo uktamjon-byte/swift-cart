@@ -3,13 +3,28 @@
       
        <div class="main-content d-flex flex-column flex-grow-1">
          <app-header></app-header>
-         <!-- <div class="sub-content h-100 d-flex flex-column align-items-between position-relative"> -->
           <div class="page-content flex-grow-1 px-3">
+             <!-- ✅ Breadcrumb wrapper -->
+              <div class="breadcrumb">
+                 <a routerLink="/dashboard" class="breadcrumb-home me-2">
+                    <i class="fas fa-home me-2"></i>
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+                 <xng-breadcrumb [autoGenerate]="true" separator=" > ">
+                <ng-template let-crumb>
+                  <a *ngIf="crumb.label === 'Dashboard'; else normal" [routerLink]="crumb.url">
+                    <i class="fa-solid fa-house"></i>
+                  </a>
+                  <ng-template #normal>
+                    <a [routerLink]="crumb.url">{{ crumb.label }}</a>
+                  </ng-template>
+                </ng-template>
+              </xng-breadcrumb> 
+              </div>           
               <router-outlet></router-outlet>
           </div>
           <app-footer></app-footer>
           <div *ngIf="isSidebarToggled" (click)="toggleSidebar()" class="main-backdrop position-fixed w-100 "></div>
-         <!-- </div> -->
+          </div> 
       </div>
-</div>
 

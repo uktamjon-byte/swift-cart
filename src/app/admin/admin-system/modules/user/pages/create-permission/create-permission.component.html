@@ -51,7 +51,7 @@
                                     {{ 'emptyInputError' | translate }}
                                 </p>
                             </div>
-                             <div class="form-email mb-2">
+                             <div class="form-email mt-3">
                                   <label for="code" class="text-left">
                                           {{ 'code' | translate }}
                                     <span class="text-red">*</span>
@@ -61,15 +61,29 @@
                                     id="code" 
                                     class="form-control"
                                     formControlName="code"
+                                     (input)="onCodeChange($event)"
                                     [ngClass]="{'has-error': permissionForm.get('code')?.touched && permissionForm.get('code')?.invalid}"
                                 >
+                                <p class="error-message" *ngIf="isCodeExist"> 
+                                  This code already exists
+                                </p>
                                  <p class="error-message" *ngIf="permissionForm.get('code')?.touched && permissionForm.get('code')?.invalid"> 
                                     {{ 'emptyInputError' | translate }}
                                 </p>
                             </div>                            
                             </div>
-                                <div class="action-btns mt-3">
-                                   <button class="btn btn-primary btn-md" type="submit">{{'save' | translate}}</button>
+                                <div class="action-btns float-start d-flex flex-row">
+                                    <app-save-edit-toolbar
+                                    [editMode]="isEdit"
+                                    entityName="Permission"
+                                    [codeExist]="isCodeExist"
+                                    [loading]="isSaving"
+                                    [invalid]="permissionForm.invalid"
+                                    (save)="savePermissions()"
+                                    ></app-save-edit-toolbar>
+                                     <button class="btn btn-secondary align-self-center ms-2" (click)="cancel()">
+                                     {{ 'cancel' | translate }}
+                                    </button>
                                 </div>
                             </form>
                         </div>

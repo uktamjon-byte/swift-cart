@@ -1,0 +1,15 @@
+<div class="toolbar d-flex justify-content-end gap-2 my-3">
+  <button 
+  class="btn btn-primary" 
+  type="submit" 
+  (click)="onSave()"  
+  [disabled]="loading || invalid || codeExist"
+  >
+  <ng-container *ngIf="!loading; else loadingTpl">
+  {{ editMode ? 'Update' : 'Save' }}
+</ng-container>
+   <ng-template #loadingTpl>
+     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  </ng-template>
+  </button>
+</div>

@@ -22,8 +22,7 @@
       [showBorders]="true"
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
-      (onRowClick)="onRowClick($event)"
-       (onRowRemoved)="onRowRemoved($event)"
+       (onRowRemoving)="onRowRemoving($event)"
     >
          <!-- ✅ Editing config -->
       <dxo-editing
@@ -55,7 +54,17 @@
       <dxi-column dataField="code" dataType="string" caption="{{ 'code' | translate }}">
       </dxi-column>
 
-      <dxi-column dataField="createdDate" dataType="date" caption="{{ 'created' | translate}}">
+      <dxi-column dataField="createdAt" dataType="date" caption="{{ 'created' | translate}}">
+      </dxi-column>
+
+      <dxi-column type="buttons" [width]="100">
+          <!-- Edit button -->
+          <dxi-button
+            hint="Edit"
+            icon="edit"
+            [onClick]="editRow.bind(this)"
+          ></dxi-button>
+          <dxi-button name="delete"></dxi-button>
       </dxi-column>
 
       <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
