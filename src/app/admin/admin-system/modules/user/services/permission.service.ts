@@ -34,7 +34,7 @@ export class PermissionService {
   }
 
   postPermission(data: IPermission): Observable<any> {
-    return this.http.post(constants.baseUrl + '/user/permission', data);
+    return this.http.post(constants.baseUrl + '/user/permissions', data);
   }
 
   updatePermission(id: number | null, data: IPermission): Observable<any> {

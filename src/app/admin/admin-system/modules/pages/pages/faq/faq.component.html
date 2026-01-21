@@ -4,7 +4,7 @@
       <h4 class="fw-bold">{{ 'faq' | translate }}</h4>
     </div>
     <div class="create-post-btn d-flex justify-content-end">
-      <a class="btn btn-primary" [routerLink]="'/pages/faq/create'">
+      <a class="btn btn-primary" [routerLink]="'/admin/pages/faq/create'">
         {{ 'createFaq' | translate }}
       </a>
     </div>
@@ -22,17 +22,8 @@
       [showBorders]="true"
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
-      (onRowClick)="onRowClick($event)"
-       (onRowRemoved)="onRowRemoved($event)"
     >
-          <!-- ✅ Editing config -->
-      <dxo-editing
-        mode="row"
-        [allowDeleting]="true"
-        [useIcons]="true"
-      ></dxo-editing>
       <dxo-toolbar>
-
         <!-- Search Panel -->
         <dxi-item name="searchPanel"></dxi-item>
       </dxo-toolbar>
@@ -86,7 +77,32 @@
     </span>
   </div>
       <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
+  <dxi-column
+        *ngIf="canEditOrDelete"
+        caption="{{'Actions' | translate}}"
+        [width]="120"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="actionTemplate">
+      </dxi-column>
 
+     <div *dxTemplate="let data of 'actionTemplate'" class="d-flex gap-2">
+      <button
+        *ngIf="canUpdateFaq"
+        class="btn btn-sm btn-outline-primary"
+        (click)="editRow(data.data.id)"
+        >
+        <i class="dx-icon-edit"></i>
+      </button>
+
+      <button
+        *ngIf="canUpdateFaq"
+        class="btn btn-sm btn-outline-danger"
+        (click)="deleteDialog(data.data.id)"       
+      >
+        <i class="dx-icon-trash"></i>
+      </button>
+    </div> 
       <div *dxTemplate="let d of 'discountCellTemplate'">
         <div class="chart-cell">
           <dx-bullet

@@ -7,6 +7,7 @@ export interface ICategories {
   link: string;
   subcategories?: ISubcategories[];
   pattern: string;
+  permission?: number;
 }
 
 interface ISubcategories {
@@ -14,4 +15,5 @@ interface ISubcategories {
   id: number;
   subLink: string;
   visible?: boolean;
+  permission?: number;
 }

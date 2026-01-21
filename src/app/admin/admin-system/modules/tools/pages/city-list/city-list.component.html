@@ -19,7 +19,7 @@
       [width]="'100%'"
       (onRowInserted)="onRowInserted($event)"
       (onRowUpdated)="onRowUpdated($event)"
-      (onRowRemoved)="onRowRemoved($event)"
+      (onRowRemoving)="onRowRemoving($event)"
       (onContentReady)="contentReady($event)"
     >
       <!-- ✅ Editing config -->
@@ -33,6 +33,7 @@
 
   <dxo-toolbar>
       <dxi-item
+      *ngIf="permission.has(permissions.cityCreate)"
         location="before"
         widget="dxButton"
         [options]="addButtonOptions"
@@ -49,7 +50,7 @@
 
       <dxi-column
         [allowEditing]="false"
-        dataField="countryId"
+        dataField="id"
         caption="{{ 'id' | translate }}"
         alignment="left"
       ></dxi-column>
@@ -61,9 +62,9 @@
       ></dxi-column>
 
       <!-- ✅ Command column for edit/delete icons -->
-      <dxi-column type="buttons" [width]="100">
-        <dxi-button name="edit"></dxi-button>
-        <dxi-button name="delete"></dxi-button>
+      <dxi-column type="buttons" [width]="100" *ngIf="permission.hasAny([permissions.cityUpdate, permissions.cityDelete])">
+        <dxi-button name="edit" *ngIf="permission.has(permissions.cityUpdate)"></dxi-button>
+        <dxi-button name="delete" *ngIf="permission.has(permissions.cityDelete)"></dxi-button>
       </dxi-column>
 
       <dxo-search-panel

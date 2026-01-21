@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPermission } from '../../types/interfaces/user.interface';
@@ -15,7 +15,7 @@ import { AdminService } from 'src/app/admin/admin-system/services/admin.service'
   templateUrl: './create-role.component.html',
   styleUrls: ['./create-role.component.scss'],
 })
-export class CreateRoleComponent implements OnInit {
+export class CreateRoleComponent implements OnInit, OnDestroy {
   roleForm!: FormGroup;
   id: number | null = null;
   isEdit: boolean = false;
@@ -58,14 +58,14 @@ export class CreateRoleComponent implements OnInit {
     this.roleForm = new FormGroup({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      permissionIds: new FormControl([], Validators.required),
+      permissionIds: new FormControl([]),
     });
 
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
-      console.log('category id', this.id);
       if (this.id !== null && !isNaN(this.id)) {
-        this.roleService.savedRoles
+        this.roleService
+          .getRolesById(this.id)
           .pipe(
             takeUntil(this.destroy$),
             catchError((e) => {
@@ -77,11 +77,9 @@ export class CreateRoleComponent implements OnInit {
             })
           )
           .subscribe((res) => {
-            if (res) {
-              const editableRole = res.find((role) => role.id === this.id);
-
+            if (res.success) {
+              const editableRole = res.data;
               this.editablePermissions = editableRole?.permissions;
-              console.log('roles p', res);
               this.roleForm.patchValue({
                 name: editableRole?.name,
                 description: editableRole?.description,
@@ -117,41 +115,42 @@ export class CreateRoleComponent implements OnInit {
 
   onSelectionChanged(e: any): void {
     this.selectedPermissions = e.selectedRowsData.map((item: any) => item.id);
-    console.log('selected per', this.selectedPermissions);
   }
 
-  onSubmit() {
+  saveRole() {
+    this.isSaving = true;
     this.roleForm.get('permissionIds')?.setValue(this.selectedPermissions);
-    console.log('roles', this.roleForm.value);
     if (!this.isEdit) {
       this.roleService
         .postRoles(this.roleForm.value)
         .pipe(
           takeUntil(this.destroy$),
           catchError((e) => {
+            this.adminService.stopLoader.next(true);
             this.notifyServiceMessage.opeSnackBar(
               'Something went wrong, please try again later',
               NotifyMessageType.error
             );
             this.adminService.stopLoader.next(true);
             return EMPTY;
-          }),
-          finalize(() => {
-            this.adminService.stopLoader.next(true);
           })
         )
         .subscribe((response) => {
           if (response.success) {
-            console.log('res roles data', response.data);
             setTimeout(() => {
-              this.isSaving = false;
               this.notifyServiceMessage.opeSnackBar(
                 'Roles has been created successfully',
                 NotifyMessageType.notify
               );
               this.roleForm.reset();
-              this.router.navigate(['users/roles']);
+              this.router.navigate(['/admin/users/roles']);
             }, 2000);
+          } else {
+            this.adminService.stopLoader.next(true);
+            this.notifyServiceMessage.opeSnackBar(
+              'Failed to update',
+              NotifyMessageType.notify
+            );
           }
         });
     } else {
@@ -160,15 +159,12 @@ export class CreateRoleComponent implements OnInit {
         .pipe(
           takeUntil(this.destroy$),
           catchError((e) => {
+            this.adminService.stopLoader.next(true);
             this.notifyServiceMessage.opeSnackBar(
               'Something went wrong, please try again later',
               NotifyMessageType.error
             );
-            this.isSaving = true;
             return EMPTY;
-          }),
-          finalize(() => {
-            this.adminService.stopLoader.next(true);
           })
         )
         .subscribe((res) => {
@@ -179,26 +175,22 @@ export class CreateRoleComponent implements OnInit {
                 NotifyMessageType.notify
               );
               this.roleForm.reset();
-              this.router.navigate(['users/roles']);
+              this.router.navigate(['/admin/users/roles']);
             }, 2000);
           } else {
+            this.adminService.stopLoader.next(true);
             this.notifyServiceMessage.opeSnackBar(
-              res.message,
+              'Failed to update',
               NotifyMessageType.notify
             );
           }
         });
     }
-    console.log('form', this.roleForm.value);
-  }
-
-  saveRole() {
-    this.onSubmit();
   }
 
   cancelEdit() {
     this.roleForm.reset();
-    this.router.navigate(['users/roles']);
+    this.router.navigate(['/adminusers/roles']);
   }
 
   ngOnDestroy(): void {

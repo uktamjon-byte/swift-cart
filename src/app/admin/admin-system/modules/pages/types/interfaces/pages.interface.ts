@@ -1,4 +1,4 @@
-export interface ICustomerCare {
+export interface IUserRequest {
   name: string;
   email: string;
   question: string;

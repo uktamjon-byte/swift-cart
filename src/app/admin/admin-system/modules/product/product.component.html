@@ -3,8 +3,8 @@
     <div class="title">
       <h4 class="fw-bold">{{ 'sidebarAllProducts' | translate }}</h4>
     </div>
-    <div class="create-post-btn d-flex justify-content-end">
-      <a [routerLink]="'/product/create'" class="btn btn-primary">
+    <div class="create-post-btn d-flex justify-content-end" *ngIf="canCreateProduct">
+      <a [routerLink]="'/admin/product/create'" class="btn btn-primary">
         {{ 'sidebarCreateProduct' | translate }}
       </a>
     </div>
@@ -23,17 +23,8 @@
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
       (onInitialized)="onInitGrid($event)"
-      (onRowRemoved)="onRowRemoved($event)"
-      (onRowClick)="onRowClick($event)"
     >
-     <!-- ✅ Editing config -->
-      <dxo-editing
-        mode="row"
-        [allowDeleting]="true"
-        [useIcons]="true"
-      ></dxo-editing>
       <dxo-toolbar>
-        <!-- Search Panel -->
         <dxi-item name="searchPanel" ></dxi-item>
       </dxo-toolbar>
 
@@ -47,7 +38,7 @@
       <dxi-column dataField="id" alignment="left" [caption]="'id' | translate"></dxi-column>
 
       <dxi-column
-        dataField="images"
+        dataField="images.productImages.uniqueName"
         [caption]="'featuredImage' | translate"
         [allowSorting]="false"
         [allowFiltering]="false"
@@ -56,8 +47,7 @@
 
       <div *dxTemplate="let cellData of 'imageCellTemplate'">
         <img
-           *ngIf="cellData.data.images?.link"
-           [src]="cellData.data.images.link"
+           [src]="getUrl + cellData.data.images[0].productImages.uniqueName"
           style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"
         />
       </div>
@@ -69,26 +59,23 @@
       ></dxi-column>
 
   <dxi-column
-        dataField="availability"
+        dataField="quantity"
         [caption]="'stockAvailable' | translate "
         cellTemplate="availabilityCell">
   </dxi-column>
   <div *dxTemplate="let cellData of 'availabilityCell'">
   <span
     [ngClass]="{
-      'status-in-stock': cellData.value === 'in',
-      'status-out-stock': cellData.value === 'out',
-      'status-new': cellData.value === 'new'
+      'status-in-stock': cellData.value > 0,
+      'status-out-stock': cellData.value === 0
     }"
   >
-    {{ cellData.value === 'in' ? 'In Stock' :
-       cellData.value === 'out' ? 'Out of Stock' :
-       cellData.value === 'new' ? 'New' : '' }}
+     {{ cellData.value > 0 ? 'In Stock' : 'Out of Stock' }}
   </span>
 </div>
 
 <dxi-column
-    dataField="isEnabled"
+    dataField="isActive"
     [caption]="'status' | translate"
     dataType="boolean"
     [width]="150"
@@ -113,10 +100,36 @@
       ></dxi-column>
 
       <dxi-column
-        dataField="updatedDate"
-        dataType="date"
-        [caption]="'updated' | translate"
+        dataField="averageRating"
+        dataType="number"
+        [caption]="'rating' | translate"
       ></dxi-column>
+        <dxi-column
+        *ngIf="canEditOrDelete"
+        caption="{{'Actions' | translate}}"
+        [width]="120"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="actionTemplate">
+      </dxi-column>
+
+     <div *dxTemplate="let data of 'actionTemplate'" class="d-flex gap-2">
+      <button
+        *ngIf="canUpdateProduct"
+        class="btn btn-sm btn-outline-primary"
+        (click)="editRow(data.data.id)"
+        >
+        <i class="dx-icon-edit"></i>
+      </button>
+
+      <button
+        *ngIf="canDeleteProduct"
+        class="btn btn-sm btn-outline-danger"
+        (click)="deleteDialog(data.data.id)"    
+      >
+        <i class="dx-icon-trash"></i>
+      </button>
+    </div> 
 
       <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
     </dx-data-grid>

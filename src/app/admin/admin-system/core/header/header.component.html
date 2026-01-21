@@ -28,13 +28,13 @@
   <div class="menu-header px-3 py-2 d-flex align-items-center" style="gap: 0.75rem;">
     <div class="profile d-flex align-items-center justify-content-center">D</div>
     <div class="profile-info d-flex flex-column align-items-start">
-      <div class="fw-bold">Demo Admin</div>
-      <small class="text-muted small">toshmatovuktam2000gmail.com</small>
+      <div class="fw-bold">{{userName || 'User name'}}</div>
+      <small class="text-muted small">{{userEmail || ' User email'}}</small>
     </div>
   </div>
 
   <a mat-menu-item>{{'sidebarSettings' | translate}}</a>
-  <a mat-menu-item>{{'logout' | translate}}</a>
+  <a mat-menu-item (click)="logOut()">{{'logout' | translate}}</a>
 </mat-menu>
 
 </header>

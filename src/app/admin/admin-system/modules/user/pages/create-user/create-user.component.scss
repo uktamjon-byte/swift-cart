@@ -1,4 +1,8 @@
 @import '../../../../../../../assets/sass/variables.scss';
+@import '../../../../../../../assets/sass/mixins.scss';
+.row{
+    padding-bottom: 8px !important;
+}
 .password-form{
     .eye-icon{
         right: 10px;
@@ -7,3 +11,51 @@
         cursor: pointer;
     }
 }
+    .main-content{
+        border-top: #ddd;
+        padding: 10px 0 10px 8px;
+        background-color: #eee;
+        .panel{
+            cursor: pointer;
+            &:hover{
+             background-color: #d9d3d3;
+         }
+        }
+        
+        .active-panel{
+            background-color: white;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            transition: $transition-150;
+            cursor: pointer;
+            &::before{
+                content: '';
+                width: 2px;
+                height: 100%;
+                background-color: $color-primary;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+     
+    }
+
+
+.form-group {
+  margin-bottom: 18px;
+      .eye-icon{
+        right: 10px;
+        top: 35px;
+        color:  $color-gray-dark;
+        cursor: pointer;
+    }
+}
+
+.button-wrapper{ 
+        .back-drop{
+            @include backDropBtnStyles();
+        }
+    }
+
+

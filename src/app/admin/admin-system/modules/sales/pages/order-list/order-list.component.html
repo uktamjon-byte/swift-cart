@@ -3,6 +3,11 @@
     <div class="title">
       <h4 class="fw-bold">{{ 'sidebarSales' | translate }}</h4>
     </div>
+    <div class="create-post-btn d-flex justify-content-end" *ngIf="canCreateOrder">
+      <a class="btn btn-primary" [routerLink]="'/admin/sales/order/create'">
+        {{ 'createOrder' | translate }}
+      </a>
+    </div>
   </div>
   <div class="bottom-section">
     <dx-data-grid
@@ -17,16 +22,8 @@
       [showBorders]="true"
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
-      (onRowClick)="onRowClick($event)"
     >
-                      <!-- ✅ Editing config -->
-      <dxo-editing
-        mode="row"
-        [allowDeleting]="true"
-        [useIcons]="true"
-      ></dxo-editing>
       <dxo-toolbar>
-
         <!-- Search Panel -->
         <dxi-item name="searchPanel"></dxi-item>
       </dxo-toolbar>
@@ -59,11 +56,38 @@
   </span>
 </div>
 
-        <dxi-column dataField="total" dataType="string" caption="{{ 'total' | translate }}">
+      <dxi-column dataField="total" dataType="string" caption="{{ 'total' | translate }}">
       </dxi-column>
 
       <dxi-column dataField="orderDate" dataType="date" caption="{{ 'created' | translate}}">
       </dxi-column>
+
+       <dxi-column
+        *ngIf="canEditOrDelete"
+        caption="Actions"
+        [width]="120"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="actionTemplate">
+      </dxi-column>
+
+     <div *dxTemplate="let data of 'actionTemplate'" class="d-flex gap-2">
+      <button
+        *ngIf="canUpdateOrder"
+        class="btn btn-sm btn-outline-primary"
+        (click)="editRow(data.data.id)"
+        >
+        <i class="dx-icon-edit"></i>
+      </button>
+
+      <button
+        *ngIf="canDeleteOrder"
+        class="btn btn-sm btn-outline-danger"
+        (click)="deleteDialog(data.data.id)" 
+      >
+        <i class="dx-icon-trash"></i>
+      </button>
+    </div> 
 
       <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
 

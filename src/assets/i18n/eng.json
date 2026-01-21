@@ -489,6 +489,8 @@
   "createFaq": "Create FAQ",
   "editFaq": "Edit FAQ",
   "faqInfo": "FAQ Information",
-   "activateStatus": "Activate status"
+   "activateStatus": "Activate status",
+
+   "newPassword": "New Password"
 
 }

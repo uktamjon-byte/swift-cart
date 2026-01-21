@@ -4,6 +4,10 @@ import { ICategories } from '../intefaces/category';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { ICategory } from 'src/app/store/system/modules/shared/types/interfaces';
+import { permissions } from 'src/app/constants/permissions';
+import { LoginService } from 'src/app/store/auth/services/login.service';
+import { AdminLoginService } from 'src/app/admin/admin-auth/services/login.service';
+import { PermissionsService } from 'src/app/admin/admin-auth/services/permission.service';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -18,6 +22,7 @@ export class LeftSidebarComponent implements OnInit {
   isFloatingPopup = false;
   currentUrl: string = '';
   currentSegment: string = '';
+  filteredCategories: ICategories[] = [];
 
   categories: ICategories[] = [
     {
@@ -26,8 +31,9 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-gauge',
       isOpen: false,
-      link: '/dashboard',
+      link: '/admin/dashboard',
       pattern: 'dashboard',
+      permission: permissions.dashboardInfo,
     },
     {
       name: 'sidebarProducts',
@@ -35,15 +41,36 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-cube',
       isOpen: false,
-      link: '/products',
+      link: '/admin/products',
       pattern: 'product',
+      permission: permissions.productRead,
       subcategories: [
-        { name: 'sidebarCreateProduct', id: 1, subLink: '/product/create' },
-        { name: 'sidebarAllProducts', id: 2, subLink: 'product/list' },
-        { name: 'sidebarCategories', id: 3, subLink: '/product/categories' },
-        { name: 'sidebarBrands', id: 4, subLink: '/product/brand' },
-        { name: 'sidebarTags', id: 9, subLink: '/product/tag' },
-        { name: 'sidebarReviews', id: 10, subLink: '/product/review' },
+        {
+          name: 'sidebarCreateProduct',
+          id: 1,
+          subLink: '/admin/product/create',
+          permission: permissions.productCreate,
+        },
+        {
+          name: 'sidebarAllProducts',
+          id: 2,
+          subLink: '/admin/product/list',
+          permission: permissions.productRead,
+        },
+        {
+          name: 'sidebarCategories',
+          id: 3,
+          subLink: '/admin/product/categories',
+          permission: permissions.categoryRead,
+        },
+        {
+          name: 'sidebarBrands',
+          id: 4,
+          subLink: '/admin/product/brand',
+          permission: permissions.blogRead,
+        },
+        { name: 'sidebarTags', id: 9, subLink: '/admin/product/tag' },
+        { name: 'sidebarReviews', id: 10, subLink: '/admin/product/review' },
       ],
     },
     {
@@ -52,10 +79,16 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-dollar-sign',
       isOpen: false,
-      link: '/sales/order',
+      link: '/admin/sales/order',
       pattern: 'sales',
+      permission: permissions.orderRead,
       subcategories: [
-        { name: 'sidebarOrders', id: 1, subLink: '/sales/order' },
+        {
+          name: 'sidebarOrders',
+          id: 1,
+          subLink: '/admin/sales/order',
+          permission: permissions.orderRead,
+        },
       ],
     },
     {
@@ -64,7 +97,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-bolt',
       isOpen: false,
-      link: '/flashsales',
+      link: '/admin/flashsales',
       pattern: 'flashsales',
     },
     {
@@ -73,7 +106,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-tag',
       isOpen: false,
-      link: '/coupons',
+      link: '/admin/coupons',
       pattern: 'coupons',
     },
     {
@@ -82,11 +115,17 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-file',
       isOpen: false,
-      link: '/pages',
+      link: '/admin/pages',
       pattern: 'pages',
+      permission: permissions.customerQuestionRead,
       subcategories: [
-        { name: 'userRequest', id: 1, subLink: '/pages/user/request' },
-        { name: 'faq', id: 2, subLink: '/pages/faq' },
+        { name: 'userRequest', id: 1, subLink: '/admin/pages/user/request' },
+        {
+          name: 'faq',
+          id: 2,
+          subLink: '/admin/pages/faq',
+          permission: permissions.faqRead,
+        },
       ],
     },
     {
@@ -95,7 +134,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-bars',
       isOpen: false,
-      link: '/menu',
+      link: '/admin/menu',
       pattern: 'menu',
     },
     {
@@ -104,12 +143,22 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-book',
       isOpen: false,
-      link: '/blog/category',
+      link: '/admin/blog/category',
       pattern: 'blog',
+      permission: permissions.blogRead,
       subcategories: [
-        { name: 'posts', id: 1, subLink: '/blog/post' },
-        { name: 'categories', id: 2, subLink: '/blog/category' },
-        { name: 'tags', id: 3, subLink: '/blog/tag' },
+        {
+          name: 'posts',
+          id: 1,
+          subLink: '/admin/blog/post',
+          permission: permissions.blogRead,
+        },
+        {
+          name: 'tags',
+          id: 2,
+          subLink: '/admin/blog/tag',
+          permission: permissions.blogTagRead,
+        },
       ],
     },
     {
@@ -118,7 +167,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-download',
       isOpen: false,
-      link: '/import',
+      link: '/admin/import',
       pattern: 'import',
     },
     {
@@ -127,8 +176,9 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-camera-retro',
       isOpen: false,
-      link: '/media',
+      link: '/admin/media',
       pattern: 'media',
+      permission: permissions.mediaRead,
     },
     {
       name: 'sidebarUsers',
@@ -136,12 +186,28 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-users',
       isOpen: false,
-      link: '/users',
+      link: '/admin/users',
       pattern: 'users',
+      permission: permissions.userRead,
       subcategories: [
-        { name: 'sidebarUsers', id: 1, subLink: '/users/list' },
-        { name: 'sidebarRoles', id: 2, subLink: '/users/roles' },
-        { name: 'permissions', id: 3, subLink: '/users/permissions' },
+        {
+          name: 'sidebarUsers',
+          id: 1,
+          subLink: '/admin/users/list',
+          permission: permissions.userRead,
+        },
+        {
+          name: 'sidebarRoles',
+          id: 2,
+          subLink: '/admin/users/roles',
+          permission: permissions.roleRead,
+        },
+        {
+          name: 'permissions',
+          id: 3,
+          subLink: '/admin/users/permissions',
+          permission: permissions.permissionRead,
+        },
       ],
     },
     {
@@ -150,20 +216,24 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-earth-americas',
       isOpen: false,
-      link: '/localization',
+      link: '/admin/localization',
       pattern: 'localization',
       subcategories: [
-        { name: 'sidebarLanguage', id: 1, subLink: '/localization/language' },
+        {
+          name: 'sidebarLanguage',
+          id: 1,
+          subLink: '/admin/localization/language',
+        },
         {
           name: 'sidebarCurrencyRates',
           id: 2,
           subLink: '/localization/currency',
         },
-        { name: 'sidebarTaxes', id: 3, subLink: '/localization/taxes' },
+        { name: 'sidebarTaxes', id: 3, subLink: '/admin/localization/taxes' },
         {
           name: 'blog',
           id: 1,
-          subLink: 'localization/edit/:id',
+          subLink: '/adminlocalization/edit/:id',
           visible: false,
         },
       ],
@@ -174,10 +244,16 @@ export class LeftSidebarComponent implements OnInit {
       isParent: true,
       icon: 'fa-solid fa-wrench',
       isOpen: false,
-      link: '/tools',
+      link: '/admin/tools',
       pattern: 'tools',
+      permission: permissions.countryRead,
       subcategories: [
-        { name: 'countries', id: 1, subLink: '/tools/countries' },
+        {
+          name: 'countries',
+          id: 1,
+          subLink: '/admin/tools/countries',
+          permission: permissions.countryRead,
+        },
       ],
     },
     {
@@ -186,7 +262,7 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-chart-simple',
       isOpen: false,
-      link: '/reports',
+      link: '/admin/reports',
       pattern: 'reports',
     },
     {
@@ -195,26 +271,32 @@ export class LeftSidebarComponent implements OnInit {
       isParent: false,
       icon: 'fa-solid fa-gears',
       isOpen: false,
-      link: '/settings',
+      link: '/admin/settings',
       pattern: 'settings',
     },
   ];
 
-  constructor(private adminService: AdminService, private router: Router) {}
+  constructor(
+    private adminService: AdminService,
+    private router: Router,
+    private permission: PermissionsService
+  ) {}
 
   ngOnInit() {
+    this.filteredCategories = this.filterCategories(this.categories);
+    console.log('filter catergo', this.filteredCategories);
+    console.log('original catergo', this.categories);
     this.currentUrl = this.router.url;
-    this.currentSegment = this.currentUrl.split('/').join('');
+    this.currentSegment = this.currentUrl.split('/')[2];
     this.openParentsFor(this.currentUrl);
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         this.currentUrl = event.urlAfterRedirects;
-        console.log('url', event.urlAfterRedirects);
-        const [, firstSegment] = this.currentUrl.split('/');
-        this.currentSegment = firstSegment;
-        this.categories.forEach((category) => {
-          if (firstSegment === category.pattern) {
+        const [, firstSegment, secondSegment] = this.currentUrl.split('/');
+        this.currentSegment = secondSegment;
+        this.filteredCategories.forEach((category) => {
+          if (secondSegment === category.pattern) {
             category.isOpen = true;
           }
         });
@@ -233,15 +315,41 @@ export class LeftSidebarComponent implements OnInit {
     });
   }
 
+  filterCategories(categories: ICategories[]): ICategories[] {
+    return categories
+      .map((category) => {
+        const cat = { ...category };
+
+        if (cat.subcategories?.length) {
+          cat.subcategories = cat.subcategories.filter(
+            (sub) => !sub.permission || this.permission.has(sub.permission)
+          );
+        }
+
+        const hasVisibleChildren =
+          !!cat.subcategories && cat.subcategories.length > 0;
+
+        const hasPermission =
+          !cat.permission || this.permission.has(cat.permission);
+
+        // non-parent
+        if (!cat.isParent) {
+          return hasPermission ? cat : null;
+        }
+
+        // parent (FIX HERE)
+        return hasPermission || hasVisibleChildren ? cat : null;
+      })
+      .filter(Boolean) as ICategories[];
+  }
+
   openParentsFor(url: string) {
-    this.categories.forEach((category) => {
+    console.log('openparent url', url);
+    this.filteredCategories.forEach((category) => {
       if (category.subcategories?.some((sub) => url.includes(sub.subLink))) {
-        category.isOpen = true; // open parent
-        console.log('includes');
-        console.log('categoru list', this.categories);
+        category.isOpen = true;
       } else {
-        category.isOpen = false; // close others (optional)
-        console.log('not includes', url);
+        category.isOpen = false;
       }
     });
   }
@@ -250,25 +358,18 @@ export class LeftSidebarComponent implements OnInit {
     return this.currentSegment === category.pattern;
   }
 
-  // isCategoryActive(category: ICategories) {
-  //   const [, firstSegment] = this.currentUrl.split('/');
-  //   console.log('segment of iscategoryactive', firstSegment);
-  //   return firstSegment === category.pattern;
-  // }
-
   toggleSubmenu(category: ICategories) {
     this.isActive(category);
-    for (let i = 0; i < this.categories.length; i++) {
+    for (let i = 0; i < this.filteredCategories.length; i++) {
       if (category.id)
-        if (this.categories[i].id === category.id) {
+        if (this.filteredCategories[i].id === category.id) {
           continue;
         }
-      this.categories[i].isOpen = false;
+      this.filteredCategories[i].isOpen = false;
     }
     if (category.isParent) {
       category.isOpen = !category.isOpen;
     } else {
-      // only click  - (navigate)
       this.router.navigate([category.link]);
     }
   }

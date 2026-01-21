@@ -32,12 +32,12 @@
                         <h1 class="fw-bold fs-4 text-dark mb-2 mt-3" translate>login</h1>
                         <p translate>accountDetail</p>                      
                    <div class="container">
-        <form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="adminLoginForm">
             <div class="inp-field mb-4 position-relative">
                 <label for="email" class="fs-6" translate>email</label>
                 <input 
                 type="email" 
-                id='email' 
+                id='email'
                 class="login-input form-control" 
                 placeholder="{{ 'emailPlaceholder' | translate }}"
                 formControlName="email"
@@ -92,7 +92,7 @@
             </div>
 
             <div class="button-wrapper position-relative">
-                <button class="btn btn-primary w-100" [disabled]="adminLoginForm.invalid">
+                <button class="btn btn-primary w-100" [disabled]="adminLoginForm.invalid" (click)="login()">
                     {{ 'signIn' | translate }}
                 </button>
                 <div class="back-drop w-100 h-100 position-absolute" *ngIf="showBackDrop">

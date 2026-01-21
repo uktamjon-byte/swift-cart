@@ -1,13 +1,24 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { FileManagerComponent } from '../../../shared/components/file-manager/file-manager.component';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, Subject, takeUntil } from 'rxjs';
 import { DxDataGridComponent } from 'devextreme-angular';
-import { IProductCategory } from '../../types/interfaces/product.interface';
+import { ICategoryDetail } from '../../types/interfaces/product.interface';
 import { Router } from '@angular/router';
+import { NotifyServiceMessage } from 'src/app/shared/services/notify.service';
+import { RowRemovingEvent } from 'devextreme/ui/data_grid';
+import { CategoryService } from '../../services/category.service';
+import {
+  DialogWindowButtonType,
+  NotifyMessageType,
+} from 'src/app/shared/enums/notify.enum';
+import { constants } from 'src/app/constants/constants';
+import { permissions } from 'src/app/constants/permissions';
+import { PermissionsService } from 'src/app/admin/admin-auth/services/permission.service';
+import { ConfirmWindowComponent } from 'src/app/shared/components/confirm-window/confirm-window.component';
 
 interface Category {
   name: string;
@@ -19,37 +30,69 @@ interface Category {
   templateUrl: './product-categories.component.html',
   styleUrls: ['./product-categories.component.scss'],
 })
-export class ProductCategoriesComponent implements OnInit {
+export class ProductCategoriesComponent implements OnInit, OnDestroy {
   treeControl = new NestedTreeControl<Category>((node) => node.children);
   dataSource = new MatTreeNestedDataSource<Category>();
   @ViewChild('grid', { static: false }) dataGrid!: DxDataGridComponent;
   collapsed = false;
   selectedPost: any;
+  private destroy$ = new Subject<void>();
+  categories: ICategoryDetail[] = [];
+  permissions = permissions;
+  canCreateCategory = false;
+  canUpdateCategory = false;
+  canDeleteCategory = false;
+  canEditOrDelete = false;
+  constructor(
+    private router: Router,
+    private notifyServiceMessage: NotifyServiceMessage,
+    private categoryService: CategoryService,
+    public permission: PermissionsService,
+    public dialog: MatDialog,
+  ) {}
 
-  constructor(private dialog: MatDialog, private router: Router) {}
+  ngOnInit() {
+    this.canCreateCategory = this.permission.has(
+      this.permissions.categoryCreate,
+    );
+    this.canUpdateCategory = this.permission.has(
+      this.permissions.categoryUpdate,
+    );
+    this.canDeleteCategory = this.permission.has(
+      this.permissions.categoryDelete,
+    );
+    this.canEditOrDelete = this.canUpdateCategory || this.canDeleteCategory;
+    this.getCategories();
+  }
 
-  categories: IProductCategory[] = [
-    {
-      id: 1,
-      title: 'Electronics',
-      thumbnail: 'assets/imagis/product1.jpg',
-      date: new Date('2025-01-10'),
-    },
-    {
-      id: 2,
-      title: 'Clothing',
-      thumbnail: 'assets/imagis/product1.jpg',
-      date: new Date('2025-02-05'),
-    },
-    {
-      id: 3,
-      title: 'Home & Kitchen',
-      thumbnail: 'assets/imagis/product1.jpg',
-      date: new Date('2025-03-01'),
-    },
-  ];
+  getCategories() {
+    this.categoryService
+      .getCategories()
+      .pipe(
+        catchError((e) => {
+          this.notifyServiceMessage.opeSnackBar(
+            'Something went wrong while uploading category list, please try again later',
+            NotifyMessageType.error,
+          );
+          return EMPTY;
+        }),
+      )
+      .subscribe((res) => {
+        if (res.success) {
+          this.categories = res.data;
+        } else {
+          this.notifyServiceMessage.opeSnackBar(
+            'Failed to upload categories',
+            NotifyMessageType.error,
+          );
+        }
+      });
+  }
 
-  ngOnInit(): void {}
+  get getUrl() {
+    return constants.baseUrlServer;
+  }
+
   hasChild = (_: number, node: Category) =>
     !!node.children && node.children.length > 0;
 
@@ -59,17 +102,53 @@ export class ProductCategoriesComponent implements OnInit {
       e.component.expandRow(['EnviroCare']);
     }
   };
+  deleteDialog(id: number) {
+    const dialogRef = this.dialog.open(ConfirmWindowComponent, {
+      width: '420px',
+      maxWidth: '90vw',
+      disableClose: true,
+      autoFocus: false,
+      data: { title: 'Delete', message: 'Are you sure you want to delete it' },
+    });
 
-  onRowRemoved(e: any) {
-    console.log('Deleted:', e.data);
+    dialogRef.afterClosed().subscribe((res) => {
+      if (DialogWindowButtonType.confirm === res) {
+        this.categoryService
+          .deleteCategory(id)
+          .pipe(
+            takeUntil(this.destroy$),
+            catchError((e) => {
+              this.notifyServiceMessage.opeSnackBar(
+                'Something went wrong, please try again later',
+                NotifyMessageType.error,
+              );
+              return EMPTY;
+            }),
+          )
+          .subscribe((data) => {
+            if (data.success) {
+              this.categories = this.categories.filter((r) => r.id !== id);
+              this.notifyServiceMessage.opeSnackBar(
+                'Category has been deleted successfully',
+                NotifyMessageType.notify,
+              );
+            } else {
+              this.notifyServiceMessage.opeSnackBar(
+                'Failed to delete category',
+                NotifyMessageType.error,
+              );
+            }
+          });
+      }
+    });
   }
 
-  onRowClick($event: any) {
-    console.log('reree');
-    this.selectedPost = $event.data;
-    // this.postBlogService.setPost(this.selectedPost);
-    this.router.navigate([`/product/categories/edit/${this.selectedPost.id}`]);
+  editRow(e: any) {
+    const category = e.row.data;
+    this.router.navigate([`/admin/product/categories/edit/${category.id}`]);
   }
-
-  onSubmit() {}
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

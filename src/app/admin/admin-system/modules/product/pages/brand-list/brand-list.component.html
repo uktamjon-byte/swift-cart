@@ -3,8 +3,8 @@
     <div class="title">
       <h4 class="fw-bold">{{ 'sidebarBrands' | translate }}</h4>
     </div>
-    <div class="create-post-btn d-flex justify-content-end">
-      <a class="btn btn-primary" [routerLink]="'/product/brand/create'">
+    <div class="create-post-btn d-flex justify-content-end"  *ngIf="canCreateBrand">
+      <a class="btn btn-primary" [routerLink]="'/admin/product/brand/create'">
         {{ 'createBrand' | translate }}
       </a>
     </div>
@@ -22,14 +22,7 @@
       [showBorders]="true"
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
-      (onRowClick)="onRowClick($event)"
     >
-         <!-- ✅ Editing config -->
-      <dxo-editing
-        mode="row"
-        [allowDeleting]="true"
-        [useIcons]="true"
-      ></dxo-editing>
       <dxo-toolbar>
 
         <!-- Search Panel -->
@@ -47,7 +40,7 @@
       </dxi-column>
 
          <dxi-column
-            dataField="logo"
+            dataField="brandImage.uniqueName"
             [caption]="'thumbnail' | translate"
             [allowSorting]="false"
             [allowFiltering]="false"
@@ -56,19 +49,60 @@
 
       <div *dxTemplate="let data of 'imageCellTemplate'">
         <img
-          [src]="data.value"
+          [src]="getUrl + data.value"
           style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"
         />
       </div>
 
-      <dxi-column dataField="title" dataType="string" caption="{{ 'title' | translate }}">
+      <dxi-column dataField="name" dataType="string" caption="{{ 'title' | translate }}">
       </dxi-column>
 
-      <dxi-column dataField="date" dataType="date" caption="{{ 'created' | translate }}">
-      </dxi-column>
+      <dxi-column
+        dataField="isActive"
+        [caption]="'status' | translate"
+        dataType="boolean"
+        alignment="left"
+        cellTemplate="statusCell">
+    </dxi-column>
+
+<div *dxTemplate="let cellData of 'statusCell'">
+  <span
+    [ngClass]="{
+      'active-status': cellData.value,
+      'inactive-status': !cellData.value
+    }"
+  >
+    {{ cellData.value ? 'Published' : 'Unpublished' }}
+  </span>
+</div>
 
       <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
+      <dxi-column
+        *ngIf="canEditOrDelete"
+        caption="{{'Actions' | translate}}"
+        [width]="120"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="actionTemplate">
+      </dxi-column>
 
+     <div *dxTemplate="let data of 'actionTemplate'" class="d-flex gap-2">
+      <button
+        *ngIf="canUpdateBrand"
+        class="btn btn-sm btn-outline-primary"
+        (click)="editRow(data.data.id)"
+        >
+        <i class="dx-icon-edit"></i>
+      </button>
+
+      <button
+        *ngIf="canDeleteBrand"
+        class="btn btn-sm btn-outline-danger"
+        (click)="deleteDialog(data.data.id)"    
+      >
+        <i class="dx-icon-trash"></i>
+      </button>
+    </div> 
       <div *dxTemplate="let d of 'discountCellTemplate'">
         <div class="chart-cell">
           <dx-bullet

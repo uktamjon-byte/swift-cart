@@ -3,6 +3,17 @@ import { UserOrder } from '../../types/interfaces/order.interface';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { Router } from '@angular/router';
 import { OrderStatus } from '../../types/enams/order.enum';
+import { permissions } from 'src/app/constants/permissions';
+import { NotifyServiceMessage } from 'src/app/shared/services/notify.service';
+import { PermissionsService } from 'src/app/admin/admin-auth/services/permission.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmWindowComponent } from 'src/app/shared/components/confirm-window/confirm-window.component';
+import {
+  DialogWindowButtonType,
+  NotifyMessageType,
+} from 'src/app/shared/enums/notify.enum';
+import { OrderService } from '../../services/order.service';
+import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-order-list',
@@ -13,7 +24,19 @@ export class OrderListComponent implements OnInit {
   collapsed = false;
   @ViewChild('grid', { static: false }) dataGrid!: DxDataGridComponent;
   selectedOrder!: UserOrder;
-  constructor(private router: Router) {}
+  private destroy$ = new Subject<void>();
+  permissions = permissions;
+  canCreateOrder = false;
+  canUpdateOrder = false;
+  canDeleteOrder = false;
+  canEditOrDelete = false;
+  constructor(
+    private router: Router,
+    private notifyServiceMessage: NotifyServiceMessage,
+    private permission: PermissionsService,
+    public dialog: MatDialog,
+    private orderService: OrderService,
+  ) {}
 
   orders: UserOrder[] = [
     {
@@ -66,7 +89,38 @@ export class OrderListComponent implements OnInit {
     },
   ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.canCreateOrder = this.permission.has(this.permissions.orderCreate);
+    this.canUpdateOrder = this.permission.has(this.permissions.orderUpdate);
+    this.canDeleteOrder = this.permission.has(this.permissions.orderDelete);
+    this.canEditOrDelete = this.canUpdateOrder || this.canDeleteOrder;
+    this.loadOrders();
+  }
+
+  loadOrders() {
+    this.orderService
+      .getOrders()
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((e) => {
+          this.notifyServiceMessage.opeSnackBar(
+            'Something went wrong while uploading orders, please try again later',
+            NotifyMessageType.error,
+          );
+          return EMPTY;
+        }),
+      )
+      .subscribe((res) => {
+        if (res.success) {
+          this.orders = res.data;
+        } else {
+          this.notifyServiceMessage.opeSnackBar(
+            'Failed to load orders',
+            NotifyMessageType.error,
+          );
+        }
+      });
+  }
 
   getStatusClass(status: OrderStatus): string {
     switch (status) {
@@ -91,14 +145,54 @@ export class OrderListComponent implements OnInit {
       e.component.expandRow(['EnviroCare']);
     }
   };
-  onRowRemoved(e: any) {
-    console.log('Deleted:', e.data);
+
+  deleteDialog(id: number) {
+    const dialogRef = this.dialog.open(ConfirmWindowComponent, {
+      width: '420px',
+      maxWidth: '90vw',
+      disableClose: true,
+      autoFocus: false,
+      data: { title: 'Delete', message: 'Are you sure you want to delete it' },
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (DialogWindowButtonType.confirm === res) {
+        this.orderService
+          .deleteOrder(id)
+          .pipe(
+            takeUntil(this.destroy$),
+            catchError((e) => {
+              this.notifyServiceMessage.opeSnackBar(
+                'Something went wrong, please try again later',
+                NotifyMessageType.error,
+              );
+              return EMPTY;
+            }),
+          )
+          .subscribe((data) => {
+            if (data.success) {
+              this.orders = this.orders.filter((r) => r.id !== id);
+              this.notifyServiceMessage.opeSnackBar(
+                'Order has been deleted successfully',
+                NotifyMessageType.notify,
+              );
+            } else {
+              this.notifyServiceMessage.opeSnackBar(
+                'Failed to delete order',
+                NotifyMessageType.error,
+              );
+            }
+          });
+      }
+    });
   }
 
-  onRowClick($event: any) {
-    console.log('reree');
-    this.selectedOrder = $event.data;
-    // this.postBlogService.setPost(this.selectedPost);
-    this.router.navigate([`/sales/order/${this.selectedOrder.id}`]);
+  editRow(id: number) {
+    this.router.navigate([`/admin/sales/order/${id}`]);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

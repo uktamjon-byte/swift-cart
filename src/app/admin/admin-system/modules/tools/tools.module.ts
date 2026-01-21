@@ -6,10 +6,12 @@ import {
   DxBulletModule,
   DxButtonModule,
   DxDataGridModule,
+  DxSwitchModule,
   DxTemplateModule,
 } from 'devextreme-angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { CityListComponent } from './pages/city-list/city-list.component';
+import { CountryService } from './services/country.service';
 
 @NgModule({
   declarations: [CountryListComponent, CityListComponent],
@@ -21,6 +23,8 @@ import { CityListComponent } from './pages/city-list/city-list.component';
     DxTemplateModule,
     TranslateModule,
     DxButtonModule,
+    DxSwitchModule,
   ],
+  providers: [CountryService],
 })
 export class ToolsModule {}

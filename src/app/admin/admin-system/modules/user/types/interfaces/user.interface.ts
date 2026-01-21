@@ -3,7 +3,25 @@ export interface IUser {
   name: string;
   lastName: string;
   email: string;
+  image: string;
+  password?: any;
+  isActive: boolean;
   createdDate: Date;
+}
+
+export interface IAdminUser {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  image: string;
+  isActive: boolean;
+  roleId: number;
+  role: {
+    name: string;
+  };
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
 }
 
 export interface IPermission {

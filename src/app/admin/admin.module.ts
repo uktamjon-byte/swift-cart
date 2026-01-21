@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { CommonModule } from '@angular/common';
@@ -10,20 +9,16 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from '../shared/components/shared-module';
 
-
 @NgModule({
-  declarations: [
-    AdminComponent,
-    AdminAuthComponent,
-  ],
+  declarations: [AdminComponent, AdminAuthComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
     TranslateModule,
     MatProgressSpinnerModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
 })
-export class AdminModule { }
+export class AdminModule {}

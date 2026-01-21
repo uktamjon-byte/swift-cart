@@ -20,6 +20,7 @@ export class SaveEditToolbarComponent implements OnInit {
   @Input() loading = false;
   @Input() invalid = false;
   @Input() codeExist = false;
+  @Input() isImageLoaded = false;
 
   @Output() save = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();

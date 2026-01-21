@@ -6,96 +6,133 @@
     <div class="box mt-3">
         <div class="box-body">
             <form class="drop-file d-flex justify-content-center align-items-center position-relative">
-              <dropzone
-                #dzRef="ngxDropzone"
-                [config]="config"
-                [message]="'clickUpload' | translate"
-                (success)="onSuccess($event)"
-                (error)="onError($event)"
-                (sending)="onSending($event)">
-              </dropzone>
-              <button class="btn btn-primary position-absolute" type="button" (click)="uploadAllFiles()">{{'uploadFiles' | translate}}</button>
-            </form>
-    <dx-data-grid
-      [columnAutoWidth]="true"
-      [columnHidingEnabled]="true"
-      id="gridContainer"
-      [dataSource]="dataSource"
-      [remoteOperations]="false"
-      [allowColumnReordering]="true"
-      [rowAlternationEnabled]="true"
-      [showBorders]="true"
-      [width]="'100%'"
-      (onContentReady)="contentReady($event)"
-      (onInitialized)="onInitGrid($event)"
-      (onRowRemoved)="onRowRemoved($event)"
-    >
-          <!-- ✅ Editing config -->
-      <dxo-editing
-        mode="row"
-        [allowDeleting]="true"
-        [useIcons]="true"
-      ></dxo-editing>
-      <dxo-toolbar>
+        <div
+          class="custom-dropzone"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)"
+          (click)="fileInput.click()"
+        >
 
-        <!-- Search Panel -->
-        <dxi-item name="searchPanel" ></dxi-item>
-      </dxo-toolbar>
+          <p *ngIf="files.length === 0" class="dropzone-placeholder ">
+            Drag & drop image here or click to upload
+          </p>
+          <div class="preview-wrapper" *ngFor="let item of files; let i = index">
+            <img [src]="item.preview">
+            <button class="remove-btn" (click)="removeFile(i, $event)">
+              ✕
+            </button>
+          </div>
 
-      <dxo-paging [pageSize]="10"></dxo-paging>
-      <dxo-pager
-        [visible]="true"
-        [showPageSizeSelector]="true"
-        [allowedPageSizes]="[10, 25, 50, 100]"
-      ></dxo-pager>
+  <input
+    type="file"
+    hidden
+    [attr.multiple]="multiple ? '' : null"
+    #fileInput
+    (change)="onFileSelect($event)"
+  />
 
-      <dxi-column dataField="id" alignment="left" [caption]="'id' | translate"></dxi-column>
-
-      <dxi-column
-        dataField="image"
-        [caption]="'thumbnail' | translate"
-        [allowSorting]="false"
-        [allowFiltering]="false"
-        cellTemplate="imageCellTemplate"
-      ></dxi-column>
-
-      <div *dxTemplate="let data of 'imageCellTemplate'">
-        <img
-          [src]="data.value"
-          style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"
-        />
-      </div>
-
-      <dxi-column
-        dataField="title"
-        [caption]="'filename' | translate"
-        alignment="left"
-      ></dxi-column>
-
-      <dxi-column
-        dataField="date"
-        dataType="date"
-        [caption]="'created' | translate"
-        alignment="right"
-      ></dxi-column>
-
-      <dxi-column
-       *ngIf="isDialog"
-        caption="Actions"
-        [allowSorting]="false"
-        [allowFiltering]="false"
-        [width]="120"
-        cellTemplate="actionsCell">
-      </dxi-column>
-
-  <div *dxTemplate="let cell of 'actionsCell'">
-  <button mat-button color="primary" (click)="selectImage(cell.data)">
-    Insert
-  </button>
 </div>
 
-      <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
-    </dx-data-grid>
+            <app-save-edit-toolbar
+                  class="position-absolute upload-btn"
+                  [editMode]="false"
+                  entityName="Filemanager"
+                  [invalid]="files.length === 0"
+                  [loading]="isSaving"
+                  (save)="uploadAllFiles()"
+                ></app-save-edit-toolbar>
+            </form>
+              <dx-data-grid
+                [columnAutoWidth]="true"
+                [columnHidingEnabled]="true"
+                id="gridContainer"
+                [dataSource]="media"
+                [remoteOperations]="false"
+                [allowColumnReordering]="true"
+                [rowAlternationEnabled]="true"
+                [showBorders]="true"
+                [width]="'100%'"
+                (onContentReady)="contentReady($event)"
+                (onInitialized)="onInitGrid($event)"
+              >
+                <dxo-toolbar>
+
+                  <!-- Search Panel -->
+                  <dxi-item name="searchPanel" ></dxi-item>
+                </dxo-toolbar>
+
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager
+                  [visible]="true"
+                  [showPageSizeSelector]="true"
+                  [allowedPageSizes]="[10, 25, 50, 100]"
+                ></dxo-pager>
+
+                <dxi-column dataField="id" alignment="left" [caption]="'id' | translate"></dxi-column>
+
+                <dxi-column
+                  dataField="uniqueName"
+                  [caption]="'thumbnail' | translate"
+                  [allowSorting]="false"
+                  [allowFiltering]="false"
+                  cellTemplate="imageCellTemplate"
+                ></dxi-column>
+
+                <div *dxTemplate="let data of 'imageCellTemplate'">
+                  <img
+                    [src]="[getUrl + data.value]"
+                    style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"
+                  />
+                </div>
+
+                <dxi-column
+                  dataField="name"
+                  [caption]="'filename' | translate"
+                  alignment="left"
+                ></dxi-column>
+
+                <dxi-column
+                  alignment="left"
+                  dataField="createdAt"
+                  dataType="date"
+                  [caption]="'created' | translate"
+                ></dxi-column>
+
+                <dxi-column
+                  *ngIf="isDialog"
+                  caption="Insertion"
+                  [allowSorting]="false"
+                  [allowFiltering]="false"
+                  [width]="120"
+                  cellTemplate="actionsCell">
+                </dxi-column>
+                <div *dxTemplate="let cell of 'actionsCell'">
+                <button mat-button color="primary" (click)="selectImage(cell.data)">
+                  Insert
+                </button>
+                </div>
+                  <dxi-column
+                    *ngIf="canDeleteMedia"                   
+                    caption="Actions"
+                    [width]="120"
+                    [allowSorting]="false"
+                    [allowFiltering]="false"
+                    cellTemplate="actionTemplate">
+                  </dxi-column>
+                <div *dxTemplate="let data of 'actionTemplate'" class="d-flex gap-2">
+                  <button
+                    *ngIf="canDeleteMedia"
+                    class="btn btn-sm btn-outline-danger"
+                    (click)="deleteDialog(data.data.id)"                
+                  >
+                  <i class="dx-icon-trash"></i>
+                  </button>
+                </div> 
+         
+
+                <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
+              </dx-data-grid>
         </div>
     </div>
 </section>

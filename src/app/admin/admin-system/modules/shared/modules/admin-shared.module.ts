@@ -13,6 +13,7 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from 'src/app/shared/components/shared-module';
 
 @NgModule({
   declarations: [FileManagerComponent],
@@ -28,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     TranslateModule,
     DropzoneModule,
     MatDialogModule,
+    SharedModule,
   ],
   exports: [FileManagerComponent],
 })

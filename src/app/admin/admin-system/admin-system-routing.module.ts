@@ -1,22 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminSystemComponent } from './admin-system.component';
-import { skip } from 'rxjs';
+import { AdminAuthGuard } from '../admin-auth/services/admin-auth.guard';
+import { PermissionGuard } from '../admin-auth/guards/permission.guard';
+import { permissions } from '../../constants/permissions';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminSystemComponent,
+    canActivate: [AdminAuthGuard],
     data: { breadcrumb: 'Home' },
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
+        canActivate: [PermissionGuard],
         loadChildren: () =>
           import('../admin-system/modules/dashboard/dashboard.module').then(
             (m) => m.AdminDashboardModule
           ),
-        data: { breadcrumb: 'Dashboard' },
+        data: {
+          breadcrumb: 'Dashboard',
+          permission: permissions.dashboardInfo,
+        },
       },
       {
         path: 'blog',
@@ -28,11 +35,12 @@ const routes: Routes = [
       },
       {
         path: 'media',
+        canActivate: [PermissionGuard],
         loadChildren: () =>
           import('../admin-system/modules/media/media.module').then(
             (m) => m.MediaModule
           ),
-        data: { breadcrumb: 'Media' },
+        data: { breadcrumb: 'Media', permission: permissions.mediaRead },
       },
       {
         path: 'product',
@@ -44,9 +52,10 @@ const routes: Routes = [
       },
       {
         path: 'sales',
+        canActivate: [PermissionGuard],
         loadChildren: () =>
           import('./modules/sales/sale.module').then((m) => m.SaleModule),
-        data: { breadcrumb: 'Sales' },
+        data: { breadcrumb: 'Sales', permission: permissions.orderRead },
       },
       {
         path: 'users',
@@ -63,7 +72,6 @@ const routes: Routes = [
         path: 'pages',
         loadChildren: () =>
           import('./modules/pages/pages.module').then((m) => m.PagesModule),
-        data: { breadcrumb: 'Pages' },
       },
     ],
   },

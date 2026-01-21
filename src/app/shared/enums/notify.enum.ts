@@ -1,7 +1,7 @@
 export enum NotifyMessageType {
   error = 'bg-danger',
   warning = 'bg-warning',
-  notify = 'bg-info',
+  notify = 'bg-success',
 }
 
 export enum DialogWindowButtonType {

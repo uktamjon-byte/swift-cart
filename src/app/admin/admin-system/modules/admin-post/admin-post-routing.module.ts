@@ -3,10 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminPostComponent } from './admin-post.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { TagsComponent } from './pages/tags/tags.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { CreateTagCategoriesComponent } from './pages/create-tag-categories/create-tag-categories.component';
 import { ComponentMode, PostMode } from './types/enums/post.enum';
+import { PostCommentsComponent } from './pages/post-comments/post-comments.component';
+import { EditCommentComponent } from './pages/edit-comment/edit-comment.component';
+import { PermissionGuard } from 'src/app/admin/admin-auth/guards/permission.guard';
+import { permissions } from 'src/app/constants/permissions';
 
 const routes: Routes = [
   {
@@ -20,17 +23,21 @@ const routes: Routes = [
         pathMatch: 'full',
         data: { breadcrumb: 'Post' },
       },
-      { path: 'post', component: PostsComponent, data: { breadcrumb: 'Post' } },
-      { path: 'tag', component: TagsComponent, data: { breadcrumb: 'Tag' } },
       {
-        path: 'category',
-        component: CategoriesComponent,
-        data: { breadcrumb: 'Category' },
+        path: 'post',
+        component: PostsComponent,
+        canActivate: [PermissionGuard],
+        data: { breadcrumb: 'Post', permission: permissions.blogRead },
+      },
+      {
+        path: 'tag',
+        canActivate: [PermissionGuard],
+        component: TagsComponent,
+        data: { breadcrumb: 'Tag', permission: permissions.blogTagRead },
       },
       {
         path: 'post/create',
         component: CreatePostComponent,
-
         data: {
           mode: PostMode.createPost,
           postCreate: 'Create Post',
@@ -38,31 +45,27 @@ const routes: Routes = [
         },
       },
       {
-        path: 'post-edit/:id',
+        path: 'post/comments/:id',
+        component: PostCommentsComponent,
+
+        data: {
+          breadcrumb: 'Comments',
+        },
+      },
+      {
+        path: 'post/comments/edit/:id',
+        component: EditCommentComponent,
+
+        data: {
+          breadcrumb: 'Comments edit',
+        },
+      },
+      {
+        path: 'post/edit/:id',
         component: CreatePostComponent,
         data: {
           mode: PostMode.editPost,
           postEdit: 'Edit Post',
-          breadcrumb: 'Edit',
-        },
-      },
-      {
-        path: 'category/create',
-        component: CreateTagCategoriesComponent,
-        data: {
-          mode: ComponentMode.createCategory,
-          postCategoryCreate: 'Create Post Category',
-          postCategoryCreateBtn: 'Create Category',
-          breadcrumb: 'Create',
-        },
-      },
-      {
-        path: 'category/:id',
-        component: CreateTagCategoriesComponent,
-        data: {
-          mode: ComponentMode.editCategory,
-          postCategoryEdit: 'Edit Post Category',
-          postCategoryEditBtn: 'Edit Category',
           breadcrumb: 'Edit',
         },
       },

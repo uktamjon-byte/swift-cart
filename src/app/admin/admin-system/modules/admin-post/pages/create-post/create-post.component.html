@@ -3,7 +3,7 @@
         <h4 class="fw-bold">{{ 'createBlogPost' | translate}}</h4>
     </section>
     <section class="main-content">
-        <form class="post-form" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <form class="post-form" [formGroup]="postForm">
             <div class="row">
                 <div class="left-column col-lg-8 col-md-12">
                     <div class="box">
@@ -48,45 +48,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box">
-                        <div class="box-header">
-                            <h5 class="fw-bold">SEO</h5>
-                        </div>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="meta-title" class="text-left">
-                                    {{ 'metaTitle' | translate }}
-                                    <span class="text-red">*</span>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="meta-title" 
-                                    class="form-control"
-                                    formControlName="metaTitle"
-                                    [ngClass]="{'has-error': postForm.get('metaTitle')?.touched && postForm.get('metaTitle')?.invalid}"
-                                >
-                                <p class="error-message" *ngIf="postForm.get('metaTitle')?.touched && postForm.get('metaTitle')?.invalid"> 
-                                    {{ 'emptyInputError' | translate }}
-                                </p>
-                            </div>
-                            <div class="form-group mt-3">
-                                <label for="meta-description" class="text-left">
-                                    {{ 'metaDescription' | translate }}
-                                    <span class="text-red">*</span>
-                                </label>
-                                <textarea 
-                                    class="meta-description form-control w-100" 
-                                    style="height: 130px;" 
-                                    id="meta-description"
-                                    formControlName="metaDescription"
-                                    [ngClass]="{'has-error': postForm.get('metaDescription')?.touched && postForm.get('metaDescription')?.invalid}"
-                                ></textarea>
-                                <p class="error-message" *ngIf="postForm.get('metaDescription')?.touched && postForm.get('metaDescription')?.invalid"> 
-                                    {{ 'emptyInputError' | translate }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="right-column col-lg-4 col-md-12">
@@ -98,7 +59,6 @@
                             <div class="form-group">
                                 <div 
                                     class="image-wrapper m-0 d-flex align-items-center justify-content-center position-relative" 
-                                    [ngClass]="{'has-error': postForm.get('metaDescription')?.touched && postForm.get('metaDescription')?.invalid}"
                                     (click)="displayFileManager()"
                                 >
                                     <img [src]="selectedImage">
@@ -120,32 +80,12 @@
                                 </label>
                                 <select 
                                     class="form-select" 
-                                    formControlName="publishStatus"
+                                    formControlName="isActive"
                                 >
-                                    <option>{{ 'published' | translate }}</option>
-                                    <option>{{ 'unpublished' | translate }}</option>
+                                    <option [ngValue]="true">{{ 'published' | translate }}</option>
+                                    <option [ngValue]="false">{{ 'unpublished' | translate }}</option>
                                 </select>
-                                <p class="error-message" *ngIf="postForm.get('publishStatus')?.touched && postForm.get('publishStatus')?.invalid"> 
-                                    {{ 'emptyInputError' | translate }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="box-header">
-                            <h5 class="fw-bold">{{ 'categories' | translate }}</h5>
-                        </div>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="title" class="text-left">
-                                    {{ 'selectCategories' | translate }}
-                                    <span class="text-red">*</span>
-                                </label>
-                                <select name="" class="form-select" formControlName="postCategory">
-                                    <option *ngFor="let category of blogCategories">{{ category.title | translate}}</option>
-                                </select>
-                                <p class="error-message" *ngIf="postForm.get('postCategory')?.touched && postForm.get('postCategory')?.invalid"> 
+                                <p class="error-message" *ngIf="postForm.get('isActive')?.touched && postForm.get('isActive')?.invalid"> 
                                     {{ 'emptyInputError' | translate }}
                                 </p>
                             </div>
@@ -163,19 +103,19 @@
                                     <span class="text-red">*</span>
                                 </label>
                                 <dx-tag-box
-                                    [ngClass]="{'has-error': postForm.get('tags')?.touched && postForm.get('tags')?.invalid}"
-                                    [items]="items"
-                                    displayExpr="name"
-                                    valueExpr="this"
+                                    [ngClass]="{'has-error': postForm.get('tagIds')?.touched && postForm.get('tagIds')?.invalid}"
+                                    [items]="tags"
+                                    displayExpr="title"
+                                    valueExpr="id"
                                     [(value)]="selectedItems"
                                     [searchEnabled]="true"
-                                    placeholder="{{ 'selectItems' | translate }}"
+                                    placeholder="{{ 'selectTags' | translate }}"
                                     [multiline]="true" 
                                     [applyValueMode]="'useButtons'"
                                     stylingMode="outlined"
                                     [showSelectionControls]="false"
                                     [acceptCustomValue]="false"
-                                    formControlName="tags"
+                                    formControlName="tagIds"
                                 >
                                 </dx-tag-box>
                                 <p class="error-message" *ngIf="postForm.get('tags')?.touched && postForm.get('tags')?.invalid"> 
@@ -187,11 +127,19 @@
                 </div>
             </div>
 
-            <div class="page-form-footer d-flex align-items-center justify-content-end position-fixed bottom-0 end-0 px-2 py-2">
-                <div class="control-btns">
-                    <button class="btn btn-outline-secondary me-2" type="submit">{{ 'save' | translate }}</button>
-                    <button class="btn btn-outline-primary me-2">{{ 'saveAndEdit' | translate }}</button>
-                    <button class="btn btn-primary">{{ 'saveAndExit' | translate }}</button>
+            <div class="page-form-footer d-flex align-items-center justify-content-end position-fixed bottom-0 end-0 px-2">
+                <div class="control-btns d-flex flex-row">
+                     <app-save-edit-toolbar
+                        [editMode]="isEdit"
+                        entityName="Permission"
+                        [loading]="isSaving"
+                        [invalid]="postForm.invalid"
+                        [isImageLoaded]="!isImageLoaded"
+                        (save)="savePost()"
+                    ></app-save-edit-toolbar>
+                    <button class="btn btn-secondary align-self-center ms-2" (click)="cancel()">
+                      {{ 'cancel' | translate }}
+                    </button>
                 </div>
             </div>
         </form>

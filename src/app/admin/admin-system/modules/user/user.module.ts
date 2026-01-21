@@ -19,6 +19,10 @@ import { PermissionService } from './services/permission.service';
 import { SharedModule } from 'src/app/shared/components/shared-module';
 import { RoleService } from './services/role.service';
 import { UserService } from './services/user.service';
+import {
+  MatProgressSpinnerModule,
+  MatSpinner,
+} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,7 @@ import { UserService } from './services/user.service';
     TranslateModule,
     ReactiveFormsModule,
     SharedModule,
+    MatProgressSpinnerModule,
   ],
   providers: [PermissionService, RoleService, UserService],
 })

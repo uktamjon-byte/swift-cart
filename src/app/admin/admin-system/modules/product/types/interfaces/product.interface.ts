@@ -1,36 +1,76 @@
 import { ReviewStatus } from '../enams/product.enam';
 
-export interface IProduct {
-  name: string;
+interface IProductImage {
   id: number;
-  isEnabled: boolean;
-  images: Image;
-  price: number;
-  availability: string;
-  updatedDate: Date;
+  productImage: { id: number; uniqueName: string };
 }
 
 interface Image {
-  title: string;
   id: number;
-  checked: boolean;
-  link: string;
-  date: Date;
+  uniqueName: string;
+}
+
+export interface IProductDetail extends IProduct {
+  id: number;
+  averageRating: number;
+  createdAt: string;
+  updatedAt: string;
+  ratingCount: number;
+}
+
+export interface IProduct {
+  name: string;
+  description: string;
+  brandId: number;
+  categoryId: number;
+  unitId: number;
+  price: number | string;
+  quantity: number;
+  isActive: boolean;
+
+  images: number[] | IProductImage;
+  seo: ISeo;
+}
+
+export interface ISeo {
+  title: string;
+  description: string;
+}
+
+export interface ICategoryDetail extends IProductCategory {
+  id: number;
+  categoryImage: Image;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IProductCategory {
-  id: number; // unique category ID
-  title: string; // category name
-  thumbnail: string; // image URL
-  date: Date; // date when category was created
+  name: string;
+  description: string;
+  isActive: boolean;
+  imageId: number;
+  date: string;
 }
 
-export interface Brand {
+export interface IBrandDetail extends IBrand {
   id: number;
-  title: string;
+  brandImage: Image;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IBrand {
+  name: string;
+  description: string;
   date: Date;
-  logo: string; // usually image URL or path
-  status: boolean; // true = active, false = inactive
+  imageId: string;
+  isActive: boolean;
+}
+
+export interface IUnit {
+  id: number;
+  name: string;
+  shortName: string;
 }
 
 export interface UserReview {

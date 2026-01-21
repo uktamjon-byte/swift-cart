@@ -10,10 +10,17 @@ import { ReviewListComponent } from './pages/review-list/review-list.component';
 import { EditReviewComponent } from './pages/edit-review/edit-review.component';
 import { TagListComponent } from './pages/tag-list/tag-list.component';
 import { CreateTagComponent } from './pages/create-tag/create-tag.component';
+import { PermissionGuard } from 'src/app/admin/admin-auth/guards/permission.guard';
+import { permissions } from 'src/app/constants/permissions';
 
 const routes: Routes = [
   { path: '', redirectTo: 'list', pathMatch: 'full' },
-  { path: 'list', component: ProductComponent, data: { breadcrumb: 'List' } },
+  {
+    path: 'list',
+    canActivate: [PermissionGuard],
+    component: ProductComponent,
+    data: { breadcrumb: 'List', permission: permissions.productRead },
+  },
   {
     path: 'create',
     component: CreateProductComponent,
@@ -26,8 +33,9 @@ const routes: Routes = [
   },
   {
     path: 'categories',
+    canActivate: [PermissionGuard],
     component: ProductCategoriesComponent,
-    data: { breadcrumb: 'Categories' },
+    data: { breadcrumb: 'Categories', permission: permissions.categoryRead },
   },
   {
     path: 'categories/create',
@@ -41,8 +49,9 @@ const routes: Routes = [
   },
   {
     path: 'brand',
+    canActivate: [PermissionGuard],
     component: BrandListComponent,
-    data: { breadcrumb: 'Brand' },
+    data: { breadcrumb: 'Brand', permission: permissions.brandRead },
   },
   {
     path: 'brand/create',

@@ -1,10 +1,10 @@
 <section class="grid-section">
   <div class="top-section my-4">
-    <div class="title">
+    <div class="title" >
       <h4 class="fw-bold">{{ 'sidebarUsers' | translate }}</h4>
     </div>
-    <div class="create-post-btn d-flex justify-content-end">
-      <a class="btn btn-primary" [routerLink]="'/users/list/create'">
+    <div class="create-post-btn d-flex justify-content-end" *ngIf="canCreateUser">
+      <a class="btn btn-primary" [routerLink]="'/admin/users/list/create'">
         {{ 'createUser' | translate }}
       </a>
     </div>
@@ -22,14 +22,7 @@
       [showBorders]="true"
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
-      (onRowRemoving)="onRowRemoving($event)"
     >
-          <!-- ✅ Editing config -->
-      <dxo-editing
-        mode="row"
-        [allowDeleting]="true"
-        [useIcons]="true"
-      ></dxo-editing>
       <dxo-toolbar>
 
         <!-- Search Panel -->
@@ -46,6 +39,21 @@
       <dxi-column dataField="id" alignment="left" caption="{{ 'id' | translate }}">
       </dxi-column>
 
+      <dxi-column
+        dataField="image"
+        [caption]="'featuredImage' | translate"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="imageCellTemplate"
+      ></dxi-column>
+
+      <div *dxTemplate="let data of 'imageCellTemplate'">
+        <img
+          [src]="getUrl + data.data.image"
+          style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"
+        />
+      </div>
+
       <dxi-column dataField="firstName" dataType="string" caption="{{ 'name' | translate }}">
       </dxi-column>
 
@@ -54,17 +62,42 @@
 
       <dxi-column dataField="email" dataType="string" caption="{{ 'email' | translate }}">
       </dxi-column>
-
-      <dxi-column dataField="createdAt" dataType="date" caption="{{ 'created' | translate}}">
+      <dxi-column
+        *ngIf="canEditOrDelete"
+        caption="{{'Actions' | translate}}"
+        [width]="120"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="actionTemplate">
       </dxi-column>
-      <dxi-column type="buttons" [width]="100">
+
+     <div *dxTemplate="let data of 'actionTemplate'" class="d-flex gap-2">
+      <button
+        *ngIf="canUpdateUser"
+        class="btn btn-sm btn-outline-primary"
+        (click)="editRow(data.data.id)"
+        >
+        <i class="dx-icon-edit"></i>
+      </button>
+
+      <button
+        *ngIf="canDeleteUser"
+        class="btn btn-sm btn-outline-danger"
+        (click)="deleteDialog(data.data.id)" 
+      
+>
+        <i class="dx-icon-trash"></i>
+      </button>
+    </div> 
+
+      <!-- <dxi-column type="buttons" [width]="100" *ngIf="permission.hasAny([permissions.userDelete, permissions.userUpdate])">
           <dxi-button
             hint="Edit"
             icon="edit"
             [onClick]="editRow.bind(this)"
           ></dxi-button>
-          <dxi-button name="delete"></dxi-button>
-      </dxi-column>
+          <dxi-button name="delete" *ngIf="permission.has(permissions.userDelete)"></dxi-button>
+      </dxi-column> -->
       <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
 
       <div *dxTemplate="let d of 'discountCellTemplate'">

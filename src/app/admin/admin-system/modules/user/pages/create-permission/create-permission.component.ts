@@ -64,11 +64,11 @@ export class CreatePermissionComponent implements OnInit, OnDestroy {
 
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
-      console.log('category id', this.id);
       if (this.id !== null && !isNaN(this.id)) {
         this.isEdit = true;
         this.mainTitle = 'editPermission';
-        this.permissionService.savedPermissions
+        this.permissionService
+          .getPermissionById(this.id)
           .pipe(
             takeUntil(this.destroy$),
             catchError((e) => {
@@ -80,12 +80,10 @@ export class CreatePermissionComponent implements OnInit, OnDestroy {
               return EMPTY;
             })
           )
-          .subscribe((data) => {
-            if (data) {
-              this.editablePermissions = data;
-              this.editablePermission = this.editablePermissions.find(
-                (data) => data.id === this.id
-              );
+          .subscribe((res) => {
+            console.log('res permission', res);
+            if (res.data.id === this.id) {
+              this.editablePermission = res.data;
             } else {
               this.notifyServiceMessage.opeSnackBar(
                 'Editable permission has not been uploaded, please try again later',
@@ -110,6 +108,7 @@ export class CreatePermissionComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         catchError((e) => {
+          this.adminService.stopLoader.next(true);
           this.notifyServiceMessage.opeSnackBar(
             'Codes have not been uploaded, please try again later',
             NotifyMessageType.error
@@ -127,28 +126,22 @@ export class CreatePermissionComponent implements OnInit, OnDestroy {
           );
         }
       });
-
-    console.log('codes', this.codes);
   }
 
-  onSubmit() {
+  savePermissions() {
     this.isSaving = true;
-    console.log('form', this.permissionForm.value);
     if (!this.isEdit) {
       this.permissionService
         .postPermission(this.permissionForm.value)
         .pipe(
           takeUntil(this.destroy$),
           catchError((e) => {
+            this.adminService.stopLoader.next(true);
             this.notifyServiceMessage.opeSnackBar(
               'Something went wrong, please try again later',
               NotifyMessageType.error
             );
             return EMPTY;
-          }),
-          finalize(() => {
-            console.log('stop loader');
-            this.adminService.stopLoader.next(true);
           })
         )
         .subscribe((data) => {
@@ -158,9 +151,8 @@ export class CreatePermissionComponent implements OnInit, OnDestroy {
                 'New permission has been created successfully',
                 NotifyMessageType.notify
               );
-              this.isSaving = false;
               this.permissionForm.reset();
-              this.router.navigate(['/users/permissions']);
+              this.router.navigate(['/admin/users/permissions']);
             }, 3000);
           } else {
             this.notifyServiceMessage.opeSnackBar(
@@ -175,15 +167,12 @@ export class CreatePermissionComponent implements OnInit, OnDestroy {
         .pipe(
           takeUntil(this.destroy$),
           catchError((e) => {
+            this.adminService.stopLoader.next(true);
             this.notifyServiceMessage.opeSnackBar(
               'Something went wrong, please try again later',
               NotifyMessageType.error
             );
             return EMPTY;
-          }),
-          finalize(() => {
-            console.log('stop loader');
-            this.adminService.stopLoader.next(true);
           })
         )
         .subscribe((data) => {
@@ -194,7 +183,7 @@ export class CreatePermissionComponent implements OnInit, OnDestroy {
                 NotifyMessageType.notify
               );
               this.permissionForm.reset();
-              this.router.navigate(['/users/permissions']);
+              this.router.navigate(['/admin/users/permissions']);
             }, 2000);
           } else {
             this.notifyServiceMessage.opeSnackBar(
@@ -206,13 +195,9 @@ export class CreatePermissionComponent implements OnInit, OnDestroy {
     }
   }
 
-  savePermissions() {
-    this.onSubmit();
-  }
-
   cancel() {
     this.permissionForm.reset();
-    this.router.navigate(['users/permissions']);
+    this.router.navigate(['/admin/users/permissions']);
   }
 
   ngOnDestroy() {

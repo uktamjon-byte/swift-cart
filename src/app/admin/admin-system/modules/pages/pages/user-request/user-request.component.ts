@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ICustomerCare } from '../../types/interfaces/pages.interface';
+import { IUserRequest } from '../../types/interfaces/pages.interface';
+import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
+import { NotifyServiceMessage } from 'src/app/shared/services/notify.service';
+import { NotifyMessageType } from 'src/app/shared/enums/notify.enum';
+import { UserRequestService } from '../../services/user-request.service';
 
 @Component({
   selector: 'app-user-request',
@@ -8,34 +12,49 @@ import { ICustomerCare } from '../../types/interfaces/pages.interface';
 })
 export class UserRequestComponent implements OnInit {
   collapsed: any;
-  constructor() {}
-  userRequests: ICustomerCare[] = [
-    {
-      name: 'Alice Johnson',
-      email: 'alice.johnson@example.com',
-      question: 'How can I reset my account password?',
-      phone: '+1 202 555 0134',
-    },
-    {
-      name: 'Michael Brown',
-      email: 'michael.brown@example.com',
-      question: 'Do you offer international shipping?',
-      phone: '+44 7890 123456',
-    },
-    {
-      name: 'Sophia Davis',
-      email: 'sophia.davis@example.com',
-      question: 'Can I cancel my order after payment?',
-      phone: '+1 303 555 0198',
-    },
-    {
-      name: 'Daniel Smith',
-      email: 'daniel.smith@example.com',
-      question: 'What is your refund policy?',
-      phone: '+61 412 345 678',
-    },
-  ];
-  ngOnInit(): void {}
+  private destroy$ = new Subject<void>();
+  userRequest: IUserRequest[] = [];
+  constructor(
+    private userRequests: UserRequestService,
+    private notifyServiceMessage: NotifyServiceMessage
+  ) {}
+
+  ngOnInit(): void {
+    this.uploadUserRequest();
+  }
+
+  uploadUserRequest() {
+    this.userRequests
+      .getUserRequest()
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((e) => {
+          this.notifyServiceMessage.opeSnackBar(
+            'Something went wrong while uploading user requests, please try again later',
+            NotifyMessageType.error
+          );
+          return EMPTY;
+        })
+      )
+      .subscribe((response) => {
+        if (!response.success) {
+          this.notifyServiceMessage.opeSnackBar(
+            'Failed to load user request',
+            NotifyMessageType.error
+          );
+          return;
+        }
+
+        if (!response.data || response.data.length === 0) {
+          this.notifyServiceMessage.opeSnackBar(
+            'No request was made by user',
+            NotifyMessageType.notify
+          );
+          return;
+        }
+        this.userRequest = response.data;
+      });
+  }
 
   contentReady = (e: any) => {
     if (!this.collapsed) {

@@ -13,6 +13,9 @@ import { UserRequestComponent } from './pages/user-request/user-request.componen
 import { FaqComponent } from './pages/faq/faq.component';
 import { CreateFaqComponent } from './pages/create-faq/create-faq.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FaqService } from './services/faq.service';
+import { UserRequestService } from './services/user-request.service';
+import { SharedModule } from 'src/app/shared/components/shared-module';
 
 @NgModule({
   declarations: [UserRequestComponent, FaqComponent, CreateFaqComponent],
@@ -26,6 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DxButtonModule,
     ReactiveFormsModule,
     DxHtmlEditorModule,
+    SharedModule,
   ],
+  providers: [FaqService, UserRequestService],
 })
 export class PagesModule {}

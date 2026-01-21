@@ -23,15 +23,10 @@ export class CreateTagComponent implements OnInit {
 
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
-      console.log('category id', this.id);
       if (this.id !== null && !isNaN(this.id)) {
         this.isEdit = true;
         this.title = 'editTag';
-        console.log('edit category');
-      } else {
       }
     });
   }
-
-  onSubmit() {}
 }

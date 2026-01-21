@@ -17,7 +17,7 @@
                             <a class="fw-bold active-title-underline position-relative">{{ 'general' | translate }}</a>  
                         </div>
                         <div class="box-body">
-                            <form [formGroup]="faqForm" (ngSubmit)="onSubmit()">
+                            <form [formGroup]="faqForm">
                             <div class="form-group">
                             <div class="form-name mb-2">
                                   <label for="name" class="text-left">
@@ -28,10 +28,10 @@
                                     type="text" 
                                     id="name" 
                                     class="form-control"
-                                    formControlName="name"
-                                    [ngClass]="{'has-error': faqForm.get('name')?.touched && faqForm.get('name')?.invalid}"
+                                    formControlName="title"
+                                    [ngClass]="{'has-error': faqForm.get('title')?.touched && faqForm.get('title')?.invalid}"
                                 >
-                                 <p class="error-message" *ngIf="faqForm.get('name')?.touched && faqForm.get('name')?.invalid"> 
+                                 <p class="error-message" *ngIf="faqForm.get('title')?.touched && faqForm.get('title')?.invalid"> 
                                     {{ 'emptyInputError' | translate }}
                                 </p>
                             </div>
@@ -68,8 +68,17 @@
                                 </p>
                              </div>                         
                             </div>
-                                <div class="action-btns mt-3">
-                                   <button class="btn btn-primary btn-md" type="submit">{{'save' | translate}}</button>
+                                <div class="action-btns mt-3 d-flex flex-row">
+                                  <app-save-edit-toolbar
+                                    [editMode]="isEdit"
+                                    entityName="Permission"
+                                    [loading]="isSaving"
+                                    [invalid]="faqForm.invalid"
+                                    (save)="saveFaq()"
+                                    ></app-save-edit-toolbar>
+                                     <button class="btn btn-secondary align-self-center ms-2" (click)="cancel()">
+                                     {{ 'cancel' | translate }}
+                                    </button>
                                 </div>
                             </form>
                         </div>

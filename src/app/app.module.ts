@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,36 +7,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedModule } from './shared/components/shared-module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {
-  TranslateLoader,
-  TranslateModule,
-  TranslateService,
-} from '@ngx-translate/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { setupTranslateFactory } from './store/system/core/services/system.service';
-import { HttpLoaderFactory } from './store/auth/auth.module';
-
-import {
-  DropzoneModule,
-  DROPZONE_CONFIG,
-  DropzoneConfigInterface,
-} from 'ngx-dropzone-wrapper';
+  HTTP_INTERCEPTORS,
+  HttpBackend,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { BreadcrumbModule } from 'xng-breadcrumb';
-import { NotifyServiceMessage } from './shared/services/notify.service';
-import { SaveEditToolbarComponent } from './shared/components/save-edit-toolbar/save-edit-toolbar.component';
-
-const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
-  url: '/api/upload', // <-- your backend endpoint
-  maxFilesize: 10, // MB
-  acceptedFiles: 'image/*,application/pdf',
-  addRemoveLinks: true,
-  parallelUploads: 3,
-  uploadMultiple: false,
-  autoProcessQueue: true,
-};
+import { AdminAuthInterceptor } from './admin/admin-auth/services/admin-auth.interceptor';
+import { HttpLoaderFactory } from './admin/http';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, UnauthorizedComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -44,21 +28,20 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatSnackBarModule,
     SharedModule,
     TranslateModule,
-    DropzoneModule,
     BreadcrumbModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
+        deps: [HttpBackend],
       },
     }),
   ],
   providers: [
-    { provide: DROPZONE_CONFIG, useValue: DEFAULT_DROPZONE_CONFIG },
-    NotifyServiceMessage,
+    { provide: HTTP_INTERCEPTORS, useClass: AdminAuthInterceptor, multi: true },
   ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

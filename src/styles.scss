@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 @import'./assets/sass/variables.scss';
-@import "@fontsource/poppins";
+//@import "@fontsource/poppins";
 @import "assets/sass/variables.scss";
 @import "assets/sass/mixins.scss";
 @import "assets/sass/scroll-bar.scss";
@@ -114,15 +114,6 @@ img {
     height: auto;
     display: block;
 }
-
-.eng {
-    font-family: 'Poppins-Bold', sans-serif;
-  }
-  
-  /* Russian language */
-  .ru {
-    font-family: 'Poppins', sans-serif !important;
-  }
 
 /* 6. Ensure all form elements have consistent styling */
 input,
@@ -260,18 +251,6 @@ table td, th {
   }
 }
 
-//dropzone stylings
-dropzone {
-  .dz-message{
-    border: none !important;
-    background-color: inherit !important;
-       .dz-text{
-            font-size: 18px !important;
-            color: $color-gray-dark-5 !important;
-        }
-  }
-}
-
 
 .policy-paragraph-styles{
     line-height: 24px;
@@ -343,6 +322,27 @@ dropzone {
                         z-index: 0;
                         cursor: pointer;
                         overflow: hidden;
+                          span{
+                              position: absolute !important;
+                              top: 5px;
+                              right: 5px;
+                              background: #ff4d4f !important;
+                              color: white;
+                              width: 28px;
+                              height: 28px;
+                              border-radius: 50%;
+                              font-size: 18px;
+                              font-weight: bold;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              cursor: pointer;
+                              box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+                              &:hover {
+                                background: #e63946;
+                                transform: scale(1.05);
+                              }
+                          }
                     }
                 label{
                     margin-bottom: 4px;
@@ -484,6 +484,35 @@ dropzone {
   border-color: #2196f3; 
   box-shadow: none !important;  /* Hover effect */
 }
+ //custom snackbar styling
+.bg-success {
+  background-color: $color-green !important;
+}
+
+.custom-snackbar {
+  border-radius: 12px !important;
+  padding: 16px 20px !important;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Types */
+.bg-success {
+  background: linear-gradient(135deg, #2ecc71, #27ae60) !important;
+  color: #fff !important;
+}
+
+.bg-error {
+  background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+  color: #fff !important;
+}
+
+.bg-warning {
+  background: linear-gradient(135deg, #f39c12, #d35400) !important;
+  color: #fff !important;
+}
 
 .ng-select .ng-value {
   background: #e3f2fd;      /* Background for selected tags */
@@ -616,7 +645,7 @@ dropzone {
       background-color: #0068e1;
       position: absolute;
       top: 34px;       // adjust as needed
-      left: 2px;
+      left: 0px;
       transform: scaleX(1);          
       transform-origin: center;   
       transition: transform 0.3s ease;
@@ -631,7 +660,7 @@ dropzone {
     }
     .main{
         border-top: #ddd;
-         padding: 10px 0 10px 8px;
+        padding: 10px 0 10px 8px;
         background-color: #eee;
         .panel{
             background-color: white;

@@ -1,0 +1,94 @@
+<section class="right-column mt-4">
+    <h5 class="fw-bold mb-3">{{'Edit Comment' | translate}}</h5>
+    <div class="row bg-white rounded-2">
+        <div class="col-lg-4">
+            <div class="left-info mt-3">
+                <div class="header px-3 py-2 fw-bold">
+                    {{'commentInfo' | translate}}
+                </div>
+                <div class="main ">
+                    <div class="panel py-2 position-relative ms-2"><span class="ms-2 fw-bold">{{'general' | translate}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+             <div class="box px-3 shadow-none">
+                        <div class="box-header">
+                            <a class="fw-bold active-title-underline position-relative">{{ 'general' | translate }}</a>  
+                        </div>
+                        <div class="box-body">
+                            <form [formGroup]="commentForm">
+                            <div class="form-group"> 
+                            <div class="form-title">
+                                  <label for="author" class="text-left">
+                                          {{ 'author' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                                <input 
+                                    type="text" 
+                                    id="author" 
+                                    class="form-control"
+                                    formControlName="author"
+                                    readonly
+                                >
+                                </div>      
+                                <div class="form-email">
+                                  <label for="email" class="text-left">
+                                          {{ 'email' | translate }}
+                                    <span class="text-red">*</span>
+                                  </label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    class="form-control"
+                                    formControlName="email"
+                                    readonly
+                                >
+                                </div>         
+                            
+                            <div class="form-group mt-3">
+                                <label for="message" class="text-left">
+                                    {{ 'message' | translate }}
+                                    <span class="text-red">*</span>
+                                </label>
+                                <textarea 
+                                    class="form-control w-100" 
+                                    style="height: 130px;" 
+                                    id="description"
+                                    formControlName="message"
+                                    [ngClass]="{'has-error': commentForm.get('message')?.touched && commentForm.get('message')?.invalid}"
+                                ></textarea>
+                                <p class="error-message" *ngIf="commentForm.get('message')?.touched && commentForm.get('message')?.invalid"> 
+                                    {{ 'emptyInputError' | translate }}
+                                </p>
+                            </div>
+
+                                <div class="form-status mt-3">
+                                    <label for="title" class="text-left d-block">
+                                            {{ 'status' | translate }}
+                                    </label>
+                                    <input class="form-check-input me-3" type="checkbox" value="" id="checkDefault" formControlName="isActive">
+                                     <label class="form-check-label" for="checkDefault">
+                                             {{ 'enableCategory' | translate }}                              
+                                     </label>
+                                </div>
+
+                            </div>
+                                <div class="action-btns mt-3 d-flex flex-row">
+                                 <app-save-edit-toolbar
+                                    [editMode]="true"
+                                    entityName="Comment"
+                                    [loading]="isSaving"
+                                    [invalid]="commentForm.invalid"
+                                    (save)="editComment()"
+                                    ></app-save-edit-toolbar>
+                                     <button class="btn btn-secondary align-self-center ms-2" (click)="cancel()">
+                                     {{ 'cancel' | translate }}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                 </div>
+        </div>      
+    </div>                  
+</section>

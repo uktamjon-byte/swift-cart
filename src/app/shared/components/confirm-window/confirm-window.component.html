@@ -1,9 +1,28 @@
-<h2 mat-dialog-title>{{data.title}}</h2>
-<span mat-dialog-content>{{data.message}}</span>
-<div mat-dialog-actions class="d-flex justify-content-end">
-  <button mat-button mat-dialog-close class="me-2" (click)="onCancel()">Cancel</button>
-  <button mat-button mat-dialog-ok (click)="onConfirm()">Confirm</button>
+<h2 mat-dialog-title class="dialog-title">
+  {{ data.title || 'Confirmation' }}
+</h2>
+
+<div mat-dialog-content class="dialog-content">
+  <p>{{ data.message }}</p>
 </div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button
+    class="btn btn-secondary"
+    (click)="onCancel()"
+  >
+    Cancel
+  </button>
+
+  <button
+    class="btn btn-primary"
+    (click)="onConfirm()"
+  >
+    Confirm
+  </button>
+</div>
+
+
 
   
   

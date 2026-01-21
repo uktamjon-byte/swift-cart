@@ -3,8 +3,8 @@
     <div class="title">
       <h4 class="fw-bold">{{ 'roles' | translate }}</h4>
     </div>
-    <div class="create-post-btn d-flex justify-content-end">
-      <a class="btn btn-primary" [routerLink]="'/users/roles/create'">
+    <div class="create-post-btn d-flex justify-content-end" *ngIf="canCreateRole">
+      <a class="btn btn-primary" [routerLink]="'/admin/users/roles/create'">
         {{ 'createRole' | translate }}
       </a>
     </div>
@@ -22,14 +22,7 @@
       [showBorders]="true"
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
-       (onRowRemoving)="onRowRemoving($event)"
     >
-          <!-- ✅ Editing config -->
-      <dxo-editing
-        mode="row"
-        [allowDeleting]="true"
-        [useIcons]="true"
-      ></dxo-editing>
       <dxo-toolbar>
 
         <!-- Search Panel -->
@@ -51,15 +44,32 @@
 
        <dxi-column dataField="description" dataType="string" caption="{{ 'description' | translate }}">
       </dxi-column>
-     <dxi-column type="buttons" [width]="100">
-          <!-- Edit button -->
-          <dxi-button
-            hint="Edit"
-            icon="edit"
-            [onClick]="editRow.bind(this)"
-          ></dxi-button>
-          <dxi-button name="delete"></dxi-button>
+      <dxi-column
+        *ngIf="canEditOrDeleteRole"
+        caption="Actions"
+        [width]="120"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="actionTemplate">
       </dxi-column>
+
+     <div *dxTemplate="let data of 'actionTemplate'" class="d-flex gap-2">
+      <button
+        *ngIf="canUpdateRole"
+        class="btn btn-sm btn-outline-primary"
+        (click)="editRow(data.data.id)"
+        >
+        <i class="dx-icon-edit"></i>
+      </button>
+
+      <button
+        *ngIf="canDeleteRole"
+        class="btn btn-sm btn-outline-danger"
+        (click)="deleteDialog(data.data.id)" 
+      >
+        <i class="dx-icon-trash"></i>
+      </button>
+    </div> 
       <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
 
       <div *dxTemplate="let d of 'discountCellTemplate'">

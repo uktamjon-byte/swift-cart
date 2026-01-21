@@ -6,9 +6,8 @@ import { CheckoutProductComponent } from './pages/checkout-product/checkout-prod
 import { CartReviewComponent } from './pages/cart-review/cart-review.component';
 import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from './pages/empty-cart/empty-cart.component';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IConfig, NgxMaskModule,  } from 'ngx-mask';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { OrderCompleteComponent } from './pages/order-complete/order-complete.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
@@ -23,20 +22,18 @@ const maskConfig: Partial<IConfig> = {
     CheckoutProductComponent,
     CartReviewComponent,
     EmptyCartComponent,
-    OrderCompleteComponent
+    OrderCompleteComponent,
   ],
   imports: [
     CommonModule,
     CheckoutRoutingModule,
     RouterModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
     MatDialogModule,
-    TranslateModule
+    TranslateModule,
   ],
-  providers:[]
+  providers: [],
 })
-export class CheckoutModule { }
-
+export class CheckoutModule {}

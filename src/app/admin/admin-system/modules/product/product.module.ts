@@ -25,6 +25,8 @@ import { ReviewListComponent } from './pages/review-list/review-list.component';
 import { EditReviewComponent } from './pages/edit-review/edit-review.component';
 import { TagListComponent } from './pages/tag-list/tag-list.component';
 import { CreateTagComponent } from './pages/create-tag/create-tag.component';
+import { BrandService } from './services/brand.service';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,6 @@ import { CreateTagComponent } from './pages/create-tag/create-tag.component';
     MatButtonModule,
     SharedModule,
   ],
-  providers: [ProductService],
+  providers: [ProductService, BrandService, CategoryService],
 })
 export class ProductModule {}

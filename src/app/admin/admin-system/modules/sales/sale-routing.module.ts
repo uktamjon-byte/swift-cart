@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
+import { OrderCreateComponent } from './pages/order-create/order-create.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
     path: 'order',
     component: OrderListComponent,
     data: { breadcrumb: 'Order' },
+  },
+  {
+    path: 'order/create',
+    component: OrderCreateComponent,
+    data: { breadcrumb: 'Order Create' },
   },
   {
     path: 'order/:id',

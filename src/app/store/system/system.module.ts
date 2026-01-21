@@ -3,9 +3,6 @@ import { SystemComponent } from './system.component';
 import { SystemRoutingModule } from './system-routing.module';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './core/components/header/header.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SystemService } from './core/services/system.service';
 import { StickyDirective } from './core/directives/sticky.directive';
 import { FooterComponent } from '../system/core/components/footer/footer.component';
@@ -17,7 +14,6 @@ import { SearchInputComponent } from './core/components/search-input/search-inpu
 import { SharedModule } from 'src/app/shared/components/shared-module';
 import { ScrollTopDirective } from './core/directives/scroll-top.directive';
 import { PageSharedModule } from './modules/shared/page-shared.module';
-
 
 @NgModule({
   declarations: [
@@ -31,17 +27,8 @@ import { PageSharedModule } from './modules/shared/page-shared.module';
     SearchInputResComponent,
     ResCategorySidebarComponent,
     ResSwitchlangCanvasComponent,
-        
   ],
-  imports: [
-    CommonModule,
-    SystemRoutingModule,
-    SharedModule,
-    HttpClientModule,
-    PageSharedModule
-  ],
-  providers: [
-    SystemService
-  ]
+  imports: [CommonModule, SystemRoutingModule, SharedModule, PageSharedModule],
+  providers: [SystemService],
 })
-export class SystemModule { }
+export class SystemModule {}

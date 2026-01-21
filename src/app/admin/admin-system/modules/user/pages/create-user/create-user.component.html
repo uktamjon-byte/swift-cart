@@ -3,21 +3,29 @@
     <div class="row bg-white rounded-2">
         <div class="col-lg-4">
             <div class="left-info mt-3">
-                <div class="header px-3 py-2 fw-bold">
+                <div class="header px-3 py-2 fw-bold ">
                     {{'userInfo' | translate}}
                 </div>
-                <div class="main ">
-                    <div class="panel py-2 position-relative ms-2"><span class="ms-2 fw-bold">{{'general' | translate}}</span></div>
+                <div class="main-content">
+                    <div 
+                    class="py-2 position-relative ms-2"
+                    [class.panel]="activePanelId !== panel.id" 
+                    [class.active-panel]="activePanelId === panel.id"
+                    (click)="changeContent(panel.id)" 
+                    *ngFor="let panel of visiblePanels"
+                    >
+                    <span class="ms-2 fw-bold">{{ panel.title | translate}}</span>
+                </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-8">
-             <div class="box px-3 shadow-none">
+             <div class="box px-3 shadow-none pd-3">
                         <div class="box-header">
-                            <a class="fw-bold active-title-underline position-relative">{{ 'general' | translate }}</a>  
+                            <h5 class="fw-bold active-title-underline position-relative">{{ 'general' | translate }}</h5>  
                         </div>
                         <div class="box-body">
-                            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                        <section class="account"> <form [formGroup]="userForm" *ngIf="currentContentState === DisplayContent.account">
                             <div class="form-group">
                             <div class="form-name mb-3">
                                   <label for="name" class="text-left">
@@ -51,7 +59,7 @@
                                     {{ 'emptyInputError' | translate }}
                                 </p>
                             </div>
-                             <div class="form-email mb-3">
+                             <div class="form-email mb-3" *ngIf="!isEdit">
                                   <label for="email" class="text-left">
                                           {{ 'email' | translate }}
                                     <span class="text-red">*</span>
@@ -79,7 +87,7 @@
                                     {{ 'emptyInputError' | translate }}
                                 </p>
                                 </div>
-                            <div class="password-form mb-3 position-relative">
+                            <div class="password-form mb-3 position-relative" *ngIf="!isEdit">
                                     <label for="password" class="fs-6" translate>password</label>
                                     <input 
                                     [type]="passwordType" 
@@ -106,7 +114,7 @@
                                     </p>
                                 </div>
 
-                            <div class="password-form mb-3 position-relative">
+                            <div class="password-form mb-3 position-relative" *ngIf="!isEdit">
                                     <label for="comfirm" class="fs-6" translate>Comfirm password</label>
                                     <input 
                                     (input)="onPasswordChange($event)"
@@ -120,38 +128,32 @@
                                         (click)="comfirmPasswordType = comfirmPasswordType === 'password' ? 'text' : 'password'">
                                         <i [class]="comfirmPasswordType === 'password' ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
                                     </span>
-                                    <p class="error-message" *ngIf="!isIdentical && userForm.get('comfirm')?.touched">
-                                         {{ 'Password is not comfirmed, check your original password' | translate }}
-                                    </p>
+                                    <p class="error-message" *ngIf="userForm.errors?.['notMatching'] && userForm.get('comfirm')?.touched">
+                                        Passwords do not match
+                                     </p>
                                 </div>
-                             <div class="form-image password-form mb-3 position-relative">
-                                  <label for="image" class="text-left">
-                                          {{ 'image' | translate }}
-                                    <span class="text-red">*</span>
-                                  </label>
-                                <input 
-                                    type="file" 
-                                    accept="image/*" 
-                                    id="image" 
-                                    [value]="''"
-                                    class="form-control"
-                                    (change)="onFileChange($event)"
-                                    (blur)="onFileBlur()"
+                        <div class="box-body p-0 mb-3">
+                            <input 
+                                type="file" 
+                                #fileInput 
+                                hidden 
+                                (change)="onFileSelected($event)"
+                                />
+                            <div class="form-group">
+                                <label for="image" class="text-left d-block">
+                                            {{ 'image' | translate }}
+                                            <span class="text-red">*</span>
+                                    </label>
+                                <div 
+                                    class="image-wrapper m-0 d-flex align-items-center justify-content-center position-relative" 
                                     [ngClass]="{'has-error': userForm.get('image')?.touched && userForm.get('image')?.invalid}"
+                                    (click)="fileInput.click()"
                                 >
-                                <span class="eye-icon position-absolute" 
-                                *ngIf="isImageSelected"
-                                        (click)="removeImage()">
-                                        <i class="fa-solid fa-xmark"></i>
-                                </span>
-                                   <p
-                                        class="error-message"
-                                        *ngIf="userForm.get('image')?.touched && userForm.get('image')?.hasError('required')"
-                                    >
-                                         {{ 'emptyInputError' | translate }}
-                                    </p>
-                            </div>                         
-
+                                    <img [src]="imageToShow">
+                                    <span *ngIf="isImageLoaded" class="position-absolute" (click)="removeImage($event)"><i class="fa-solid fa-xmark"></i></span>
+                                </div> 
+                            </div>
+                        </div>
                             <div class="form-status mb-3">
                                     <label for="title" class="text-left d-block">
                                             {{ 'status' | translate }}
@@ -178,7 +180,94 @@
                                      {{ 'cancel' | translate }}
                                     </button>
                                 </div>
-                            </form>
+                          </form>
+                        </section>
+                        <section class="permissions" *ngIf="currentContentState === DisplayContent.permissions">
+                            <section class="grid-section">
+                            <div class="top-section my-4">
+                                <div class="title">
+                                <h4 class="fw-bold">{{ 'permissions' | translate }}</h4>
+                                </div>
+                            </div>
+                                <div class="bottom-section">
+                                    <dx-data-grid
+                                    #grid
+                                    keyExpr="id"
+                                    [columnAutoWidth]="true"
+                                     [selectedRowKeys]="selectedRowKeys"
+                                     (onSelectionChanging)="preventUncheck($event)"
+                                    [columnHidingEnabled]="true"
+                                    id="gridContainer"
+                                    [dataSource]="userPermissions"
+                                    [remoteOperations]="false"
+                                    [allowColumnReordering]="true"
+                                    [rowAlternationEnabled]="true"
+                                    [showBorders]="true"
+                                    [width]="'100%'"
+                                    (onContentReady)="contentReady($event)"
+                                    >
+                                    <dxo-toolbar>
+                                        <!-- Search Panel -->
+                                        <dxi-item name="searchPanel"></dxi-item>
+                                    </dxo-toolbar>
+
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager
+                                        [visible]="true"
+                                        [showPageSizeSelector]="true"
+                                        [allowedPageSizes]="[10, 25, 50, 100]"
+                                    ></dxo-pager>
+                                    <dxo-selection
+                                        mode="multiple"
+                                        showCheckBoxesMode="always"
+                                        ></dxo-selection>
+                                    <dxi-column dataField="id" alignment="left" caption="{{ 'id' | translate }}">
+                                    </dxi-column>
+
+                                    <dxi-column dataField="name" dataType="string" caption="{{ 'name' | translate }}">
+                                    </dxi-column>
+
+                                    <dxi-column dataField="description" dataType="string" caption="{{ 'description' | translate }}">
+                                    </dxi-column>
+
+                                    <dxi-column dataField="code" dataType="string" caption="{{ 'code' | translate }}">
+                                    </dxi-column>
+
+                                    <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
+
+                                    <div *dxTemplate="let d of 'discountCellTemplate'">
+                                        <div class="chart-cell">
+                                        <dx-bullet
+                                            [showTarget]="false"
+                                            [showZeroLevel]="true"
+                                            [startScaleValue]="0"
+                                            [endScaleValue]="100"
+                                            [value]="d.value * 100"
+                                        >
+                                            <dxo-size [width]="150" [height]="35"></dxo-size>
+                                            <dxo-margin [top]="5" [bottom]="0" [left]="5"></dxo-margin>
+                                        </dx-bullet>
+                                        </div>
+                                    </div>
+                                    </dx-data-grid>
+                                </div>
+                                </section>
+                        </section>
+                        <section class="password" *ngIf="currentContentState === DisplayContent.password">
+                            <div class="reset-wrapper">
+                                <div class="reset-card">
+                                    <h4 class="title">{{'resetPassword' | translate}}</h4>
+                                     <div class="button-wrapper position-relative">
+                                    <button class="btn btn-primary mt-3" (click)="savePassword()">
+                                        {{ 'Make request to reset' | translate }}
+                                    </button>
+                                    <div class="back-drop w-100 h-100 position-absolute" *ngIf="showBackDrop">
+                                        <mat-spinner [diameter]="20"></mat-spinner>   
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </section>                       
                         </div>
                  </div>
         </div>      

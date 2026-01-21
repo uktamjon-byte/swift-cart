@@ -38,9 +38,7 @@ export class TagListComponent implements OnInit {
   }
 
   onRowClick($event: any) {
-    console.log('reree', $event.data);
     this.selectedTag = $event.data;
-    // this.postBlogService.setPost(this.selectedPost);
-    this.router.navigate([`/product/tag/edit/${this.selectedTag.id}`]);
+    this.router.navigate([`/admin/product/tag/edit/${this.selectedTag.id}`]);
   }
 }

@@ -3,8 +3,9 @@
         <h4 class="fw-bold">{{ (isEditable? 'editProduct' : 'sidebarCreateProduct' ) | translate }}</h4>
     </section>
     <section class="main-content">
-        <form class="post-form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <form class="post-form" [formGroup]="productForm">
             <div class="row">
+                <p>{{productForm.status}}</p>
                 <div class="left-column col-lg-8 col-md-12">
                     <div class="box">
                         <div class="box-header">
@@ -20,10 +21,10 @@
                                     type="text" 
                                     id="title" 
                                     class="form-control"
-                                    formControlName="title"
-                                    [ngClass]="{'has-error': productForm.get('title')?.touched && productForm.get('title')?.invalid}"
+                                    formControlName="name"
+                                    [ngClass]="{'has-error': productForm.get('name')?.touched && productForm.get('name')?.invalid}"
                                 >
-                                <p class="error-message" *ngIf="productForm.get('title')?.touched && productForm.get('title')?.invalid"> 
+                                <p class="error-message" *ngIf="productForm.get('name')?.touched && productForm.get('name')?.invalid"> 
                                     {{ 'emptyInputError' | translate }}
                                 </p>
                             </div>
@@ -54,64 +55,60 @@
                                     </label>
                                     <select 
                                         class="form-select" 
-                                        formControlName="brand"
-                                         [ngClass]="{'has-error': productForm.get('brand')?.touched && productForm.get('brand')?.invalid}"
+                                        formControlName="brandId"
+                                         [ngClass]="{'has-error': productForm.get('brandId')?.touched && productForm.get('brandId')?.invalid}"
                                     >
-                                        <option value="lenovo">Lenovo</option>
-                                        <option value="asus">Asus</option>
+                                        <option [ngValue]="brand.id" *ngFor="let brand of brands">{{brand.name}}</option>
                                     </select>
-                                     <p class="error-message" *ngIf="productForm.get('brand')?.touched && productForm.get('brand')?.invalid"> 
+                                     <p class="error-message" *ngIf="productForm.get('brandId')?.touched && productForm.get('brandId')?.invalid"> 
                                        {{ 'emptyInputError' | translate }}
                                     </p>
                                 </div>                                  
-                                  <div class="form-group mt-3">
-                                      <label for="categories" class="text-left">
-                                        {{'categories' | translate}}
+                                 <div class="form-group mt-3">
+                                   <label for="category" class="text-left">
+                                        {{'sidebarCategories' | translate}}
                                         <span class="text-red">*</span>
                                     </label>
-                                     <ng-select
-                                        [items]="cities"
-                                        bindLabel="name"
-                                        bindValue="name"
-                                        [multiple]="true"
-                                        [placeholder]="'selectCategories' | translate"
-                                        formControlName="categories"
-                                        [ngClass]="{'has-error': productForm.get('categories')?.touched && productForm.get('categories')?.invalid}"
-                                        >
-                                    </ng-select>
-                                    <p class="error-message" *ngIf="productForm.get('categories')?.touched && productForm.get('categories')?.invalid"> 
-                                       {{ 'emptyInputError' | translate }}
-                                    </p>
-                            </div>
-                            <div class="form-group mt-3">
-                                      <label for="categories" class="text-left">
-                                        {{'tags' | translate}}
-                                        <span class="text-red">*</span>
-                                    </label>
-                                     <ng-select
-                                        [items]="cities"
-                                        bindLabel="name"
-                                        bindValue="name"
-                                        [multiple]="true"
-                                        [placeholder]="'selectTags' | translate"
-                                        formControlName="tags"
-                                        [ngClass]="{'has-error': productForm.get('tags')?.touched && productForm.get('tags')?.invalid}"
-                                        >
-                                    </ng-select>
-                                     <p class="error-message" *ngIf="productForm.get('tags')?.touched && productForm.get('tags')?.invalid"> 
-                                       {{ 'emptyInputError' | translate }}
-                                    </p>
-                            </div>
-                            <div class="form-group mt-3">
-                                <label class="form-check-label" for="switchCheckDefault">{{'status' | translate}}</label>
-                                <div class="form-check form-switch d-flex align-items-center">                                 
-                                    <input class="form-check-input me-3" formControlName="enabled" type="checkbox" role="switch" id="switchCheckDefault">
-                                    <label class="form-check-label fw-100" for="switchCheckDefault">{{'enableProduct' | translate}}</label>
-                                    <p class="error-message" *ngIf="productForm.get('enabled')?.touched && productForm.get('enabled')?.invalid"> 
+                                    <select 
+                                        class="form-select" 
+                                        formControlName="categoryId"
+                                         [ngClass]="{'has-error': productForm.get('categoryId')?.touched && productForm.get('categoryId')?.invalid}"
+                                    >
+                                        <option [ngValue]="category.id" *ngFor="let category of categories">{{category.name}}</option>
+                                    </select>
+                                     <p class="error-message" *ngIf="productForm.get('categoryId')?.touched && productForm.get('categoryId')?.invalid"> 
                                        {{ 'emptyInputError' | translate }}
                                     </p>
                                 </div>
-                            </div>
+                            <div class="form-group mt-3">
+                                   <label for="brand" class="text-left">
+                                        {{'productUnit' | translate}}
+                                        <span class="text-red">*</span>
+                                    </label>
+                                    <select 
+                                        class="form-select" 
+                                        formControlName="unitId"
+                                        [ngClass]="{'has-error': productForm.get('unitId')?.touched && productForm.get('unitId')?.invalid}"
+                                    >
+                                        <option [ngValue]="unit.id" *ngFor="let unit of units">{{unit.name}}</option>
+                                    </select>
+                                     <p class="error-message" *ngIf="productForm.get('unitId')?.touched && productForm.get('unitId')?.invalid"> 
+                                       {{ 'emptyInputError' | translate }}
+                                    </p>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="title" class="text-left d-block">
+                                            {{ 'status' | translate }}
+                                        <span class="text-red">*</span>
+                                    </label>
+                                    <input class="form-check-input me-2" type="checkbox" value="" id="checkDefault" formControlName="isActive">
+                                     <label class="form-check-label" for="checkDefault">
+                                             {{ 'enableProduct' | translate }}                              
+                                     </label>
+                                </div>
+                                 <p class="error-message" *ngIf="productForm.get('isActive')?.touched && productForm.get('isActive')?.invalid"> 
+                                       {{ 'emptyInputError' | translate }}
+                                 </p>
                             </div>
                         </div>
                     </div>
@@ -131,8 +128,8 @@
                                 <img [src]="placeholderImage">
                                 </div> 
                                 <div class="selected-image-container">
-                                    <div class="image-item position-relative" *ngFor="let selectedImage of selectedImages">
-                                        <img  [src]="selectedImage.image" class="selected-images">
+                                    <div class="image-wrapper m-0 d-flex align-items-center justify-content-center position-relative" *ngFor="let selectedImage of selectedImages">
+                                        <img  [src]="getUrl + selectedImage.uniqueName" class="selected-images">
                                         <span class="position-absolute" (click)="removeImage($event, selectedImage.id)"><i class="fa-solid fa-xmark"></i></span>
                                     </div>                           
                                 </div>
@@ -150,17 +147,20 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="title" class="text-left">
-                                    {{ 'stockAvailable' | translate }}
+                                    {{ 'quantity' | translate }}
                                     <span class="text-red">*</span>
                                 </label>
-                                <select 
-                                    class="form-select" 
-                                    formControlName="availability"
-                                    [ngClass]="{'has-error': productForm.get('availability')?.touched && productForm.get('availability')?.invalid}"
-                                >
-                                    <option value="in"> {{ 'in' | translate }}</option>
-                                    <option value="out">{{ 'out' | translate }}</option>
-                                </select>
+                               <div class="input-group flex-nowrap">
+                                    <span class="input-group-text" id="addon-wrapping">#</span>
+                                    <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    formControlName="quantity" 
+                                    aria-label="Username" 
+                                    aria-describedby="addon-wrapping"
+                                    [ngClass]="{'has-error': productForm.get('price')?.touched && productForm.get('price')?.invalid}"
+                                    >
+                                </div>
                                 <p class="error-message" *ngIf="productForm.get('publishStatus')?.touched && productForm.get('publishStatus')?.invalid"> 
                                     {{ 'emptyInputError' | translate }}
                                 </p>
@@ -239,9 +239,18 @@
             </div>
 
         <div class="page-form-footer d-flex align-items-center justify-content-end position-fixed bottom-0 end-0 px-2 py-2">
-              <div class="control-btns">
-                    <button class="btn btn-outline-secondary me-2" type="submit">{{ 'save' | translate }}</button>
-                    <button class="btn btn-outline-primary me-2">{{ 'saveAndEdit' | translate }}</button>
+              <div class="control-btns d-flex flex-row">
+                     <app-save-edit-toolbar
+                         [editMode]="isEditable"
+                        entityName="Product"
+                        [loading]="isSaving"
+                        [isImageLoaded]="!isImageLoaded"
+                        [invalid]="productForm.invalid"
+                        (save)="saveProduct()"
+                        ></app-save-edit-toolbar>
+                      <button class="btn btn-secondary align-self-center ms-2" (click)="cancel()">
+                         {{ 'cancel' | translate }}
+                    </button>
               </div>
         </div>
         </form>

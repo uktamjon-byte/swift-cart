@@ -6,16 +6,21 @@ import { PermissionListComponent } from './pages/permission-list/permission-list
 import { CreatePermissionComponent } from './pages/create-permission/create-permission.component';
 import { RoleListComponent } from './pages/role-list/role-list.component';
 import { CreateRoleComponent } from './pages/create-role/create-role.component';
+import { permissions } from 'src/app/constants/permissions';
+import { PermissionGuard } from 'src/app/admin/admin-auth/guards/permission.guard';
 
 const routes: Routes = [
   {
     path: '',
     data: { breadcrumb: 'User' },
+
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       {
         path: 'list',
+        canActivate: [PermissionGuard],
         component: UserListComponent,
+        data: { permission: permissions.userRead },
       },
       {
         path: 'list/create',
@@ -31,7 +36,12 @@ const routes: Routes = [
   },
   {
     path: 'permissions',
-    data: { breadcrumb: 'Permissions', resetBreadcrumb: true },
+    canActivate: [PermissionGuard],
+    data: {
+      breadcrumb: 'Permissions',
+      resetBreadcrumb: true,
+      permission: permissions.permissionRead,
+    },
     children: [
       { path: '', component: PermissionListComponent },
       {
@@ -48,7 +58,12 @@ const routes: Routes = [
   },
   {
     path: 'roles',
-    data: { breadcrumb: 'Roles', resetBreadcrumb: true },
+    canActivate: [PermissionGuard],
+    data: {
+      breadcrumb: 'Roles',
+      resetBreadcrumb: true,
+      permission: permissions.roleRead,
+    },
     children: [
       { path: '', component: RoleListComponent },
       {

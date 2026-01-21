@@ -3,8 +3,8 @@
     <div class="title">
       <h4 class="fw-bold">{{ 'permissions' | translate }}</h4>
     </div>
-    <div class="create-post-btn d-flex justify-content-end">
-      <a class="btn btn-primary" [routerLink]="'/users/permissions/create'">
+    <div class="create-post-btn d-flex justify-content-end" *ngIf="canCreatePermission">
+      <a class="btn btn-primary" [routerLink]="'/admin/users/permissions/create'">
         {{ 'createPermission' | translate }}
       </a>
     </div>
@@ -22,14 +22,8 @@
       [showBorders]="true"
       [width]="'100%'"
       (onContentReady)="contentReady($event)"
-       (onRowRemoving)="onRowRemoving($event)"
     >
-         <!-- ✅ Editing config -->
-      <dxo-editing
-        mode="row"
-        [allowDeleting]="true"
-        [useIcons]="true"
-      ></dxo-editing>
+     
       <dxo-toolbar>
         <!-- Search Panel -->
         <dxi-item name="searchPanel"></dxi-item>
@@ -56,16 +50,34 @@
 
       <dxi-column dataField="createdAt" dataType="date" caption="{{ 'created' | translate}}">
       </dxi-column>
+ 
+      <dxi-column
+        *ngIf="canEditOrDeletePermission"
+        caption="Actions"
+        [width]="120"
+        [allowSorting]="false"
+        [allowFiltering]="false"
+        cellTemplate="actionTemplate">
 
-      <dxi-column type="buttons" [width]="100">
-          <!-- Edit button -->
-          <dxi-button
-            hint="Edit"
-            icon="edit"
-            [onClick]="editRow.bind(this)"
-          ></dxi-button>
-          <dxi-button name="delete"></dxi-button>
       </dxi-column>
+
+     <div *dxTemplate="let data of 'actionTemplate'" class="d-flex gap-2">
+      <button
+        *ngIf="canUpdatePermission"
+        class="btn btn-sm btn-outline-primary"
+        (click)="editRow(data.data.id)"
+        >
+        <i class="dx-icon-edit"></i>
+      </button>
+
+      <button
+        *ngIf="canDeletePermission"
+        class="btn btn-sm btn-outline-danger"
+        (click)="deleteDialog(data.data.id)" 
+      >
+        <i class="dx-icon-trash"></i>
+      </button>
+    </div> 
 
       <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"  [placeholder]="'search' | translate"></dxo-search-panel>
 

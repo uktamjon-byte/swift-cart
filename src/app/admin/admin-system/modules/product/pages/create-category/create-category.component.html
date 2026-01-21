@@ -17,7 +17,7 @@
                             <a class="fw-bold active-title-underline">{{ 'general' | translate }}</a>  
                         </div>
                         <div class="box-body">
-                            <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+                            <form [formGroup]="categoryForm">
                             <div class="form-group"> 
                                 <div class="form-title">
                                   <label for="title" class="text-left">
@@ -28,10 +28,10 @@
                                     type="text" 
                                     id="title" 
                                     class="form-control"
-                                    formControlName="title"
-                                    [ngClass]="{'has-error': categoryForm.get('title')?.touched && categoryForm.get('title')?.invalid}"
+                                    formControlName="name"
+                                    [ngClass]="{'has-error': categoryForm.get('name')?.touched && categoryForm.get('name')?.invalid}"
                                 >
-                                 <p class="error-message" *ngIf="categoryForm.get('title')?.touched && categoryForm.get('title')?.invalid"> 
+                                 <p class="error-message" *ngIf="categoryForm.get('name')?.touched && categoryForm.get('name')?.invalid"> 
                                     {{ 'emptyInputError' | translate }}
                                 </p>
                                 </div>              
@@ -57,7 +57,7 @@
                                     <label for="title" class="text-left d-block">
                                             {{ 'status' | translate }}
                                     </label>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault" formControlName="status">
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault" formControlName="isActive">
                                      <label class="form-check-label" for="checkDefault">
                                              {{ 'enableCategory' | translate }}                              
                                      </label>
@@ -70,17 +70,27 @@
                                     </label>
                                   <button type="button" class="btn btn-secondary btn-sm mb-3" (click)="uploadImage(true)"><span class="me-2"><i class="fa-regular fa-folder-open"></i></span>Browse</button>
                                   <div class="image-wrapper m-0 d-flex align-items-center justify-content-center position-relative">
-                                     <img [src]="imageLink1 || placeholderImage1" alt="image"  (load)="onImageLoad(imageLink1, true)">
+                                     <img [src]="getUrl" alt="image"  (load)="onImageLoad(imageLink1, true)">
                                      <span class="position-absolute"  (click)="clearImageArea(true)" *ngIf="imgLoaded1"><i class="fa-solid fa-xmark"></i></span>
                                   </div>
-                                 <p class="error-message" *ngIf="categoryForm.get('logoImage')?.invalid && categoryForm.get('logoImage')?.touched">
+                                 <p class="error-message" *ngIf="categoryForm.get('imageId')?.invalid && categoryForm.get('imageId')?.touched">
                                      {{ 'emptyInputError' | translate }}
                                  </p>
                                 </section>
 
                             </div>
-                                <div class="action-btns mt-2">
-                                   <button class="btn btn-primary btn-sm" type="submit">{{'save' | translate}}</button>
+                                <div class="action-btns mt-2 d-flex flex-row">
+                                     <app-save-edit-toolbar
+                                    [editMode]="isEdit"
+                                    entityName="Brand"
+                                    [loading]="isSaving"
+                                    [isImageLoaded]="!imgLoaded1"
+                                    [invalid]="categoryForm.invalid"
+                                    (save)="saveCategory()"
+                                    ></app-save-edit-toolbar>
+                                     <button class="btn btn-secondary align-self-center ms-2" (click)="cancel()">
+                                     {{ 'cancel' | translate }}
+                                    </button>
                                 </div>
                             </form>
                         </div>

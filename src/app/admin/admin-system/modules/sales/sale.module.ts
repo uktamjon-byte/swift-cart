@@ -9,9 +9,11 @@ import {
   DxTemplateModule,
 } from 'devextreme-angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { OrderService } from './services/order.service';
+import { OrderCreateComponent } from './pages/order-create/order-create.component';
 
 @NgModule({
-  declarations: [OrderDetailComponent, OrderListComponent],
+  declarations: [OrderDetailComponent, OrderListComponent, OrderCreateComponent],
   imports: [
     CommonModule,
     AdminSalesRoutingModule,
@@ -20,5 +22,6 @@ import { TranslateModule } from '@ngx-translate/core';
     DxTemplateModule,
     TranslateModule,
   ],
+  providers: [OrderService],
 })
 export class SaleModule {}

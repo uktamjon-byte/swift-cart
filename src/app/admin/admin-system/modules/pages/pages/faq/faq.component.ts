@@ -1,49 +1,83 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { IFaq } from '../../types/interfaces/pages.interface';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { Router } from '@angular/router';
+import { NotifyServiceMessage } from 'src/app/shared/services/notify.service';
+import { FaqService } from '../../services/faq.service';
+import { catchError, EMPTY, Subject, takeUntil } from 'rxjs';
+import {
+  DialogWindowButtonType,
+  NotifyMessageType,
+} from 'src/app/shared/enums/notify.enum';
+import { RowRemovingEvent } from 'devextreme/ui/data_grid';
+import { PermissionsService } from 'src/app/admin/admin-auth/services/permission.service';
+import { permissions } from 'src/app/constants/permissions';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmWindowComponent } from 'src/app/shared/components/confirm-window/confirm-window.component';
 
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.scss'],
 })
-export class FaqComponent implements OnInit {
+export class FaqComponent implements OnInit, OnDestroy {
   collapsed: any;
   selectedFaq!: IFaq;
+  private destroy$ = new Subject<void>();
+  faqs: IFaq[] = [];
   @ViewChild('grid', { static: false }) dataGrid!: DxDataGridComponent;
-  constructor(private router: Router) {}
-  faqs: IFaq[] = [
-    {
-      id: 1,
-      title: 'How can I track my order?',
-      description:
-        'You can track your order status by visiting the “My Orders” section in your account dashboard.',
-      isActive: true,
-    },
-    {
-      id: 2,
-      title: 'What is your return policy?',
-      description:
-        'We accept returns within 14 days of delivery, provided that the item is unused and in its original packaging.',
-      isActive: false,
-    },
-    {
-      id: 3,
-      title: 'Do you offer international shipping?',
-      description:
-        'Yes, we ship to most countries worldwide. Shipping fees and delivery times vary by destination.',
-      isActive: false,
-    },
-    {
-      id: 4,
-      title: 'How can I contact customer support?',
-      description:
-        'You can reach us through the “Contact Us” page or by emailing support@example.com.',
-      isActive: false,
-    },
-  ];
-  ngOnInit(): void {}
+  permissions = permissions;
+  canCreateFaq = false;
+  canUpdateFaq = false;
+  canDeleteFaq = false;
+  canEditOrDelete = false;
+  constructor(
+    private router: Router,
+    private notifyServiceMessage: NotifyServiceMessage,
+    private faqService: FaqService,
+    public permission: PermissionsService,
+    private dialog: MatDialog,
+  ) {}
+  ngOnInit(): void {
+    this.canCreateFaq = this.permission.has(this.permissions.faqCreate);
+    this.canUpdateFaq = this.permission.has(this.permissions.faqUpdate);
+    this.canDeleteFaq = this.permission.has(this.permissions.faqDelete);
+    this.canEditOrDelete = this.canUpdateFaq || this.canDeleteFaq;
+    this.uploadFaq();
+  }
+
+  uploadFaq() {
+    this.faqService
+      .getFaq()
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((e) => {
+          this.notifyServiceMessage.opeSnackBar(
+            'Something went wrong while uploading FAQ, please try again later',
+            NotifyMessageType.error,
+          );
+          return EMPTY;
+        }),
+      )
+      .subscribe((response) => {
+        if (!response.success) {
+          this.notifyServiceMessage.opeSnackBar(
+            'Failed to load user request',
+            NotifyMessageType.error,
+          );
+          return;
+        }
+
+        if (!response.data || response.data.length === 0) {
+          this.notifyServiceMessage.opeSnackBar(
+            'No faq was wade to show, please create faq',
+            NotifyMessageType.notify,
+          );
+          return;
+        }
+        this.faqs = response.data;
+      });
+  }
 
   truncateText(text: string, maxLength: number = 100): string {
     if (!text) return '';
@@ -57,12 +91,54 @@ export class FaqComponent implements OnInit {
     }
   };
 
-  onRowRemoved(e: any) {
-    console.log('Deleted:', e.data);
+  deleteDialog(id: number) {
+    const dialogRef = this.dialog.open(ConfirmWindowComponent, {
+      width: '420px',
+      maxWidth: '90vw',
+      disableClose: true,
+      autoFocus: false,
+      data: { title: 'Delete', message: 'Are you sure you want to delete it' },
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      console.log('id data', id);
+      if (DialogWindowButtonType.confirm === res) {
+        this.faqService
+          .deleteFaq(id)
+          .pipe(
+            takeUntil(this.destroy$),
+            catchError((e) => {
+              this.notifyServiceMessage.opeSnackBar(
+                'Something went wrong, please try again later',
+                NotifyMessageType.error,
+              );
+              return EMPTY;
+            }),
+          )
+          .subscribe((data) => {
+            if (data.success) {
+              this.faqs = this.faqs.filter((r) => r.id !== id);
+              this.notifyServiceMessage.opeSnackBar(
+                'FAQ has been deleted successfully',
+                NotifyMessageType.notify,
+              );
+            } else {
+              this.notifyServiceMessage.opeSnackBar(
+                'Failed to delete FAQ',
+                NotifyMessageType.error,
+              );
+            }
+          });
+      }
+    });
   }
 
-  onRowClick($event: any) {
-    this.selectedFaq = $event.data;
-    this.router.navigate([`pages/faq/edit/${this.selectedFaq.id}`]);
+  editRow(id: number) {
+    this.router.navigate([`/admin/pages/faq/edit/${id}`]);
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

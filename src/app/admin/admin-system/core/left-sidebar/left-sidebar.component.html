@@ -9,7 +9,7 @@
         <div class="main-wrapper">
             <ul class="my-3">
                     <li class="main-item " 
-                      *ngFor="let category of categories" 
+                      *ngFor="let category of filteredCategories" 
                       (click)="toggleSubmenu(category)"
                       [ngClass]="{ 'active': currentSegment === category.pattern }"
                         

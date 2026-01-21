@@ -8,23 +8,12 @@ import { IPermission, IRole } from '../types/interfaces/user.interface';
   providedIn: 'root',
 })
 export class RoleService {
-  public savedRoles = new BehaviorSubject<IRole[]>([]);
-  constructor(private http: HttpClient) {
-    this.getRoles().subscribe();
-    console.log('role service', this.savedRoles.value);
-  }
+  constructor(private http: HttpClient) {}
 
   getRoles(): Observable<any> {
-    return this.http
-      .get<{ success: boolean; message: string; data: IRole[] }>(
-        constants.baseUrl + '/user/role'
-      )
-      .pipe(
-        tap((response) => {
-          this.savedRoles.next(response.data);
-          console.log('edit response', response);
-        })
-      );
+    return this.http.get<{ success: boolean; message: string; data: IRole[] }>(
+      constants.baseUrl + '/user/role'
+    );
   }
 
   getRolesById(id: number): Observable<any> {
@@ -35,11 +24,11 @@ export class RoleService {
     return this.http.delete(constants.baseUrl + `/user/role/${id}`);
   }
 
-  postRoles(data: IPermission): Observable<any> {
+  postRoles(data: IRole): Observable<any> {
     return this.http.post(constants.baseUrl + '/user/role', data);
   }
 
-  updateRoles(id: number | null, data: IPermission): Observable<any> {
+  updateRoles(id: number | null, data: IRole): Observable<any> {
     return this.http.put(constants.baseUrl + `/user/role/${id}`, data);
   }
 }

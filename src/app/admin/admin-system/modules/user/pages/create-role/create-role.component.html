@@ -14,10 +14,10 @@
         <div class="col-lg-8">
              <div class="box px-3 shadow-none ">
                         <div class="box-header">
-                            <a class="fw-bold active-title-underline position-relative">{{ 'general' | translate }}</a>  
+                            <h5 class="fw-bold active-title-underline position-relative">{{ 'general' | translate }}</h5>  
                         </div>
                         <div class="box-body">
-                            <form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+                            <form [formGroup]="roleForm">
                             <div class="form-group">
                             <div class="form-name mb-2">
                                   <label for="name" class="text-left">
@@ -117,7 +117,7 @@
                         [editMode]="isEdit"
                         entityName="Role"
                         (save)="saveRole()"
-                         [invalid]="roleForm.invalid"
+                        [invalid]="roleForm.invalid"
                         [loading]="isSaving"
                 ></app-save-edit-toolbar>
                 <button class="btn btn-secondary align-self-center ms-2" (click)="cancelEdit()">

@@ -1,21 +1,33 @@
 @import '../../../../assets/sass/variables.scss';
-button{
-    padding: 6px 10px;   
-    border-radius: $default-border-radius;
-    color: $color-black;
+
+:host {
+  display: block;
+}
+
+.dialog-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: $color-black;
+  margin-bottom: 8px;
+}
+
+.dialog-content {
+  padding-top: 4px;
+
+  p {
     font-size: 16px;
-    background-color: transparent;
-    border: 1px solid $border-color;
-    &:hover{
-        opacity: 0.7;
-    }
-    &:last-child{
-        background-color: $color-yellow;
-        color: $color-gray-lite;
-        margin-right: 4px;
-    }
+    font-weight: 500;
+    color: $color-gray-dark;
+    line-height: 1.5;
+    margin: 0;
+  }
 }
-span{
-    font-size: 17px;
-    font-weight: 600;
+
+.dialog-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
 }
+

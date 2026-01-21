@@ -1,9 +1,9 @@
 <div class="toolbar d-flex justify-content-end gap-2 my-3">
   <button 
   class="btn btn-primary" 
-  type="submit" 
+  type="button" 
   (click)="onSave()"  
-  [disabled]="loading || invalid || codeExist"
+  [disabled]="loading || invalid || codeExist || isImageLoaded"
   >
   <ng-container *ngIf="!loading; else loadingTpl">
   {{ editMode ? 'Update' : 'Save' }}

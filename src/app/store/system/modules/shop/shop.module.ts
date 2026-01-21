@@ -9,17 +9,13 @@ import { ResponsiveSidebarFiltersComponent } from './components/responsive-sideb
 import { ProductContentComponent } from './pages/product-content/product-content.component';
 import { CategoriesService } from '../shared/services/categories.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PageSharedModule } from "../shared/page-shared.module";
+import { PageSharedModule } from '../shared/page-shared.module';
 import { SharedModule } from 'src/app/shared/components/shared-module';
 import { BlogService } from '../blog/services/blog.service';
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProductRateDetailComponent } from './components/product-rate-detail/product-rate-detail.component';
 import { ComparePageComponent } from './pages/compare-page/compare-page.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AddedProductsSidebarComponent } from './components/added-products-sidebar/added-products-sidebar.component';
-
-
 
 @NgModule({
   declarations: [
@@ -31,7 +27,7 @@ import { AddedProductsSidebarComponent } from './components/added-products-sideb
     ProductContentComponent,
     ImageGalleryComponent,
     ProductRateDetailComponent,
-    ComparePageComponent
+    ComparePageComponent,
   ],
   imports: [
     CommonModule,
@@ -41,11 +37,7 @@ import { AddedProductsSidebarComponent } from './components/added-products-sideb
     SharedModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    HttpClientModule
-],
-  providers:[
-    CategoriesService,
-    BlogService
-  ]
+  ],
+  providers: [CategoriesService, BlogService],
 })
-export class ShopModule { }
+export class ShopModule {}

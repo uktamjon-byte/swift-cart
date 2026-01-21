@@ -10,7 +10,7 @@
       [columnAutoWidth]="true"
       [columnHidingEnabled]="true"
       id="gridContainer"
-      [dataSource]="userRequests"
+      [dataSource]="userRequest"
       [remoteOperations]="false"
       [allowColumnReordering]="true"
       [rowAlternationEnabled]="true"
@@ -19,7 +19,6 @@
       (onContentReady)="contentReady($event)"
       (onRowRemoved)="onRowRemoved($event)"
     >
-     <!-- ✅ Editing config -->
       <dxo-editing
         mode="row"
         [allowDeleting]="true"
